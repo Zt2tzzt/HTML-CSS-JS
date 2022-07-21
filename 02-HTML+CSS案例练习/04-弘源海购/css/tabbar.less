@@ -1,0 +1,21 @@
+.tabbar {
+	position: fixed;
+	z-index: 99;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	// env()是获取当前环境的函数。用于底部安全区域的计算，比如iphoneX底部有一条横线用于做。
+	height: calc(env(safe-area-inset-bottom) + 50px);
+	border-top: 1px #ddd solid;
+	background-color: #fff;
+
+	.item {
+		flex: 1;
+		text-align: center;
+
+		img {
+			width: 48px;
+		}
+	}
+}

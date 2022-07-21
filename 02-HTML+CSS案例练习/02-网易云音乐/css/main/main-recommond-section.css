@@ -1,0 +1,105 @@
+.main .area-left .recommend-section .content {
+	padding: 20px 0 45px;
+	/* background-color: orange; */
+}
+.main .area-left .recommend-section .content ul {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.main .area-left .recommend-section .content .box {
+  width: 140px;
+  height: 204px;
+	/* margin-right: 26px; */
+	margin-bottom: 30px;
+}
+.main .area-left .recommend-section .content .box .top {
+  /* top的宽高由img撑开 */
+  position: relative;
+}
+.main .area-left .recommend-section .content .box .top img {
+  vertical-align: top; /* 去除图片底部经典3px，临时解决办法 */
+}
+.main .area-left .recommend-section .content .box .top .cover {
+  /* cover宽高占据整个top */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(../../image/coverall.png); /* 设置对角线精灵图 */
+  background-position: 0 0;
+}
+.main .area-left .recommend-section .content .box .top .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 27px; /* info盖度为27px，设置在img底部 */
+  background-image: url(../../image/coverall.png); /* 设置图片底部信息显示栏精灵图 */
+  background-position: 0 -537px;
+  /* 设置播放量字体 */
+  font-size: 12px;
+  color: #ccc;
+  line-height: 27px;
+}
+.main .area-left .recommend-section .content .box .top .info .icon-music {
+  display: inline-block;
+  /* 设置音乐图标精灵图 */
+  background-image: url(../../image/iconall.png);
+  background-position: 0 -24px;
+  width: 14px;
+  height: 11px;
+  /* 元素位置定位，微调 */
+  position: relative;
+  left: 10px;
+  top: 2px;
+}
+.main .area-left .recommend-section .content .box .top .info .count {
+  margin-left: 12px;
+}
+.main .area-left .recommend-section .content .box .top .info .icon-play {
+  display: inline-block;
+  /* 设置播放图标精灵图 */
+  background-image: url(../../image/iconall.png);
+  background-position: 0 0;
+  width: 16px;
+  height: 17px;
+  /* 元素位置定位 */
+  position: absolute; /* 子绝父绝 */
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto 0; /* 垂直居中 */
+}
+.main .area-left .recommend-section .content .box .top .info .icon-play:hover {
+  background-position: 0 -60px;
+}
+.main .area-left .recommend-section .content .box .bottom {
+  margin-top: 10px;
+  font-size: 14px;
+  display: block;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.main .area-left .recommend-section .content .box .bottom:hover {
+  text-decoration: underline;
+}
+
+.icon-radio {
+	position: relative;
+	top: 2px;
+}
+.iconall_sprite {
+	display: inline-block;
+	background: url(../../image/icon.png);
+}
+.inconal_sprite_radio {
+	background-position: -31px -658px;
+	width: 35px;
+	height: 15px;
+}

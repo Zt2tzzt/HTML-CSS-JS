@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="./css/common.css">
+	<style>
+		.header {
+			width: 100%;
+			height: 74px;
+			line-height: 74px;
+		}
+
+		.header .left .title {
+			float: left;
+			font-weight: 700;
+		}
+
+		.header .left .list li {
+			float: left;
+			margin-left: 14px;
+		}
+
+		.header .left .list li a:hover {
+			text-decoration: underline;
+		}
+
+		.header .left .list li:first-child {
+			color: #999
+		}
+
+		.header .right {
+			float: right;
+		}
+
+		.header .right a {
+			color: #999
+		}
+
+		.header .right a:hover {
+			text-decoration: underline;
+		}
+
+		.active {
+			color: #f00;
+		}
+
+		.content {
+			width: 100%;
+		}
+
+		.content .left {
+			float: left;
+			width: 330px;
+			height: 540px;
+			background-color: blueviolet;
+		}
+
+		.content .center {
+			float: left;
+			width: 548px;
+		}
+
+		.content .center .item {
+			box-sizing: border-box;
+			float: left;
+			width: 274px;
+			height: 271px;
+			border: 1px #000 solid;
+			border-left: none;
+		}
+		.content .center .item:nth-last-child(-n+2) {
+			margin-top: -1px;
+			height: 270px;
+		}
+
+		.content .right {
+			float: left;
+			width: 222px;
+			height: 540px;
+		}
+		.content .right .headline {
+			box-sizing: border-box;
+			border: 1px #000 solid;
+			border-left: none;
+			width: 100%;
+			height: 61px;
+		}
+		.content .right .item {
+			box-sizing: border-box;
+			border: 1px #000 solid;
+			border-left: none;
+			margin-top: -1px;
+			width: 100%;
+			height: 121px;
+		}
+		.content .right .item:last-child {
+			height: 120px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="kaola-wrapper">
+		<div class="header">
+			<div class="left">
+				<h2 class="title">运动户外</h2>
+				<ul class="list">
+					<li>热搜词</li>
+					<li><a href="#" class="active">阿迪达斯</a></li>
+					<li><a href="#">耐克</a></li>
+					<li><a href="#" class="active">斯凯奇</a></li>
+					<li><a href="#" class="active">安德玛</a></li>
+				</ul>
+			</div>
+			<div class="right">
+				<a href="#">更多好货 ></a>
+			</div>
+		</div>
+		<div class="content">
+			<div class="left"></div>
+			<div class="center">
+				<div class="item">1</div>
+				<div class="item">2</div>
+				<div class="item">3</div>
+				<div class="item">4</div>
+			</div>
+			<div class="right">
+				<dl>
+					<dt class="headline">最新热买</dt>
+					<dd class="item">1</dd>
+					<dd class="item">2</dd>
+					<dd class="item">3</dd>
+					<dd class="item">4</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

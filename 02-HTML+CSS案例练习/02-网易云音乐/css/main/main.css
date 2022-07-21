@@ -1,0 +1,144 @@
+.wrapper_02 {
+	width: 980px;
+	margin: 0 auto;
+}
+
+.main > .area {
+	display: flex;
+	justify-content: space-between;
+	border: 1px #3d3d3d solid;
+	border-width: 0 1px;
+	background-image: url(../../image/main_bg.png);
+}
+
+/* 左边区域 */
+.main .area-left {
+	width: 689px;
+	padding: 20px 20px 40px;
+}
+
+
+/* 右边区域 */
+.main .area-right {
+	width: 250px;
+}
+
+.main .area-right .user-login {
+	width: 250px;
+	height: 126px;
+	background: url(../../image/main_sprite.png) 0 0;
+}
+
+.main .area-right .user-login .desc {
+	width: 205px;
+	margin: 0 auto;
+	padding: 16px 0;
+	color: #666;
+	line-height: 22px;
+}
+
+.main .area-right .user-login .btn {
+	display: block;
+	width: 100px;
+	height: 31px;
+	margin: 0 auto;
+	line-height: 31px;
+	text-align: center;
+	color: #fff;
+	background: url(../../image/main_sprite.png) 0 -195px;
+	text-shadow: 0 1px 0 #8a060b;
+}
+.main .area-right .user-login .btn:hover {
+	background-position: -110px -195px;
+}
+
+.main .settle-singer {
+	padding: 20px;
+	padding-bottom: 14px;
+}
+
+.main .settle-singer .title {
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.main .settle-singer .list {
+	padding: 5px 0;
+}
+/* 入驻歌手 */
+.main .settle-singer .list .item {
+	display: flex;
+	width: 210px;
+	height: 62px;
+	margin-top: 15px;
+	background-color: #fafafa;
+}
+.main .settle-singer .list .item .info {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	padding: 3px 12px;
+	border: 1px #e9e9e9 solid;
+	border-left: none;
+	/* flex item 设置 flex-grow 后，需要设置overflow: hidden; 子元素的省略号效果才能有效 */
+	overflow: hidden;
+}
+.main .settle-singer .list .item .info .singer {
+	font-size: 14px;
+	font-weight: 700;
+	color: #000;
+}
+.main .settle-singer .list .item .info .desc {
+	font-size: 12px;
+	color: #666;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+/* 申请成为网易云音乐人按钮 */
+.main .apply {
+	width: 210px;
+	font-size: 12px;
+	font-weight: 700;
+	color: #000;
+	box-sizing: border-box;
+	/* 设置 border-radius 和 overflow: hidden; 隐藏精灵图左上角小点 */
+	border-radius: 4px;
+	overflow: hidden;
+	margin: 0 auto;
+}
+
+/* 热门主播 */
+.main .hot-hoster {
+	margin-top: 14px;
+	padding: 20px;
+}
+
+.main .hot-hoster .list {
+	margin-top: 10px;
+	overflow: auto;
+}
+
+.main .hot-hoster .list .item {
+	display: flex;
+	margin-top: 10px;
+}
+
+.main .hot-hoster .list .item .image {
+	width: 40px;
+}
+
+.main .hot-hoster .list .item .info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	margin-left: 10px;
+}
+
+.main .hot-hoster .list .item .info .author, .intro {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}

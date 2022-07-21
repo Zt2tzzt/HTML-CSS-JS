@@ -1,0 +1,22 @@
+.mi-wrapper {
+	width: 1226px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+.kaola-wrapper {
+	width: 1100px;
+	margin: 0 auto;
+	background-color: #fff;
+}
+
+.clear_fix::after {
+	content: "";
+	clear: both;
+	display: block;
+	visibility: hidden;
+	height: 0;
+}
+.clear_fix {
+	*zoom: 1;
+}

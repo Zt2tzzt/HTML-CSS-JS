@@ -1,0 +1,159 @@
+.topbar {
+	width: 100%;
+	height: 70px;
+	box-sizing: border-box;
+	border: 1px #000 solid;
+	background-color: #242424;
+}
+.topbar > .content {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 auto;
+	width: 1100px;
+	height: 100%;
+}
+.topbar .left {
+	display: flex;
+}
+.topbar .left .logo {
+	text-indent: -9999px;
+	width: 157px;
+	height: 100%;
+	padding-right: 20px;
+}
+.topbar .left > .tags {
+	display: flex;
+}
+.topbar .left .tag {
+	position: relative;
+	display: block;
+	font-size: 14px;
+	color: #ccc;
+	line-height: 70px;
+	height: 100%;
+	padding: 0 19px;
+}
+.topbar .left .tag.active,
+.topbar .left .tag:hover {
+	color: #fff;
+	background-color: #000;
+
+}
+/* 伪元素做小三角 */
+.topbar .left .tag.active::after {
+	content: "";
+	position: absolute;
+	display: inline-block;
+	width: 12px;
+	height: 6px;
+	bottom: -1px;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	background: url(../image/topbar.png) -226px 0;
+}
+.topbar .left .hot {
+	position: relative;
+	right: 13px;
+	top: 20px;
+	width: 28px;
+	height: 19px;
+	background-position: -190px 0;
+}
+
+.topbar .right {
+	display: flex;
+	align-items: center;
+	line-height: 70px;
+}
+
+.topbar .right .search {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 158px;
+	height: 32px;
+	padding-right: 10px;
+	border-radius: 32px;
+	background-color: #fff;
+	background-position: 0 -99px;
+}
+.topbar .right .search input {
+	font-size: 12px;
+	width: 125px;
+}
+.topbar .right .search input::-webkit-input-placeholder {
+	color: #9b9b9b;
+}
+
+.topbar .right .login {
+	color: #787878;
+	width: 28px;
+	height: 100%;
+	margin-right: 22px;
+	margin-left: 20px;
+}
+.topbar .right .login:hover a {
+	color: #999;
+}
+.topbar .right .login a {
+	color: #787878;
+}
+.topbar .right .login a:hover {
+	color: #787878;
+	text-decoration: underline;
+}
+
+.topbar .right > .creater-center {
+	text-align: center;
+	line-height: 33px;
+	color: #ccc;
+
+	width: 90px;
+	height: 32px;
+	margin-left: 12px;
+	border-radius: 20px;
+	border: 1px #4f4f4f solid;
+}
+.topbar .right > .creater-center:hover {
+	border: 1px #fff solid;
+	color: #fff;
+}
+
+.topnav {
+	width: 100%;
+	height: 35px;
+	box-sizing: border-box;
+	background-color: #C20C0C;
+}
+.topnav .content {
+	display: flex;
+	width: 1100px;
+	height: 100%;
+	margin: 0 auto;
+}
+.topnav .tags {
+	display: flex;
+	width: 744px;
+	height: 100%;
+	justify-content: flex-end;
+}
+.topnav .tags li {
+	font-size: 12px;
+}
+.topnav .tags a {
+	display: block;
+	height: 100%;
+}
+.topnav .tags span {
+	display: inline-block;
+	line-height: 20px;
+	color: #fff;
+	height: 20px;
+	padding: 0 13px;
+	margin: 6px 17px 0;
+	border-radius: 20px;
+}
+.topnav .tags .active {
+	background-color: #9B0909;
+}

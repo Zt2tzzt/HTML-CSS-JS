@@ -1,0 +1,105 @@
+.banner {
+	width: 100%;
+	height: 285px;
+	background: url(../../image/banner_blur_01.jpg) center / 6000px;
+}
+.banner .wrap {
+	position: relative;
+	width: 982px;
+	height: 285px;
+	margin: 0 auto;
+}
+/* 左边轮播图部分 */
+.banner .images-area {
+	position: relative;
+	width: 730px;
+	height: 100%;
+}
+.banner .images {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.banner .images li {
+	flex-shrink: 0;
+	width: 100%;
+}
+.banner .images li a {
+	display: block;
+}
+.banner .images li img {
+	width: 100%;
+	height: 285px;
+}
+.banner .dots {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	right: 0;
+	bottom: 3px;
+	margin: 0 auto;
+}
+.banner .dots li {
+	margin: 0 2px;
+}
+.banner .dots a {
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(../../image/banner.png) 3px -343px;
+}
+.banner .dots a:hover {
+	background: url(../../image/banner.png) -16px -343px;
+}
+/* 右边下载客户端部分 */
+.banner .dowload {
+	position: absolute;
+	right: -1px;
+	top: 0;
+	bottom: 0;
+	width: 254px;
+	background: url(../../image/download.png);
+}
+.banner .dowload a {
+	display: block;
+	text-indent: -9999px;
+	width: 215px;
+	height: 56px;
+	margin: 186px 0 0 19px;
+}
+.banner .dowload a:hover {
+	background: url(../../image/download.png) 0 -290px;
+}
+.banner .dowload p {
+	text-align: center;
+	color: #8d8d8d;
+	margin-top: 10px;
+}
+/* 左右控制轮播图的按钮 */
+.banner .wrap .control {
+	position: absolute;
+	width: 37px;
+	height: 63px;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	background-image: url(../../image/banner.png);
+}
+.banner .wrap .left {
+	left: -70px;
+	background-position: 0 -360px;
+}
+.banner .wrap .left:hover {
+	left: -70px;
+	background-position: 0 -430px;
+}
+.banner .wrap .right {
+	right: -70px;
+	background-position: 0 -500px;
+}
+.banner .wrap .right:hover {
+	right: -70px;
+	background-position: 0 -570px;
+}
