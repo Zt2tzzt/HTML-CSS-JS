@@ -184,7 +184,7 @@ const sum2 = x => y => z => x + y + z
   const log = date => type => message => console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]: [${message}]`);
   const nowLog = log(new Date())
   nowLog('DEBUG')('查找到轮播图的bug')
-  nowLog('FETURE')('新增了添加用户的权限')
+  nowLog('FEATURE')('新增了添加用户的权限')
   ```
 
 -----
@@ -195,7 +195,7 @@ const sum2 = x => y => z => x + y + z
 function sum3(x, y, z) {
 	return x + y + z
 }
-function myCurring(fn) {
+function ztCurring(fn) {
 	function curried(...args1) {
 		if (args1.length >= fn.length) {
 			return fn.apply(this, args1)
@@ -207,7 +207,7 @@ function myCurring(fn) {
 	}
 	return curried
 }
-const currySum = myCurring(sum3)
+const currySum = ztCurring(sum3)
 console.log(currySum(10)(20)(30));
 ```
 
@@ -287,7 +287,7 @@ with (obj) {
 
 eval是内建（内置）函数，它有什么用？
 
-- 可以将传入的字符串当做JavaScript代码来运行； 
+- 可以将传入的字符串当做 JavaScript 代码来运行； 
 - 会将最后一句执行语句的结果，作为返回值；
 
 ```javascript
@@ -350,7 +350,6 @@ function foo {
 
    ```javascript
    true.name = 'abc' // 报错
-   
    var obj = { name: "why" }
    Object.defineProperty(obj, "name", {
      writable: false,

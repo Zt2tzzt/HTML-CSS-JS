@@ -160,22 +160,26 @@ console.log(newMessage2) // fdabc faBC dfABC AaaBc
   - `String.prototype.match()`（常用） - 一个在字符串中执行查找匹配的 String 方法，它返回一个数组，在未匹配到时会返回 null。
 
     ```javascript
-    message.match(regexp) //  ['abc', 'aBC', 'ABC', 'aBc']
+    const regexp1 = /abc/gi
+    const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
+  message.match(regexp) //  ['abc', 'aBC', 'ABC', 'aBc']
+    const regexp2 = /abc/i
+  message.match(regexp) //  [abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
     ```
-
+  
   - `String.prototype.matchAll()` - 一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。传入的正则必须有修饰符 `g`
-
+  
     ```javascript
     const result3 = message.matchAll(re1)
+  result3.next()
     result3.next()
-    result3.next()
-    // ...
+  // ...
     ```
 
   - `String.prototype.search()` - 一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回 -1。
-
+  
   - `String.prototype.replace()` - 一个在字符串中执行查找匹配的 String 方法，并且使用替换字符串替换掉匹配到的子字符串。
-
+  
   - `String.prototype.split()` - 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 String 方法。
 
 ---

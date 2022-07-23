@@ -74,11 +74,11 @@ CSS cursor 属性有什么用？
 
 常见的设置5个
 
-- auto：浏览器自动决定指针显示样式。
-- default：由操作系统决定，一般就是一个小箭头。
-- pointer：一只小手。
-- text：一条竖线。
-- none：没有任何指针显示在元素上面。
+- `auto`：浏览器自动决定指针显示样式。
+- `default`：由操作系统决定，一般就是一个小箭头。
+- `pointer`：一只小手。
+- `text`：一条竖线。
+- `none`：没有任何指针显示在元素上面。
 
 ------
 
@@ -111,12 +111,12 @@ CSS position 属性有什么用。
 
 常用的5个设置。
 - 默认值:
-	- static：默认值, 静态定位。
+	- `static`：默认值, 静态定位。
 - 使用下面的值, 可以让元素变成 定位元素（positioned element)）
-	- relative：相对定位。
-	- absolute：绝对定位。
-	- fixed：固定定位。
-	- sticky：粘性定位。
+	- `relative`：相对定位。
+	- `absolute`：绝对定位。
+	- `fixed`：固定定位。
+	- `sticky`：粘性定位。
 
 -----
 
@@ -124,14 +124,14 @@ CSS position 属性有什么用。
 
 - position 属性的默认值。
 - 元素按照 normal flow 布局。
-- left 、right、top、bottom 没有任何作用。
+- `left`、`right`、`top`、`bottom` 没有任何作用。
 
 -----
 
 相对定位的特性3点。使用场景。
 
 - 元素按照 normal flow 布局。
-- 可以通过 left、right、top、bottom 进行定位，可设置负数。
+- 可以通过 `left`、`right`、`top`、`bottom` 进行定位，可设置负数。
 - 定位参照对象是元素自己原来的位置。
 
 数学表达式案例。
@@ -142,7 +142,7 @@ CSS position 属性有什么用。
     span {
       font-size: 10px;
       position: relative;
-      bottom: 4px;
+      bottom: 4px; /* 距离原来的位置，从底部，向上移动4px */
     }
   </style>
 </head>
@@ -178,7 +178,7 @@ CSS position 属性有什么用。
 - 使用 img 元素的方案（相对定位 + margin-left）
 
   1. 写死图片一半的宽度。
-  2. transform: translate(-50%) 或 left: -960px：相对于自己移动。
+  2. `transform: translate(-50%)` 或 `left: -960px;` 相对于自己移动。
 
   ```html
   <head>
@@ -193,9 +193,13 @@ CSS position 属性有什么用。
         overflow: hidden; /* img 超出的宽度不显示，滚动条隐藏。*/
       }
       .box img {
-        /* position: relative; */
-        /* left: -960px; */ /* left: 图片的一半 */
+        /* ---------伪代码------------ */
+        /* 第一种方案 */
+        position: relative;
+        left: -960px; /* left: 图片的一半 */
+        /* 第二种方案 */
         transform: translate(-50%); /* translate中的百分比是相对于自己 */
+        /* ---------伪代码------------ */
         margin-left: 50%; /* 向右边移动 .box 的一半 */
       }
     </style>
@@ -212,7 +216,7 @@ CSS position 属性有什么用。
 固定定位 fixed 特性4点。
 
 - 元素脱离 normal flow（脱离标准流、脱标）。
-- 可以通过 left、right、top、bottom 进行定位。
+- 可以通过 `left`、`right`、`top`、`bottom` 进行定位。
 - 定位参照对象是视口（viewport）。
 - 当画布滚动时，固定不动。
 
@@ -226,7 +230,7 @@ CSS position 属性有什么用。
 
 - 用于渲染文档的区域，文档内容超出视口范围，可以通过滚动查看。
 
-它们之间的关系。
+通常它们之间的关系。
 
 - 画布 >= 视口
 

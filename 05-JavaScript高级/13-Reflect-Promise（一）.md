@@ -247,7 +247,7 @@ promise.then(res => {
 then 方法接收2个参数的写法。
 
 - fulfilled 的回调函数：当状态变成 fulfilled 时会回调的函数；
-- reject 的回调函数：当状态变成 reject 时会回调的函数；
+- rejected 的回调函数：当状态变成 rejected 时会回调的函数；
 
 ```javascript
 promise.then(res => {
@@ -262,7 +262,7 @@ then 方法多次调用的写法。
 
 -  一个 Promise 的 then 方法是可以被多次调用的：
 - 每次调用我们都可以传入对应的 fulfilled 回调；
--  当Promise的状态变成 fulfilled 的时候，这些回调函数都会被执行；
+-  当 Promise 的状态变成 fulfilled 的时候，这些回调函数都会被执行；
 
 ```javascript
 promise.then(res => {

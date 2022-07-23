@@ -111,13 +111,13 @@ xhr.send()
 
 xhr 对象的 resposeType 属性有什么用？
 
-- 通过 `responseType` 可以设置获取数据的类型，如果设置为空字符串，则会使用 text 作为默认值。
+- 通过 `responseType` 可以设置获取数据的类型，如果设置为空字符串，则会使用 `text` 作为默认值。
 
 ---
 
 xhr 对象的 resposeText，resposeXML 有什么用？
 
-- 早期通常服务器返回的数据是普通的文本和XML，所以我们通常会通过 responseText、 responseXML 来获取响应结果，再将它们转化成JavaScript对象形式；
+- 早期通常服务器返回的数据是普通的文本和XML，所以我们通常会通过 responseText、 responseXML 来获取响应结果，再将它们转化成 JavaScript 对象形式；
 - 目前服务器基本返回的都是json数据，直接设置为json即可；
 
 ---
@@ -172,7 +172,6 @@ xhr.send()
 	const formEl = document.querySelector(".info")
 	const sendBtn = document.querySelector(".send")
 	sendBtn.onclick = function() {
-		//---------------------------伪代码------------------------
 		// 创建xhr对象
 		const xhr = new XMLHttpRequest()
 		// 监听数据响应
@@ -182,8 +181,10 @@ xhr.send()
 		// 配置请求
 		xhr.responseType = "json"
     
+    //---------------------------伪代码------------------------
 		// 1.传递参数方式一: get -> query
 		xhr.open("get", "http://123.207.32.32:1888/02_param/get?name=zzt&age=18&address=广州市")
+    xhr.send()
 
 		// 2.传递参数方式二: post -> urlencoded
 		xhr.open("post", "http://123.207.32.32:1888/02_param/posturl")
@@ -343,7 +344,7 @@ Fetch 使用的优化 3 个
 
 ```javascript
 fetch("http://123.207.32.32:8000/home/multidata").then(response => {
-  return response.json() // 类型是 promise，交给下一次 then 方法处理。
+  return response.json() // 返回的数据类型是 promise，交给下一次 then 方法处理。
 }).then(res => {
   console.log("res:", res)
 }).catch(err => {
