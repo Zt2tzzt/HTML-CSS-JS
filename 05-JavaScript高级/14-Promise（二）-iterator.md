@@ -133,7 +133,7 @@ p.then(res => {
 
 reject 方法有什么用，怎么用？
 
-- 用法类似于 resolve，相当于 new Promise，并调用 rejected。
+- 用法类似于 resolve，相当于 new Promise，并在 executor 中调用 rejected。
 - Promise.reject 传入的参数无论是什么形态，都会直接作为 reject 状态的参数传递到 catch 的回调函数中。
 
 ```javascript
@@ -257,7 +257,7 @@ Promise.any([p1, p2, p3]).then(res => {
 
 - 一个无参数或者一个参数的函数，返回一个应当拥有以下两个属性的对象： 
 - done（boolean） 
-	- 如果迭代器可以产生序列中的下一个值，则为 false。（这等价于没有指定 done 这个属性） 
+	- 如果迭代器可以产生序列中的下一个值，则为 false（这等价于没有指定 done 这个属性） 
 	- 如果迭代器已将序列迭代完毕，则为 true。这种情况下，value 是可选的，如果它依然存在，即为迭代结束之后的默认返回值。
 - value
 	- 迭代器返回的任何 JavaScript 值。done 为 true 时可省略。

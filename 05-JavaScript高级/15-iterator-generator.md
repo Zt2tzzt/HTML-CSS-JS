@@ -236,7 +236,7 @@ function* foo(name1) {
 	yield "cccc"
 }
 const generator = foo('name1')
-generator.next() // {value: ‘aaa’, done: false}
+generator.next() // {value: ‘aaaa’, done: false}
 generator.throw(new Error('name3 error')) // {value: 'bbb', done: false}
 generator.next('name4') // {value: 'ccc', done: false}
 ```

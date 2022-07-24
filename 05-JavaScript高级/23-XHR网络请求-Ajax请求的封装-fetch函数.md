@@ -118,7 +118,7 @@ xhr 对象的 resposeType 属性有什么用？
 xhr 对象的 resposeText，resposeXML 有什么用？
 
 - 早期通常服务器返回的数据是普通的文本和XML，所以我们通常会通过 responseText、 responseXML 来获取响应结果，再将它们转化成 JavaScript 对象形式；
-- 目前服务器基本返回的都是json数据，直接设置为json即可；
+- 目前服务器基本返回的都是 json 数据，直接将 resposeType 设置为 json 即可；
 
 ---
 
@@ -137,7 +137,7 @@ const xhr = new XMLHttpRequest()
 // 2.监听结果
 xhr.onload = function() {
   console.log(xhr.status, xhr.statusText) // 200 ok
-  // 根据http的状态码判断是否请求成功
+  // 根据 http 的状态码判断是否请求成功
   if (xhr.status >= 200 && xhr.status < 300) {
     console.log(`请求成功`, xhr.response)
   } else {
@@ -328,7 +328,7 @@ Fetch 数据的相应处理，2 个阶段。：
    - fetch 返回的 promise 就使用内建的 Response class 对象来对响应头进行解析； 
 	 - 在这个阶段，我们可以通过检查响应头，来检查 HTTP 状态以确定请求是否成功； 
 	 - 如果 fetch 无法建立一个 HTTP 请求，例如网络问题，亦或是请求的网址不存在，那么 promise 就会 reject； 
-	 - 异常的HTTP 状态，例如 404 或 500，不会导致出现 error；
+	 - 异常的 HTTP 状态，例如 404 或 500，不会导致出现 error；
 	 - 我们可以在 response 的属性中看到 HTTP 状态： 
 		- `response.status`：HTTP 状态码，例如 200；
 		- `response.ok`：布尔值，如果 HTTP 状态码为 200-299，则为 true；

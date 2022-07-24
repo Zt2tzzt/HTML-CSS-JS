@@ -15,11 +15,13 @@
 
 	<!-- <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.4/underscore-umd-min.js"></script> -->
 	<script>
-const regexp1 = /abc/gi
-const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
-message.match(regexp1) //  ['abc', 'aBC', 'ABC', 'aBc']
-const regexp2 = /abc/i
-console.log(message.match(regexp2)) //  ['abc', 'aBC', 'ABC', 'aBc']
+const names = ['abc', 'cba', 'nba']
+names.forEach(item => {
+	if (item === 'cba') {
+		return
+	}
+	console.log('---item---', item)
+})
 	</script>
 </body>
 
