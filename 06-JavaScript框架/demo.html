@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+	console.log("%O", jQuery) // 使用对象格式进行打印的写法
+	console.log($ === jQuery) // true
+	// 需求:在页面上显示 Hello World
+	// 原生
+	document.querySelector('body').textContent = 'Hello World'
+	// jQuery
+	var $body = jQuery('body')
+	$body.text('hello jQuery')
+	// or
+	$('body').text('hello jQuery')
+</script>
+</body>
+</html>
