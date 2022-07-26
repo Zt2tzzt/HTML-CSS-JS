@@ -38,15 +38,15 @@ jQuery的优点
 - 易于学习：相对于其它的前端框架，jQuery 更易于学习，它支持 JavaScript 的编码风格。
 - 少写多做（Write less, do more）
 	- jQuery提供了丰富的功能(DOM操作、过滤器、事件、动画、Ajax等)。
-	- 可以编写更少的代码和可读高的代码来提高开发人员的工作效率。
-- 优秀的 API 文档：jQuery 提供了优秀的在线API 文档。
+	- 可以编写更少的代码和可读性高的代码来提高开发人员的工作效率。
+- 优秀的 API 文档：jQuery 提供了优秀的在线API文档。
 - 跨浏览器支持：提供出色的跨浏览器支持 (IE9+)，无需编写额外代码。
 
 jQuery的缺点。
 
 - jQuery代码库一直在增长（自 jQuery 1.5 起超过 200KB）
 - 不支持组件化开发
-- jQuery 更适合DOM操作，当涉及到开发复杂的项目时，jQuery能力有限。
+- jQuery 更适合DOM操作，当涉及到开发复杂的项目时，jQuery 能力有限。
 
 -----
 
@@ -67,7 +67,7 @@ jQuery的缺点。
 1. jQuery是一个非常受欢迎的JavaScript库，被全球约 7000 万个网站使用。它优秀的设计和架构思想非常值得我们去学习。
 2. jQuery 的座右铭是“Write less , do more”，它易于学习，非常适合JavaScript 开发人员学习的第一个库。
 3. 前端JavaScript库非常多，学习jQuery有利于我们学习和理解其它的JavaScript库（例如：Day.js、Lodash.js等）
-4. 许多大型科技公司，虽然他们现在不会直接使用jQuery来做项目，但在项目中仍然会借鉴很多jQuery设计思想。
+4. 许多大型科技公司，虽然他们现在不会直接使用 jQuery 来做项目，但在项目中仍然会借鉴很多 jQuery 设计思想。
 
 因此，了解 jQuery 依然是一个好主意。
 
@@ -76,13 +76,13 @@ jQuery的缺点。
 jQuery 的安装。
 
 1. 在页面中，直接通过CDN的方式引入。
-2. 下载jQuery的源文件，并在页面中手动引入。
-3. 使用npm包管理工具安装到项目中（npm在Node基础阶段会讲解）
+2. 下载 jQuery 的源文件，并在页面中手动引入。
+3. 使用 npm 包管理工具安装到项目中（ npm 在 Node 基础阶段会讲解）
 
-jQuery的使用步骤
+jQuery 的使用步骤
 
-1. 执行引入的jQuery文件中会给window对象添加一个jQuery函数（例如：window.jQuery）。
-2. 接着我们就可以调用jQuery函数，或者使用该函数上的类方法。
+1. 执行引入的 jQuery 文件中会给 window 对象添加一个 jQuery 函数（例如：`window.jQuery`）。
+2. 接着我们就可以调用 jQuery 函数，或者使用该函数上的类方法。
 
 -----
 
@@ -273,7 +273,7 @@ $(window).on('load', function() {
 如何解决jQuery与其它库的变量名冲突问题。
 
 - 在 jQuery 中，$ 是 jQuery 的别名。 
-- 如果我们在使用jQuery库之前，其它库已经使用了 $ 作为函数或者变量的标识符，这时就会出现冲突的情况。 
+- 如果我们在使用 jQuery 库之前，其它库已经使用了 $ 作为函数或者变量的标识符，这时就会出现冲突的情况。 
 - 这时我们可以通过调用 jQuery 中的 `noConflict` 函数来解决冲突问题。
 - jQuery 在初始化前会先备份一下全局其它库的 jQuery 和 $ 变量，调用 noConflict 函数只是恢复之前备份的 jQuery 和 $ 变量。
 

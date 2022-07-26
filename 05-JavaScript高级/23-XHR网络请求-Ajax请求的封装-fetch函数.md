@@ -71,7 +71,7 @@ xhr.send()
 
 ---
 
-默认情况下，为什么响应头中设值了 `content-type: application/json`，拿到的却是文本类型。
+默认情况下，为什么响应头中设置了 `content-type: application/json`，拿到的却是文本类型。
 
 - 发送了请求后，我们需要获取对应的结果：`response` 属性
 - XMLHttpRequest `response` 属性返回响应的正文内容；
