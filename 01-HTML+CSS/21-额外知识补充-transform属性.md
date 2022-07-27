@@ -30,10 +30,10 @@ transform 语法，
 
 常见的 transform 函数。
 
-- 平移：translate(x, y)
-- 缩放：scale(x, y)
-- 旋转：rotate(deg)
-- 倾斜：skew(deg, deg)
+- 平移：`translate(x, y)`
+- 缩放：`scale(x, y)`
+- 旋转：`rotate(deg)`
+- 倾斜：`skew(deg, deg)`
 
 -----
 
@@ -48,13 +48,13 @@ transform 属性 translate 函数的作用，
 
 值类型。
 
-- 数字：100px
+- 数字：如100px
 - 百分比：参照元素本身（ refer to the size of bounding box ）。
 
 -----
 
 transform 属性 translate 函数的特性补充4点。
-- 是 translateX 和 translateY 函数的简写。
+- 是 `translateX` 和 `translateY`函数的简写。
 
 	- translate3d 后续了解；
 
@@ -82,28 +82,28 @@ transform 属性 translate 函数的特性补充4点。
 
 -----
 
-水平居中方案4点总结：
+水平居中方案5点总结：
 
 1. 行内级元素:
-	* 设置父元素的 text-align: center;
+	* 设置父元素的 `text-align: center;`
 2. 块级元素:
-	* 设置当前块级元素(宽度) margin: 0 auto;
+	* 设置当前块级元素(宽度) `margin: 0 auto;`
 3. 定位元素 + left + translate
 4. 绝对定位
-  * 元素有宽度情况下, left: 0; right: 0; margin: 0 auto;
+   - 元素有宽度情况下, `left: 0; right: 0; margin: 0 auto;`
 5. flex
-  * justify-content: center;
+   - `justify-content: center;`
 
 垂直居中方案3点总结，缺点有哪些？
 1. 绝对定位
-	* 元素有高度情况下, top: 0; bottom: 0; margin: auto 0;
+	* 元素有高度情况下, `top: 0; bottom: 0; margin: auto 0;`
 	- 弊端:
 		1. 必须使用定位（脱离标准流）。
 		2. 必须给元素设置高度。
 	
 2. flex布局，
 
-   - 设置 flex container 属性 align-item: center，设置 flex item 属性 align-self: center；
+   - 设置 flex container 属性 `align-item: center;`，设置 flex item 属性 `align-self: center;`
    - 弊端:
       1. 相对来说, 兼容性差一点点（基本可以忽略）
 
@@ -124,7 +124,7 @@ transform 属性 scale 函数作用，
 - 数字：1保持不变，2放大一倍，0.5缩小一半.
 - 百分比：百分比不常用。
 
-是 scaleX 和 scaleY 的缩写。
+是 `scaleX` 和 `scaleY` 的缩写。
 
 -----
 

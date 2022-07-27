@@ -53,6 +53,8 @@ flex items 的相关属性。
 
 # flex containerr 的属性
 
+## flex-direction
+
 flex container 的 `flex-direction` 属性有什么用，
 
 - 决定主轴（main axis）的方向，默认从 main start 到 main end。
@@ -66,23 +68,29 @@ flex container 的 `flex-direction` 属性有什么用，
 
 -----
 
+## flex-wrap
+
 flex container 的 `flex-wrap` 属性有什么用？
 
 - 决定了 flex-container 是单行还是多行。
 
 常用的设值有哪些？
 
-- nowrap（默认）：单行
-- wrap：多行
-- wrap-reverse：多行（对比 wrap，cross start 与 cross end 相反）
+- `nowrap`（默认）：单行
+- `wrap`：多行
+- `wrap-reverse`：多行（对比 wrap，cross start 与 cross end 相反）
 
 -----
+
+## flex-flow
 
 flex container 的 `flex-flow` 属性有什么用？
 
 - flex-direction 和 `flex-wrap` 的简写，顺序任何，并且都可以省略。
 
 -----
+
+## justify-content
 
 flex container 的 `justify-content` 属性有什么用？
 
@@ -107,6 +115,8 @@ flex container 的 `justify-content` 属性有什么用？
 
 -----
 
+## align-item
+
 flex containerr 的 `align-item` 属性有什么用？
 
 - 决定了 flex items 在 cross axis 上的对齐方式
@@ -123,6 +133,8 @@ flex containerr 的 `align-item` 属性有什么用？
 ![align-item的布局模型图](NodeAssets/flex containerr 的 align-item 属性.jpg)
 
 -----
+
+## align-content
 
 flex containerr 的 `align-content` 属性有什么用？
 
@@ -148,12 +160,16 @@ flex containerr 的 `align-content` 属性有什么用？
 
 # flex item 的属性
 
+## order
+
 flex item 的 `order` 属性有什么用？
 
 - 决定了 flex item 的排布顺序。
 - 可以设置任意整数（正整数、负整数、0），值越小就越排在前面，默认值是 0
 
 -----
+
+## align-self
 
 flex-item 的 `align-self` 属性有什么用？
 
@@ -166,6 +182,8 @@ flex-item 的 `align-self` 属性有什么用？
 ![align-self布局模型](NodeAssets/flex-item 的 align-self 属性.jpg)
 
 -----
+
+## flex-grow
 
 flex item 的 `flex-grow` 属性有什么用？
 
@@ -187,6 +205,8 @@ flex item 的 `flex-grow` 属性有什么用？
 
 -----
 
+## flex-shrink
+
 flex item 的 `flex-shrink` 属性有什么用？
 
 - 决定了 flex items 如何收缩(缩小)
@@ -204,6 +224,8 @@ flex item 的 `flex-shrink` 属性有什么用？
 - flex items 收缩后的最终 size 不能小于 min-width \ min-height
 
 -----
+
+## flex-basis
 
 flex item 的 `flex-basis` 属性有什么用？
 
@@ -227,7 +249,9 @@ flex item 的 `flex-basis` 属性有什么用？
 
 ------
 
-flex item 的 flex 属性有什么用？
+## flex
+
+flex item 的 `flex` 属性有什么用？
 
 - 是 flex-grow || flex-shrink || flex-basis 的简写，flex 属性可以指定1个，2个或3个值。
 
@@ -238,7 +262,7 @@ flex item 的 flex 属性有什么用？
 - 单值语法
 
   - 无单位，被当作 flex-grow，有单位，被当作 flex-basis
-  - 可设置关键字：none（相当于 0 0 auto），auto（相当于 1 1 auto），initial（相当于 0 1 auto）
+  - 可设置关键字：`none`（相当于 0 0 auto），`auto`（相当于 1 1 auto），`initial`（相当于 0 1 auto）
 - 双值语法: 
 	- 第一个值必须为一个无单位数，并且它会被当作 flex-grow 的值。 
 	- 第二个值必须为以下之一： 

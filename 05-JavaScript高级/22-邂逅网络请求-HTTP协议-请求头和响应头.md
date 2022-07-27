@@ -127,7 +127,7 @@ HTTP Request Header 是什么，
 
 - content-type 是这次请求携带的数据的类型：
 
-有哪些值，分别代变什么含义？
+有哪些值，分别代表什么含义？
 
 - `application/x-www-form-urlencoded`：表示数据被编码成以 '&' 分隔的键值对，同时以 '=' 分隔键和值
 - `application/json`：表示是一个 json 类型；
@@ -145,7 +145,7 @@ HTTP Request Header 中还有哪些属性，分别有什么用？
   - 在 http1.0 中，如果想要继续保持连接：
     - 浏览器需要在请求头中添加 `connection: keep-alive`；
     - 服务器需要在响应头中添加 `connection: keey-alive`；
-    - 当客户端再次放请求时，就会使用同一个连接，防止一方中断连接；
+    - 当客户端再次发送请求时，就会使用同一个连接，防止一方中断连接；
   - 在 http1.1 中，所有连接默认是 `connection: keep-alive` 的；
     - 不同的 Web 服务器会有不同的保持 keep-alive 的时间；
     - Node 中默认是 5s 中；

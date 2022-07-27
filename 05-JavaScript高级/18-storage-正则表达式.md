@@ -123,7 +123,7 @@ const re2 = /abc/gi // 字面量创建
 
 ```javascript
 const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
-// 需求: 将所有的abc(忽略大小写)换成cba
+// 需求: 将所有的 abc(忽略大小写)换成 cba
 // const newMessage = message.replaceAll("abc", "cba") // 这样写，只能匹配小写”abc“
 const newMessage = message.replace(/abc/gi, 'cba')
 console.log(newMessage) // fdcba123 fcba323 dfcba222 A2324acba

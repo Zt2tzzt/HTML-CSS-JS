@@ -52,7 +52,7 @@ jQuery的缺点。
 
 了解jQuery的起源和历史。
 
-1. 2005年8月22日，John Resig（一名从事自己项目的Web开发人员）首次提出支持CSS选择器的JavaScript库，其语法比现有库（例如：Behaviour ）更简洁。
+1. 2005年8月22日，John Resig（一名从事自己项目的Web开发人员）首次提出支持CSS选择器的JavaScript库，其语法比当时现有的库（例如：Behaviour ）更简洁。
 2. 在2006年之前，John Resig 对编写跨浏览器的JavaScript感到非常繁琐。
 3. 直到2006-8-26才发布了1.0版本。原本打算使用 JSelect（JavaScript Selectors）命名该库，但域名都已被占用。
 
@@ -207,7 +207,7 @@ jQuery：
 
 -----
 
-jQuery监听文档（document）的 DOMContentLoaded 事件的4种写法：
+jQuery监听文档（document）的 `DOMContentLoaded `事件的4种写法：
 
 - `$( document ).ready( handler )`： deprecated
 
@@ -270,7 +270,7 @@ $(window).on('load', function() {
 
 -----
 
-如何解决jQuery与其它库的变量名冲突问题。
+如何解决 jQuery 与其它库的变量名冲突问题。
 
 - 在 jQuery 中，$ 是 jQuery 的别名。 
 - 如果我们在使用 jQuery 库之前，其它库已经使用了 $ 作为函数或者变量的标识符，这时就会出现冲突的情况。 
