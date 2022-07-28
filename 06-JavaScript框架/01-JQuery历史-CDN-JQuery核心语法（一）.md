@@ -37,7 +37,7 @@ jQuery的优点
 
 - 易于学习：相对于其它的前端框架，jQuery 更易于学习，它支持 JavaScript 的编码风格。
 - 少写多做（Write less, do more）
-	- jQuery提供了丰富的功能(DOM操作、过滤器、事件、动画、Ajax等)。
+	- jQuery 提供了丰富的功能(DOM操作、过滤器、事件、动画、Ajax等)。
 	- 可以编写更少的代码和可读性高的代码来提高开发人员的工作效率。
 - 优秀的 API 文档：jQuery 提供了优秀的在线API文档。
 - 跨浏览器支持：提供出色的跨浏览器支持 (IE9+)，无需编写额外代码。
@@ -50,7 +50,7 @@ jQuery的缺点。
 
 -----
 
-了解jQuery的起源和历史。
+了解 jQuery 的起源和历史。
 
 1. 2005年8月22日，John Resig（一名从事自己项目的Web开发人员）首次提出支持CSS选择器的JavaScript库，其语法比当时现有的库（例如：Behaviour ）更简洁。
 2. 在2006年之前，John Resig 对编写跨浏览器的JavaScript感到非常繁琐。
@@ -207,7 +207,7 @@ jQuery：
 
 -----
 
-jQuery监听文档（document）的 `DOMContentLoaded `事件的4种写法：
+jQuery 监听文档（document）的 `DOMContentLoaded `事件的4种写法：
 
 - `$( document ).ready( handler )`： deprecated
 

@@ -126,7 +126,7 @@ arr.lastItem()
 
 -----
 
-JavaScript 中类不能实现多继承，不能实现接口。使用混入实现类似效果（一种思想，开发中不用）。
+JavaScript 中类不能实现多继承，不能实现接口。使用混入实现类似效果（一种思想，开发中基本不用）。
 
 ```javascript
 function mixinSwimming(BaseClass) {
@@ -156,7 +156,7 @@ class NewBird2 extends mixinRunner(mixinAnimal(Bird)) { }
 
 babel 是什么？有什么用？
 
-- Babel是一个工具链，最早用于在旧浏览器或环境中将ES6+代码转成向后兼容的版本。
+- Babel 是一个工具链，最早用于在旧浏览器或环境中将ES6+代码转成向后兼容的版本。
 - 现在主要用于语法转换，源代码转换等。
 
 - Babel本质上是一个编译器。

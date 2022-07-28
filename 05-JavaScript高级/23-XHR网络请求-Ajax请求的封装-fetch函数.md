@@ -256,7 +256,7 @@ function hyajax({
 } = {}) {
   // 1.创建对象
   const xhr = new XMLHttpRequest()
-  // 2.创建Promise
+  // 2.创建 Promise
   const promise = new Promise((resolve, reject) => {
     // 2.监听数据
     xhr.onload = function() {
@@ -304,7 +304,7 @@ Fetch 如何使用？
 
 - `Promise<Response> fetch(input[, init]);`
 
-- input：定义要获取的资源地址，可以是一个URL字符串，也可以使用一个Request对象（实验性特性）类型； 
+- input：定义要获取的资源地址，可以是一个URL字符串，也可以使用一个 Request 对象（实验性特性）类型； 
 - init：其他初始化参数 
 	- method: 请求使用的方法，如 GET、POST； 
 	- headers: 请求的头信息；
@@ -423,10 +423,10 @@ getData2()
 <script>
 	// 表单
 	const fileEl = document.querySelector(".file")
-	const uploadBtn = document.querySelector(".upload")
 	const file = fileEl.files[0]
 	const formData = new FormData
 	formData.append("avatar", file)
+	const uploadBtn = document.querySelector(".upload")
 	uploadBtn.onclick = function() {
 		// 1.创建对象
 		const xhr = new XMLHttpRequest()
