@@ -92,9 +92,9 @@ jQuery 对象与原生对象之间的转换。
 - jQuery 对象转成 DOM Element
 
 	- `$el[index]`：获取 jQuery 对象中某个索引中的 DOM 元素。
-	- `$el.get(index)`：获取 jQuery 对象中某个索引中的DOM 元素。
-	  - index一个从零开始的整数，指示要检索的元素。
-	  - 如果index超出范围（小于负数元素或等于或大于元素数），则返回undefined。
+	- `$el.get(index)`：获取 jQuery 对象中某个索引中的 DOM 元素。
+	  - index 一个从零开始的整数，指示要检索的元素。
+	  - 如果 index 超出范围（小于负数元素或等于或大于元素数），则返回 undefined。
 	- `$el.get()` : 没有参数，将返回 jQuery 对象中所有DOM元素的数组。
 
 	```javascript
@@ -317,7 +317,7 @@ jQuery 对文本操作的api。
         console.log( $('.user').val() )
         console.log( $('.password').val() )
       })
-    // 2.给表单元素设置值
+    	// 2.给表单元素设置值
       $('.setUserPas').click(function() {
         $('.user').val('coder')
         $('.password').val('admin')

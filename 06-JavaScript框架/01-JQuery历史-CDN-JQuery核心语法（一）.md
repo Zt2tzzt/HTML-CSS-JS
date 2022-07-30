@@ -62,11 +62,11 @@ jQuery的缺点。
 
 -----
 
-为什么要使用jQuery？
+为什么要使用 jQuery？
 
-1. jQuery是一个非常受欢迎的JavaScript库，被全球约 7000 万个网站使用。它优秀的设计和架构思想非常值得我们去学习。
+1. jQuery 是一个非常受欢迎的 JavaScript 库，被全球约 7000 万个网站使用。它优秀的设计和架构思想非常值得我们去学习。
 2. jQuery 的座右铭是“Write less , do more”，它易于学习，非常适合JavaScript 开发人员学习的第一个库。
-3. 前端JavaScript库非常多，学习jQuery有利于我们学习和理解其它的JavaScript库（例如：Day.js、Lodash.js等）
+3. 前端 JavaScript 库非常多，学习 jQuery 有利于我们学习和理解其它的 JavaScript 库（例如：Day.js、Lodash.js 等）
 4. 许多大型科技公司，虽然他们现在不会直接使用 jQuery 来做项目，但在项目中仍然会借鉴很多 jQuery 设计思想。
 
 因此，了解 jQuery 依然是一个好主意。
