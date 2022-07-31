@@ -34,12 +34,12 @@
 
 vertical-align 可以设的值。
 
-- baseline：默认值，基线对齐。
-- top：把行内级盒子的顶部跟行盒（line boxes）顶部对齐。
-- middle：行内级盒子的中心点与父盒基线上字母x高度一半的线对齐。
-- bottom：把行内级盒子的底部跟行盒（line box）底部对齐。
-- <percentage>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是[`line-height`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height)属性的百分比。可以是负数。
-- <length>：使元素的基线对齐到父元素的基线之上的给定长度。可以是负数。
+- `baseline`：默认值，基线对齐。
+- `top`：把行内级盒子的顶部跟行盒（line boxes）顶部对齐。
+- `middle`：行内级盒子的中心点与父盒基线上字母x高度一半的线对齐。
+- `bottom`：把行内级盒子的底部跟行盒（line box）底部对齐。
+- \<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是[`line-height`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height)属性的百分比。可以是负数。
+- \<length\>：使元素的基线对齐到父元素的基线之上的给定长度。可以是负数。
 
 middle 为什么不能做垂直居中？代码演示。
 
@@ -89,7 +89,7 @@ middle 为什么不能做垂直居中？代码演示。
       width: 100px;
       height: 100px;
       background-color: #f00;
-      line-height: 100px; /* 如果这里不声明 line-height，会继承 .content 的 line-height 属性，造成下图的效果。*/
+      line-height: 100px; /* 如果这里不声明 line-height，则会继承 .content 的 line-height 属性，造成下图的效果。*/
     }
   </style>
 </head>

@@ -64,7 +64,7 @@ jQuery 函数的参数
 
 如何创建 jQuery 对象
 
-- `$()` 新建一个空的jQuery对象
+- `$()` 新建一个空的 jQuery 对象
 - `$(document)` 新建一个包含 document 元素的 jQuery 对象
 - `$('选择器')` 新建一个包含所选中 DOM 元素的 jQuery 对象
 
@@ -78,7 +78,7 @@ jQuery 对象与 DOM Element 的区别。
 
 - 获取的方式不同
 	- DOM Element 是通过原生方式获取，例如：`document.querySelector()`
-	- jQuery 对象是通过调用 jQuery 函数获取，例如：`jQuery(' ')`
+	- jQuery 对象是通过调用 jQuery 函数获取，例如：`jQuery('')`
 - jQuery 对象是一个类数组对象，该对象中会包含所选中的 DOM Element 的集合。
 - jQuery 对象的原型上扩展非常多实用的方法，DOM Element 则是 W3C 规范中定义的属性和方法。
 
@@ -153,7 +153,7 @@ jQuery 对象与原生对象之间的转换。
     if(!selector){
       return this
     }
-    // 拿到DOM Element源码
+    // 拿到 DOM Element 源码
     var el = document.querySelector(selector)
     this[0] = el
     this.length = 1
@@ -217,9 +217,9 @@ jQuery 支持使用哪些选择器？
 
 jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？如何使用？
 
-1. `eq(index)`: 从匹配元素的集合中，取索引处的元素， eq全称(equal 等于)，返回jQuery对象。
-2. `first() `: 从匹配元素的集合中，取第一个元素，返回jQuery对象。
-3. `last()`: 从匹配元素的集合中，取最后一个元素，返回jQuery对象。
+1. `eq(index)`: 从匹配元素的集合中，取索引处的元素， eq全称(equal 等于)，返回 jQuery 对象。
+2. `first() `: 从匹配元素的集合中，取第一个元素，返回 jQuery 对象。
+3. `last()`: 从匹配元素的集合中，取最后一个元素，返回 jQuery 对象。
 4. `not(selector)`: 从匹配元素的集合中，删除匹配的元素，返回jQuery对象。
 5. `filter(selector)`: 从匹配元素的集合中，过滤出匹配的元素，返回jQuery对象。
 6. `find(selector)`: 从匹配元素集合中，找到匹配的后代元素，返回jQuery对象。
@@ -347,20 +347,21 @@ jQuery 对 css 操作的api
 
 	- 获取匹配到元素集合中第一个元素的高度或设置每个匹配到元素的高度。
 
-- `.css(propertyName)`、`.css(propertyNames)`
+- `.css(propertyName)`、`.css(propertyNamesArr)`
 
 	- 获取匹配到元素集中第一个元素样式属性的值，底层是调用 getComputedStyle 函数获取。
 	- .css( "width" ) 和 .width() 之间的区别:
 		- width() 返回一个无单位的像素值（例如，400），而 css() 返回一个具有完整单位的值（例如，400px）
-- `.css(propertyName, value)`、`.css(properties)`
+- `.css(propertyName, value)`、`.css(properties)Obj`
+	
 	- 为每个匹配到元素设置一个或多个 CSS 属性。
-	- 调用 css 方法添加样式会直接把样式添加到元素的 style 属性上。
-
+- 调用 css 方法添加样式会直接把样式添加到元素的 style 属性上。
+	
 	```javascript
-	// 1.获取ul元素的width
+	// 1.获取ul元素的 width
 	console.log( $('ul').css('width') )  // 返回的结果是 string 带单位 px
 	console.log( $('ul').css(['width', 'height']) )  // 返回的结果是 string 带单位 px 。 {width: '223px', height: '105px'}
-	// 2.给ul元元素设置width
+	// 2.给ul元素设置 width
 	$('ul').css('width', '450px') // 设置的是一个属性
 	$('ul').css({  // 设置的是多个属性
 		width: 100,
@@ -373,18 +374,19 @@ jQuery 对 css 操作的api
 		.css({
 			color: 'red'
 		})
-	```
+  ```
 
-	-----
+-----
 
 jQuery 的 class 属性操作
-- `.addClass(className)`、`.addClass(classNames)`、`.addClass(funcntion)`
+
+- `.addClass(className)`、`.addClass(classNamesArr)`、`.addClass(funcntion)`
 	- 将指定的类添加到匹配元素集合中的每个元素，每次都是追加 class。
 	- 底层调用的是 `setAttribute( "class", finalValue )` 方法添加class。
 - `.hasClass(className)`
 	- 是否给任意匹配到的元素分配了该类。
 	- 底层是通过 `getAttribute( "class" ).indexOf()` 来判断是否存在。
-- `.removeClass()`、`.removeClass(className)`、`.removeClass(classNames)`、`.removeClass(function)`
+- `.removeClass()`、`.removeClass(className)`、`.removeClass(classNamesArr)`、`.removeClass(function)`
 	- 给匹配元素集中的每个元素删除单个类、多个类或所有类。
 	- 底层调用的是 `setAttribute( "class", finalValue )` 方法。
 - `.toggleClass()`、`.toggleClass(className[,state])`、`.toggleClass(classNames[,state])`

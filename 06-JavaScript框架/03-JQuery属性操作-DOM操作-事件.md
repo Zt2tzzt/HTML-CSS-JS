@@ -1,4 +1,5 @@
 jQuery 元素对象中对 attributes 和 property 的操作。
+
 - `.attr(attributeName)`
 
 	- 获取匹配元素集合中第一个元素的属性值，底层调用了原生的 `getAttribute()` API
@@ -6,10 +7,10 @@ jQuery 元素对象中对 attributes 和 property 的操作。
 
 	```javascript
 	$('ul').attr('id')
-	$('ul').attr('data-xxx')
+	$('ul').attr('data-xxx') // 自定义属性也能拿到
 	```
 
-- `.attr(attributeName, value)、.attr(attributes)`
+- `.attr(attributeName, value)、.attr(attributesObj)`
 
 	- 为每个匹配元素设置一个或多个属性，底层调用了原生的 `setAttribute()` API
 
@@ -38,7 +39,7 @@ jQuery 元素对象中对 attributes 和 property 的操作。
 	$('ul').prop('nodeName') // UL
 	```
 
-- `.prop(propertyName，value)、.prop(propertys)`
+- `.prop(propertyName，value)、.prop(propertiesObj)`
 
 	- 为每个匹配元素设置一个或多个属性。
 
@@ -53,7 +54,7 @@ jQuery 元素对象中对 attributes 和 property 的操作。
 
 - `removeProp(propertyName)`
 
-	- 删除匹配元素集的属性,( 只能删除用户自定义添加的prop，不能删除元素本身的属性 )。
+	- 删除匹配元素集的属性,( 只能删除用户自定义添加的 prop，不能删除元素本身的属性 )。
 
 	```javascript
 	$('input').removeProp('jQuery_zzt_123') // 只能删除 自定义的属性
@@ -85,7 +86,7 @@ jQuery 元素对象中对自定义 data-xxx 属性的操作。理解该操作中
 	$('ul').data({
 	  name: 'coder',
 	  age: '18',
-	  height: '1.86'  // 动态添加的data-xx属性
+	  height: '1.86'  // 动态添加的 data-xxx 属性
 	})
 	```
 
@@ -111,7 +112,7 @@ jQuery 元素对象 DOM 操作，插入内容（一）。5种方式。
 - `.before(content [, content])、before( function )`
 	- 在匹配元素集中的每个元素之前，插入由参数指定的内容。
 
-content 的类型: DOM element, text node, array of elements and text nodes, HTML string, or jQuery object
+content 的类型: 1.DOM element, 2.text node, 3.array of elements and text nodes, 4.HTML string, 5.jQuery object
 
 ```javascript
 // 方式一: 在ul的尾部插入文本
@@ -146,7 +147,7 @@ jQuery 元素对象 DOM 操作，插入内容（二）。3种方式。
 - `.insertBefore(target)`
 	- 在目标元素之前，插入匹配元素集中的每个元素。
 
-target的类型：A selector, element, HTML string, array of elements, or jQuery object。
+target 的类型：1.A selector, 2.DOM element, 3.HTML string, 4.array of elements, 5.jQuery object。
 
 ```javascript
 $('<li>')
@@ -192,10 +193,11 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
     .addClass('content')
     .text('我是span')
     .css('color', 'red') // 创建一个span元素( jQuery对象 )
-    .replaceAll( 'ul li' ) // 将li元素替换为span 
+    .replaceAll( 'ul li' ) // 将li元素集替换为span 
   ```
   
-- `.replaceWidth(newContent)、.replaceWidth( function ) `
+- `.replaceWith(newContent)、.replaceWith( function ) `
+	
 	- 用新内容替换匹配元素集中的每个元素，并返回被移除的元素集。 
 	- newConten 参数的类型：1.HTML string, 2.DOM element, 3.array of DOM elements, 4.jQuery object
 	
@@ -215,7 +217,7 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 	// 将li-6克隆到 ul元素的尾部( 将li-6的事件处理函数和data自定义属性一起拷贝过去 )
 	$('.li-6')
 	  .data({
-	    name: 'liujun',
+	    name: 'zzt',
 	    age: '17'
 	  })
 	  .click(function() {
@@ -308,8 +310,8 @@ $('ul li').click(function() {
   console.log(this) // DOM Element -> UL
 })
 // 底层实现的原理
-var lisEl = $('ul li').get() // [li, li, li]
-for(var liEL of lisEl ){
+var liEls = $('ul li').get() // [li, li, li]
+for(var liEL of liEls ){
   liEL.addEventListener('click', function() {
     console.log(this)
   })
