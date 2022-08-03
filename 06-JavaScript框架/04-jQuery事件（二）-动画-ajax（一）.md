@@ -8,9 +8,9 @@
 
 为什么产生两种不同的处理流？
 
-- 这是因为早期在浏览器开发时，不管是IE还是Netscape公司都发现了这个问题;
+- 这是因为早期在浏览器开发时，不管是IE还是 Netscape 公司都发现了这个问题;
 - 但是他们采用了完全相反的事件流来对事件进行了传递；
-- IE<9仅采用了事件冒泡的方式，Netscape采用了事件捕获的方式；
+- IE<9仅采用了事件冒泡的方式，Netscape 采用了事件捕获的方式；
 - IE9+和现在所有主流浏览器都已支持这两种方式。
 
 -----
@@ -69,7 +69,7 @@ jQuery 事件对象，有哪些常用属性和方法？
 
 - 事件冒泡在某种情况下可以帮助我们实现强大的事件处理模式 – 事件委托模式（也是一种设计模式）
 
-使用 jQuery 实现事件委托（结合 on 函数的第二个参数）。
+使用 jQuery 实现事件委托（结合 on 函数的第二个参数 selector）。
 
 ```html
 <ul id="list" class="panel">
@@ -80,7 +80,7 @@ jQuery 事件对象，有哪些常用属性和方法？
 <script src="../libs/jquery-3.6.0.js"></script>
 <script>
 $(function() {
-	// 仅仅监听li中元素的点击事件( 筛选出 可触发事件的 后代元素 )
+	// 仅仅监听li中p元素的点击事件 )
 	$('ul').on('click', 'li p' , function(event) {
 		console.log(event.target)  // p
 	})
@@ -155,7 +155,7 @@ $(function() {
 
 -----
 
-jQuery 的动画操作 animate 实现，传4个参数，传2个参数。
+jQuery 的动画操作 animate 实现，传4个参数的写法，传2个参数的写法。
 
 - `.animate()`：执行一组 CSS属性的自定义动画，允许支持数字的CSS属性上创建动画
 - `.animate( properties [, duration ] [, easing ] [, complete ] )`
@@ -204,7 +204,7 @@ $('.show').click(function() { // duration 和 easing 两参数，使用了默认
     console.log('动画执行完毕之后会回调')
   }
 })
-// 传3个参数的写法，duration，easing 可任意省略。
+// 传3个参数的写法，easing 可省略，默认为 linear。
 $('.show').click(function() {
   $('.box').animate({
     opacity: 1,
@@ -266,7 +266,7 @@ jQuery 封装好的常见动画函数，用法。
 
 什么是 jQuery 元素中的动画队列？
 
--  jQuery 匹配元素中的 animate 和 delay 动画是通过一个动画队列(queue)来维护的。
+-  jQuery 匹配元素中的 animate 和 delay 动画是通过一个动画队列 (queue) 来维护的。
 
 ```javascript
 $('.start').click(function() {
@@ -286,17 +286,17 @@ $('.start').click(function() {
 
 ```javascript
 $('.queue').click(function() {
-	console.log( $box.queue() )  // 查看动画队列 fx
+	console.log( $box.queue() )  // 查看动画队列
 })
 ```
 - `.stop( [clearQueue ] [, jumpToEnd ] )`：停止匹配元素上当前正在运行的动画。 
-	- `clearQueue `：一个布尔值，指示是否也删除排队中的动画。默认为false
-	- `jumpToEnd `：一个布尔值，指示是否立即完成当前动画。默认为false
+	- `clearQueue `：一个布尔值，指示是否也删除排队中的动画。默认为 false
+	- `jumpToEnd `：一个布尔值，指示是否立即完成当前动画。默认为 false
 
 ```javascript
 $('.stop').click(function() {
 	// stop(false, false) // 默认值
-	$box.stop()  // 停止 fx 动画队列( 停止当前执行的动画,还会继续执行动画队列中其它的动画 )
+	$box.stop()  // 停止动画队列( 停止当前执行的动画,还会继续执行动画队列中其它的动画 )
 	$box.stop(true) // 停止所有的动画, 清空了动画队列
 	$box.stop(true, true) // 清空了动画队列, 立即执行完当前的动画
 })
@@ -337,10 +337,11 @@ jQuery 实现隐藏侧边广告栏动画
 jQuery 的遍历方式2种：
 - `.each( function )`：遍历一个 jQuery 对象，为每个匹配的元素执行一个回调函数。 
 	
-	- function 参数: Function( index, element )，函数中返回 false 会终止循环。
+	- function 参数: Function( index, element )，
+	- 函数中返回 false 会终止循环。
 	
 	```javascript
-	// 1.遍历jQuery对象 ( 已经实现了迭代器协议 for of )，对象中的 each 底层调用的 jQuery 函数上的 each 方法
+	// 1.遍历jQuery对象 ( 该对象已经实现了迭代器协议 可用for of )，对象中的 each 底层调用的 jQuery 函数上的 each 方法
 	$('ul li').each(function(index, element) {
 	  console.log(index, element)
 	})
@@ -361,7 +362,7 @@ jQuery 的遍历方式2种：
 
 它们有什么区别。
 
-- `.each()` 是jQuery对象上的方法，用于遍历 jQuery 对象。
+- `.each()` 是 jQuery 对象上的方法，用于遍历 jQuery 对象。
 - `jQuery.each()` 是jQuery函数上的方法，可以遍历对象、数组、类数组等，它是一个通用的工具函数。
 
 -----

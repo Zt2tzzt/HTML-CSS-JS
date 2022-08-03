@@ -65,7 +65,7 @@ jQuery 元素对象中对自定义 data-xxx 属性的操作。理解该操作中
 
 - `.data()`、`.data(key)`
 
-	- 获取匹配元素集中第一个元素的自定义属性的值
+	- 获取匹配元素集中第一个元素的自定义属性的值。
 	- 为减少 DOM 操作，方便对象的拷贝，会先**设置缓存**，在缓存中查找对应的属性值。如果没有，再去DOM元素上查找，**并设置到缓存中**。缓存存放在元素 DOM Element 对象上的属性中。
 
 	```html
@@ -316,7 +316,6 @@ for(var liEL of liEls ){
     console.log(this)
   })
 }
-
 $('ul li').click(() => {
   console.log(this) // window
 })

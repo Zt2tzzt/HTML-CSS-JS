@@ -80,7 +80,7 @@ xhr.send()
 ```javascript
 const xhr = new XMLHttpRequest()
 xhr.onload = function() {
-	// 请求头中设置 content-type: application/json，而 resposeType 设置为空字符串，则必须这样写。
+	// 响应头中设置 content-type: application/json，而 resposeType 设置为空字符串，则必须这样写。
 	const resJSON = JSON.parse(xhr.response)
 	// 如果 resposeType = "json"，则可以直接获取 JSON 对象。
 	xhr.response
@@ -295,10 +295,10 @@ function hyajax({
 Fetch 与 XHR 相比有什么优势？
 
 - Fetch 可以看做是早期的 XMLHttpRequest 的替代方案。
-- 比如返回值是一个Promise，提供了一种更加优雅的处理结果方式 
+- 返回值是一个 Promise，提供了一种更加优雅的处理结果方式 
 	- 在请求发送成功时，调用 resolve 回调 then； 
 	- 在请求发送失败时，调用 reject 回调 catch；
-- 比如不像 XMLHttpRequest 一样，所有的操作都在一个对象上；
+- 不像 XMLHttpRequest，所有的操作都在一个对象上；
 
 Fetch 如何使用？
 
@@ -327,8 +327,8 @@ Fetch 数据的相应处理，2 个阶段。：
 1. 当服务器返回了响应（response） 
    - fetch 返回的 promise 就使用内建的 Response class 对象来对响应头进行解析； 
 	 - 在这个阶段，我们可以通过检查响应头，来检查 HTTP 状态以确定请求是否成功； 
-	 - 如果 fetch 无法建立一个 HTTP 请求，例如网络问题，亦或是请求的网址不存在，那么 promise 就会 reject； 
-	 - 异常的 HTTP 状态，例如 404 或 500，不会导致出现 error；
+	 - 如果 fetch **无法建立**一个 HTTP 请求，例如网络问题，亦或是请求的网址不存在，那么 promise 就会 reject； 
+	 - 异常的 HTTP 状态，例如 404 或 500，**不会导致出现 error**；
 	 - 我们可以在 response 的属性中看到 HTTP 状态： 
 		- `response.status`：HTTP 状态码，例如 200；
 		- `response.ok`：布尔值，如果 HTTP 状态码为 200-299，则为 true；
@@ -371,7 +371,7 @@ async function getData1() {
   const response = await fetch("http://123.207.32.32:1888/02_param/postjson", {
     method: "post",
     headers: {
-      "Content-type": "application/json"
+      "Content-Type": "application/json"
     },
     body: JSON.stringify({
       name: "zzt",
@@ -401,10 +401,10 @@ getData2()
 
 使用 Fetch 发送 POST 请求。
 
-- method：HTTP 方法，例如 POST， 
-- body：request body，其中之一： 
-	- 字符串（例如 JSON 编码的），
-	- FormData 对象，以 multipart/form-data 形式发送数据
+- method：HTTP 方法，例如 `POST`， 
+- body：request body： 
+	- 字符串（例如 JSON 编码的，`JSON.stringfy(xxx)`），
+	- FormData 对象，以 `multipart/form-data` 形式发送数据
 
 ---
 
@@ -434,7 +434,7 @@ getData2()
 		xhr.onload = function() {
 			console.log(xhr.response)
 		}
-		xhr.onprogress = function(event) {
+		xhr.onprogress = function(event) { // 监听上传进度
 			console.log(event)
 		}
 		xhr.responseType = "json"
@@ -459,7 +459,7 @@ getData2()
   formData.append("avatar", file)
 	const uploadBtn = document.querySelector(".upload")
 	uploadBtn.onclick = async function() {
-		// 发送fetch请求
+		// 发送 fetch 请求
 		const response = await fetch("http://123.207.32.32:1888/02_param/upload", {
 			method: "post",
 			body: formData

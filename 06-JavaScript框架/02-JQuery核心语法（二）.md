@@ -100,7 +100,7 @@ jQuery 对象与原生对象之间的转换。
 	```javascript
 	var $ul = jQuery('ul')
 	// 方式一
-	var ulEl = $ul[0]  // 将jQuery对象转成DOM Element
+	var ulEl = $ul[0]  // 将jQuery对象转成 DOM Element
 	console.log('%O', ulEl)
 	// 方式二
 	console.log($ul.get()) // 获取到匹配元素集合中所有的元素 [ul]
@@ -175,7 +175,7 @@ jQuery 支持使用哪些选择器？
 5. 兄弟选择器（div + span , div ~ span）
 6. 交集选择器（div.container）
 7. 伪类选择器（:nth-child()，:nth-of-type()，:not()， 但不支持状态伪类 :hover, :focus...）
-8. 内容选择器（:empty，:has(selector)）, empty 指选中的元素没有子元素或文本； has指选中的元素是否存在某个子元素
+8. 内容选择器（:empty，:has(selector)）, empty 指选中的元素没有子元素或文本； has 指选中的元素是否存在某个子元素
 9. 可见选择器（:visible,  :hidden）
 10. jQuery扩展选择器：（:eq(),  :odd,  :even, :first, :last ）
 11. ...
@@ -340,9 +340,8 @@ jQuery 对 css 操作的api
 	// 2.设置ul元素的width
 	$('ul').width(300)  // 直接给style设置一个width
 	$('ul').width('500px')  // 直接给style设置一个width
-	// 3. width height  innerWidth innerHeight ......
 	```
-
+	
 - `.height()`、`height(value)`
 
 	- 获取匹配到元素集合中第一个元素的高度或设置每个匹配到元素的高度。
