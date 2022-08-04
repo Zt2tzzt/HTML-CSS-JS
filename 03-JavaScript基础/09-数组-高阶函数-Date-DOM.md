@@ -271,7 +271,7 @@ Date.parse() 方法有什么用？
 
 # DOM
 
-window对象包含了哪些内容，理解图片。
+window 对象包含了哪些内容，理解图片。
 
 ![window对象包含的内容](NodeAssets/window对象包含的内容.jpg)
 
