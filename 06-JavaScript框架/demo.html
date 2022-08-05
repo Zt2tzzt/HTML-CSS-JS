@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,25 +14,34 @@
 		}
 	</style>
 </head>
+
 <body>
 
 	<ul id="list">
-    <li class="li-1">li-1</li>
-    <li class="li-2">li-2</li>
-    <li class="li-3">li-3</li>
-    <li class="li-4">li-4</li>
-    <li class="li-5">li-5</li>
-  </ul>
+		<li class="li-1">li-1</li>
+		<li class="li-2">li-2</li>
+		<li class="li-3">li-3</li>
+		<li class="li-4">li-4</li>
+		<li class="li-5">li-5</li>
+	</ul>
 
 	<div class="box"></div>
 
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+		crossorigin="anonymous"></script>
 	<script>
 
-		$('ul li').click(() => {
-			console.log('---this---', this)
+		$.ajax({
+			url: 'http://httpbin.org/status/500', // 500 (后台代码异常)
+			method: 'POST',
+			success: function (res) {
+				console.log('---success---', res)
+			},
+			error: function (err) {
+				console.log('---err---', err)
+			}
 		})
-
-  </script>
+	</script>
 </body>
+
 </html>

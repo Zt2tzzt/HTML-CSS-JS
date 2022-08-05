@@ -37,7 +37,7 @@
 }
 
 .header_type_02 .keywords .item {
-color: #666;
+	color: #666;
 }
 .header_type_02 .keywords .item:hover {
 	text-decoration: underline;

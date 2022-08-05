@@ -25,7 +25,17 @@
 	}
 
 	function post(url, data) {
-		
+		return request({
+			url,
+			method: 'POST',
+			data
+		})
+	}
+	
+	window.ztReq = {
+		request,
+		get,
+		post
 	}
 
 })(window, jQuery)

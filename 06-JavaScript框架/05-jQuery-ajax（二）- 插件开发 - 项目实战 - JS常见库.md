@@ -1,15 +1,15 @@
 jQuery 请求参数以及含义：
 
 - `url` - 指定发送请求的 URL。
-- `method / type` - 用于指定请求的类型 (e.g. "POST", "GET", "PUT")，默认为 GET
+- `method / type` - 用于指定请求的类型 (如 "POST", "GET", "PUT")，默认为 GET
 - `data` - 指定要发送到服务器的数据（PlainObject or String or Array）
-- `processData` - 当 data 是一个对象时，jQuery 从对象的键/值对生成数据字符串，例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，默认为 true。除非该 processData 选项设置为 false.
+- `processData` - 当 data 是一个对象时，从该对象的键/值对生成 query 字符串，例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，默认为 true。除非该 processData 选项设置为 false.
 - `header` - 请求头的内容（PlainObject）
 - `contentType` - 向服务器发送数据时指定内容类型。
   - `application/x-www-form-urlencoded; charset=UTF-8`：默认值，请求体的数据以查询字符串形式提交，如：a=bc&d=e%2Cf。
   - `application/json; charset=UTF-8` 指定为 json 字符串类型。
   - `false`，代表是 `multipart/form-data` 表单类型，一般用于上传文件。
-- `dataType` - 期望服务器端发回的数据类型（json、xml、text...），默认会根据响应的类型来自动推断类型。
+- `dataType` - 期望服务器端发回的数据类型（json、xml、text....），默认会根据响应的类型来自动推断类型。
 - `timeout` - 请求超时时间。它以毫秒为单位。
 - `beforeSend` - 这是一个在发送请求之前运行的函数，返回 false 会取消网路请求。
 - `success` - 请求成功回调的函数。
@@ -30,12 +30,14 @@ $.ajax({
 错误处理，
 
 ```javascript
-// 500 (后台代码异常)
 $.ajax({
-	url: 'http://httpbin.org/status/500',
+	url: 'http://httpbin.org/status/500', // 500 (后台代码异常)
 	method: 'POST',
+	success: function (res) {
+		console.log(res)
+	},
 	error: function (error) {
-		console.log('error=>', error)
+		console.log('error=>', error) // 会打印
 	}
 })
 ```
@@ -65,22 +67,31 @@ $('button').click(function () {
 
 jQuery GET 请求处理几种常见情况。
 
+url 提交请求参数
+
 ```javascript
-// url提交请求参数
 $.ajax({
 	url: 'http://httpbin.org/get?cityId=404100&keyWord=天河公园',
 	method: 'GET'
 })
-// data提交请求参数
+```
+
+data 提交请求参数
+
+```javascript
 $.ajax({
-	url: 'http://httpbin.org/get', // processData 默认值为 true，会将 data 转成 query 字符串添加到 url 的后面。
+	url: 'http://httpbin.org/get', 
 	method: 'GET',
-	data: {
+	data: { // processData 默认值为 true，会将 data 转成 query 字符串添加到 url 的后面。
 		cityId: '504100',
 		keyWord: '小蛮腰'
 	}
 })
-// 添加请求头
+```
+
+添加请求头
+
+```javascript
 $.ajax({
 	url: 'http://httpbin.org/get',
 	method: 'GET',
@@ -89,16 +100,20 @@ $.ajax({
 		keyWord: '小蛮腰'
 	},
 	headers: {
-		// 比如你登录成功之后,后台会返回一个 token
 		token: 'aaaaabbbbbcccccc'
 	},
 	success: function (res) {
 		console.log(res)
 	}
 })
-// GET 请求的简写
+```
+
+GET 请求的简写
+
+```javascript
+// jQuery 封装的 ajax 相关 api，支持 Promise 风格。
 $.get('http://httpbin.org/get')
-	.then(function(res) {  // jQuery 1.8  ; done
+	.then(function(res) {  // jQuery 1.8
 		console.log(res)
 	})
 	.catch(function() {  //  fail
@@ -109,17 +124,22 @@ $.get('http://httpbin.org/get')
 	})
 ```
 
----
+-----
 
 jQuery POST 请求处理几种常见情况。 
 
+url 提交请求参数，
+
 ```javascript
-// url 提交请求参数，
 $.ajax({
   url: 'http://httpbin.org/post?cityId=404100&keyWord=天河公园',
   method: "POST"
 })
-// data 提交请求参数，
+```
+
+data 提交请求参数，
+
+```javascript
 $.ajax({
   url: 'http://httpbin.org/post',
   method: "POST",
@@ -130,7 +150,11 @@ $.ajax({
   // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
   // dataType: 'json', // 自动推断, response content-type
 })
-// data 提交 JSON 字符串，
+```
+
+data 提交 JSON 字符串，
+
+```javascript
 $.ajax({
 	url: 'http://httpbin.org/post',
 	method: "POST",
@@ -140,7 +164,11 @@ $.ajax({
 	}),
 	contentType: 'application/json; charset=UTF-8'
 })
-// data 提交 FormData，添加请求头，
+```
+
+data 提交 FormData，添加请求头，
+
+```javascript
 var formData = new FormData()
 formData.append('cityId', 404100)
 formData.append('keyWord', '小蛮腰')
@@ -158,7 +186,11 @@ $.ajax({
 		console.log(res)
 	}
 })
-// POST 请求的简写。
+```
+
+POST 请求的简写。
+
+```javascript
 $.post('http://httpbin.org/post', {
 	cityId: '504100',
 	keyWord: '小蛮腰'
@@ -181,11 +213,11 @@ $.post('http://httpbin.org/post', {
 1. 新建一个插件对应的 JS 文件（命名规范：`jquery.插件名.js`）
 2. 在**立即执行函数**中编写插件，这样可以避免插件中的变量与全局变量冲突。
 3. 在 jQuery 的原型对象上新增方法。
-4. 最后在 html 中导入，就可以像使用其他 jQuery 对象方法一样使用了
+4. 最后在 html 中导入，就可以像其他 jQuery 对象实例方法一样使用了
 
 ---
 
-编写一个 jQuery 插件，显示 a 元素后显示链接地址。
+编写一个 jQuery 插件，在 a 元素文本后显示链接地址。
 
 index.html
 
@@ -319,7 +351,7 @@ loadsh 的基本使用，它有哪些 api？
 - `_.camelCase()` - 转换字符串 string 为驼峰写法。
 - `_.capitalize(string)` - 转换字符串 string 首字母为大写，剩下为小写。
 - `_.endWith(string, target)` - 检查字符串 string 是否以给定的 target 字符串结尾。
-- `_.padStart(str, lenght,char)` - 如 string 字符串长度小于 length 则在左侧填充字符。如果超出 length 长度则截断超出的部分。
+- `_.padStart(str, lenght, char)` - 如 string 字符串长度小于 length 则在左侧填充字符。如果超出 length 长度则截断超出的部分。
 - `_.trim(string, chars)` - 从 string 字符串中移除前面和后面的空格或指定的字符。
 
 数组（Array）
@@ -334,7 +366,7 @@ loadsh 的基本使用，它有哪些 api？
 
 - `_.pick(object, [props])` - 从 object 中选中的属性来创建一个对象。返回新对象。
 - `_.omit(object, [props])` - 反向版\_.pick ; 删除 object 对象的属性。返回新对象。
-- `_.clone( value)` - 支持拷贝 arrays、 booleans、 date 、map、 numbers， Object 对象, regexes, sets, strings, symbols 等等。 arguments 对象的可枚举属性会拷贝为普通对象。 （注：也叫浅拷贝）返回拷贝后的值。
+- `_.clone(value)` - 支持拷贝 arrays、 booleans、 date 、map、 numbers， Object 对象, regexes, sets, strings, symbols 等等。 arguments 对象的可枚举属性会拷贝为普通对象。 （注：也叫浅拷贝）返回拷贝后的值。
 - `_.cloneDeep(value)` -这个方法类似\_.clone，除了它会递归拷贝 value。（注：也叫深拷贝）。返回拷贝后的值。
 
 集合（Array | Object）
@@ -359,7 +391,7 @@ loadsh 的基本使用，它有哪些 api？
 
 不同点：
 
-- Moment 对浏览器的兼容性比较好，例如，在 Internet Explorer 8+版本运行良好。
+- Moment 对浏览器的兼容性比较好，例如，在 Internet Explorer 8+ 版本运行良好。
 - Moment 不适用于“tree-shaking”算法，因此往往会增加 Web 应用程序包的大小。如果需要国际化或时区支持，Moment 可以变得相当大。
 - Moment 团队也希望我们在未来的新项目中不要使用 Moment 。而推荐使用其它的替代品。例如：Day.js。
 - Day.js 是 Moment 的缩小版，拥有与 Moment 相同的 API，并将其文件大小减少了 97%。
@@ -450,11 +482,11 @@ var day = dayjs() // dayjs 对象
 	.add(2, 'month') // 增加2个月
 	.add(-1, 'month') // 减去一个月
 	.subtract(1, 'year') // 减去一年
-	.subtract(1, 'month')
-	.subtract(1, 'day')
+	.subtract(1, 'month') // 减去一月
+	.subtract(1, 'day') // 减去一天
 	.startOf('year') // 一年的开始 2022-01-01 00:00:00
-	.startOf('month')
-	.startOf('day')
+	.startOf('month') // 一月的开始
+	.startOf('day') // 一天的开始
 ```
 
 ---
@@ -485,13 +517,12 @@ Day.js 的插件的使用。
 
 ```html
 <script src="./libs/dayjs.js"></script>
-<script src="./libs/dayjs.relative-time.min.js"></script>
-<!-- 会在 Dayjs 的原型上添加: fromNow 方法 -->
+<script src="./libs/dayjs.relative-time.min.js"></script><!-- 会在 Dayjs 的原型上添加: fromNow 方法 -->
 <script>
 	// 1.安装插件
 	dayjs.extend(dayjs_plugin_relativeTime)
 	var day = dayjs(1656206934331) // dayjs 对象
-	console.log(day.fromNow())
+	console.log(day.fromNow()) // 4 minutes ago
 </script>
 ```
 
@@ -499,16 +530,14 @@ Day.js 插件实现国际化，原理理解（在对象中，维护了关键字�
 
 ```html
 <script src="./libs/dayjs.js"></script>
-<script src="./libs/dayjs.relative-time.min.js"></script>
-<!-- 会在 Dayjs 的原型上添加: fromNow .... -->
-<script src="./libs/dayjs.zh-cn.min.js"></script>
-<!-- 给给dayjs的全局变量 Ls 添加了一个中文支持 -->
+<script src="./libs/dayjs.relative-time.min.js"></script><!-- 会在 Dayjs 的原型上添加: fromNow .... -->
+<script src="./libs/dayjs.zh-cn.min.js"></script><!-- 给 Dayjs 的全局变量 Ls 添加了一个中文支持 -->
 <script>
 	// 1.安装插件
 	dayjs.extend(dayjs_plugin_relativeTime)
 	// 2.切换使用中文
 	dayjs.locale('zh-cn')
 	var day = dayjs(1656206934331) // dayjs 对象
-	console.log(day.fromNow()) // 1小时前
+	console.log(day.fromNow()) // 4分钟前
 </script>
 ```
