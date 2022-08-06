@@ -10,6 +10,7 @@ $(function () {
 	var currentSearchBarSelector = 'site'
 	var currentSearchPlaceHolder = '请输入区域，商圈或小区名开始'
 
+	// 初始化页面数据。
 	initPage()
 	function initPage() {
 		ztReq.get(ZTAPI.HOME_PAGE_INFO).then(res => {
@@ -52,7 +53,7 @@ $(function () {
 		// 1.发起网络请求，获取热门推荐的数据
 		ztReq.get(ZTAPI.HOT_RECOMMEND).then(res => {
 			console.log('---hot recommend res---', res)
-			var searchListData = res.rent_house_list .list|| []
+			var searchListData = res.rent_house_list.list
 			if (!searchListData) return
 			cacheSearchListData = searchListData.map(item => ({title: item.app_house_title})) // 将复杂数据映射为简单数组
 			renderSearchList(cacheSearchListData)
@@ -98,18 +99,18 @@ $(function () {
 	// 搜索框上方标签点击事件
 	$searchMenuUi.on('click', 'li', function () {
 		// 1.修改 li 的高亮
-		var $li = $(this)
-		$li.addClass('active').siblings().removeClass('active')
+		var $this = $(this)
+		$this.addClass('active').siblings().removeClass('active')
 		// 2.修改箭头
-		var liwidth = $li.width()
-		var position = $li.position()
+		var liwidth = $this.width()
+		var position = $this.position()
 		var arrowLeft = position.left + (liwidth / 2)
 		$searchMenuArrow.css('left', arrowLeft)
 		// 3.修改 placeholder
 		$searchHouseInput.prop({
-			placeholder: currentSearchPlaceHolder + $li.text().trim()
+			placeholder: currentSearchPlaceHolder + $this.text().trim()
 		})
 		// 4.拿到 li 中绑定的 key
-		currentSearchBarSelector = $li.data('key')
+		currentSearchBarSelector = $this.data('key')
 	})
 })

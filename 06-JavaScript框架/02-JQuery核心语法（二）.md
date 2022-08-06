@@ -11,7 +11,7 @@ jQuery 函数能传入哪些参数？分别返回什么值？
 - 传入元素：返回包含该元素的集合。
 - 传入 HTML 字符串，返回包含新创建元素的集合。
 - 传入回调函数：返回的是包含 document 元素集合, 并且当文档加载完成会回调该函数。
-- 因为函数也是对象，所以 jQuery 函数还包含了很多已封装好的方法。如：`jQuery.noConflict`、`jQuery.ready` 等
+- 因为函数也是对象，所以 jQuery 函数还包含了很多已封装好的类方法。如：`jQuery.noConflict`、`jQuery.ready` 等
 
 jQuery 函数的参数
 
@@ -287,7 +287,7 @@ jQuery 对文本操作的api。
 	
 	```javascript
 	// 获取的时候 一般是拿到匹配元素集合中的第一个元素的数据
-	console.log($('ul li').html() )
+	console.log($('ul li').html())
 	// 2.给 li 元素设置 html 的内容（ 设置 ），设置值：一般是给选中所有元素设置
 	$('ul li').html(`
 	  <p>我是p元素</p>
@@ -334,7 +334,7 @@ jQuery 对 css 操作的api
 	- 获取匹配到元素集合中第一个元素的宽度或设置每个匹配到元素的宽度。
 
 	```javascript
-	 // 1.获取到元素的width
+	// 1.获取到元素的width
 	// width: content ;  innerWidth: content + padding; outerWidth: content + padding + border
 	console.log($('ul').width()) // 返回的结果是 number
 	// 2.设置ul元素的width

@@ -12,10 +12,10 @@ Reflect 是什么？
 
 已有 Object 提供对象的操作，为什么还会出现 Reflect
 
-- 这是因为在早期的ECMA规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些API放到了Object上面； 
-- 但是Object作为一个**构造函数**，这些操作放到它身上并不合适； 
+- 这是因为在早期的ECMA规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面； 
+- 但是 Object 作为一个**构造函数**，这些操作放到它身上并不合适； 
 - 另外还包含一些类似于 `in`、`delete` 操作符，让JS看起来是会有一些奇怪的； 
-- 所以在ES6中新增了 `Reflect`，让我们这些操作都集中到了Reflect对象上；
+- 所以在ES6中新增了 `Reflect`，让我们这些操作都集中到了 Reflect 对象上；
 - 另外在使用 Proxy 时，可以做到**不操作原对象**；
 
 -----
@@ -27,7 +27,7 @@ Reflect 的常见方法。
 - `Reflect.preventExtensions(target)` - 类似于 Object.preventExtensions()。返回一个Boolean。
 - `Reflect.getOwnPropertyDescriptor(target, propertyKey)` - 类似于 Object.getOwnPropertyDescriptor()。如果对象中存在 该属性，则返回对应的属性描述符, 否则返回 undefined.
 - `Reflect.defineProperty(target, propertyKey, attributes)` - 和 Object.defineProperty() 类似。如果设置成功就会返回 true
-- `Reflect.ownKeys(target)` - 返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受enumerable影响).
+- `Reflect.ownKeys(target)` - 返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受enumerable影响).，相当于 getOwnPropertyName 加上 getOwnPropertySymbol 的效果。
 - `Reflect.has(target, propertyKey)` - 判断一个对象是否存在某个属性，和 in 运算符 的功能完全相同。
 - `Reflect.get(target, propertyKey[, receiver])` - 获取对象身上某个属性的值，类似于 target[name]。
 - `Reflect.set(target, propertyKey, value[, receiver])` - 将值分配给属性的函数。返回一个Boolean，如果更新成功，则返回true。
@@ -62,13 +62,13 @@ const objProxy = new Proxy(obj, {
   set: function(target, key, newValue, receiver) {
     // target[key] = newValue
     // 1.好处一: 代理对象的目的: 不再直接操作原对象
-    // 2.好处二: Reflect.set方法有返回Boolean值, 可以判断本次操作是否成功
+    // 2.好处二: Reflect.set 方法有返回 Boolean 值, 可以判断本次操作是否成功
     /*
        3.好处三:
-         > receiver就是外层Proxy对象
-         > Reflect.set/get最后一个参数, 可以决定对象访问器 setter/getter 的this指向
+         > receiver 就是外层 Proxy 对象
+         > Reflect.set/get 最后一个参数, 可以决定对象访问器 setter / getter 的 this 指向
     */
-    console.log("proxy中设置方法被调用")
+    console.log("proxy 中设置方法被调用")
     const isSuccess = Reflect.set(target, key, newValue, receiver)
     if (!isSuccess) {
       throw new Error(`set ${key} failure`)
@@ -279,7 +279,7 @@ promise.then(res => {
 
 -----
 
-如果有 Promise 会出现 rejected 状态，那么一般监听 then 方法，都要监听 catch（链式调用或者传第二个参数），否则 rejected 后会报错。
+如果有 Promise 会出现 rejected 状态，那么一般监听 then 方法，都要监听 catch（在 then 方法后链式调用，或者在 then 方法中传第二个参数），否则 rejected 后会报错。
 
 错误写法：
 

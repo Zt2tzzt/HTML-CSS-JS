@@ -268,7 +268,7 @@ Promise.any([p1, p2, p3]).then(res => {
 
 ```javascript
 const names = ["abc", "cba", "nba"]
-// 给数组names创建一个迭代器(迭代器: names的迭代器)
+// 给数组 names 创建一个迭代器(迭代器: names 的迭代器)
 let index = 0
 const namesIterator = {
   next: function() {

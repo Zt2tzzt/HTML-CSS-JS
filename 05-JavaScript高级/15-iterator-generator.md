@@ -103,7 +103,7 @@ for (const stu of classromm) {
 1. 生成器函数需要在 `function` 的后面加一个符号：`*`
 2. 生成器函数可以通过 `yield` 关键字来控制函数的执行流程：
 3. 生成器函数的返回值是一个Generator（生成器）：
-	- 生成器事实上是一种特殊的迭代器；
+	- 生成器事实上是一种特殊的迭代器；（它既是迭代器，又是一个可迭代对象）
 	- MDN：Instead, they return a special type of iterator, called a Generator.
 
 -----
@@ -173,18 +173,18 @@ function* foo(name1) {
   console.log("执行内部代码:1111", name1) // name1
   console.log("执行内部代码:2222", name1) // name1
   const name2 = yield "aaaa"
-  console.log("执行内部代码:3333", name2) // name3
-  console.log("执行内部代码:4444", name2) // name3
+  console.log("执行内部代码:3333", name2) // name2
+  console.log("执行内部代码:4444", name2) // name2
   const name3 = yield "bbbb"
-  console.log("执行内部代码:5555", name3) // name4
-  console.log("执行内部代码:6666", name3) // name4
+  console.log("执行内部代码:5555", name3) // name3
+  console.log("执行内部代码:6666", name3) // name3
   yield "cccc"
 }
 const generator = foo('name1')
 generator.next() // {value: ‘aaa’, done: false}
-generator.next('name3') // {value: 'bbb', done: false}
-generator.next('name4') // {value: 'ccc', done: false}
-generator.next('name5') // {value: undefined, done: true}
+generator.next('name2') // {value: 'bbb', done: false}
+generator.next('name3') // {value: 'ccc', done: false}
+generator.next('name4') // {value: undefined, done: true}
 ```
 
 -----
@@ -220,25 +220,25 @@ generator.next('name4') // {value: undefined, done: true}
 
 ```javascript
 function* foo(name1) {
-	console.log("执行内部代码:1111", name1) // name1
-	console.log("执行内部代码:2222", name1) // name1
+	console.log(name1) // name1
+	console.log(name1) // name1
   let name2
   try {
     name2 = yield "aaaa"
   } catch (err) {
     console.log('err', err) // name3 error
   }
-  console.log("执行内部代码:3333", name2) // undefined
-  console.log("执行内部代码:4444", name2) // undefined
+  console.log(name2) // undefined
+  console.log(name2) // undefined
   const name3 = yield "bbbb"
-	console.log("执行内部代码:5555", name3) // name4
-	console.log("执行内部代码:6666", name3) // name4
+	console.log(name3) // name3
+	console.log(name3) // name3
 	yield "cccc"
 }
 const generator = foo('name1')
 generator.next() // {value: ‘aaaa’, done: false}
-generator.throw(new Error('name3 error')) // {value: 'bbb', done: false}
-generator.next('name4') // {value: 'ccc', done: false}
+generator.throw(new Error('name2 error')) // {value: 'bbb', done: false}
+generator.next('name3') // {value: 'ccc', done: false}
 ```
 
 -----

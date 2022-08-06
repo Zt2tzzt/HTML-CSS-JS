@@ -162,7 +162,7 @@ jQuery 的动画操作 animate 实现，传4个参数的写法，传2个参数�
   - duration 也支持关键字，`slow`：600ms；`fast`：200ms
   - easing 只支持两个关键字，`linear`：匀速；`swing`：先慢后快再慢。
 - `.animate( properties, options )`
-- propertys参数的支持：
+- propertys 参数的支持：
 > 数值：number 、string
 关键字：'show'、'hide'和'toggle'
 相对值：+= 、 -=
@@ -341,7 +341,7 @@ jQuery 的遍历方式2种：
 	- 函数中返回 false 会终止循环。
 	
 	```javascript
-	// 1.遍历jQuery对象 ( 该对象已经实现了迭代器协议 可用for of )，对象中的 each 底层调用的 jQuery 函数上的 each 方法
+	// 1.遍历jQuery对象 ( 该对象已经实现了迭代器协议，可用 for...of )，对象中的 each 底层调用的 jQuery 函数上的 each 方法
 	$('ul li').each(function(index, element) {
 	  console.log(index, element)
 	})
@@ -373,7 +373,7 @@ jQuery 的遍历方式2种：
 
 AJAX 请求方法（Method）：
 
-- GET、PUT：普通软件架构模式。
+- GET、POST：普通软件架构模式。
 - GET、POST、PUT、PACTH、DELETE 等：RESTful 软件架构模式。
 
 -----

@@ -3,8 +3,8 @@ jQuery 请求参数以及含义：
 - `url` - 指定发送请求的 URL。
 - `method / type` - 用于指定请求的类型 (如 "POST", "GET", "PUT")，默认为 GET
 - `data` - 指定要发送到服务器的数据（PlainObject or String or Array）
-- `processData` - 当 data 是一个对象时，从该对象的键/值对生成 query 字符串，例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，默认为 true。除非该 processData 选项设置为 false.
-- `header` - 请求头的内容（PlainObject）
+- `processData` - 默认为 true，表示当 data 是一个对象时，从该对象的键/值对生成 query 字符串，例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，。除非该 processData 选项设置为 false.
+- `header` - 请求头的内容。
 - `contentType` - 向服务器发送数据时指定内容类型。
   - `application/x-www-form-urlencoded; charset=UTF-8`：默认值，请求体的数据以查询字符串形式提交，如：a=bc&d=e%2Cf。
   - `application/json; charset=UTF-8` 指定为 json 字符串类型。
@@ -178,7 +178,7 @@ $.ajax({
 	method: "POST",
 	data: formData,
 	processData: false, // processData:true, 会将 data 为对象的转成查询字符串
-	contentType: false, // 使用 原生 XHR 默认的 contentType
+	contentType: false, // 使用 原生 XHR 默认的 contentType，也就是 multiparty/formdata
 	headers: {
 		token: 'xxxxxxxsssssssssssd'
 	},
@@ -254,7 +254,13 @@ jquery.showlinklocation.js
 
 ---
 
-项目实战：基于 $.ajax 封装网络请求。封装网络请求的好处 3 点
+项目实战：基于 $.ajax 封装网络请求。
+
+封装网络请求的好处 3 点
+
+1. 增加可扩展性和维护性。
+2. 对共性代码进行封装，减少不必要的重复代码。
+3. 统一请求：统一拦截请求，响应；统一处理异常。
 
 ---
 
@@ -366,7 +372,7 @@ loadsh 的基本使用，它有哪些 api？
 
 - `_.pick(object, [props])` - 从 object 中选中的属性来创建一个对象。返回新对象。
 - `_.omit(object, [props])` - 反向版\_.pick ; 删除 object 对象的属性。返回新对象。
-- `_.clone(value)` - 支持拷贝 arrays、 booleans、 date 、map、 numbers， Object 对象, regexes, sets, strings, symbols 等等。 arguments 对象的可枚举属性会拷贝为普通对象。 （注：也叫浅拷贝）返回拷贝后的值。
+- `_.clone(value)` - 支持拷贝 arrays、 booleans、 date 、map、 numbers， Object , regexes, sets, strings, symbols 等等。 arguments 对象的可枚举属性会拷贝为普通对象。 （注：也叫浅拷贝）返回拷贝后的值。
 - `_.cloneDeep(value)` -这个方法类似\_.clone，除了它会递归拷贝 value。（注：也叫深拷贝）。返回拷贝后的值。
 
 集合（Array | Object）
@@ -422,8 +428,7 @@ ztDay.js
 
 ```javascript
 ;(function (g) {
-	// browser -> window 全局对象
-	// node -> global 全局对象
+	// browser -> window 全局对象，node -> global 全局对象
 	// globalThis -> ES11
 	g = typeof globalThis !== 'undefined' ? globalThis : g || self
 	// 构造函数
@@ -467,14 +472,6 @@ console.log(
 
 // 2.设置时间
 var day = dayjs().year(2021).month(5).date(1)
-console.log(
-	day.year(),
-	day.month() + 1,
-	day.date(),
-	day.hour(),
-	day.minute(),
-	day.second()
-)
 
 // 3.操作时间
 var day = dayjs() // dayjs 对象
@@ -494,10 +491,7 @@ var day = dayjs() // dayjs 对象
 Day.js 的基本使用，解析时间。
 
 ```javascript
-// 1.解析一个字符串(ISO 8601)类型的时间
-// YYYY-MM-DD HH:mm:ss
-// YYYY-MM-DD
-// YYYY/MM/DD
+// 1.解析一个字符串(ISO 8601)类型的时间：YYYY-MM-DD HH:mm:ss、YYYY-MM-DD、YYYY/MM/DD、...
 var day = dayjs('2021-2-2 12:00:10') // dayjs 对象
 // 2.解析时间戳(毫秒)
 var day = dayjs(1656206934331) // dayjs 对象
