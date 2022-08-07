@@ -173,7 +173,7 @@ await 后面跟上的值是 rejected 状态，怎么处理，2种方法。
    async function foo() {
      await promise
    }
-   foo.catch(err => {...})
+   foo().catch(err => {...})
    ```
 
 2. 在异步函数中，使用 `try...catch` 语句捕获 await 语句代码抛出的异常。
