@@ -31,16 +31,13 @@
 		crossorigin="anonymous"></script>
 	<script>
 
-		$.ajax({
-			url: 'http://httpbin.org/status/500', // 500 (后台代码异常)
-			method: 'POST',
-			success: function (res) {
-				console.log('---success---', res)
-			},
-			error: function (err) {
-				console.log('---err---', err)
-			}
-		})
+		const arr = [1,2,3,4,5,6]
+		arr.forEach(item => {
+			if (item === 2) return
+			console.log('---item---', item)
+			if (item === 4) return false
+		});
+
 	</script>
 </body>
 
