@@ -9,15 +9,15 @@
 - 网格系统由 container、row、col 三部分组成，底层使用 flexbox 来布局，支持 12 列网格布局。
 - container 或 container-fluid 是布局容器，网格系统中必用的容器（也会用在：内容居中或包含其它内容时）。
   - `width: 100% / 某个断点的宽;` - 布局的宽
-  - `padding-right: 15px;` - 让包含的内容不会靠在布局右边缘
-  - `padding-left: 15px;` - 让包含的内容不会靠在布局左边缘
+  - `padding-right: 15px;` - 让包含内容不会靠在布局右边缘
+  - `padding-left: 15px;` - 让包含内容不会靠在布局左边缘
   - `margin-right: auto;` - 布局居中
   - `margin-left: auto;` - 布局居中
 - row 是网格系统中的每一行，row 是存放在 container 容器中。 如果指定列宽，那么最多可以存放 12 列，超出列数会换行。
   - `display: flex;` - 指定 row 为弹性布局（并支持 12 列网格布局）
   - `flex-wrap: wrap;` - 支持多行展示 flex item。
-  - `margin-right:` -15px;` - 抵消 container 右边 15px 的 padding。
-  - `margin-left:` -15px;` - 抵消 container 左边 15px 的 padding。
+  - `margin-right: 15px;` - 抵消 container 右边 15px 的 padding。
+  - `margin-left: 15px;` - 抵消 container 左边 15px 的 padding。
 - col 是网格系统的每一列，col 是存放在 row 容器中
   - `position: relative;` - 相对定位布局
   - `flex-grow: 1 / flex:0 0 x%;` - 自动拉伸布局或占百分比
@@ -29,7 +29,7 @@
 
 网格系统中，container，col 为什么设值了 `padding: 15px;`
 
-- 为了让容器包含的内容不仅靠网格边缘。
+- 为了让容器包含的内容不紧靠网格边缘。
 
 网格系统中 row，为什么设值了 `margin: -15px;`？
 
@@ -40,8 +40,8 @@
 
 网格系统如何嵌套使用？
 
-- 在系统中列 col 可以嵌套另外一个网格系统，因为它可以充当一个 container-fluid 容器来使用。
-- 如果额外添加 container 会怎加 padding: 15px
+- 列 col 可以嵌套另外一个网格系统，因为它可以充当一个 container-fluid 容器来使用。
+- 如果额外添加 container 会增加 `padding: 15px;`
 
 ---
 
@@ -51,7 +51,7 @@
 
 ```html
 <div class="container">
-	<!-- flex:列宽是自动拉伸 -->
+	<!-- flex: 列宽是自动拉伸 -->
 	<div class="row">
 		<div class="col item">1</div>
 		<div class="col item">2</div>
@@ -107,15 +107,14 @@
   ```html
   <div class="container">
   	<div class="row">
-  		<div class="col-auto item">auto layout layout layout</div>
-  		<!--该列的宽度，由内容决定，不会拉伸-->
+  		<div class="col-auto item">auto layout layout layout</div><!--该列的宽度，由内容决定，不会拉伸-->
   		<div class="col item">1</div>
   		<div class="col item">2</div>
   		<div class="col item">3</div>
   	</div>
   </div>
   ```
-
+  
 - col-{num}: 指定某个列的宽（支持 12 列网格）。
 
   - 底层是 `flex: 0 0 x%`，`max-width: x%`
@@ -124,13 +123,13 @@
 
 网格系统响应式类的概念和使用。
 
-- 5 个断点(Breakpoints)
+- 5个断点(Breakpoints)
   - `none(xs)` : <576px 、`sm` : >=576px、`md` : >=768px、 `lg` : >=992、 `xl` : >=1200px
 - 响应式列布局的类
-  - `col-sm` : 默认 width:100%，当屏幕>=576px 该类启用（flexbox 布局）, 启用： flex-grow: 1，max-width: 100%。
-  - `col-md` :: 默认 width:100%，当屏幕>=768px 该类启用（flexbox 布局），启用： flex-grow: 1，max-width: 100%。
+  - `col-sm` : 默认 width:100%，当屏幕>=576px 该类启用（flexbox 布局）, 启用：flex-grow: 1，max-width: 100%。
+  - `col-md` :: 默认 width:100%，当屏幕>=768px 该类启用（flexbox 布局），启用：flex-grow: 1，max-width: 100%。
   - `col-lg` : 默认 width:100%，当屏幕>=992px 该类启用（flexbox 布局），启用：flex-grow: 1，max-width: 100%。
-  - `col-xl` : 默认 width:100%，当屏幕>=1200px 该类启用（flexbox 布局）, 启用： flex-grow: 1，max-width: 100%。
+  - `col-xl` : 默认 width:100%，当屏幕>=1200px 该类启用（flexbox 布局）, 启用：flex-grow: 1，max-width: 100%。
   - `col-sm-{num}` : 默认 width:100%，当屏幕>=576px 该类启用(支持 12 列网格), 启用： flex: 0 0 x%。
   - `col-md-{num}` : 默认 width:100%，当屏幕>=768px 该类启用 (支持 12 列网格), 启用： flex: 0 0 x%。
   - `col-lg-{num}` : 默认 width:100%，当屏幕>=992px 该类启用 (支持 12 列网格), 启用： flex: 0 0 x%。
@@ -156,8 +155,7 @@
 响应式工具类的使用场景。
 
 - 某个功能在 PC 端可见，但是在移动端不可见。
-- 因为移动端的屏幕比较小，是不能把 PC 端中所有的内容都展示出来，所以有些不重要的内容可能在移动端就被简化了。
-- 这时我们就可以借用响应式的工具来实现该功能。
+- 因为移动端的屏幕比较小，是不能把 PC 端中所有的内容都展示出来，所以有些不重要的内容在移动端需要被简化。
 
 如何使用？
 
@@ -184,8 +182,7 @@
 还有哪些常用的实用工具类？
 
 - 快速浮动（Float）
-  - `float-left`
-  - `float-right`
+  - `float-left`、`float-right`
 - 文本（Text）
   - `text-left`、`text-right`、`text-center`
   - `text-{sm、md、lg、xl}-left`
@@ -208,7 +205,7 @@
 
 ---
 
-组建的使用：navbar 组件的使用。
+组件的使用：navbar 组件的使用。
 
 ```html
 <h1>1.Brand</h1>

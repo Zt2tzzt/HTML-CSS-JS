@@ -238,7 +238,7 @@ jquery.showlinklocation.js
 
 ```JavaScript
 ;(function (g, $) {
-	// 1.在jquery的原型上添加了一个 showlinklocation
+	// 1.在jQuery的原型上添加了一个 showlinklocation
 	$.fn.showlinklocation = function() {
     console.log(this) // jQuery对象集合
 		// 2.过滤出a元素的集合，遍历a元素
@@ -272,7 +272,7 @@ jquery.showlinklocation.js
 
 ---
 
-项目实战：动弹渲染搜索栏上方关键字并绑定 key
+项目实战：动态渲染搜索栏上方关键字并绑定 key
 
 ---
 
@@ -297,7 +297,7 @@ jquery.showlinklocation.js
 不同点：
 
 - Lodash 是 Underscore 的一个分支，并且仍然遵循 Underscore 的 API，但在底层已完全重写过，
-- 并且还添加了许多 Underscore 没有提供的特性和功能，它已经成为 Underscore 的超集，足以成为 Underscore 替代品。
+- Lodash 还添加了许多 Underscore 没有提供的特性和功能，它已经成为 Underscore 的超集，足以成为 Underscore 替代品。
 - Lodash 为数组、字符串、对象和参数对象提供更一致的**跨环境**迭代支持。
 - Lodash 提供额外的功能（如 AMD 支持、深度克隆和深度合并）、更好的整体性能和大型数组/对象迭代的优化，以及自定义构建和模板预编译实用程序的更大灵活性。
 
