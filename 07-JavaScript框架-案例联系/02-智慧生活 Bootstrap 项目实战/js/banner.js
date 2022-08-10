@@ -21,19 +21,15 @@ $(function () {
 	]
 
 	// renderBanner(banners)
-
 	$(window).on('resize', throttle(function () {
-		// console.log( $(this).outerWidth() )  // border + paddig + content 
-		var winWidth = $(this).outerWidth()
+		var winWidth = $(this).outerWidth() // border + paddig + content 
 		var isBigScreen = winWidth >= 768
-
 		// if(currentImg === 'big' && isBigScreen) {
 		//   return
 		// }
 		// if(currentImg === 'small' && !isBigScreen) {
 		//   return
 		// }
-
 		if (currentImg === 'none') {
 			// 掉这个函数来渲染界面
 			renderBanner(banners, isBigScreen)
@@ -45,18 +41,13 @@ $(function () {
 			// 掉这个函数来渲染界面
 			renderBanner(banners, isBigScreen)
 		}
-
 	}))
 	$(window).trigger('resize')
 
-
-
 	function renderBanner(banners = [], isBigScreen) {
-
 		currentImg = isBigScreen ? 'big' : 'small'
 		// 先把之前的定时器停掉
 		$('.carousel').carousel('dispose')
-
 		var banneHtmlString = ''
 		// 2.将数据渲染到页面上
 		banners.forEach(function (item, index) {
@@ -69,10 +60,7 @@ $(function () {
 			`
 		})
 		$('.carousel-inner').empty().append(banneHtmlString)
-
-		// 自动录播( 开始一个定时器 )
+		// 自动轮播( 开始一个定时器 )
 		$('.carousel').carousel('cycle')
 	}
-
-
 })

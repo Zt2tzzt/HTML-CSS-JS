@@ -8,7 +8,7 @@
 
 有什么用？
 
-- 使**HTML文档遍历、操作、事件处理**、**动画**和 **Ajax** 之类的事情变得更加简单。
+- 使 **HTML 文档遍历、操作、事件处理**、**动画**和 **Ajax** 之类的事情变得更加简单。
 - 具有易于使用的 API，做了多浏览器适配。
 
 -----
@@ -46,19 +46,19 @@ jQuery 的缺点。
 
 - jQuery 代码库一直在增长（自 jQuery 1.5 起超过 200KB）
 - 不支持组件化开发
-- jQuery 更适合DOM操作，当涉及到开发复杂的项目时，jQuery 能力有限。
+- jQuery 更适合 DOM 操作，当涉及到开发复杂的项目时，jQuery 能力有限。
 
 -----
 
 了解 jQuery 的起源和历史。
 
-1. 2005年8月22日，John Resig（一名从事自己项目的Web开发人员）首次提出支持CSS选择器的JavaScript库，其语法比当时现有的库（例如：Behaviour ）更简洁。
-2. 在2006年之前，John Resig 对编写跨浏览器的JavaScript感到非常繁琐。
+1. 2005年8月22日，John Resig（一名从事自己项目的Web开发人员）首次提出支持 CSS 选择器的 JavaScript 库，其语法比当时现有的库（例如：Behaviour ）更简洁。
+2. 在2006年之前，John Resig 对编写跨浏览器的 JavaScript 感到非常繁琐。
 3. 直到2006-8-26才发布了1.0版本。原本打算使用 JSelect（JavaScript Selectors）命名该库，但域名都已被占用。
 
-了解jQuery的历史版本特性。
+了解 jQuery 的历史版本特性。
 
-![jQuery历史版本](NodeAssets/jQuery历史版本.png)
+<img src="NodeAssets/jQuery历史版本.png" alt="jQuery历史版本" style="zoom:100%;" />
 
 -----
 
@@ -75,7 +75,7 @@ jQuery 的缺点。
 
 jQuery 的安装。
 
-1. 在页面中，直接通过CDN的方式引入。
+1. 在页面中，直接通过 CDN 的方式引入。
 2. 下载 jQuery 的源文件，并在页面中手动引入。
 3. 使用 npm 包管理工具安装到项目中（ npm 在 Node 基础阶段会讲解）
 
@@ -107,9 +107,9 @@ jQuery 的使用步骤
 
 -----
 
-理解CDN工作原理图，它是怎么进行网络优化的？
+理解 CDN 工作原理图，它是怎么进行网络优化的？
 
-- CDN服务器DNS会返回最佳节点给客户端，让客户端去请求。
+- CDN 服务器 DNS 会返回最佳节点给客户端，让客户端去请求。
 
 ![CND工作原理](NodeAssets/CND工作原理.png)
 
@@ -122,7 +122,7 @@ jQuery的引入和基本使用。
 ```html
  <!--
 	integrity: 防止资源被篡改,如果浏览器发现资源被篡改 就不会加载该资源
-	crossorigin: 加载不同源的资源时,浏览器是否需要携带用户凭证信息(cookie, ssl证书等)
+	crossorigin: 加载不同源的资源时,浏览器是否需要携带用户凭证信息(cookie, ssl 证书等)
 		anonymous: 不需要携带用户凭证信息
 		user-credentail: 需要携带用户凭证信息
 	-->

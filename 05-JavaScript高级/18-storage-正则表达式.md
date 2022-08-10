@@ -96,7 +96,7 @@ const localCache = new Cache()
 
 ---
 
-JavaScript 创建正则表达式的 2 种方式。构造函数和字面量。
+JavaScript 创建正则表达式的 2 种方式。1.构造函数；2.字面量。
 
 ```javascript
 /**
@@ -124,8 +124,8 @@ const re2 = /abc/gi // 字面量创建
 ```javascript
 const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
 // 需求: 将所有的 abc(忽略大小写)换成 cba
-// const newMessage = message.replaceAll("abc", "cba") // 这样写，只能匹配小写”abc“
-const newMessage = message.replace(/abc/gi, 'cba')
+/* 写法一 */ const newMessage = message.replaceAll("abc", "cba") // 这样写，只能匹配小写”abc“
+/* 写法二 */ const newMessage = message.replace(/abc/gi, 'cba')
 console.log(newMessage) // fdcba123 fcba323 dfcba222 A2324acba
 // 需求: 将字符串中数字全部删除
 const newMessage2 = message.replaceAll(/\d+/g, '')
@@ -148,7 +148,7 @@ console.log(newMessage2) // fdabc faBC dfABC AaaBc
     regexp.exec(message) // ['abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
     ```
 
-  - `RegExp.prototype.test()`（常用）- 一个在字符串中测试是否匹配的 RegExp 方法，它返回 true 或 false。
+  - `RegExp.prototype.test()`（常用）- 一个在字符串中测试是否匹配 RegExp 的方法，它返回 true 或 false。
 
     ```javascript
     // 类似于 webpack -> loader -> test: 匹配文件名

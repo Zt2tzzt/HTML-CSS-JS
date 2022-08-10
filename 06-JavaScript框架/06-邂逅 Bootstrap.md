@@ -37,7 +37,7 @@ Bootstrap 框架有什么优缺点？
 - 具有简单的文件结构，只需要懂 HTML、CSS 和 JS 的基本知识，就可以上手使用 Bootstrap，甚至阅读其源码，对于初学者来是说易于学习。
 - 拥有一个强大的网格系统，它是由行和列组成，我们可以直接创建网格，无需自行编写媒体查询来创建。
 - 预定义很多响应式的类。例如，给图片添加.`img-responsive` 类，图片将会根据用户的屏幕尺寸自动调整图像大小， 更方便我们去做各个屏幕的适配。另外 Bootstrap 还提供了很多额外的工具类辅助我们进行网页开发。
-- Bootstrap框架提供的组件、插件、布局、栅格（网格）系统、响应式工具等等，可以为我们节省了大量的开发时间。
+- Bootstrap 框架提供的组件、插件、布局、栅格（网格）系统、响应式工具等等，可以为我们节省了大量的开发时间。
 
 缺点：
 - 不适合高度定制类型的项目，因为 Bootstrap 具有统一的视觉风格，高度定制类的项目需要大量的自定义和样式覆盖。 
@@ -81,7 +81,7 @@ Bootstrap 的安装方式有哪些。
 	- 在移动端会把 layout viewport 的宽度设置为设备的宽，并且不允许用户进行页面的缩放。 
 	
 	- ```html
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,shrink-to-fit=no">
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,shrink-to-fit=no"><!-- shrink-to-fit=no，针对 safari 9+，禁止页面伸缩 -->
 	  ```
 
 CDN引入方式
@@ -92,18 +92,17 @@ CDN引入方式
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- shrink-to-fit=no，针对 safari 9+，禁止页面伸缩 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0, shrink-to-fit=no">
     <title>Document</title>
-    <!-- 引入 Bootstrap 框架中的 CSS 文件: box-size:border-box -->
+    <!-- 引入 Bootstrap 框架中的 CSS 文件: 有 box-size:border-box; 的效果 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   </head>
   <body>
     <!-- 基本使用 -->
     <h1 class="text-left border border-primary">Hello Bootstrap</h1>
-    <!-- Bootstrap5 之前需要依赖jQuery库 -->
+    <!-- Bootstrap5 之前需要依赖 jQuery 库 -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
-    <!-- 引入Bootstrap的JS文件 -->
+    <!-- 引入 Bootstrap 的JS文件 -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
@@ -113,7 +112,7 @@ CDN引入方式
 
 了解 Bootstrap 软件包有哪些内容。
 
-![ Bootstrap 软件包有哪些内容](NodeAssets/Bootstrap 软件包有哪些内容.jpg)
+<img src="NodeAssets/Bootstrap 软件包有哪些内容.jpg" alt=" Bootstrap 软件包有哪些内容1" style="zoom:100%;" />
 
 -----
 
@@ -129,13 +128,13 @@ CDN引入方式
 
 了解 Bootstrap 4 的架构图，框架中集成了哪些模块。
 
-<img src="NodeAssets/Bootstrap4 框架设计图.jpg" alt="Bootstrap4 框架设计图1" style="zoom:80%;" />
+<img src="NodeAssets/Bootstrap4 框架设计图.jpg" alt="Bootstrap4 框架设计图1" style="zoom:50%;" />
 
 -----
 
 什么是 Bootstrap 的屏幕尺寸的分割点？
 
-- Bootstrap 的一大核心就是响应式，即开发一套系统便可以适配不同尺寸的屏幕。它底层原理是使用媒体查询来为布局和页面创建合理的断点 (Breakpoints)，然后根据这些合理的断点来给不同尺寸屏幕应用不同的 CSS 样式。
+- Bootstrap 的一大核心就是响应式，即开发一套系统便可以适配不同尺寸的屏幕。它底层原理是使用媒体查询来为布局和页面创建合理的断点 (Breakpoints)，然后根据这些断点来给不同尺寸屏幕应用不同的 CSS 样式。
 - Bootstrap 4设了5个断点来构建响应式系统，分别为 Extra-Small、Small、Medium、Large、Extra large
 - 媒体查询是 CSS 的一项功能，它允许你根据浏览器的分辨率来应用不同的 CSS 样式，如 `@media (min-width: 576px){}`
 
@@ -195,7 +194,7 @@ Containers 基本使用。
 	</div>
 </div>
 
-<!-- 网格系统(启用了12列,超出12列就会换行) 可以制定列的框 -->
+<!-- 网格系统(启用了12列,超出12列就会换行) 可以制定列的宽 -->
 <div class="container">
 	<div class="row">
 		 <!-- 

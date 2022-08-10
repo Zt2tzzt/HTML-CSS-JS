@@ -1,6 +1,6 @@
 网格系统为什么从 16 列转为 12 列
 
-- 因为 12 可以被 12、6、4、3、2、1 整除，而 16 列网格只能被 16、8、4、2、1 整除，所以 12 列网格能够在一行中表示更多种列数组合情况
+- 因为 12 可以被 12、6、4、3、2、1 整除，而 16 列网格只能被 16、8、4、2、1 整除，所以 12 列网格能够在一行中表示更多种列数组合情况。
 
 ---
 
@@ -16,8 +16,8 @@
 - row 是网格系统中的每一行，row 是存放在 container 容器中。 如果指定列宽，那么最多可以存放 12 列，超出列数会换行。
   - `display: flex;` - 指定 row 为弹性布局（并支持 12 列网格布局）
   - `flex-wrap: wrap;` - 支持多行展示 flex item。
-  - `margin-right: 15px;` - 抵消 container 右边 15px 的 padding。
-  - `margin-left: 15px;` - 抵消 container 左边 15px 的 padding。
+  - `margin-right: -15px;` - 抵消 container 右边 15px 的 padding。
+  - `margin-left: -15px;` - 抵消 container 左边 15px 的 padding。
 - col 是网格系统的每一列，col 是存放在 row 容器中
   - `position: relative;` - 相对定位布局
   - `flex-grow: 1 / flex:0 0 x%;` - 自动拉伸布局或占百分比
@@ -80,7 +80,6 @@
 			</div>
 		</div>
 		<div class="col-6 item">
-			<!-- ( 嵌套的时候是可以省略 container ) -->
 			<div class="row">
 				<div class="col-3 item">1</div>
 				<div class="col-3 item">2</div>
@@ -100,7 +99,7 @@
 
   - 底层是 `flex-grow: 1`, `max-width: 100%`。该类网格系统仅用 flexbox 布局。
 
-- col-auto : 列的宽为 auto(Variable width content),
+- col-auto : 列的宽为 auto (Variable width content),
 
   - 底层是 `flex: 0 0 auto;` `width: auto;`
 
@@ -173,7 +172,7 @@
 <h1 class="d-block d-lg-none">某个元素只在lg(>=992px) 和 xl 屏隐藏</h1>
 <!-- 3.某个元素只在 md(>=768px)，小于 lg 时屏隐藏；-->
 <h1 class="d-block d-md-none d-lg-block">
-	某个元素只在 md(>=768px)，小于 lg 时 屏隐藏；
+	某个元素只在大于 md(768px)，小于 lg（992） 时 屏隐藏；
 </h1>
 ```
 
