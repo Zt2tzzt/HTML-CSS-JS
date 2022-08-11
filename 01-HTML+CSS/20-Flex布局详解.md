@@ -86,7 +86,7 @@ flex container 的 `flex-wrap` 属性有什么用？
 
 flex container 的 `flex-flow` 属性有什么用？
 
-- flex-direction 和 `flex-wrap` 的简写，顺序任何，并且都可以省略。
+- `flex-direction` 和 `flex-wrap` 的简写，顺序任何，并且都可以省略。
 
 -----
 

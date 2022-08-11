@@ -12,8 +12,8 @@ CSS样式规则顺序是怎样的（规范）？
    3. opacity
 3. 盒子模型（box model）
    1. width, height
-   2. padding, border
-   3. box-sizing
+   2. box-sizing
+   3. padding, border
    4. margin
    5. border-radius
    6. box-shadow

@@ -146,7 +146,7 @@ CDN引入方式
 
 - Containers 容器是 Bootstrap 中最基本的布局元素，并且该布局支持响应式。在使用默认网格系统时是必需的。 
 - Containers 容器用于包含、填充，有时也会作为内容居中使用。容器也是可以嵌套，但大多数布局不需要嵌套容器。 
-- Bootstrap 带有三个不同的Containers容器： 
+- Bootstrap 带有三个不同的 Containers 容器： 
 	- .container: 它在每个断点处会设置不同的 max-width。 
 	- .container-fluid：在所有断点处都是 width: 100%。
 	- .container-{breakpoint}, 默认是 width: 100%，直到指定断点才会修改为响应的值。

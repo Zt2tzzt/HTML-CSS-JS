@@ -469,10 +469,8 @@ console.log(
 	day.minute(),
 	day.second()
 )
-
 // 2.设置时间
 var day = dayjs().year(2021).month(5).date(1)
-
 // 3.操作时间
 var day = dayjs() // dayjs 对象
 	.add(1, 'year') // 增加一年
