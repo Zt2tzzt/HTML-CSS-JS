@@ -1,3 +1,5 @@
+# 绝对单位和相对单位
+
 CSS中的长度单位分为两类。
 
 - 绝对长度单位（Absolute length units）；
@@ -42,11 +44,13 @@ CSS中的长度单位分为两类。
 
 ------
 
+# CSS 像素
+
 什么是像素？
 
 - pixel 是单词 picture（pix是简写）加上单词 element 的合并写法。
 - 像素是影响显示的基本单位。（比如屏幕上看到的画面、一幅图片）；
-- “像素”表示“画像元素”之意，有时亦被称为pel（picture element）
+- “像素”表示“画像元素”之意，有时亦被称为 pel（picture element）
 
 ------
 
@@ -77,7 +81,9 @@ CSS中的长度单位分为两类。
 
 ------
 
-CSS有哪些痛点？
+# less 介绍
+
+CSS 有哪些痛点？
 
 1. 编写嵌套元素样式时，有大量重复代码。
 2. 无法定义变量（目前已支持，但存在兼容性问题）
@@ -95,38 +101,38 @@ CSS有哪些痛点？
 常用的CSS预处理器有哪3个，理解。
 
 - Sass / Scss
-	- 2007年诞生，最早也是最成熟的CSS预处理器，拥有ruby社区的支持，是属于Haml（一种模板系统）的一部分; 语法不支持原生CSS，比较灵活。
+	- 2007年诞生，最早也是最成熟的CSS预处理器，拥有 ruby 社区的支持，是属于 Haml（一种模板系统）的一部分; 语法不支持原生CSS，比较灵活。
 	- 目前受LESS影响，已经进化到了全面兼容 CSS 的 SCSS。
 - Less
-	- 2009年出现，受SASS的影响较大，兼容CSS语法，让大部分开发者更容易上手;
-	- 比起SASS，可编程功能不够多，但已经足够使用，优点是使用方式简单、便捷，兼容CSS。
-	- 著名的Twitter Bootstrap就是采用LESS做底层语言的，也包括React的UI框架AntDesign。
+	- 2009年出现，受 SASS 的影响较大，兼容 CSS 语法，让大部分开发者更容易上手;
+	- 比起 SASS，可编程功能不够多，但已经足够使用，优点是使用方式简单、便捷，兼容 CSS。
+	- 著名的 Twitter Bootstrap 就是采用 LESS 做底层语言的，也包括 React 的 UI 框架 AntDesign。
 - Stylus
-	- 2010年产生，来自Node.js社区，主要用来给Node项目进行CSS预处理支持; 
-	- 语法偏向于Python, 使用率相对于Sass/Less少很多。
+	- 2010年产生，来自 Node.js 社区，主要用来给 Node 项目进行 CSS 预处理支持; 
+	- 语法偏向于 Python, 使用率相对于 Sass / Less 少很多。
 
 ------
 
 什么是less，它有什么用？
 
 - Leaner Style Sheets 的缩写，是一门 CSS 扩展语言, 并且兼容 CSS。
-- 增加了很多相比于CSS更好用的特性; 比如定义变量、混入、嵌套、计算等等；
-- 最终需要被编译成CSS运行于浏览器中（包括部署到服务器中）；
+- 增加了很多相比于 CSS 更好用的特性; 比如定义变量、混入、嵌套、计算等等；
+- 最终需要被编译成 CSS 运行于浏览器中（包括部署到服务器中）；
 ------
 
-less代码编译的3种方式。
-- 方式一：下载Node环境，通过npm包管理下载less工具，使用less工具对代码进行编译； 
+less 代码编译的3种方式。
+- 方式一：下载 Node 环境，通过 npm 包管理下载 less 工具，使用 less 工具对代码进行编译； 
 	
-	- webpack 可以自动完成less工具的编译操作；
+	- webpack 可以自动完成 less 工具的编译操作；
 	
 - 方法二：通过VSCode插件（Easy Less）来编译成CSS，保存时会自动生成CSS。
 	
 	- https://lesscss.org/less-preview/
 	
-- 方式三：引入CDN的less编译代码，对less进行实时的处理；
+- 方式三：引入CDN的less编译代码，对 less 进行实时的处理；
 
   ```html
   <link rel="stylesheet/less" href="./less/01_less的基本使用.less">
   <script src="https://cdn.jsdelivr.net/npm/less@4" ></script>
   ```
-- 方式四：将less编译的js代码下载到本地，执行js代码对less进行编译；
+- 方式四：将 less 编译的 js 代码下载到本地，执行 js 代码对 less 进行编译；

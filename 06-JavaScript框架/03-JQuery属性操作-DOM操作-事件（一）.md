@@ -175,7 +175,7 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 - `.remove() 、.remove( [selector] ) `
 	
 	- 删除匹配的元素集，自身也会删除。
-	- selector参数：字符串类型选择器。筛选匹配元素集的元素来删除
+	- selector 参数：字符串类型选择器。筛选匹配元素集的元素来删除
 	
 	```javascript
 	$('ul').remove()
@@ -186,7 +186,7 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 - `.replaceAll(target)`: 
   
   - 用匹配到的元素集替换每个目标元素。
-  - target 参数类型: 1.字符串类型的选择器  2. jQuery对象  3. 元素对象
+  - target 参数类型: 1.字符串类型的选择器  2. jQuery 对象  3. 元素对象
   
   ```javascript
   $('<span>')
@@ -202,7 +202,7 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 	- newConten 参数的类型：1.HTML string, 2.DOM element, 3.array of DOM elements, 4.jQuery object
 	
 	```javascript
-	// 将 li 替换为 span元素 .replaceWidh( content )
+	// 将 li 替换为 span 元素 .replaceWidh( content )
 	var $span = $('<span>').text('我是span')
 	$('ul li').replaceWith( $span )
 	$('ul li').replaceWith('<span>我是span</span>')

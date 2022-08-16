@@ -81,8 +81,8 @@ jQuery 事件对象，有哪些常用属性和方法？
 <script>
 $(function() {
 	// 仅仅监听li中p元素的点击事件 )
-	$('ul').on('click', 'li p' , function(event) {
-		console.log(event.target)  // p
+	$('ul').on('click', 'li p' , function($event) {
+		console.log($event.target)  // p
 	})
 })
 </script>
@@ -350,7 +350,7 @@ jQuery 的遍历方式2种：
 - `jQuery.each( array | object , callback )` : jQuery 函数的静态方法，一个通用的迭代器函数，可以用来无缝地迭代对象和数组。 
 	
 	- array 参数：支持数组（array）或者类数组（array-like）,底层使用for循环。 
-	- object 参数: 支持普通的对象 object 和 JSON对象等，底层用 for in 循环。 
+	- object 参数: 支持普通的对象 object 和  JSON 对象等，底层用 for in 循环。
 	- function 参数: Function( index, element )，函数中返回 false 会终止循环。
 	
 	```javascript
@@ -362,8 +362,8 @@ jQuery 的遍历方式2种：
 
 它们有什么区别。
 
-- `.each()` 是 jQuery 对象上的方法，用于遍历 jQuery 对象。
-- `jQuery.each()` 是 jQuery 函数上的方法，可以遍历对象、数组、类数组等，它是一个通用的工具函数。
+- `.each()` 是 jQuery 对象上的实例方法，用于遍历 jQuery 对象。
+- `jQuery.each()` 是 jQuery 函数上的类方法，可以遍历对象、数组、类数组等，它是一个通用的工具函数。
 
 -----
 

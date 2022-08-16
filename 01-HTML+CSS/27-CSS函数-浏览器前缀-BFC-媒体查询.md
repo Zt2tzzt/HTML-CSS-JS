@@ -5,7 +5,7 @@ blur: 毛玻璃(高斯模糊)效果;
 - 通常会和两个属性一起使用：
 
   - filter: blur(radius) ，将模糊或颜色偏移等图形效果应用于元素。
-  - backdrop-filter: blur(radius) ，为元素后面的区域添加模糊或者其他效果，通常与背景颜色结合使用。
+  - backdrop-filter: blur(radius) ，为元素后面的区域添加模糊或者其他效果，通常与 background-color 结合使用。
 
 - blur(radius) ，radius 模糊的半径, 用于定义高斯函数的偏差值, 偏差值越大, 图片越模糊;
 
@@ -43,7 +43,7 @@ blur: 毛玻璃(高斯模糊)效果;
 
 什么是 gradient：颜色渐变函数？
 
-- \<gradient\> 是 \<image\> CSS数据类型的子类型，用于表现两种或多种颜色的过渡转变。
+- \<gradient\> 是 \<image\> CSS 数据类型的子类型，用于表现两种或多种颜色的过渡转变。
 - CSS 的 \<image\> 数据类型描述的是2D图形；如 background-image、list-style-image、border-image、content等；
 - \<image\> 常见的方式是通过 url 来引入一个图片资源；也可以通过CSS的 \<gradient\> 函数来设置颜色的渐变；
 
@@ -97,11 +97,11 @@ gradient 常见的函数实现有下面几种
 
 现在浏览器前缀要手动添加吗？
 
-- 不需要，webpack 在打包时，会根据 .browserslistrc 文件中指定需要适配的浏览器，自动添加css的浏览器前缀。
+- 不需要，webpack 在打包时，会根据 .browserslistrc 文件中指定需要适配的浏览器，自动添加 css 的浏览器前缀。
 
 -----
 
-FC的全称是 Formatting Context，什么是FC？
+FC 的全称是 Formatting Context，什么是FC？
 
 - 元素在标准流里面都是属于一个FC的；
 - 块级元素的布局属于 Block Formatting Context（BFC）。
@@ -127,10 +127,10 @@ FC的全称是 Formatting Context，什么是FC？
 
 BFC有什么用？
 
-- 在 BFC 中，box会在垂直方向上一个挨着一个的排布；
+- 在 BFC 中，box 会在垂直方向上一个挨着一个的排布；
 - 垂直方向的间距由 margin 属性决定；
 - 在同一个BFC中，相邻两个 box 之间的 margin 会折叠（collapse）；
-- 在BFC中，每个元素的左边缘是紧挨着包含块的左边缘的
+- 在 BFC 中，每个元素的左边缘是紧挨着包含块的左边缘的
 
 -----
 
@@ -172,14 +172,14 @@ BFC有什么用？
 
 -----
 
-BFC解决高度塌陷需要2个条件。(BFC 不能解决绝对定位元素的高度塌陷问题)
+BF C解决高度塌陷需要2个条件。(BFC 不能解决绝对定位元素的高度塌陷问题)
 
 - 浮动元素的父元素触发 BFC 形成独立的块级格式化上下文（Block Formatting Context）；
 - 浮动元素的父元素的高度是 auto 的；
 
 -----
 
-BFC高度是 auto 的情况下，怎么计算高度。
+产生 BFC 的元素高度是 auto 的情况下，怎么计算高度。
 
 1. 如果只有 inline-level，是行高的顶部和底部的距离；
 2. 如果有 block-level，是由最顶层块盒子上边缘和最底层块盒子的下边缘之间的距离。
@@ -279,7 +279,7 @@ BFC高度是 auto 的情况下，怎么计算高度。
 - screen（掌握）：主要用于屏幕。 
 - speech：主要用于语音合成器。
 
-CSS2.1 和 Media Queries 3 定义了一些额外的媒体类型(tty, tv, projection, handheld, braille, embossed, 以及 aural)；它们在 Media Queries 4 中已经被废弃，并且不应该被使用；aural类型被替换为具有相似效果的speech。
+CSS2.1 和 Media Queries 3 定义了一些额外的媒体类型(tty, tv, projection, handheld, braille, embossed, 以及 aural)；它们在 Media Queries 4 中已经被废弃，并且不应该被使用；aural 类型被替换为具有相似效果的 speech。
 
 ```css
 /* 如果 screen 省略，隐式使用 all */

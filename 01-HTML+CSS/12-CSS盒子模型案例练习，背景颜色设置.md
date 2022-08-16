@@ -1,3 +1,5 @@
+# 盒子模型案例练习
+
 理解盒子模型案例一小米商城商品，实现过程。
 
 css/reset.css
@@ -200,6 +202,8 @@ demo1.html
      2. 给a元素设置`display: block;` 让a元素占据父元素的宽度，这样a元素就有了具体的宽度。
 
 ------
+
+# background 背景
 
 `background-image` 属性有什么用？
 

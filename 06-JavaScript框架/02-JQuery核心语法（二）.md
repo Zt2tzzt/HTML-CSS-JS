@@ -100,15 +100,15 @@ jQuery 对象与原生对象之间的转换。
 	```javascript
 	var $ul = jQuery('ul')
 	// 方式一
-	var ulEl = $ul[0]  // 将jQuery对象转成 DOM Element
+	var ulEl = $ul[0]  // 将 jQuery 对象转成 DOM Element
 	console.log('%O', ulEl)
 	// 方式二
 	console.log($ul.get()) // 获取到匹配元素集合中所有的元素 [ul]
 	console.log($ul.get(0)) // 获取到匹配元素集合中第一个元素 ul
 	```
 
-- DOM Element 转成 jQuery 对象
-	- 调用 jQuery 函数或者 $ 函数
+- DOM Element 转成  jQuery  对象
+	- 调用  jQuery  函数或者 $ 函数
 	- 例如：$(元素)
 
 	```javascript
@@ -335,7 +335,9 @@ jQuery 对 css 操作的api
 
 	```javascript
 	// 1.获取到元素的width
-	// width: content ;  innerWidth: content + padding; outerWidth: content + padding + border
+	// width: content ;
+	// innerWidth: content + padding;
+	// outerWidth: content + padding + border
 	console.log($('ul').width()) // 返回的结果是 number
 	// 2.设置ul元素的width
 	$('ul').width(300)  // 直接给style设置一个width

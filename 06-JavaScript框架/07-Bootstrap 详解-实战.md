@@ -7,13 +7,13 @@
 网格系统的原理是怎样的？
 
 - 网格系统由 container、row、col 三部分组成，底层使用 flexbox 来布局，支持 12 列网格布局。
-- container 或 container-fluid 是布局容器，网格系统中必用的容器（也会用在：内容居中或包含其它内容时）。
+- container 或 container-fluid 是布局容器，网格系统中必用的容器（也会用在：内容居中或包含其它内容时），它们有以下 CSS 声明。
   - `width: 100% / 某个断点的宽;` - 布局的宽
   - `padding-right: 15px;` - 让包含内容不会靠在布局右边缘
   - `padding-left: 15px;` - 让包含内容不会靠在布局左边缘
   - `margin-right: auto;` - 布局居中
   - `margin-left: auto;` - 布局居中
-- row 是网格系统中的每一行，row 是存放在 container 容器中。 如果指定列宽，那么最多可以存放 12 列，超出列数会换行。
+- row 是网格系统中的每一行，row 是存放在 container 容器中。 如果给里面的 col 指定列宽，那么最多可以存放 12 列，超出列数会换行。它有以下 CSS 声明：
   - `display: flex;` - 指定 row 为弹性布局（并支持 12 列网格布局）
   - `flex-wrap: wrap;` - 支持多行展示 flex item。
   - `margin-right: -15px;` - 抵消 container 右边 15px 的 padding。

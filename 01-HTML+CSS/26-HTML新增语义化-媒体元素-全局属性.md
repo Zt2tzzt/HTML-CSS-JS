@@ -23,9 +23,9 @@ body {
 网页使用 div + id/class 元素开发的弊端。
 
 1. 对于浏览器来说这些元素不够语义化；
-2. 对于搜索引擎来说, 不利于SEO的优化；
+2. 对于搜索引擎来说, 不利于 SEO 的优化；
 
-HTML5新增的语义化元素有哪些？
+HTML5 新增的语义化元素有哪些？
 
 - \<header\>：头部元素
 - \<nav\>：导航元素
@@ -40,10 +40,10 @@ HTML5新增的语义化元素有哪些？
 
 -----
 
-了解早期web如何实现多媒体功能。
+了解早期 web 如何实现多媒体功能。
 
 - 在HTML5之前是通过 flash 或者其他插件实现的, 但是会有很多问题;
-- 比如无法很好的支持HTML/CSS特性, 兼容性问题等等;
+- 比如无法很好的支持 HTML/CSS 特性, 兼容性问题等等;
 
 -----
 
@@ -67,20 +67,20 @@ video 元素有什么用，它的属性有哪些，怎么使用？
 <video src="../video/fcrs.mp4" controls></video> <!-- 默认没有控制栏，需要加上 controls 属性。-->
 ```
 
-| 常见属性 | 值的类型           | 属性作用                                                     |
-| -------- | ------------------ | ------------------------------------------------------------ |
-| src      | url地址            | 视屏地址                                                     |
-| width    | pixels（像素）     | 设置video宽度                                                |
-| height   | pixels（像素）     | 设置video高度                                                |
-| controls | Boolean类型        | 是否显示控制栏（音量，暂停，恢复播放）                       |
-| autoplay | Boolean类型        | 是否自动播放（某些浏览器如chrome，为了用户体验需要添加 muted 属性，才有效） |
-| muted    | Boolean类型        | 是否静音播放                                                 |
-| preload  | none/metadata/auto | 是否需要预加载，metadata 表示加载元数据，如视频时长。常用 auto |
-| poster   | url地址            | 一帧海报url                                                  |
+| 常见属性 | 值的类型               | 属性作用                                                     |
+| -------- | ---------------------- | ------------------------------------------------------------ |
+| src      | url地址                | 视屏地址                                                     |
+| width    | pixels（像素）         | 设置video宽度                                                |
+| height   | pixels（像素）         | 设置video高度                                                |
+| controls | Boolean类型            | 是否显示控制栏（音量，暂停，恢复播放）                       |
+| autoplay | Boolean类型            | 是否自动播放（某些浏览器如chrome，为了用户体验需要添加 muted 属性，才有效） |
+| muted    | Boolean类型            | 是否静音播放                                                 |
+| preload  | none / metadata / auto | 是否需要预加载，metadata 表示加载元数据，如视频时长。常用 auto |
+| poster   | url地址                | 一帧海报url                                                  |
 
 -----
 
-了解video支持的视屏格式有哪些。
+了解 video 支持的视屏格式有哪些。
 
 ![](NodeAssets/video元素支持的视屏格式.jpg)
 
@@ -89,7 +89,7 @@ video 元素有什么用，它的属性有哪些，怎么使用？
 video 的兼容性写法2点（针对浏览器不支持此元素时候的降级处理）。
 
 - 通过 \<source\> 元素指定更多视频格式的源;
-- 通过 p / div 等元素指定在浏览器不支持video元素的情况, 显示的内容;
+- 通过 p / div 等元素指定在浏览器不支持 video 元素的情况, 显示的内容;
 
 ```html
 <video src="./assets/fcrs.mp4" width="600" controls muted>
@@ -170,7 +170,7 @@ input 元素在HTML5中 type 属性值的扩展。
 HTML5新增全局属性 data-*，有什么用，怎么使用？
 
 - 用于自定义数据属性:
-- data设置的属性可以在JavaScript的DOM操作中通过 dataset 轻松获取到；
+- data 设置的属性可以在 JavaScript 的 DOM 操作中通过 dataset 轻松获取到；
 - 通常用于 HTML 和 JavaScript 数据之间的传递；
 
 ```html
