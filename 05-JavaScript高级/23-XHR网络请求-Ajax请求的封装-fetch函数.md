@@ -1,3 +1,5 @@
+# XHR 请求
+
 如何获取 XHR 的 readyStatus？
 
 - 通过 `xhr.readyState` 获取。
@@ -6,7 +8,7 @@
 const xhr = new XMLHttpRequest()
 // 监听四种状态
 xhr.onreadystatechange = function() {
-	// 1.如果状态不是DONE状态, 直接返回
+	// 1.如果状态不是 DONE 状态, 直接返回
 	if (xhr.readyState !== XMLHttpRequest.DONE) return
 	console.log(xhr.response)
 }
@@ -90,7 +92,7 @@ xhr.onload = function() {
 	xhr.responseXML
 }
 
-// 3.告知xhr获取到的数据的类型
+// 3.告知 xhr 获取到的数据的类型
 xhr.responseType = "json"
 // xhr.responseType = 'text'
 // xhr.responseType = 'xml'
@@ -117,7 +119,7 @@ xhr 对象的 resposeType 属性有什么用？
 
 xhr 对象的 resposeText，resposeXML 有什么用？
 
-- 早期通常服务器返回的数据是普通的文本和XML，所以我们通常会通过 responseText、 responseXML 来获取响应结果，再将它们转化成 JavaScript 对象形式；
+- 早期通常服务器返回的数据是普通的文本和 XML，所以我们通常会通过 responseText、 responseXML 来获取响应结果，再将它们转化成 JavaScript 对象形式；
 - 目前服务器基本返回的都是 json 数据，直接将 resposeType 设置为 json 即可；
 
 ---
@@ -155,12 +157,12 @@ xhr.send()
 
 ---
 
-常用的 GET/POST 请求传递参数的 4 种方式。
+常用的 GET / POST 请求传递参数的 4 种方式。
 
-1. GET请求的 query 参数 
-2. POST请求 x-www-form-urlencoded 格式 
-3. POST请求 FormData 格式，默认情况下，Request header 中的 content-type 是 formData 格式，所以不用额外设置 content-type。
-4. POST请求 JSON 格式
+1. GET 请求的 query 参数 
+2. POST 请求 x-www-form-urlencoded 格式 
+3. POST 请求 FormData 格式，默认情况下，Request header 中的 content-type 是 formData 格式，所以不用额外设置 content-type。
+4. POST 请求 JSON 格式
 
 ```html
 <form class="info">
@@ -172,7 +174,7 @@ xhr.send()
 	const formEl = document.querySelector(".info")
 	const sendBtn = document.querySelector(".send")
 	sendBtn.onclick = function() {
-		// 创建xhr对象
+		// 创建 xhr 对象
 		const xhr = new XMLHttpRequest()
 		// 监听数据响应
 		xhr.onload = function() {
@@ -193,7 +195,7 @@ xhr.send()
 
 		// 3.传递参数方式三: post -> formdata
 		xhr.open("post", "http://123.207.32.32:1888/02_param/postform")
-		const formData = new FormData(formEl)	// formElement对象转成FormData对象
+		const formData = new FormData(formEl)	// formElement 对象转成 FormData 对象
 		xhr.send(formData)
 
 		// 4.传递参数方式四: post -> json
@@ -226,7 +228,7 @@ xhr.onload = function() {
 xhr.onabort = function() {
 	console.log("请求被取消掉了")
 }
-// 1.超市时间的设置
+// 1.超时时间的回调函数设置
 xhr.ontimeout = function() {
 	console.log("请求过期: timeout")
 }
@@ -291,6 +293,8 @@ function hyajax({
 ```
 
 ---
+
+# Fetch 函数
 
 Fetch 与 XHR 相比有什么优势？
 
