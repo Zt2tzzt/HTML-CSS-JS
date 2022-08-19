@@ -3,7 +3,7 @@ jQuery 请求参数以及含义：
 - `url` - 指定发送请求的 URL。
 - `method / type` - 用于指定请求的类型 (如 "POST", "GET", "PUT")，默认为 GET
 - `data` - 指定要发送到服务器的数据（PlainObject or String or Array）
-- `processData` - 默认为 true，表示当 data 是一个对象时，从该对象的键/值对生成 query 字符串，例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，。除非该 processData 选项设置为 false.
+- `processData` - 默认为 true，表示当 data 是一个对象时，从该对象的键值对生成 query 字符串，例如，{ a: "bc", d: "e,f" }被转换为字符串"a=bc&d=e%2Cf"，。除非该 processData 选项设置为 false.
 - `header` - 请求头的内容。
 - `contentType` - 向服务器发送数据时指定内容类型。
   - `application/x-www-form-urlencoded; charset=UTF-8`：默认值，请求体的数据以查询字符串形式提交，如：a=bc&d=e%2Cf。
@@ -147,7 +147,7 @@ $.ajax({
     cityId: '504100',
     keyWord: '小蛮腰'
   },
-  // contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+  // contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // 默认值
   // dataType: 'json', // 自动推断, response content-type
 })
 ```
@@ -213,7 +213,7 @@ $.post('http://httpbin.org/post', {
 1. 新建一个插件对应的 JS 文件（命名规范：`jquery.插件名.js`）
 2. 在**立即执行函数**中编写插件，这样可以避免插件中的变量与全局变量冲突。
 3. 在 jQuery 的原型对象上新增方法。
-4. 最后在 html 中导入，就可以像其他 jQuery 对象实例方法一样使用了
+4. 最后在 html 中导入，就可以像其他 jQuery 对象实例方法一样使用了。
 
 ---
 
