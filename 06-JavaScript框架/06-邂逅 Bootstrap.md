@@ -1,3 +1,5 @@
+# 什么是 Bootstrap
+
 什么是 Bootstrap 框架？
 
 - 是一个受欢迎的前端框架，官方网站将其描述为：最流行的 HTML、CSS 和 JS 框架，用于在 Web 上开发响应式、移动优先的项目。(v3.x)
@@ -70,6 +72,8 @@ Bootstrap 的安装方式有哪些。
 
 -----
 
+# 引入 Bootstrap
+
 在 HTML 中引入 Bootstrap 后，需要添加的2个全局配置。
 
 - HTML5 文档类型（DOCTYPE），Bootstrap 要求文档类型（DOCTYPE）是 HTML5。 
@@ -132,6 +136,8 @@ CDN引入方式
 
 -----
 
+# Bootstrap 的屏幕尺寸的分割点
+
 什么是 Bootstrap 的屏幕尺寸的分割点？
 
 - Bootstrap 的一大核心就是响应式，即开发一套系统便可以适配不同尺寸的屏幕。它底层原理是使用媒体查询来为布局和页面创建合理的断点 (Breakpoints)，然后根据这些断点来给不同尺寸屏幕应用不同的 CSS 样式。
@@ -141,6 +147,8 @@ CDN引入方式
 ![屏幕尺寸的分割点](NodeAssets/屏幕尺寸的分割点.jpg)
 
 -----
+
+# Bootstrap 的响应式容器 
 
 什么是 Bootstrap 的响应式容器 
 
@@ -168,6 +176,8 @@ Containers 基本使用。
 ```
 
 -----
+
+# Bootstrap 的网格系统
 
 什么是 Bootstrap 的网格系统？
 
