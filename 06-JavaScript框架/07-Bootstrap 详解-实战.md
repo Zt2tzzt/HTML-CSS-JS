@@ -31,7 +31,7 @@
 
 - 为了让容器包含的内容不紧靠网格边缘。
 
-网格系统中 row，为什么设值了 `margin: -15px;`？
+网格系统中 row，为什么设置了 `margin: -15px;`？
 
 - 为了抵消 container，col 的 `margin: 15px;`
 - 当网格系统在嵌套的时候，col 也可以充当容器 container-fluid 来使用。
@@ -122,7 +122,7 @@
 
 网格系统响应式类的概念和使用。
 
-- 5个断点(Breakpoints)
+- 5个断点（Breakpoints）
   - `none(xs)` : <576px 、`sm` : >=576px、`md` : >=768px、 `lg` : >=992、 `xl` : >=1200px
 - 响应式列布局的类
   - `col-sm` : 默认 width:100%，当屏幕>=576px 该类启用（flexbox 布局）, 启用：flex-grow: 1，max-width: 100%。

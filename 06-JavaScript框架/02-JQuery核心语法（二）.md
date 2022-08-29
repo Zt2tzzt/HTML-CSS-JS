@@ -1,3 +1,5 @@
+# 认识 jQuery 函数
+
 什么是 jQuery 函数，它与 jQuery 对象是什么关系？
 
 - jQuery 是一个工厂函数( 别名 $ )，调用该函数，会根据传入参数类型来返回匹配到元素的集合，一般把该集合称为 jQuery 对象。
@@ -55,12 +57,14 @@ jQuery 函数的参数
 
 -----
 
+# 认识 jQuery 对象
+
 什么是 jQuery 对象？
 
-- jQuery对象是一个包含所匹配到元素的集合，该集合是类数组 ( array-like ) 对象。
-- jQuery对象是通过调用 jQuery 函数来创建的。
-- jQuery对象中会包含N（>=0）个匹配到的元素。
-- jQuery对象原型中包含了很多已封装好的方法。例如：DOM 操作、事件处理、动画等方法。
+- jQuery 对象是一个包含所匹配到元素的集合，该集合是类数组 ( array-like ) 对象。
+- jQuery 对象是通过调用 jQuery 函数来创建的。
+- jQuery 对象中会包含N（>=0）个匹配到的元素。
+- jQuery 对象原型中包含了很多已封装好的方法。例如：DOM 操作、事件处理、动画等方法。
 
 如何创建 jQuery 对象
 
@@ -74,7 +78,7 @@ document 的 jQuery 对象
 
 -----
 
-jQuery 对象与 DOM Element 的区别。
+## jQuery 对象与 DOM Element 的区别
 
 - 获取的方式不同
 	- DOM Element 是通过原生方式获取，例如：`document.querySelector()`
@@ -88,14 +92,15 @@ document 的 DOM Element 对象
 
 -----
 
-jQuery 对象与原生对象之间的转换。
+## jQuery 对象与 DOM Element 对象的转换
+
 - jQuery 对象转成 DOM Element
 
 	- `$el[index]`：获取 jQuery 对象中某个索引中的 DOM 元素。
 	- `$el.get(index)`：获取 jQuery 对象中某个索引中的 DOM 元素。
 	  - index 一个从零开始的整数，指示要检索的元素。
 	  - 如果 index 超出范围（小于负数元素或等于或大于元素数），则返回 undefined。
-	- `$el.get()` : 没有参数，将返回 jQuery 对象中所有DOM元素的数组。
+	- `$el.get()` : 没有参数，将返回 jQuery 对象中所有 DOM 元素的数组。
 
 	```javascript
 	var $ul = jQuery('ul')
@@ -116,6 +121,8 @@ jQuery 对象与原生对象之间的转换。
 	```
 
 -----
+
+# jQuery 架构设计
 
 理解 jQuery 架构设计图。
 
@@ -166,7 +173,9 @@ jQuery 对象与原生对象之间的转换。
 
 -----
 
-jQuery 支持使用哪些选择器？
+# jQuery 支持选择器传参
+
+jQuery 支持使用哪些选择器
 
 1. 通用选择器（*）
 2. 基本选择器（id, class, 元素）
@@ -215,15 +224,17 @@ jQuery 支持使用哪些选择器？
 
 -----
 
+# jQuery 中的过滤器
+
 jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？如何使用？
 
-1. `eq(index)`: 从匹配元素的集合中，取索引处的元素， eq全称(equal 等于)，返回 jQuery 对象。
+1. `eq(index)`: 从匹配元素的集合中，取索引处的元素， eq 全称 ( equal 等于)，返回 jQuery 对象。
 2. `first() `: 从匹配元素的集合中，取第一个元素，返回 jQuery 对象。
 3. `last()`: 从匹配元素的集合中，取最后一个元素，返回 jQuery 对象。
 4. `not(selector)`: 从匹配元素的集合中，删除匹配的元素，返回jQuery对象。
 5. `filter(selector)`: 从匹配元素的集合中，过滤出匹配的元素，返回jQuery对象。
 6. `find(selector)`: 从匹配元素集合中，找到匹配的后代元素，返回jQuery对象。
-7. `is(selector|element| . )`: 根据选择器、元素等检查当前匹配到元素的集合。集合中至少有一个与给定参数匹配则返回true。
+7. `is(selector|element| . )`: 根据选择器、元素等检查当前匹配到元素的集合。集合中至少有一个与给定参数匹配则返回 true。
 8. `odd()`: 将匹配到元素的集合减少为集合中的奇数，从零开始编号，返回 jQuery 对象。
 9. `even()`: 将匹配到元素的集合减少到集合中的偶数，从零开始编号，返回 jQuery 对象。
 10. 支持链式调用
@@ -268,7 +279,8 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
 
 -----
 
-jQuery 对文本操作的api。
+# jQuery 对文本操作的 api
+
 - `.text()`、`.text(text)`
 	- 获取匹配到元素集合中每个元素组合的文本内容，包括它们的后代，或设置匹配到元素的文本内容。
 	- 相当与原生元素的 textContent 属性。
@@ -282,7 +294,7 @@ jQuery 对文本操作的api。
 
 - `.html()`、`html(htmlString)`
 	
-	- 获取匹配到元素集合中第一个元素的HTML内容，包括它们的后代，或设置每个匹配元素的 HTML 内容。
+	- 获取匹配到元素集合中第一个元素的 HTML 内容，包括它们的后代，或设置每个匹配元素的 HTML 内容。
 - 相当于原生元素的 innerHTML 属性。
 	
 	```javascript
@@ -328,7 +340,7 @@ jQuery 对文本操作的api。
 
 -----
 
-jQuery 对 css 操作的api
+# jQuery 对 css 操作的 api
 
 - `.width()`、.`width(value)`
 	- 获取匹配到元素集合中第一个元素的宽度或设置每个匹配到元素的宽度。
@@ -379,7 +391,7 @@ jQuery 对 css 操作的api
 
 -----
 
-jQuery 的 class 属性操作
+# jQuery 的 class 属性操作
 
 - `.addClass(className)`、`.addClass(classNamesArr)`、`.addClass(funcntion)`
 	- 将指定的类添加到匹配元素集合中的每个元素，每次都是追加 class。

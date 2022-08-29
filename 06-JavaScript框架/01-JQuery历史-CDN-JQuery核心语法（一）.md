@@ -2,6 +2,8 @@
 
 -----
 
+# 认识 jQuery
+
 什么是 jQuery?
 
 - 一个快速、小型且功能丰富的 JavaScript 库。
@@ -33,13 +35,13 @@
 
 -----
 
-jQuery的优点
+jQuery 的优点
 
 - 易于学习：相对于其它的前端框架，jQuery 更易于学习，它支持 JavaScript 的编码风格。
 - 少写多做（Write less, do more）
-	- jQuery 提供了丰富的功能(DOM操作、过滤器、事件、动画、Ajax等)。
+	- jQuery 提供了丰富的功能(DOM操作、过滤器、事件、动画、Ajax 等)。
 	- 可以编写更少的代码和可读性高的代码来提高开发人员的工作效率。
-- 优秀的 API 文档：jQuery 提供了优秀的在线API文档。
+- 优秀的 API 文档：jQuery 提供了优秀的在线 API 文档。
 - 跨浏览器支持：提供出色的跨浏览器支持 (IE9+)，无需编写额外代码。
 
 jQuery 的缺点。
@@ -77,7 +79,7 @@ jQuery 的安装。
 
 1. 在页面中，直接通过 CDN 的方式引入。
 2. 下载 jQuery 的源文件，并在页面中手动引入。
-3. 使用 npm 包管理工具安装到项目中（ npm 在 Node 基础阶段会讲解）
+3. 使用 npm 包管理工具安装到项目中。
 
 jQuery 的使用步骤
 
@@ -86,7 +88,9 @@ jQuery 的使用步骤
 
 -----
 
-什么是CDN？它有什么用？
+# 认识 CDN
+
+什么是 CDN？它有什么用？
 
 - CDN 称之为内容分发网络（Content Delivery Network 或 Content Distribution Network，缩写：CDN）
 - 它是一组分布在不同地理位置的服务器相互连接形成的网络系统。
@@ -101,9 +105,9 @@ jQuery 的使用步骤
 常用的 CDN 服务可大致分为2种：
 
 - 自己购买的 CDN 服务：需要购买开通 CDN 服务（会分配一个域名）。
-	- 目前阿里、腾讯、亚马逊、Google等都可以购买CDN服务。
-- 开源的CDN服务
-	- 国际上使用比较多的是unpkg、JSDelivr、cdnjs、BootCDN等。
+	- 目前阿里、腾讯、亚马逊、Google 等都可以购买 CDN 服务。
+- 开源的 CDN 服务
+	- 国际上使用比较多的是 unpkg、JSDelivr、cdnjs、BootCDN 等。
 
 -----
 
@@ -114,6 +118,8 @@ jQuery 的使用步骤
 ![CND工作原理](NodeAssets/CND工作原理.png)
 
 -----
+
+# jQuery 的基本使用
 
 jQuery的引入和基本使用。
 
@@ -213,8 +219,8 @@ jQuery 监听文档（document）的 `DOMContentLoaded `事件的4种写法：
 
   ```javascript
   $(document).ready(function(){
-      console.log('doc ready')
-    })
+    console.log('doc ready')
+  })
   ```
 
 - `$( "document" ).ready( handler )`： deprecated
@@ -285,8 +291,8 @@ $(window).on('load', function() {
 <script>
   // 传一个布尔值，代表是否也处理 jQuery 标识符的冲突
 	var newjQuery = jQuery.noConflict(true) // window.$ =  _$ ;  window.jQuery =  _jQuery
-	console.log( $ ) // 我是hy-utils
-	console.log( jQuery ) // 我是hy-utils
+	console.log($) // 我是 hy-utils
+	console.log(jQuery) // 我是 hy-utils
 	console.log(newjQuery)
 </script>
 ```

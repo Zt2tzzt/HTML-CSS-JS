@@ -1,3 +1,5 @@
+# jQuery 对元素对象属性操作
+
 jQuery 元素对象中对 attributes 和 property 的操作。
 
 - `.attr(attributeName)`
@@ -48,7 +50,7 @@ jQuery 元素对象中对 attributes 和 property 的操作。
 	$('input').prop({
 	  disabled: true,
 	  placeholder: '请输入用户名',
-	  jQuery_zzt_123: '自定义的属性' // 缓存 click  data
+	  jQuery_zzt_123: '自定义的属性' // 缓存 click data
 	})
 	```
 
@@ -57,7 +59,7 @@ jQuery 元素对象中对 attributes 和 property 的操作。
 	- 删除匹配元素集的属性,( 只能删除用户自定义添加的 prop，不能删除元素本身的属性 )。
 
 	```javascript
-	$('input').removeProp('jQuery_zzt_123') // 只能删除 自定义的属性
+	$('input').removeProp('jQuery_zzt_123') // 只能删除自定义的属性
 	```
 -----
 
@@ -65,8 +67,8 @@ jQuery 元素对象中对自定义 data-xxx 属性的操作。理解该操作中
 
 - `.data()`、`.data(key)`
 
-	- 获取匹配元素集中第一个元素的自定义属性的值。
-	- 为减少 DOM 操作，方便对象的拷贝，会先**设置缓存**，在缓存中查找对应的属性值。如果没有，再去DOM元素上查找，**并设置到缓存中**。缓存存放在元素 DOM Element 对象上的属性中。
+	- 获取匹配元素集中，第一个元素的自定义属性的值。
+	- 为减少 DOM 操作，方便对象的拷贝，会先**设置缓存**，在缓存中查找对应的属性值。如果没有，再去 DOM 元素上查找，**并设置到缓存中**。缓存存放在元素 DOM Element 对象上的属性中。
 
 	```html
 	<ul id="list" data-name="zzt" data-age="18"></ul>
@@ -81,7 +83,7 @@ jQuery 元素对象中对自定义 data-xxx 属性的操作。理解该操作中
 	- 为每个匹配元素设置一个或多个自定义属性。
 
 	```javascript
-	// 调用data()函数只能修改 缓存中的数据
+	// 调用 data() 函数只能修改 缓存中的数据
 	$('ul').data('name', 'coder')
 	$('ul').data({
 	  name: 'coder',
@@ -101,7 +103,9 @@ jQuery 元素对象中对自定义 data-xxx 属性的操作。理解该操作中
 
 -----
 
-jQuery 元素对象 DOM 操作，插入内容（一）。5种方式。
+# jQuery 元素对象 DOM 操作
+
+## 插入内容（一）5种方式
 
 - `.append(content [, content] ) 、append( function )`
 	- 将参数的内容插入到匹配元素集中每个元素的子元素末尾。
@@ -112,7 +116,13 @@ jQuery 元素对象 DOM 操作，插入内容（一）。5种方式。
 - `.before(content [, content])、before( function )`
 	- 在匹配元素集中的每个元素之前，插入由参数指定的内容。
 
-content 的类型: 1.DOM element, 2.text node, 3.array of elements and text nodes, 4.HTML string, 5.jQuery object
+>content 的类型: 
+>
+>- DOM element
+>- text node
+>- array of elements and text nodes, 
+>- HTML string
+>- jQuery object
 
 ```javascript
 // 方式一: 在ul的尾部插入文本
@@ -136,7 +146,7 @@ $('ul').append( $('.li-6') ) // move, 不是 clone
 
 -----
 
-jQuery 元素对象 DOM 操作，插入内容（二）。3种方式。
+## 插入内容（二）3种方式
 
 - `.appendTo(target) `
 	- 将匹配元素集中的每个元素插入到目标元素的子元素的末尾。
@@ -147,7 +157,13 @@ jQuery 元素对象 DOM 操作，插入内容（二）。3种方式。
 - `.insertBefore(target)`
 	- 在目标元素之前，插入匹配元素集中的每个元素。
 
-target 的类型：1.A selector, 2.DOM element, 3.HTML string, 4.array of elements, 5.jQuery object。
+>  target 的类型：
+>
+> - A selector
+> - DOM element
+> - HTML string
+> - array of elements
+> - jQuery object。
 
 ```javascript
 $('<li>')
@@ -164,7 +180,7 @@ $('<li>')
 
 -----
 
-jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
+## 移除，替换，克隆元素。
 
 - `.empty()`: 
   - 删除匹配元素集的所有子节点，自身不会删除。
@@ -186,20 +202,31 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 - `.replaceAll(target)`: 
   
   - 用匹配到的元素集替换每个目标元素。
-  - target 参数类型: 1.字符串类型的选择器  2. jQuery 对象  3. 元素对象
+  
+  > target 参数类型: 
+  >
+  > - 字符串类型的选择器
+  > - jQuery 对象
+  > - 元素对象
   
   ```javascript
   $('<span>')
     .addClass('content')
     .text('我是span')
-    .css('color', 'red') // 创建一个span元素( jQuery对象 )
-    .replaceAll( 'ul li' ) // 将li元素集替换为span 
+    .css('color', 'red') // 创建一个 span 元素( jQuery 对象 )
+    .replaceAll( 'ul li' ) // 将 li 元素集替换为 span 
   ```
   
 - `.replaceWith(newContent)、.replaceWith( function ) `
 	
 	- 用新内容替换匹配元素集中的每个元素，并返回被移除的元素集。 
-	- newConten 参数的类型：1.HTML string, 2.DOM element, 3.array of DOM elements, 4.jQuery object
+	
+	> newConten 参数的类型：
+	>
+	> - HTML string
+	> - DOM element
+	> - array of DOM elements
+	> - jQuery object
 	
 	```javascript
 	// 将 li 替换为 span 元素 .replaceWidh( content )
@@ -214,7 +241,7 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 	
 	```javascript
 	$('.li-6').clone().appendTo('ul')
-	// 将li-6克隆到 ul元素的尾部( 将li-6的事件处理函数和data自定义属性一起拷贝过去 )
+	// 将 li-6 克隆到 ul 元素的尾部（将 li-6 的事件处理函数和 data 自定义属性一起拷贝过去）
 	$('.li-6')
 	  .data({
 	    name: 'zzt',
@@ -230,9 +257,11 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 
 -----
 
+# jQuery 元素对象上的事件
+
 什么是事件？
 
-- Web页面经常需要和用户之间进行交互，而交互的过程中我们可能想要捕捉这个交互的过程
+- Web 页面经常需要和用户之间进行交互，而交互的过程中我们可能想要捕捉这个交互的过程
 
 原生事件监听方法3种。
 
@@ -243,7 +272,7 @@ jQuery 元素对象 DOM 操作，移除，替换，克隆元素。
 2. DOM 属性，通过元素的 on 来监听事件。
 3. 通过 EventTarget 中的 addEventListener 来监听。
 
-jQuery 元素对象事件监听方法2种。
+## jQuery 元素对象事件监听方法2种
 
 1. 直接调用 jQuery 对象中的事件处理函数来监听，例如：click，mouseenter....。 
 	```javascript
@@ -267,7 +296,7 @@ jQuery 元素对象事件监听方法2种。
 
 -----
 
-jQuery 元素对象自动触发事件的方法。
+## jQuery 元素对象自动触发事件的方法
 
 ```javascript
 $('ul').trigger('click')  // 模拟用户点击了ul元素
@@ -276,7 +305,7 @@ $('ul').trigger('mouseenter')
 
 -----
 
-click 方法和 on 方法有什么区别？
+## click 方法和 on 方法有什么区别？
 
 - click 是 on 的简写。它们重复监听，不会出现覆盖情况，都支持事件委托，底层用的是 addEventListener。 
 
@@ -301,7 +330,7 @@ click 方法和 on 方法有什么区别？
 
 -----
 
-click 方法和 on 方法中 this 的指向。
+## click 方法和 on 方法中 this 的指向。
 
 - 都是指向原生的 DOM Element
 
