@@ -1,3 +1,5 @@
+# jQuery 的事件处理
+
 什么是事件冒泡？
 
 - 默认情况下事件从最内层向外依次传递，称之为事件冒泡（Event Bubble）;
@@ -6,7 +8,7 @@
 
 - 事件从外层到内层（如：body -> span），称之为事件捕获（Event Capture）
 
-为什么产生两种不同的处理流？
+为什么产生两种不同的事件处理流？
 
 - 这是因为早期在浏览器开发时，不管是 IE 还是 Netscape 公司都发现了这个问题;
 - 他们采用了相反的事件流来对事件进行了传递；
@@ -114,7 +116,7 @@ $('ul').hover(function() {
 }, function() {
 	console.log('鼠标离开ul')
 })
-// 2.监听浏览器resize事件 ( throttle 节流 )
+// 2.监听浏览器 resize 事件 ( throttle 节流 )
 $(window).resize(function() {
 	console.log('resize')
 })
@@ -164,7 +166,7 @@ jQuery 的动画操作 animate 实现，传4个参数的写法，传2个参数�
 - `.animate( properties, options )`
 - propertys 参数的支持：
 > 数值：number 、string
-关键字：'show'、'hide'和'toggle'
+关键字：'show'、'hide' 和 'toggle'
 相对值：+= 、 -=
 支持 em 、% 单位（可能会进行单位转换，保证参考元素有具体数值）。
 
@@ -349,7 +351,7 @@ jQuery 的遍历方式2种：
 	
 - `jQuery.each( array | object , callback )` : jQuery 函数的静态方法，一个通用的迭代器函数，可以用来无缝地迭代对象和数组。 
 	
-	- array 参数：支持数组（array）或者类数组（array-like）,底层使用for循环。 
+	- array 参数：支持数组（array）或者类数组（array-like）,底层使用 for 循环。 
 	- object 参数: 支持普通的对象 object 和  JSON 对象等，底层用 for in 循环。
 	- function 参数: Function( index, element )，函数中返回 false 会终止循环。
 	
@@ -367,7 +369,7 @@ jQuery 的遍历方式2种：
 
 -----
 
-什么是AJAX？
+什么是 AJAX？
 
 - 发起异步请求获取数据来更新页面的技术。
 
