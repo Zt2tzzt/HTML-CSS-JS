@@ -6,7 +6,7 @@
 var arr = ['abc', 'cba', 'nba']
 arr.push('mba') // arr.length 更新为 4
 arr.length = 10 // arr.length 扩充到 10
-arr.length = 2 // arr 数组截取了前两个元素。
+arr.length = 2 // arr length 缩小到 2，数组截取了前两个元素。
 ```
 
 清空数组最简单的方法：`arr.length = 0`
@@ -34,7 +34,7 @@ for (var item of arr) {
 
 数组的3个操作方法。
 
-- `arr.slice([begin[, end]])`：用于对数组进行截取，包含 bigin 元素，但是不包含 end 元素；
+- `arr.slice([begin[, end]])`：创建一个新数组，用于对数组进行截取，包含 bigin 元素，但是不包含 end 元素；
 - `arr.concat(value1[, value2[, ...[, valueN]]])`：创建一个新数组，其中包含来自于其他数组和其他项的值。
 - `arr.join([separator])`： 将一个数组的所有元素连接成一个字符串并返回这个字符串。
 
@@ -95,7 +95,7 @@ Array.prototype.ztFind = function(fn) {
 
 	```javascript
 	var students = [
-	  { id: 100, name: "why", age: 18 },
+	  { id: 100, name: "zzt", age: 18 },
 	  { id: 101, name: "kobe", age: 30 },
 	  { id: 102, name: "james", age: 25 },
 	  { id: 103, name: "curry", age: 22 }
@@ -118,7 +118,7 @@ Array.prototype.ztFind = function(fn) {
 - `arr.map(callback(currentValue[, index[, array]])[, thisArg]) `
   - 创建一个新数组，由原数组中的每个元素都调用一次提供的函数后的返回值组成；
 - `arr.filter(callback(element[, index[, array]])[, thisArg])`
-	- 创建一个新数组，只包含每个元素调用函数返回为true的元素；
+	- 创建一个新数组，只包含每个元素调用函数返回为 true 的元素；
 - `arr.reduce(callback(accumulation, currentValue[, currentIndex[, array]])[, initialValue])`
 	- 每一次运行 reducer 会将先前元素的计算结果作为参数传入，最后将其结果汇总为单个返回值；
 
@@ -183,8 +183,8 @@ new Date(year, monthIndex [, day [, hours [, minutes [, seconds [, milliseconds]
 
 日期的表示标准有哪2种？它们的格式是怎样的？对应的转化方法。
 
-- RFC2822，如 `Sat Jun 04 2022 21:12:33 GMT+0800` Date对象，打印默认输出该格式。
-- ISO8601，如 `2022-06-04T13:12:03.999Z`，也可使用 `toISOString()` 将Date对象，转为ISO格式。
+- RFC2822，如 `Sat Jun 04 2022 21:12:33 GMT+0800` Date 对象，打印默认输出该格式。
+- ISO8601，如 `2022-06-04T13:12:03.999Z`，也可使用 `toISOString()` 将 Date 对象，转为 ISO 格式。
 	- `YYYY-MM-DDTHH:mm:ss.sssZ`
 	- YYYY：年份，0000 ~ 9999
 	- MM：月份，01 ~ 12
@@ -198,7 +198,7 @@ new Date(year, monthIndex [, day [, hours [, minutes [, seconds [, milliseconds]
 
 -----
 
-Date对象获取时间信息的方法8个。
+Date 对象获取时间信息的方法8个。
 
 - getFullYear()：获取年份（4 位数）；
 - getMonth()：获取**月份索引**，从 0 到 11；
@@ -211,7 +211,7 @@ Date对象获取时间信息的方法8个。
 
 -----
 
-Date对象的设置时间信息方法8个。
+Date 对象的设置时间信息方法8个。
 
 - setFullYear(year, [month], [date]) 
 - setMonth(month, [date]) 
@@ -234,12 +234,12 @@ Date对象的设置时间信息方法8个。
 
 -----
 
-利用Date对象，获取**当前时间**的时间戳的方式4种。
+利用 Date 对象，获取**当前时间**的时间戳的方式4种。
 
 ```javascript
 new Date().getTime() 
 new Date().valueOf() 
-+new Date() // 将Date对象拼接+号组成表达式。返回时间戳
++new Date() // 将 Date 对象拼接 + 号组成表达式。返回时间戳
 Date.now()
 ```
 
@@ -279,7 +279,7 @@ window 对象包含了哪些内容，理解图片。
 
 什么是 DOM？
 
-- 将HTML中的每个元素（Element）都抽象成了一个对象，是JavaScript与HTML页面中元素的桥梁。
+- 将 HTML 中的每个元素（Element）都抽象成了一个对象，是 JavaScript 与 HTML 页面中元素的桥梁。
 
 -----
 
@@ -301,19 +301,19 @@ document.head
 
 什么是 DOM Tree？
 
-- 在html结构，抽象成DOM对象的时候，会形成一个树结构，称之为 DOM Tree；
+- 在 HTML 结构，抽象成 DOM 对象的时候，会形成一个树结构，称之为 DOM Tree；
 
 -----
 
-DOM知识点学习顺序。
+DOM 知识点学习顺序。
 
-1. DOM元素之间的关系 
-2. 获取DOM元素 
-3. DOM节点的type、tag、content 
-4. DOM节点的attributes、properies 
-5. DOM节点的创建、插入、克隆、删除 
-6. DOM节点的样式、类
-7. DOM元素/window的大小、滚动、坐标
+1. DOM 元素之间的关系 
+2. 获取 DOM 元素 
+3. DOM 节点的 type、tag、content 
+4. DOM 节点的 attributes、properies 
+5. DOM 节点的创建、插入、克隆、删除 
+6. DOM 节点的样式、类
+7. DOM 元素 / window 的大小、滚动、坐标
 
 -----
 
