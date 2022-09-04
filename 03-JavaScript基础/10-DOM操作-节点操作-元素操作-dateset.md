@@ -27,7 +27,7 @@ document.body; // 获取 body 元素
 区分 document 中的节点（Node）和元素（Element），
 
 - 节点（Node）中包含了**元素，文本，注释等**内容。
-- 元素（Element）指的是HTML中的元素。
+- 元素（Element）指的是 HTML 中的元素。
 
 ---
 
@@ -83,7 +83,7 @@ var childElements = bodyEl.children; // 获取 body 元素所有子元素(elemen
 
 ---
 
-vue，react 框架，底层也要操作 DOM，因为 DOM 操作有回流机制，所以框架中只需操作一次 DOM 性能更高，
+vue，react 框架，底层也要操作 DOM，因为 DOM 操作有回流机制，所以在框架中只需操作一次 DOM 性能更高，
 
 ---
 
@@ -119,7 +119,7 @@ for (var i = 0; i < tableEl.rows.length; i++) {
 
 ---
 
-了解增强 VSCode 提示功能的方法，用断言语法，但运行代码时会报错。
+了解增强 VSCode 提示功能的方法，用断言语法，但运行代码时会报错，运行代码时要将它删除。
 
 ```javascript
 var tableEl = document.body.firstElementChild as HTMLTableElement
@@ -160,9 +160,9 @@ tableEl.rows // 有提示
 
 DOM 中获取任意元素的 2 种方式。
 
-1. 通过 DOM 导航属性（navigation property）
+- 通过 DOM 导航属性（navigation property）
 
-2. document 对象上，获取元素的方法。5 种：
+- document 对象上，获取元素的方法。5 种：
 
 | 方法名                         | 搜索方式     | 在元素上调用（查找该元素后代） | 返回的对象是实时的 |
 | ------------------------------ | ------------ | ------------------------------ | ------------------ |
@@ -178,7 +178,7 @@ DOM 中获取任意元素的 2 种方式。
 开发中如何选择？
 
 - 当元素彼此靠近或相邻时，或需要拿一组数据时，选择导航的方式。
-- 当需要任意的精确的获取某一个元素，选择使用 document 对象上，获取元素的5种方法。
+- 当需要任意的精确的获取某一个元素，选择使用 document 对象上，搜索元素的5种方法。
 
 ---
 
@@ -186,7 +186,7 @@ DOM 中获取任意元素的 2 种方式。
 
 节点（Node）的属性 `nodeType` 有什么用？
 
-- 获取节点类型的方法；它有一个数值型值（numeric value）；
+- 获取节点类型的属性；它有一个数值型值（numeric value）；
 
 | 常量                    | 值   | 描述                                                         |
 | ----------------------- | ---- | ------------------------------------------------------------ |
@@ -201,7 +201,7 @@ DOM 中获取任意元素的 2 种方式。
 节点（Node）的属性 `nodeName ` 和 `tagName ` 有什么不同？
 
 - tagName，属性仅适用于 Element 节点，获取元素的标签名。
-- nodeName，是为任意 Node 定义的，获取节点的名称。
+- nodeName，是为任意 Node 节点定义的，获取节点的名称。
 	- 对于元素，它的意义与 tagName 相同，所以使用哪一个都是可以的；
 	- 对于其他节点类型（text，comment 等），它拥有一个对应节点类型的字符串；
 
@@ -264,7 +264,7 @@ divNode.textContent = "<h2>嘿嘿嘿嘿</h2>"
 
 HTML 元素上的属性（attribute）可分为 2 类。
 
-- 标准的 attribute：某些 attribute 属性是标准的，比如 id、class、href、type、value 等；
+- 标准的 attribute：某些 attribute 属性是标准的，比如 id、class、title、href、type、value 等；
 - 非标准的 attribute：某些 attribute 属性是自定义的，比如 abc、age、height 等；
 
 ```html
@@ -281,7 +281,7 @@ HTML 元素上的属性（attribute）可分为 2 类。
 - `elem.getAttribute(name)` — 获取这个属性值。
 - `elem.setAttribute(name, value)` — 设置这个属性值。
 - `elem.removeAttribute(name) `— 移除这个属性。
-- `elem.attributes`：- attr 对象的集合，具有 `name`、`value` 属性；
+- `elem.attributes`：- attr 对象的集合，每个对象具有 `name`、`value` 属性；
 
 具备 2 点特性。
 
@@ -320,22 +320,24 @@ HTML 元素上的属性（attribute）可分为 2 类。
 
 ---
 
+## property
+
 JavaScript 中对象上的属性称为 property。它与 attribute 的关系。
 
-- **标准的 **attribute，会在DOM对象上创建与其对应的 property 属性
+- **标准的 **attribute，会在 DOM 对象上创建与其对应的 property 属性
 - **非标准的** attribute，则不会。
 
 ```javascript
 var boxEl = document.querySelector(".box")
-// id 、title 等标准的 attribute，在DOM对象上都有对应的 property
+// id 、title 等标准的 attribute，在 DOM 对象上都有对应的 property
 console.log(boxEl.id, boxEl.title)
 ```
 
 ---
 
-JavaScript中，通过 class 的 property，动态修改样式的 2 个方法。
+JavaScript 中，通过 class 的 property，动态修改样式的 2 个方法。
 
-- 在CSS中编写好对应的样式，动态的添加 class；
+- 在 CSS 中编写好对应的样式，动态的添加 class；
 
   ```css
   .active {
@@ -377,7 +379,7 @@ JavaScript中，通过 class 的 property，动态修改样式的 2 个方法。
 
 元素（Element）对象的 property `className` 和 `classList` 有什么区别，
 
-- 对 className 进行赋值，它会替换整个类中的字符串。
+- 对 className 进行赋值，它会替换整个 class 中的字符串。
 - 使用 classList 属性，可以添加或者移除单个的 class。
 
 classList 的用法。

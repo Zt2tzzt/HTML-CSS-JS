@@ -1,3 +1,5 @@
+# jQuery AJAX
+
 jQuery 请求参数以及含义：
 
 - `url` - 指定发送请求的 URL。
@@ -202,6 +204,8 @@ $.post('http://httpbin.org/post', {
 
 ---
 
+#  jQuery 的插件
+
 什么是 jQuery 的插件？
 
 - 编写的一些新方法，并将这些方法添加到 jQuery 的原型对象上。
@@ -254,6 +258,8 @@ jquery.showlinklocation.js
 
 ---
 
+# 项目实战
+
 项目实战：基于 $.ajax 封装网络请求。
 
 封装网络请求的好处 3 点
@@ -279,6 +285,8 @@ jquery.showlinklocation.js
 项目实战：搜索框的优化：防抖实现。
 
 ---
+
+# JavaScript 常用库
 
 了解前端常见的 JavaScript 工具库有哪些？
 
@@ -442,7 +450,7 @@ ztDay.js
 	Dayjs.prototype.format = function () {
 		return `${this.$Y}-${this.$M + 1}-${this.$D}`
 	}
-	// 学习原型的上的方法
+	// 学习原型上的方法
 	// ......原型的方法
 	// 工厂函数
 	function dayjs() {
@@ -495,7 +503,7 @@ var day = dayjs('2021-2-2 12:00:10') // dayjs 对象
 var day = dayjs(1656206934331) // dayjs 对象
 // 3.解析时间戳(秒)
 var day = dayjs.unix(1656206934) // dayjs 对象
-// 4.解析Date对象
+// 4.解析 Date 对象
 var day = dayjs(new Date('2022-10-1')) // dayjs 对象
 // 时间的格式化
 console.log(day.format('YYYY/MM/DD HH/mm/ss'))
