@@ -48,7 +48,7 @@ Bootstrap 框架有什么优缺点？
 
 为什么要学习 Bootstrap？
 
-- Bootstrap 仍然是世界上使用较多的 CSS 框架。Bootstrap它很容易上手，并且也有非常完整的中文文档。
+- Bootstrap 仍然是世界上使用较多的 CSS 框架。Bootstrap 它很容易上手，并且也有非常完整的中文文档。
 - Bootstrap 提供的组件、插件、布局、栅格（网格）系统、响应式工具等，节省了大量的开发时间，不必从零开始搭建页面。 
 - Bootstrap 框架可以为各个平台和浏览器提供一致的展示效果，例如在 Firefox 中与在 Chrome 中可以展示相同的效果。 
 - Bootstrap 提供开箱即用的响应式设计。因此，我们可以很快的开发出一套同时适配 PC、iPad 和移动端的网站。 
@@ -84,9 +84,10 @@ Bootstrap 的安装方式有哪些。
 	
 	- 在移动端会把 layout viewport 的宽度设置为设备的宽，并且不允许用户进行页面的缩放。 
 	
-	- ```html
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no,maximum-scale=1.0,minimum-scale=1.0,shrink-to-fit=no"><!-- shrink-to-fit=no，针对 safari 9+，禁止页面伸缩 -->
+	  ```html
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no"><!-- shrink-to-fit=no，针对 safari 9+，禁止页面伸缩 -->
 	  ```
+	
 
 CDN引入方式
 
@@ -187,7 +188,7 @@ Containers 基本使用。
 - 底层使用了强大的 flexbox 来构建弹性布局，并支持12列的网格布局。
 - 网格系统是使用 container、row 和 col 类来布局，并且布局是支持响应的。
 
-基本使用。
+基本使用
 
 1. 编写一个 container 或 container-fluid 容器；
 2. 在 container 容器中编写 row 容器；

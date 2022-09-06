@@ -10,10 +10,12 @@ var boxEl = document.querySelector(".box")
 boxEl.innerHTML = `<h2 class="title">我是标题</h2>`
 ```
 
+## 插入
+
 插入元素推荐的方法步骤
 
 1. 创建一个元素 `document.createElement(tag)`
-2. 插入元素到DOM的某一个位置。
+2. 插入元素到 DOM 的某一个位置。
 
 -----
 
@@ -35,7 +37,18 @@ boxEl.append(h2El)
 
 <img src="NodeAssets/插入元素的4种方法.jpg" alt="插入元素的4种方法" style="zoom:80%;" />
 
+
 -----
+
+了解旧的元素操作方法4个，对应新的方法是什么？
+- `parentElem.appendChild(node)` - 在 parentElem 父元素最后位置添加一个子元素
+- `parentElem.insertBefore(node, nextSibling)` - 在 parentElem 的nextSibling前面插入一个子元素；
+- `parentElem.replaceChild(node, oldChild)` - 在 parentElem 中，新元素替换之前的oldChild元素；
+- `parentElem.removeChild(node)` - 在 parentElem 中，移除某一个元素；
+
+-----
+
+## 移除
 
 移除元素的1个方法。
 
@@ -51,6 +64,8 @@ btnEl.onclick = function() { // 监听点击，移除元素。
 
 -----
 
+## 克隆
+
 克隆元素的1个方法，
 
 - 调用元素本身的 `cloneNode` 方法，传入一个布尔值，决定是否深度克隆（克隆子元素）。
@@ -62,13 +77,7 @@ var newNode = boxEl.cloneNode(true)
 
 -----
 
-了解旧的元素操作方法4个，对应新的方法是什么？
-- `parentElem.appendChild(node)` - 在 parentElem 父元素最后位置添加一个子元素
-- `parentElem.insertBefore(node, nextSibling)` - 在 parentElem 的nextSibling前面插入一个子元素；
-- `parentElem.replaceChild(node, oldChild)` - 在 parentElem 中，新元素替换之前的oldChild元素；
-- `parentElem.removeChild(node)` - 在 parentElem 中，移除某一个元素；
-
------
+## 计数器案例
 
 一般将DOM对象放在全局，而不是放在某个回调函数中，提高性能。实现计数器案例。
 
@@ -87,23 +96,25 @@ btnSubEl.onclick = function () {
 
 -----
 
+## 元素属性
+
 了解元素的大小，滚动对应的属性。
 
-大小属性
+### 大小属性
 
 - `clientWidth`：contentWith+padding（不包含滚动条） 
 - `clientHeight`：contentHeight+padding 
-- `clientTop`：border-top 的宽度 
-- `clientLeft`：border-left 的宽度
 - `offsetWidth`：元素完整的宽度
 - `offsetHeight`：元素完整的高度 
 - `offsetLeft`：距离父元素的x 
 - `offsetTop`：距离父元素的y
+- `clientTop`：border-top 的宽度 
+- `clientLeft`：border-left 的宽度
 
-滚动属性
+### 滚动属性
 
-- ``scrollHeight`：整个可滚动的区域高度
-- ``scrollTop`：滚动部分的高度
+- `scrollHeight`：整个可滚动的区域高度
+- `scrollTop`：滚动部分的高度
 
 理解图片
 
@@ -111,7 +122,7 @@ btnSubEl.onclick = function () {
 
 -----
 
-# window滚动
+# window
 
 window 对象包含了整个浏览器，但它的事件只能在显示内容区域监听。
 
@@ -126,23 +137,23 @@ window.onclick = function() {
 
 window 的大小，滚动属性和方法，
 
-大小属性
+## 大小属性
 
-- `innerWidth`、`innerHeight`：获取window窗口的宽度和高度（包含滚动条） 
-- `outerWidth`、`outerHeight`：获取window窗口的整个宽度和高度（包括调试工具、工具栏）
-- `documentElement.clientHeight`、`documentElement.clientWidth`：获取html的宽度和高度（不包含滚动条）
+- `innerWidth`、`innerHeight`：获取 window 窗口的宽度和高度（包含滚动条） 
+- `outerWidth`、`outerHeight`：获取 window 窗口的整个宽度和高度（包括调试工具、工具栏）
+- `documentElement.clientHeight`、`documentElement.clientWidth`：获取 html 的宽度和高度（不包含滚动条）
 
-滚动属性
+## 滚动属性
 
 - `scrollX`：X轴滚动的位置（别名pageXOffset） 
 - `scrollY`：Y轴滚动的位置（别名pageYOffset）
 
-滚动方法
+## 滚动方法
 
-- 方法 `scrollBy(x,y)`：将页面滚动至 相对于当前位置的 (x, y) 位置； 
-- 方法 `scrollTo(pageX,pageY)`： 将页面滚动至 绝对坐标；
+- 方法 `scrollBy(x,y)`：将页面滚动至相对于当前位置的 (x, y) 位置； 
+- 方法 `scrollTo(pageX,pageY)`： 将页面滚动至绝对坐标；
 
-实现回到顶部案例。
+## ''回到顶部“案例。
 
 ```html
 <body>
@@ -162,7 +173,9 @@ window 的大小，滚动属性和方法，
 
 -----
 
-实现动态创建列表案例。
+# 案例练习
+
+## 动态创建列表案例。
 
 ```html
 <body>
@@ -185,14 +198,13 @@ window 的大小，滚动属性和方法，
 </body>
 ```
 
-动态显示当前时间案例，
+## 动态显示当前时间案例
 
 ```html
 <body>
   <h1 class="time">2022-05-19 11:14:30</h1>
   <script>
-    // 封装了工具函数
-    /**
+    /** 封装了工具函数
     * content，要格式化的内容。
     * count，要补全的字符位数。
     * padStr，要补全的字符。
@@ -218,7 +230,7 @@ window 的大小，滚动属性和方法，
 </body>
 ```
 
-当前时间倒计时功能。
+## 当前时间倒计时功能
 
 ```html
 <body>
@@ -245,7 +257,7 @@ window 的大小，滚动属性和方法，
 		// 每隔1分钟，计算结束时间 - 当前时间
     setInterval(function() {
       var nowDate = new Date()
-      var intervalTime = Math.floor((endDate.getTime() - nowDate.getTime()) / 1000) // 获取间隔秒钟
+      var intervalTime = Math.floor((endDate.getTime() - nowDate.getTime()) / 1000) // 结束时间 - 当前时间，获取间隔秒钟
       var hour = Math.floor(intervalTime / 3600) // 获取间隔小时
       var minute = Math.floor(intervalTime / 60) % 60 // 获取间隔分钟
       var second = intervalTime % 60 // 获取间隔秒钟
@@ -266,15 +278,21 @@ window 的大小，滚动属性和方法，
 
 - 如用户点击某个按钮、用户在输入框里面输入某个文本、用户鼠标经过了某个位置；
 
+## 监听事件（3种方式）
+
 监听事件的3种方式，前两个方式存在的弊端。
 
-1. 在元素对应的 attribute 中写script代码直接监听，但是阅读性太差； 
+1. 在元素对应的 attribute 中写 script 代码直接监听
+
+   - 是阅读性太差； 
 
    ```html
    <button onclick="console.log('按钮1发生了点击~');">按钮1</button>
    ```
 
-2. DOM属性（property），通过元素对象的 `onxxx` 属性（property）来监听事件，但不能添加多个事件，后一个事件会覆盖前一个事件；
+2. DOM属性（property），通过元素对象的 `onxxx` 属性（property）来监听事件，
+
+   - 不能添加多个事件，后一个事件会覆盖前一个事件；
 
    ```javascript
    btn2El.onclick = function() {
@@ -284,18 +302,19 @@ window 的大小，滚动属性和方法，
      console.log("按钮2的第二个处理函数")
    }
    ```
-   
+
 3. 通过 EventTarget 中的 `addEventListener` 来监听；
 
    ```javascript
    btn3El.addEventListener("click", function () {
      console.log("第一个btn3的事件监听~")
-   
+   }
    ```
 
 -----
 
-常见的事件列表。
+## 常见的事件
+
 - 鼠标事件： 
   - `click` ——当鼠标点击一个元素时（触摸屏设备会在点击时生成）。 
   - `mouseover` / `mouseout` ——当鼠标指针移入/离开一个元素时。 
@@ -313,6 +332,8 @@ window 的大小，滚动属性和方法，
 
 -----
 
+## 事件流
+
 为什么会产生事件流。
 
 - 因为HTML元素是存在父子元素叠加层级的
@@ -327,7 +348,7 @@ window 的大小，滚动属性和方法，
 
 - 事件由内层向外层传递。
 
-如何监听事件捕获，传入第3个布尔类型的参数为 `true`？
+事件监听默认事件流为事件冒泡，如何监听事件捕获？传入第3个布尔类型的参数为 `true`
 
 ```javascript
 spanEl.addEventListener("click", function() {
@@ -345,6 +366,8 @@ spanEl.addEventListener("click", function() {
 ![](NodeAssets/事件流过程.jpg)
 
 -----
+
+## 事件对象
 
 什么是事件对象？
 
@@ -366,7 +389,7 @@ divEl.onclick = function(event) {}
 - `eventPhase`：事件所处的阶段； 
 - `offsetX`、`offsetY`：事件发生在元素内的位置； 
 - `clientX`、`clientY`：事件发生在客户端内的位置； 
-- `pageX`、`pageY`：事件发生在客户端相对于document的位置；
+- `pageX`、`pageY`：事件发生在客户端相对于 document 的位置；
 
 - `screenX`、`screenY`：事件发生相对于屏幕的位置；
 
@@ -377,7 +400,9 @@ divEl.onclick = function(event) {}
 
 -----
 
-事件处理函数中，this的指向，代码演示。
+## 事件处理中 this 指向
+
+事件处理函数中，this 的指向，代码演示。
 
 ```javascript
 var divEl = document.querySelector("div")
@@ -391,11 +416,13 @@ divEl.onclick = function(event) {
 
 -----
 
-Window类也继承自EventTarget类。
+## EventTarget 类
 
-EventTarget类有什么用？
+Window 类也继承自 EventTarget 类。
 
-- 用于添加，删除，派发Event事件
+EventTarget 类有什么用？
+
+- 用于添加，删除，派发 Event 事件
 
 常见的3个方法。
 
@@ -422,9 +449,11 @@ boxEl.addEventListener('click', function () {
 什么是利用事件冒泡实现事件委托的思想。
 
 - 事件委托模式，也是一种设计模式。
-- 当子元素被点击时，父元素可以通过冒泡监听到子元素的点击； 并通过 `event.target` 获取到当前需要监听的子元素。
+- 当子元素被点击时，父元素可以通过事件冒泡监听到子元素的点击； 并通过 `event.target` 获取到当前需要监听的子元素。
 
-排他思想案例实现。点击 li 元素为它添加类 active, 其他 li 元素取消类 active
+## 排他思想案例实现
+
+- 点击 li 元素为它添加类 active, 其他 li 元素取消类 active
 
 ```html
 <body>
@@ -444,18 +473,15 @@ boxEl.addEventListener('click', function () {
     var ulEl = document.querySelector("ul")
     var activeLiEl = null
     ulEl.onclick = function(event) {
-      // 1.变量记录的方式
-      activeLiEl && activeLiEl.classList.remove("active")
-      // 2.给点击的元素添加active
-      event.target.classList.add("active")
-      // 3.记录最新的active对应的li
-      activeLiEl = event.target
+      activeLiEl && activeLiEl.classList.remove("active") // 1.变量记录的方式
+      event.target.classList.add("active") // 2.给点击的元素添加active
+      activeLiEl = event.target // 3.记录最新的active对应的li
     }
   </script>
 </body>
 ```
 
-什么是事件委托标记？
+## 事件委托标记 data-xxx
 
 - 某些事件委托可能需要对具体的子组件进行区分，这个时候可使用 `data-*` 对其进行标记
 
