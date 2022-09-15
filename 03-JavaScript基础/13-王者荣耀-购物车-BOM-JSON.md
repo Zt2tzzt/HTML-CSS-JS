@@ -166,21 +166,21 @@
     // 封装一个切换轮播的函数
     function switchBanner() {
       // 第一件事情: 让 imageListEl 滚动
-      // 1.1.让imageListEl修改位置，其他内容需要调整
+      // 1.1.让imageListEl 修改位置，其他内容需要调整
       for (var i = 0; i < imageListEl.children.length; i++) {
         var itemEl = imageListEl.children[i]
         if (i === currentIndex) { // 当前要展示的 imageItem
           itemEl.style.transition = "left 300ms ease"
           itemEl.style.left = "0"
-        } else if (i < currentIndex) { // 需要放到左侧的imageItem
+        } else if (i < currentIndex) { // 需要放到左侧的 imageItem
           if (i !== previousIndex) itemEl.style.transition = "none"
           itemEl.style.left = "-100%"
-        } else { // 需要放到右侧的imageItem
+        } else { // 需要放到右侧的 imageItem
           if (i !== previousIndex) itemEl.style.transition = "none"
           itemEl.style.left = "100%"
         }
       }
-      // 第二件事情: 改变title选中
+      // 第二件事情: 改变 title 选中
       // 1.2.移除之前的 active
       activeTitleEl.classList.remove("active")
       // 1.3.将 active 添加到鼠标进入的元素
@@ -225,9 +225,9 @@
 			{ id: 4,name: '《代码大全》',date: '2006-03',price: 128.00,count: 8 }
     ]
     // 2.对数据展示
-    // 到底通过html直接编写, 还是通过 JavaScriptDOM 操作创建元素
-    // 1> 对于固定的, 直接通过html编写(能通过html编写, 尽量通过html直接编写)
-    // 2> 对于那些大量的数据, 有规律的数据, 可以通过JavaScript编写
+    // 到底通过 html 直接编写, 还是通过 JavaScriptDOM 操作创建元素
+    // 1> 对于固定的, 直接通过 html 编写(能通过 html 编写, 尽量通过 html 直接编写)
+    // 2> 对于那些大量的数据, 有规律的数据, 可以通过 JavaScript 编写
     var tbodyEl = document.querySelector("tbody")
     // 2.2. 动态添加 tr 以及内部数据
     for (var i = 0; i < books.length; i++) {
@@ -250,7 +250,7 @@
       trowEl.append(deleteTdEl)
       // 2.5.监听删除按钮的点击
       deleteBtnEl.onclick = function() {
-        // 1.删除对应的trow
+        // 1.删除对应的 row
         var deleteTRowEl = this.parentElement.parentElement
         var deleteTrIndex = deleteTRowEl.sectionRowIndex // 先拿到删除行的索引，再进行删除
         deleteTRowEl.remove()
@@ -277,7 +277,7 @@
 
 # BOM
 
-BOM全称：浏览器对象模型（Browser Object Model）
+BOM 全称：浏览器对象模型（Browser Object Model）
 
 它是什么？
 
@@ -296,27 +296,29 @@ BOM主要包括哪些对象模型？
 
 -----
 
+## window
+
 看待 window 对象的两个角度。
 
 1. 全局对象（在 Node 中是 `global`，浏览器和 Node 中都可以用 `globalThis` 表示）。
-2. 浏览器窗口对象，提供了浏览器操作相关的API。
+2. 浏览器窗口对象，提供了浏览器操作相关的 API。
 
 -----
 
-window对象包含哪4方面内容？
+window 对象包含哪4方面内容？
 
 1. 包含大量的属性，localStorage、console、location、history、screenX、scrollY 等等（大概60+个属性）；
 2. 包含大量的方法，alert、scrollTo，close、open 等等（大概40+个方法）；
 3. 包含大量的事件，focus、blur、load、hashchange 等等（大概30+个事件）；
-4. 包含从EventTarget继承过来的方法，addEventListener、removeEventListener、dispatchEvent 方法；
+4. 包含从 EventTarget 继承过来的方法，addEventListener、removeEventListener、dispatchEvent 方法；
 
 -----
 
-MDN文档中API前面的3种符号。
+MDN 文档中 API 前面的3种符号。
 
-- 删除符号：表示这个API已经废弃，不推荐继续使用了；
-- 点踩符号(感叹号)：表示这个API不属于W3C规范，某些浏览器有实现（有兼容性的问题）；
-- 实验符号：该API是实验性特性，以后可能会修改，并且存在兼容性问题；
+- 删除符号：表示这个 API 已经废弃，不推荐继续使用了；
+- 点踩符号(感叹号)：表示这个 API 不属于 W3C 规范，某些浏览器有实现（有兼容性的问题）；
+- 实验符号：该 API 是实验性特性，以后可能会修改，并且存在兼容性问题；
 
 -----
 
@@ -351,13 +353,15 @@ window.onhashchange = function() {
 
 -----
 
+## location
+
 location 对象有什么用，
 
-- 用于表示window上当前链接到的URL信息。
+- 用于表示 window 上当前链接到的 URL 信息。
 
 它有哪些属性？
 
-- `href`: 当前window对应的超链接URL, 整个URL；
+- `href`: 当前 window 对应的超链接 URL, 整个URL；
 - `protocol`: 当前的协议；
 - `host`: 主机地址；
 - `hostname`: 主机地址(不带端口)；
@@ -378,7 +382,7 @@ location 的3个方法，有什么用，代码演示。
 
 - `assign`：赋值一个新的URL，并且跳转到该URL中；
 - `replace`：打开一个新的URL，并且跳转到该URL中（不同的是不会在浏览记录中留下之前的记录）；
-- `reload`：重新加载页面，可以传入一个Boolean类型；
+- `reload`：重新加载页面，可以传入一个 Boolean 类型；
 
 ```javascript
 var btns = document.querySelectorAll("button")
@@ -425,6 +429,8 @@ decodeURIComponent('%E6%B7%B1%E5%9C%B3%E5%B8%82') // 深圳市
 
 -----
 
+## history
+
 前端路由的核心概念：修改了 URL（history / hash），但页面不刷新。
 
 -----
@@ -459,6 +465,8 @@ btnEl.onclick = function() {
 
 -----
 
+## navigator & screen
+
 了解 navigator 和 screen 对象有什么用。
 
 - navigator 对象表示用户代理的状态和标识等信息。
@@ -467,15 +475,17 @@ btnEl.onclick = function() {
 
 -----
 
+# JSON
+
 什么是 JSON（JavaScript Object Notation）
 
 - 一种数据格式，不是编程语言，算是JavaScript的一个子集。
 
-除了JSON还有什么传输格式？
+除了 JSON 还有什么传输格式？
 - XML：在早期的网络传输进行数据交换，在解析、传输等各方面都弱于JSON，目前已很少被使用；（多见于后端框架配置文件）
-- Protobuf：在网络传输中目前已经越来越多使用的传输格式，直到2021年的3.x版本才支持JavaScript，目前在前端使用的较少；
+- Protobuf：在网络传输中目前已经越来越多使用的传输格式，直到2021年的3.x版本才支持 JavaScript，目前在前端使用的较少；
 
-JSON的使用场景。
+JSON 的使用场景。
 
 - 网络数据的传输；
 - 项目的某些配置文件；
@@ -483,22 +493,22 @@ JSON的使用场景。
 
 -----
 
-JSON的顶层支持3种类型的值。
+JSON 的顶层支持3种类型的值。
 
-- 简单值：数字（Number）、字符串（String，不支持单引号）、布尔类型（Boolean）、null类型；**没有 undefined**
-- 对象值：由key、value组成，key是字符串类型，必须加双引号，值可以是简单值、对象值、数组值；
+- 简单值：数字（Number）、字符串（String，不支持单引号）、布尔类型（Boolean）、nul l类型；**没有 undefined**
+- 对象值：由 key、value 组成，key 是字符串类型，必须加双引号，值可以是简单值、对象值、数组值；
 - 数组值：数组的值可以是简单值、对象值、数组值；
 
 -----
 
-什么是JSON的序列化和反序列化？
+什么是 JSON 的序列化和反序列化？
 
-- 对象类型转化成JSON格式的字符串，将JSON格式字符串转成对象类型。
+- 对象类型转化成 JSON 格式的字符串，将 JSON 格式字符串转成对象类型。
 
-对应的方法。（JSON是ES5中的全局对象）
+对应的方法。（JSON 是 ES5 中的全局对象）
 
-- JSON.stringify()：将JavaScript类型转成对应的JSON字符串； 
-- JSON.parse()：解析JSON字符串，转回对应的JavaScript对象类型；
+- JSON.stringify()：将 JavaScript 类型转成对应的 JSON 字符串； 
+- JSON.parse()：解析 JSON 字符串，转回对应的 JavaScript 对象类型；
 
 -----
 
