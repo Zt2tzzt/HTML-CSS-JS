@@ -1,4 +1,4 @@
-# 函数增强
+# 函数的属性
 
 函数作为对象的2个属性有什么用？
 
@@ -18,6 +18,8 @@ test(111, 222, 333) // 可以给没有形参的函数传实参，传入的实参
 
 # arguments
 
+## 认识 arguments
+
 arguments 是什么？
 
 - arguments 是一个 对应于传递给函数的参数的 **类数组(array-like)** 对象。
@@ -28,9 +30,9 @@ arguments 是什么？
 - 但是它却拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
 - 但是它却没有数组的一些方法，比如 `filter`、 `map` 等；
 
------
+## arguments 转输组
 
-arguments 转数组的3种方式（slice方法回顾）
+arguments 转数组的3种方式（slice 方法回顾）
 
 -  转化方式一：遍历 arguments，添加到一个新数组中；
 	
@@ -64,11 +66,11 @@ arguments 转数组的3种方式（slice方法回顾）
 	}
 	```
 
------
-
-箭头函数不绑定 arguments，如果要使用会去**上层作用域**查找。
+> 箭头函数不绑定 arguments，如果要使用会去**上层作用域**查找。
 
 -----
+
+## 函数剩余参数与 arguments 的区别
 
 函数剩余（rest）参数的用法，
 
@@ -88,6 +90,8 @@ foo(20, 30, 111, 222, 333)
 
 # 纯函数
 
+## 认识纯函数
+
 函数式编程的一个重要概念是纯函数。什么样的函数是纯函数？
 
 - 确定的输入，一定会产生确定的输出； 
@@ -99,18 +103,16 @@ function sum(num1, num2) {
 }
 ```
 
+> 纯函数多使用于第三方框架，以及工具函数中。
+
 -----
+
+## 认识副作用
 
 什么是计算机科学中的副作用？副作用往往是产生 bug 的温床。
 
 - 表示在执行一个函数时，除了返回函数值之外，还对调用函数产生了附加的影响。
 - 比如修改了全局变量，修改参数或者改变外部的存储；
-
------
-
-纯函数多使用于第三方框架，以及工具函数中。
-
------
 
 数组的2个方法举例。
 
@@ -125,26 +127,24 @@ var newNames = names.slice(1, 3)
 names.splice(2, 2)
 ```
 
------
-
-纯函数的作用和优势。
+## 纯函数的优势。
 
 - 可以安心的编写和安心的使用； 
 - 保证函数的纯度，只是单纯实现自己的业务逻辑即可，不需要关心传入的内容是如何获得的，或者依赖其他的外部变量是否已经发生了修改；
 - 使用时，确定输入内容不会被任意篡改，并且确定的输入，一定会有确定的输出；
 
-React 中就要求我们无论是函数还是 class 声明一个组件，这个组件都必须像纯函数一样，保护它们的 props 不被修改：
+> React 中就要求我们无论是函数还是 class 声明一个组件，这个组件都必须像纯函数一样，保护它们的 props 不被修改：
 
 -----
 
 # 柯里化
 
+## 认识柯里化
+
 函数式编程的一个重要概念是柯里化，什么是柯里化？
 
 - 只传递给函数一部分参数来调用它，让它返回一个函数去处理剩余的参数； 
 - 这个过程就称之为柯里化；
-
------
 
 写一个柯里化函数的案例，并使用箭头函数优化。
 
@@ -161,7 +161,7 @@ const sum2 = x => y => z => x + y + z
 
 -----
 
-柯里化的优势2点，对应的案例。
+## 柯里化的优势
 
 - 使函数职责单一。
 
@@ -187,9 +187,7 @@ const sum2 = x => y => z => x + y + z
   nowLog('FEATURE')('新增了添加用户的权限')
   ```
 
------
-
-封装一个自动柯里化的函数。
+## 封装一个自动柯里化的函数。
 
 ```javascript
 function sum3(x, y, z) {
@@ -215,11 +213,13 @@ console.log(currySum(10)(20)(30));
 
 # 组合函数
 
-组合函数是JS开发过程中一种对函数的使用技巧，什么是组合函数？
+## 认识组合函数
+
+组合函数是 JS 开发过程中一种对函数的使用技巧，什么是组合函数？
 
 - 将函数组合起来，自动依次调用
 
------
+## 基本使用
 
 组合函数的使用。
 
@@ -239,15 +239,14 @@ const newFn = composeFn(double, square)
 console.log(newFn(10));
 ```
 
------
-
-封装一个自动组合的函数。
+## 封装一个自动组合的函数
 
 ```javascript
 function myCompose(...fns) {
 	const length = fns.length
-  if (fns.some(fn => typeof fn !== 'function'))
+  if (fns.some(fn => typeof fn !== 'function')) {
     throw new TypeError("Expected arguments are functions")
+  }
   
 	return function (...args) {
 		let i = 0
@@ -264,7 +263,7 @@ console.log(newFn2(10));
 
 -----
 
-# with语句
+# with 语句
 
 with 语句有什么用？
 
@@ -291,36 +290,38 @@ eval是内建（内置）函数，它有什么用？
 - 会将最后一句执行语句的结果，作为返回值；
 
 ```javascript
-var codeString = `var name = "why"; console.log(name); console.log(message); "abc";`
+var codeString = `var name = "zzt"; console.log(name); console.log(message); "abc";`
 var result = eval(codeString) // abc
 ```
 
 不建议使用，为什么？
 
-1. eval代码的可读性非常差
-2. eval传入的是一个字符串，那么可能在执行的过程中被篡改，可能造成被攻击的风险
-3. eval的执行必须经过JS解释器，不能被JS引擎优化
+1. eval 代码的可读性非常差
+2. eval 传入的是一个字符串，那么可能在执行的过程中被篡改，可能造成被攻击的风险
+3. eval 的执行必须经过 JS 解释器，不能被 JS 引擎优化
 
 -----
 
 # 严格模式
 
-什么是严格模式？ 
+## 认识严格模式
 
-- 一种具有限制性的JavaScript模式，从而使代码隐式的脱离了懒散（sloppy）模式
+- 一种具有限制性的 JavaScript 模式，从而使代码隐式的脱离了懒散（sloppy）模式
 - 前端工程化项目中，打包后的代码，一般都会开启严格模式。
 
-严格模式的优势。
+## 严格模式的优势
 
 1. 严格模式通过抛出错误，来消除一些静默（slient）的错误
-2. 严格模式让JS引擎在执行代码时可以进行更多的优化（不需要对一些特殊的语法进行处理）
-3. 严格模式禁用了在ECMAScript未来版本中可能会定义的一些语法（超前的一些新特性，babel 甚至都还不能做转化）。
+2. 严格模式让 JS 引擎在执行代码时可以进行更多的优化（不需要对一些特殊的语法进行处理）
+3. 严格模式禁用了在 ECMAScript 未来版本中可能会定义的一些语法（超前的一些新特性，babel 甚至都还不能做转化）。
 
 -----
 
+## 如何开启
+
 严格模式支持粒度化的迁移，如何开启严格模式。
 
-1. 可以支持在js文件中开启严格模式； 
+1. 可以支持在 js 文件中开启严格模式； 
 2. 也支持对某一个函数开启严格模式；
 
 ```javascript
@@ -332,10 +333,8 @@ function foo {
 }
 ```
 
-注意事项2项。
-
-- 没有类似于 "no use strict" 这样的指令可以使程序返回默认模式。
-- 现代 JavaScript 支持“class” 和“module” ，它们会自动启用 use strict；
+> - 没有类似于 "no use strict" 这样的指令可以使程序返回默认模式。
+> - 现代 JavaScript 支持“class” 和“module” ，它们会自动启用 use strict；
 
 ------
 
@@ -350,7 +349,7 @@ function foo {
 
    ```javascript
    true.name = 'abc' // 报错
-   var obj = { name: "why" }
+   var obj = { name: "zzt" }
    Object.defineProperty(obj, "name", {
      writable: false,
    })
@@ -390,21 +389,24 @@ function foo {
    console.log(message) // 无法访问 message
    ```
 
-8. this绑定不会默认转成对象：显示绑定值类型，不会转成对象，`foo.apply('123')`
+8. this 显示绑定不会默认转成对象：显示绑定值类型，不会转成对象，`foo.apply('123')`
 
-  9. 默认绑定，this 指向 undefined。
-     
-       2. this 绑定规则之外，通过显示绑定 `foo.apply/call(null/undefined)`，那么 this 就是 null / undefined。
+      - this 绑定规则之外，通过显示绑定 `foo.apply/call(null/undefined)`，那么 this 就是 null / undefined。
+
+  9. this 默认绑定，指向 undefined。
+
 
 -----
 
 # 属性描述符
 
+## 认识属性描述符
+
 什么是属性描述符？
 
 - 对一个属性进行比较精准的操作控制，通过属性描述符可以精准的添加或修改对象的属性；
 
-如何使用？
+## 如何使用
 
 `Object.defineProperty(obj, prop, descriptor)` 会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
 
@@ -414,7 +416,9 @@ function foo {
 
 -----
 
-属性描述符分为2类。各配置项的意义和默认值。如何使用？
+## 属性描述符分为2类
+
+各配置项的意义和默认值。如何使用？
 
 |                | configurable | enumerable | value | writable | get  | set  |
 | -------------- | ------------ | ---------- | ----- | -------- | ---- | ---- |
@@ -437,7 +441,7 @@ function foo {
 - `set`: 设置属性时会执行的函数，
 	- 默认为 `undefined`
 
-数据属性描述符
+## 数据属性描述符
 
 ```javascript
 var obj = {
@@ -452,21 +456,21 @@ Object.defineProperty(obj, "name", {
 })
 ```
 
-存取属性描述符
+## 存取属性描述符
 
 ```javascript
 var obj = {
   _name: "zzt"
 }
-// 对obj对象中的name添加描述符(存取属性描述符)
+// 对 obj 对象中的 name 添加描述符(存取属性描述符)
 Object.defineProperty(obj, "name", {
   configurable: true,
   enumerable: false,
-  set: function(value) {
+  set: function (value) {
     console.log("set方法被调用了", value)
     this._name = value
   },
-  get: function() {
+  get: function () {
     console.log("get方法被调用了")
     return this._name
   }
@@ -501,7 +505,8 @@ Object.defineProperties(obj, {
 ````
 -----
 
-对象方法的补充7个。
+# 对象方法的补充7个。
+
 - 获取对象的属性描述符： 
 	- `Object.getOwnPropertyDescriptor(obj, prop) `
 	- `Object.getOwnPropertyDescriptors(obj)`
