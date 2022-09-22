@@ -199,7 +199,7 @@ AJAX 可以发送哪些格式的请求？
 
 
 1. 创建网络请求的 AJAX 对象（使用 XMLHttpRequest ）
-2. 监听 XMLHttpRequest 对象状态的变化，或者监听 `onload `事件（请求完成时触发）； 
+2. 监听 XMLHttpRequest 对象状态的变化，或者监听 `onload ` 事件（请求完成时触发）； 
 3. 配置网络请求（通过 open 方法）；
 4. 发送 send 网络请求；
 
