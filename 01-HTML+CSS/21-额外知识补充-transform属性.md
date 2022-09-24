@@ -1,32 +1,30 @@
+# transform 属性
+
 transform 属性有什么用？
 
 - 允许对某一个元素进行某些形变, 包括平移，旋转，缩放，倾斜等。
 
-注意事项1点。
+> transform 对于行内级非替换元素，table columns / table colums-group 是无效的；
 
-- transform 对于行内级非替换元素，table columns / table colums-group 是无效的；
+# transform translate 函数
 
------
+> `none | <transform-function>+`
 
-transform 语法，
+- +: 代表可写一个或多个值，以空格区分。
 
-- `none | <transform-function>+`
-	
-	- +: 代表可写一个或多个值，以空格区分。
-	
-	  ```css
-	  .box {
-	    transform: translate(50px) scale(1.2) rotate(45deg);
-	  }
-	  ```
-	
-	- #: 代表可写一个或多个，以逗号区分。
-	
-	  ```css
-	  .box {
-	    box-shadow: 1px 1px 1px 1px #f00, 5px 5px 5px #ccc
-	  }
-	  ```
+  ```css
+  .box {
+    transform: translate(50px) scale(1.2) rotate(45deg);
+  }
+  ```
+
+- #: 代表可写一个或多个，以逗号区分。
+
+  ```css
+  .box {
+    box-shadow: 1px 1px 1px 1px #f00, 5px 5px 5px #ccc
+  }
+  ```
 
 常见的 transform 函数。
 
@@ -82,7 +80,7 @@ transform 属性 translate 函数的特性补充4点。
 
 -----
 
-水平居中方案5点总结：
+# 水平居中方案5点总结：
 
 1. 行内级元素:
 	* 设置父元素的 `text-align: center;`
@@ -94,22 +92,23 @@ transform 属性 translate 函数的特性补充4点。
 5. flex
    - `justify-content: center;`
 
-垂直居中方案3点总结，缺点有哪些？
+# 垂直居中方案3点总结，
+
+缺点有哪些？
+
 1. 绝对定位
 	* 元素有高度情况下, `top: 0; bottom: 0; margin: auto 0;`
-	- 弊端:
-		1. 必须使用定位（脱离标准流）。
-		2. 必须给元素设置高度。
+	- 弊端：1. 必须使用定位（脱离标准流）；2. 必须给元素设置高度。
 	
 2. flex布局，
 
-   - 设置 flex container 属性 `align-item: center;`，设置 flex item 属性 `align-self: center;`
-   - 弊端:
-      1. 相对来说, 兼容性差一点点（基本可以忽略）
-
+   - 设置 flex container 属性 `align-item: center;`，设置 flex item 属性 `align-self: center;
+   
 3. 定位元素 + top + translate
 
 -----
+
+# transform scale函数
 
 transform 属性 scale 函数作用，
 
@@ -127,6 +126,8 @@ transform 属性 scale 函数作用，
 是 `scaleX` 和 `scaleY` 的缩写。
 
 -----
+
+# transform rotate 函数
 
 transform 属性 rotate 函数作用：
 
@@ -153,6 +154,8 @@ transform 属性 rotate 函数的2点补充：
 
 -----
 
+# transform-origin 属性
+
 transform-origin 属性的作用，
 
 - 设置元素形变的原点，如在进行 scale 缩放，rotate 旋转，skew 倾斜时，都会有一个原点。
@@ -175,6 +178,8 @@ transform-origin 属性的作用，
 ```
 
 -----
+
+# transform skew 函数
 
 transform 属性 skew 函数的作用：
 
