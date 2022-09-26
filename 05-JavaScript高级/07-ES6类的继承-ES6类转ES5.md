@@ -1,6 +1,6 @@
 父类也称**超类**，子类也称**派生类**。
 
------
+# extends 关键字
 
 编写 class，使用 extends 关键字实现继承。
 
@@ -9,20 +9,20 @@ class Person {}
 class Student extends Person {}
 ```
 
------
+# super 关键字
 
-super 关键字的2种方式。
+## 使用方法
+
+super 关键字的2种使用。
 
 - `super(...)` 来调用一个父类 constructor（只能在子类 constructor 中调用）
 - `super.method(...)` 来调用一个父类方法。 
 
------
+## 调用时机
 
-super 的调用时机。
+super 的调用时机。在子（派生）类的构造函数 constructor 中，**使用 this** 以及**返回默认对象之前**，必须先通过 `super` 调用父类的构造函数！
 
-- 在子（派生）类的构造函数 constructor 中，**使用 this** 以及**返回默认对象之前**，必须先通过 `super` 调用父类的构造函数！
-
------
+## 使用场景
 
 super 的使用位置3个。
 
@@ -30,7 +30,7 @@ super 的使用位置3个。
 - 实例方法、
 - 静态方法
 
------
+## 基本使用
 
 编写 class，使用 super 关键字。
 
@@ -67,7 +67,7 @@ class Student extends Person {
 }
 ```
 
------
+# 类的方法重写
 
 什么是方法的重写，代码实现，重写实例方法和静态方法。
 
@@ -96,9 +96,7 @@ class Dog extends Animal {
 }
 ```
 
------
-
-使用继承对内置类进行扩展。
+# 使用继承对内置类进行扩展
 
 ```javascript
 // 1.创建一个新的类, 继承自Array进行扩展
@@ -124,7 +122,7 @@ const arr = new Array(10, 20, 30)
 arr.lastItem()
 ```
 
------
+# 类的局限性
 
 JavaScript 中类不能实现多继承，不能实现接口。使用混入实现类似效果（一种思想，开发中基本不用）。
 
@@ -152,7 +150,7 @@ const NewBird1 = mixinSwimming(mixinFlying(Bird))
 class NewBird2 extends mixinRunner(mixinAnimal(Bird)) { }
 ```
 
------
+# 认识 babel
 
 babel 是什么？有什么用？
 
@@ -162,6 +160,8 @@ babel 是什么？有什么用？
 - Babel本质上是一个编译器。
 
 -----
+
+## 纯函数标记
 
 `/*#__PURE__*/` 标记为纯函数，有利于做 tree shaking。
 
@@ -175,7 +175,7 @@ var Person = /*#__PURE__*/ (function () { ... })
 
 -----
 
-ES5中如何实现类方法的继承。
+# ES5中实现类（静态）方法的继承
 
 ```javascript
 function cerateObj2(obj) {
