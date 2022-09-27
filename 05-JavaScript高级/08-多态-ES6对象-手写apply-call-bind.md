@@ -58,7 +58,9 @@ const obj = {
 
 -----
 
-数组的基本解构，顺序解构，解构出新数组，解构赋默认值。
+# 数组解构
+
+基本解构，顺序解构，解构出新数组，解构赋默认值。
 
 ```javascript
 const names = ['abc', 'cba', 'nba']
@@ -70,7 +72,9 @@ const [ia, ib, ic, id = 'aaa'] = names // 解构赋默认值
 
 -----
 
-对象的基本解构，任意顺序解构，解构并重命名，解构赋默认值。解构出新对象。
+# 对象解构
+
+基本解构，任意顺序解构，解构并重命名，解构赋默认值。解构出新对象。
 
 ```javascript
 const obj = { name: 'zzt', age: 18, height: 1.88 }
@@ -90,7 +94,7 @@ const { name, ...newObj } = obj // 解构出新对象
 ```javascript
 // 1.2. 封装原型中
 Function.prototype.ztexec = function(thisArg, otherArgs) {
-  // 1.获取thisArg, 并且确保是一个对象类型
+  // 1.获取 thisArg, 并且确保是一个对象类型
   thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
   // thisArg.fn = this
   Object.defineProperty(thisArg, "fn", {
@@ -114,14 +118,14 @@ Function.prototype.ztcall = function(thisArg, ...otherArgs) {
 手写 bind 方法
 
 ```javascript
-Function.prototype.ztbind = function(thisArg, ...otherArgs) {
-  // console.log(this) // -> foo函数对象
+Function.prototype.ztbind = function(thisArg, ...args) {
+  // console.log(this) // -> foo 函数对象
   thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
   Object.defineProperty(thisArg, "fn", {
     value: this
   })
   return (...newArgs) => {
-    return thisArg.fn(...otherArgs, ...newArgs) // 不能删除 fn 属性，因为返回的函数可能还会被调用。
+    return thisArg.fn(...args, ...newArgs) // 不能删除 fn 属性，因为返回的函数可能还会被调用。
   }
 }
 ```
