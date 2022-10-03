@@ -1,47 +1,40 @@
 # Reflect
 
-Reflect 是什么？
+## Reflect 是什么？
 
 - 一个内置对象。
 
-有什么用？
+## 有什么用？
 
-- 提供了很多操作对象的方法，有点像Object中操作对象的方法；
+- 提供了很多操作对象的方法，有点像 Object 中操作对象的方法；
 
------
+## 已有 Object 提供对象的操作，为什么还会出现 Reflect
 
-已有 Object 提供对象的操作，为什么还会出现 Reflect
-
-- 这是因为在早期的ECMA规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面； 
+- 这是因为在早期的 ECMA 规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面； 
 - 但是 Object 作为一个**构造函数**，这些操作放到它身上并不合适； 
-- 另外还包含一些类似于 `in`、`delete` 操作符，让JS看起来是会有一些奇怪的； 
-- 所以在ES6中新增了 `Reflect`，让我们这些操作都集中到了 Reflect 对象上；
+- 另外还包含一些类似于 `in`、`delete` 操作符，让 JS 看起来是会有一些奇怪的； 
+- 所以在 ES6 中新增了 `Reflect`，让我们这些操作都集中到了 Reflect 对象上；
 - 另外在使用 Proxy 时，可以做到**不操作原对象**；
 
------
+## Reflect 的常见方法。
 
-Reflect 的常见方法。
 - `Reflect.getPrototypeOf(target)` - 类似于 Object.getPrototypeOf()。
 - `Reflect.setPrototypeOf(target, prototype)` - 设置对象原型的函数. 返回一个 Boolean，如果更新成功，则返回 true。
 - `Reflect.isExtensible(target)` - 类似于 Object.isExtensible()
-- `Reflect.preventExtensions(target)` - 类似于 Object.preventExtensions()。返回一个Boolean。
+- `Reflect.preventExtensions(target)` - 类似于 Object.preventExtensions()。返回一个 Boolean。
 - `Reflect.getOwnPropertyDescriptor(target, propertyKey)` - 类似于 Object.getOwnPropertyDescriptor()。如果对象中存在 该属性，则返回对应的属性描述符, 否则返回 undefined.
 - `Reflect.defineProperty(target, propertyKey, attributes)` - 和 Object.defineProperty() 类似。如果设置成功就会返回 true
-- `Reflect.ownKeys(target)` - 返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受enumerable影响).，相当于 getOwnPropertyName 加上 getOwnPropertySymbol 的效果。
-- `Reflect.has(target, propertyKey)` - 判断一个对象是否存在某个属性，和 in 运算符 的功能完全相同。
+- `Reflect.ownKeys(target)` - 返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 Object.keys(), 但不会受 enumerable 影响).，相当于 getOwnPropertyName 加上 getOwnPropertySymbol 的效果。
+- `Reflect.has(target, propertyKey)` - 判断一个对象是否存在某个属性，和 in 运算符的功能完全相同。
 - `Reflect.get(target, propertyKey[, receiver])` - 获取对象身上某个属性的值，类似于 target[name]。
-- `Reflect.set(target, propertyKey, value[, receiver])` - 将值分配给属性的函数。返回一个Boolean，如果更新成功，则返回true。
+- `Reflect.set(target, propertyKey, value[, receiver])` - 将值分配给属性的函数。返回一个 Boolean，如果更新成功，则返回 true。
 - `Reflect.deleteProperty(target, propertyKey)` - 作为函数的 delete 操作符，相当于执行 delete target[name]。
 - `Reflect.apply(target, thisArgument, argumentsList)` - 对一个函数进行调用操作，同时可以传入一个数组作为调用参数。和 Function.prototype.apply() 功能类似。
 - `Reflect.construct(target, argumentsList[, newTarget])` - 对构造函数进行 new 操作，相当于执行 new target(...args)。
 
------
+> Reflect 通常和 Proxy 一起使用，共同完成代理。
 
-Reflect 通常和 Proxy 一起使用，共同完成代理。
-
------
-
-使用 Reflect 的好处3点。代码实现。
+## 使用 Reflect 的好处3点。代码实现。
 
 - 对对象进行操作时，不直接操作原对象。
 - 操作方法会返回布尔值，判断是否操作成功。
@@ -75,7 +68,7 @@ const objProxy = new Proxy(obj, {
     }
   },
   get: function(target, key, receiver) {
-    console.log("proxy中获取方法被调用")
+    console.log("proxy 中获取方法被调用")
     return Reflect.get(target, key, receiver)
   }
 })
@@ -83,9 +76,7 @@ objProxy.name = "CR7"
 objProxy.name
 ```
 
------
-
-了解使用 Reflect 的 construct 重写借用构造函数继承（理解，不会实际用）。
+## 了解使用 Reflect 的 construct 重写借用构造函数继承（理解，不会实际用）。
 
 ```javascript
 function Person(name, age) {
@@ -100,11 +91,9 @@ function Student(name, age) {
 const stu = new Student("zzt", 18)
 ```
 
------
-
 # Promise
 
-ES5之前异步函数的处理。有什么缺陷？
+## ES6 之前异步函数的处理。有什么缺陷
 
 ```javascript
 // 1.设计这样的一个函数
@@ -123,7 +112,7 @@ function execCode(counter, successCallback, failureCallback) {
     }
   }, 3000)
 }
-// 2.ES5之前,处理异步的代码都是这样封装
+// 2.ES6 之前,处理异步的代码都是这样封装
 execCode(100, (value) => {
   console.log("本次执行成功了:", value)
 }, (err) => {
@@ -136,18 +125,16 @@ execCode(100, (value) => {
 
 -----
 
-什么是 Promise？
+## 什么是 Promise？
 
 - 一个内置类。
 
-如何使用？
+## 如何使用？
 
 1. 通过 new 创建 Promise 对象时，我们需要传入一个回调函数，我们称之为 `executor` 
 2. 这个回调函数会被立即执行，并且给传入另外两个回调函数`resolve`、`reject`； 
 3. 当我们调用 `resolve` 回调函数时，会执行 Promise 对象的 `then` 方法传入的回调函数；
 4. 当我们调用 `reject` 回调函数时，会执行 Promise 对象的 `catch` 方法传入的回调函数；
-
------
 
 使用 Promise 对上面代码做重构。
 
@@ -178,17 +165,15 @@ execCode(255).then(value => {
 })
 ```
 
------
-
-Promise 的使用过程可以划分为3个状态。
+## Promise 执行过程的3个状态。
 
 - 待定（`pending`）: 初始状态，既没有被兑现，也没有被拒绝；当执行 executor 中的代码时，处于该状态；
 - 已兑现（`fulfilled`）: 意味着操作成功完成；执行了 resolve 时，处于该状态，Promise 已经被兑现；
 - 已拒绝（`rejected`）: 意味着操作失败；执行了 reject 时，处于该状态，Promise 已经被拒绝；
 
-Promise 的状态一旦确定下来，就不会再更改。
+> Promise 的状态一旦确定下来，就不会再更改。
 
------
+## Promise 中的 executor
 
 什么是 Promise 中的 executor？
 
@@ -199,7 +184,7 @@ Promise 的状态一旦确定下来，就不会再更改。
 - 通过 `resolve`，可以兑现（fulfilled）Promise 的状态，也可以称之为已决议（resolved）； 
 - 通过 `reject`，可以拒绝（reject）Promise 的状态；
 
------
+## resolve 中传入3种不同值
 
 resolve 中传入3种不同值的区别。
 
@@ -222,7 +207,7 @@ const promise = new Promise((resolve, reject) => {
     {name: "macbook", price: 9998, intro: "有点贵"},
     {name: "iPhone", price: 9.9, intro: "有点便宜"},
   ])
-  // 2.resolve(promise)，如果resolve的值本身Promise对象, 那么当前的Promise的状态会有传入的Promise来决定
+  // 2.resolve(promise)，如果 resolve 的值本身是 Promise 对象, 那么当前的 Promise 的状态会由传入的 Promise 来决定
   resolve(p)
   // 3.resolve(thenable对象)
   resolve({
@@ -238,7 +223,7 @@ promise.then(res => {
 })
 ```
 
------
+## then 方法
 
 什么是 then 方法？
 
@@ -256,8 +241,6 @@ promise.then(res => {
   console.log("失败回调~", err)
 })
 ```
------
-
 then 方法多次调用的写法。
 
 -  一个 Promise 的 then 方法是可以被多次调用的：
