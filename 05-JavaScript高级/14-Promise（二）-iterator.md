@@ -1,22 +1,24 @@
 # then 方法
 
-then 方法的返回值是一个 `promise`；该返回值处于什么状态3种情况。链式调用代码理解。
+then 方法的返回值是一个 `promise`；该 promise 处于什么状态有3种情况。
 
-- 当 then 方法中的回调函数本身在执行的时候，那么它处于 pending 状态；
+- 当 then 方法中的回调函数本身在执行的时候，那么它处于 `pending` 状态；
 - 当 then 方法中的回调函数返回一个结果时，
-	- 返回一个普通的值；那么 then 方法返回的 promise 处于 fulfilled 状态，并且会将结果作为 resolve 的参数；
+	- 返回一个普通的值；那么 then 方法返回的 promise 处于 `fulfilled` 状态，并且会将结果作为 resolve 的参数；
 	- 返回一个 Promise；由新的 promise 的状态来决定。
 	- 返回一个 thenable 值；执行 then 方法，决定状态。
-- 当 then 方法抛出一个异常时，那么 then 方法返回的 promise 处于 reject 状态；
+- 当 then 方法抛出一个异常时，那么 then 方法返回的 promise 处于 `reject` 状态；
+
+链式调用代码理解：
 
 ```javascript
 const newPromise = new Promise((resolve, reject) => {
   setTimeout(() => {
-    resolve("why")
+    resolve("zzt")
   }, 3000)
 })
 promise.then(res => {
-  console.log("第一个Promise的then方法:", res)
+  console.log("第一个 Promise 的 then 方法:", res)
   // --------- 伪代码 -----------
   // 1.普通值
   return "bbbbbbb"
@@ -31,7 +33,9 @@ promise.then(res => {
   throw new Error('error message') // catch 方法中的回调函数会执行。
   // --------- 伪代码 -----------
 }).then(res => {
-  console.log("第二个Promise的then方法:", res)
+  console.log("第二个 Promise 的 then 方法:", res)
+}).catch(err => {
+  console.log('出现错误', err)
 })
 ```
 
@@ -57,8 +61,6 @@ p.catch(err => {
 })
 ```
 
------
-
 catch 方法的返回值也是一个 `promise`，链式调用代码理解。
 
 ```javascript
@@ -68,7 +70,7 @@ const p = new Promise((resolve, reject) => {
 p.catch(err => {
   console.log('err1', err) // 会打印，failure
 }).catch(err => {
-  console.log('err2', err)
+  console.log('err2', err) //不会打印 
 }).then(res => {
   console.log('res1', res) // 会打印，undefined
 })
@@ -91,6 +93,8 @@ p.catch(err => {
 ```
 
 -----
+
+# finally 方法
 
 finally 方法是什么？
 
@@ -117,9 +121,11 @@ promise.then(res => {
 
 # Promise 静态方法
 
+## resolve
+
 resolve 方法有什么用，怎么用？
 
-- Promise.resolve 的用法相当于 new Promise，并且执行 resolve 操作。
+- Promise.resolve 的用法相当于 new Promise，并在 executor 中执行 resolve。
 - Promise.resolve 传入的参数也分3种情况，见 resolve 回调函数传入的3种类型值。
 
 ```javascript
@@ -130,6 +136,8 @@ p.then(res => {
 ```
 
 -----
+
+## reject
 
 reject 方法有什么用，怎么用？
 
@@ -142,13 +150,15 @@ p.catch(err => {
   console.log("err:", err)
 })
 ```
-函数参数占位的规范写法。
+## 函数参数占位的规范写法。
 
 ```javascript
 new Promise((_, reject) => {...}) // 使用 “_” 占位
 ```
 
 -----
+
+## all
 
 all 方法有什么用，怎么用？
 
@@ -182,10 +192,12 @@ Promise.all([p1, p2, p3]).then(res => {
 
 -----
 
+## allSettled 
+
 allSettled 方法有什么用，怎么用？
 
 - ES11新特性，
-- 该方法会在所有的 Promise 都有结果（settled），无论是 fulfilled，还是 rejected 时，才会有最终的状态；
+- 该方法会在所有的 Promise 都有结果（无论是 fulfilled，还是 rejected 时），才会有最终的状态；
 - 并且这个 Promise 的**结果一定是 fulfilled 的**；
 - allSettled 的结果是一个数组，数组中存放着每一个 Promise 的结果，并且是对应一个对象的；
 - 这个对象中包含 status 状态，以及对应的 value 值或 reason 值；
@@ -202,7 +214,7 @@ Promise.allSettled([p1, p2, p3]).then(res => {
 */
 ```
 
------
+## race 
 
 race 方法有什么用？怎么用？
 
@@ -216,13 +228,13 @@ Promise.race([p1, p2, p3]).then(res => {
 })
 ```
 
------
+## any
 
 any 方法有什么用？怎么用？
 
-- ES12新特性。
+- ES12 新特性。
 - any 方法会等到一个 fulfilled 状态，才会决定新 Promise 的状态； 
-- 如果所有的 Promise 都是 reject 的，那么也会等到所有的 Promise 都变成 rejected 状态；并会报一个 AggregateError 的错误。
+- 如果所有的 Promise 都是 reject 的，那么也会等到所有的 Promise 都变成 rejected 状态；并会报一个 `AggregateError` 的错误。
 
 ```javascript
 Promise.any([p1, p2, p3]).then(res => {
@@ -234,37 +246,41 @@ Promise.any([p1, p2, p3]).then(res => {
 
 -----
 
-# iterator
+# iterator 迭代器
 
 什么是迭代器（iterator）？
 
 - 使容器（数组，列表，哈希表，树结构，...）能够遍访的对象。
-- 使用迭代器遍历对象，无需关心对象的内部实现细节。
-- 其行为像数据库中的光标，迭代器最早出现在1974年设计的CLU编程语言中； 
-- 在各种编程语言的实现中，迭代器的实现方式各不相同，但是基本都有迭代器，比如 Java、Python 等；
+- 使用迭代器遍历对象，无需关心对象的内部实现细节。其行为像数据库中的光标。
+
+迭代器最早出现在1974年设计的 CLU 编程语言中； 在各种编程语言的实现中，迭代器的实现方式各不相同，但是基本都有迭代器，比如 Java、Python 等；
 
 -----
 
-在JavaScript中，迭代器指的是什么？
+## 认识 JS 中的迭代器
+
+在 JS 中，迭代器指的是什么？
 
 - 一个具体的对象，这个对象需要符合**迭代器协议**（iterator protocol）。
 - 迭代器协议定义了产生一系列值（无论是有限还是无限个）的标准方式；
-- 在 JavaScript 中这个标准就是一个特定的 next 方法；
+- 在 JavaScript 中这个标准就是一个特定的 `next` 方法；
 
 -----
+
+## 迭代器中的 next 方法
 
 迭代协议中 `next` 方法有什么要求。
 
-- 一个无参数或者一个参数的函数，返回一个应当拥有以下两个属性的对象： 
+- 一个无参数或者一个参数的函数（如生成器中的 next 方法），返回一个应当拥有以下两个属性的对象： 
 - done（boolean） 
-	- 如果迭代器可以产生序列中的下一个值，则为 false（这等价于没有指定 done 这个属性） 
-	- 如果迭代器已将序列迭代完毕，则为 true。这种情况下，value 是可选的，如果它依然存在，即为迭代结束之后的默认返回值。
+	- 如果迭代器可以产生序列中的下一个值，则为 `false`（这等价于没有指定 done 这个属性） 
+	- 如果迭代器已将序列迭代完毕，则为 `true`。这种情况下，value 是可选的，如果它依然存在，即为迭代结束之后的默认返回值。
 - value
 	- 迭代器返回的任何 JavaScript 值。done 为 true 时可省略。
 
------
+## 基本使用
 
-为一个数组创建一个迭代器。
+### 为一个数组创建一个迭代器
 
 ```javascript
 const names = ["abc", "cba", "nba"]
@@ -285,9 +301,7 @@ console.log(namesIterator.next()) // { done: false, value: 'nba' }
 console.log(namesIterator.next()) // { done: true, value: undefined }
 ```
 
------
-
-将以上代码封装在一个工厂函数中。
+### 将以上代码封装在一个工厂函数中
 
 ```javascript
 const names = ["abc", "cba", "nba"]
@@ -312,6 +326,8 @@ console.log(namesIterator.next())
 
 -----
 
+# 可迭代对象
+
 什么是可迭代对象？
 
 - 它和迭代器是不同的概念； 
@@ -323,9 +339,7 @@ console.log(namesIterator.next())
 - 当一个对象变成一个可迭代对象的时候，就可以进行某些迭代操作； 
 - 比如 for...of 操作时，其实就会调用它的 @@iterator 方法；
 
------
-
-创建一个可迭代对象。
+## 创建一个可迭代对象。
 
 ```javascript
 const iterableObj = {
@@ -348,9 +362,7 @@ const iterableObj = {
 	}
 }
 ```
------
-
-数组是一个可迭代对象，获取数组中的迭代器。
+## 数组是一个可迭代对象，获取数组中的迭代器。
 
 ```javascript
 const names = ["abc", "cba", "nba"]
@@ -360,9 +372,7 @@ namesIterator.next()
 // ...
 ```
 
------
-
-将一个对象变为可迭代对象。
+## 将一个对象变为可迭代对象。
 
 ```javascript
 const infos = {
@@ -386,6 +396,7 @@ const infos = {
     return iterator
   }
 }
+
 for (const [key, value] of infos) {
   // ...
 }
