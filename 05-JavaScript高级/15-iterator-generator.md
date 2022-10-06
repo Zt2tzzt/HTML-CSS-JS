@@ -1,18 +1,26 @@
-# iterator
+# 可迭代对象
+
+## 原生可迭代对象
 
 有哪些对象是原生可迭代对象？代码体现。
 
-- String、Array、Map、Set、arguments对象、NodeList集合
+- String、Array、Map、Set、arguments 对象、NodeList 集合
 
 -----
+
+## 适用场景
 
 可迭代对象可应用于哪些场景。
 
-- JavaScript中语法：`for ...of`、展开语法（spread syntax）、`yield*`（后面讲）、解构赋值（Destructuring_assignment）；
+- JavaScript 中语法：
+  - `for ...of`；
+  - 展开语法（spread syntax）；
+  - `yield*`（后面讲）；
+  - 解构赋值（Destructuring_assignment）；
 - 创建一些对象时：`new Map([Iterable])`、`new WeakMap([iterable])`、`new Set([iterable])`、`new WeakSet([iterable])`;
 - 一些方法的调用：`Promise.all(iterable)`、`Promise.race(iterable)`、`Array.from(iterable)`
 
------
+## 封装可迭代对象的类
 
 封装一个类，使它创建出来的实例对象都是可迭代对象。
 
@@ -38,7 +46,7 @@ class Classroom {
 }
 ```
 
------
+## 中断迭代器遍历
 
 哪些情况会中断迭代器的遍历？
 
@@ -84,31 +92,27 @@ for (const stu of classromm) {
 
 # generator
 
-什么是生成器？
+## 什么是生成器
 
-- 生成器是ES6中新增的一种**函数控制、使用**的方案。
+- 生成器是 ES6 中新增的一种**函数控制、使用**的方案。
 
 生成器有什么用？
 
 - 可以更加灵活的控制函数什么时候继续执行、暂停执行。
 
------
-
-什么是生成器函数？
+## 什么是生成器函数
 
 - 用于生成生成器对象的函数。
 
 它与普通函数有什么区别。
 
-1. 生成器函数需要在 `function` 的后面加一个符号：`*`
-2. 生成器函数可以通过 `yield` 关键字来控制函数的执行流程：
-3. 生成器函数的返回值是一个Generator（生成器）：
+- 生成器函数需要在 `function` 的后面加一个符号：`*`
+- 生成器函数可以通过 `yield` 关键字来控制函数的执行流程：
+- 生成器函数的返回值是一个 Generator（生成器）：
 	- 生成器事实上是一种特殊的迭代器；（它既是迭代器，又是一个可迭代对象）
 	- MDN：Instead, they return a special type of iterator, called a Generator.
 
------
-
-生成器函数的执行流程是怎样的。
+## 生成器函数的执行流程
 
 1. 生成器函数调用后不会执行，而是返回一个生成器对象。
 2. 通过调用生成器对象的 `next` 方法来执行生成器函数中的代码。
@@ -137,9 +141,7 @@ generator.next() // {value: undefined, done: false}
 generator.next() // {value: undefined, done: false}
 generator.next() // {value: undefined, done: true}
 ```
------
-
-在生成器函数中使用 return，返回值是怎样的？。
+## 在生成器函数中使用 return，返回值是怎样的？
 
 ```javascript
 function* foo() {
@@ -161,9 +163,11 @@ generator.next() // {value: undefined, done: true}
 generator.next() // {value: undefined, done: true}
 ```
 
------
+## 给生成器函数传递参数
 
-给生成器函数传递参数，next 函数，第一次一般不传，使用函数调用传参。
+### 基本使用
+
+生成器执行 next 方法，第一次一般不传参，而是在生成生成器的生成器函数上传参。
 
 - 使用 `next` 给每个函数片段传递参数。
 - 在 `next` 中传递的参数，会作为上一个 yield 语句的返回值。
@@ -187,9 +191,9 @@ generator.next('name3') // {value: 'ccc', done: false}
 generator.next('name4') // {value: undefined, done: true}
 ```
 
------
+### 生成器函数提前结束
 
-生成器函数提前结束，`return` 函数的使用，使用 `return` 传递参数。
+生成器函数返回的生成器调用`return` 方法，并传递参数。
 
 - return 传值后这个生成器函数就会结束，之后调用 next 不会继续生成值了；
 
@@ -211,9 +215,9 @@ generator.return('name3') // {value: ‘name3', done: true}
 generator.next('name4') // {value: undefined, done: true}
 ```
 
------
+### 生成器函数抛出异常，
 
-生成器函数抛出异常，`throw` 函数的使用。
+生成器函数返回的生成器调用`throw` 方法。
 
 - 抛出异常后我们可以在生成器函数中捕获异常； 
 - 在 catch 语句中不能继续 yield 新的值了，但是可以在 catch 语句外使用 yield 继续中断函数的执行；
@@ -241,9 +245,9 @@ generator.throw(new Error('name2 error')) // {value: 'bbb', done: false}
 generator.next('name3') // {value: 'ccc', done: false}
 ```
 
------
+## 使用生成器，替代迭代器，
 
-使用生成器，替代迭代器，工厂函数生成生成器代码重构。
+利用生成器函数，使工厂函数生成迭代器，代码重构。
 
 ```javascript
 const names = ["abc", "cba", "nba"]
@@ -258,11 +262,9 @@ namesIterator.next()
 // ...
 ```
 
------
+## `yield*` 语法有什么用？
 
-`yield*` 语法有什么用？
-
-- 一种  yield 的语法糖，会依次迭代后面可迭代对象，每次迭代其中的一个值。
+一种 yield 的语法糖，会依次迭代后面可迭代对象，每次迭代其中的一个值。
 
 对以上代码做重构。
 
@@ -276,9 +278,7 @@ namesIterator.next()
 namesIterator.next()
 // 。。。
 ```
------
-
-使用 `yield*` 语法，重构生成可迭代对象的类。
+## 使用 `yield*` 语法，重构生成可迭代对象的类。
 
 ```javascript
 class Classroom {
