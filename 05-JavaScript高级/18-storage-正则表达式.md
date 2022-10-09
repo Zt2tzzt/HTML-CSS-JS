@@ -1,5 +1,7 @@
 # Storage
 
+## 认识 Storage
+
 什么是 WebStorage？它有什么用？
 
 - 浏览器的一种缓存机制，提供一种比 cookie 更直观的 key、value 存储方式：
@@ -9,7 +11,13 @@
 - `localStorage`：本地存储，提供的是一种永久性的存储方法，在关闭掉网页重新打开时，存储的内容依然保留；
 - `sessionStorage`：会话存储，提供的是本次会话的存储，在关闭掉会话时，存储的内容会被清除；
 
----
+localStorage 和 sessionStorage 的区别。
+
+- 关闭网页后重新打开，localStorage 会保留，而 sessionStorage 会被删除；
+- 在页面内实现跳转，localStorage 会保留，sessionStorage 也会保留；
+- 在页面外实现跳转（打开新的网页），localStorage 会保留，sessionStorage 不会被保留；
+
+## 基本使用
 
 使用 storage 保存 token 的模拟，代码理解。
 
@@ -17,23 +25,11 @@
 localStorage.setItem('token', token)
 ```
 
----
-
-localStorage 和 sessionStorage 的区别。
-
-- 关闭网页后重新打开，localStorage 会保留，而 sessionStorage 会被删除；
-- 在页面内实现跳转，localStorage 会保留，sessionStorage 也会保留；
-- 在页面外实现跳转（打开新的网页），localStorage 会保留，sessionStorage 不会被保留；
-
----
-
-storage 常见的属性和方法。
-
-属性：
+storage 常见的属性：
 
 - `Storage.length`：只读属性，返回一个整数，表示存储在 Storage 对象中的数据项数量；
 
-方法：
+storage 常见的方法：
 
 - `Storage.key(n)`：该方法接受一个数值 n 作为参数，返回存储中的第 n 个 key 名称；
 - `Storage.getItem(key)`：该方法接受一个 key 作为参数，并且返回 key 对应的 value；
@@ -41,13 +37,9 @@ storage 常见的属性和方法。
 - `Storage.removeItem(key)`：该方法接受一个 key 作为参数，并把该 key 从存储中删除；
 - `Storage.clear()`：该方法的作用是清空存储中的所有 key；
 
----
+> storage 中只能存放字符串。
 
-storage 中只能存放字符串。
-
----
-
-使用 storage 封装一个缓存类。
+## 使用 storage 封装一个缓存类。
 
 ```javascript
 class Cache {
@@ -61,7 +53,7 @@ class Cache {
 		if (value !== undefined && value !== null) {
 			this.storage.setItem(key, JSON.stringify(value))
 		} else {
-			throw new Error('value error: value必须有值!')
+			throw new Error('value error: value 必须有值!')
 		}
 	}
 	getCache(key) {
@@ -77,12 +69,11 @@ class Cache {
 		this.storage.clear()
 	}
 }
-const localCache = new Cache()
 ```
 
----
-
 # 正则表达式
+
+## 认识正则表达式
 
 什么是正则表达式？有什么用？
 
@@ -94,7 +85,7 @@ const localCache = new Cache()
 
 - 正则表达式是一种字符串匹配利器，可以帮助我们搜索、获取、替代字符串；
 
----
+## 创建正则表达式
 
 JavaScript 创建正则表达式的 2 种方式。1.构造函数；2.字面量。
 
@@ -107,11 +98,9 @@ const re1 = new RegExp('abc', 'ig') // 构造函数
 const re2 = /abc/gi // 字面量创建
 ```
 
----
-
 正则表达式由 2 部分组成：模式（patterns）和修饰符（flags）
 
----
+## 修饰符
 
 正则表达式常见的修饰符有哪些。
 
@@ -132,65 +121,59 @@ const newMessage2 = message.replaceAll(/\d+/g, '')
 console.log(newMessage2) // fdabc faBC dfABC AaaBc
 ```
 
----
-
-# 正则相关方法
+## 相关方法
 
 正则表达式经常用于哪些方法？怎么用，案例理解。
 
-- JavaScript 中的正则表达式被用于 RegExp 的 exec 和 test 方法；
+RegExp 的 exec 和 test 方法；
 
-  - `RegExp.prototype.exec()` - 一个在字符串中执行查找匹配的 RegExp 方法，它返回一个数组（未匹配到则返回 null）
+- `RegExp.prototype.exec()` - 一个在字符串中执行查找匹配的 RegExp 方法，它返回一个数组（未匹配到则返回 null）
 
-    ```javascript
-    const regexp = /abc/gi
-    const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
-    regexp.exec(message) // ['abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
-    ```
+  ```javascript
+  const re = /abc/gi
+  const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
+  re.exec(message) // ['abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
+  ```
 
-  - `RegExp.prototype.test()`（常用）- 一个在字符串中测试是否匹配 RegExp 的方法，它返回 true 或 false。
+- `RegExp.prototype.test()`（常用）- 一个在字符串中测试是否匹配 RegExp 的方法，它返回 true 或 false。
 
-    ```javascript
-    // 类似于 webpack -> loader -> test: 匹配文件名
-    regexp.test(message) // true
-    ```
+  ```javascript
+  // 类似于 webpack -> loader -> test: 匹配文件名
+  regexp.test(message) // true
+  ```
 
-- 也包括 String 的 match、matchAll、replace、search 和 split 方法；
+String 的 match、matchAll、replace、search 和 split 方法；
 
-  - `String.prototype.match()`（常用） - 一个在字符串中执行查找匹配的 String 方法，它返回一个数组，在未匹配到时会返回 null。
+- `String.prototype.match()`（常用） - 一个在字符串中执行查找匹配的 String 方法，它返回一个数组，在未匹配到时会返回 null。
 
-    ```javascript
-    const regexp1 = /abc/gi
-    const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
-  message.match(regexp) //  ['abc', 'aBC', 'ABC', 'aBc']
-    const regexp2 = /abc/i
-  message.match(regexp) //  [abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
-    ```
-  
-  - `String.prototype.matchAll()` - 一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。传入的正则必须有修饰符 `g`
-  
-    ```javascript
-    const result3 = message.matchAll(re1)
-  result3.next()
-    result3.next()
-  // ...
-    ```
+  ```javascript
+  const re1 = /abc/gi
+  const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
+	message.match(re) //  ['abc', 'aBC', 'ABC', 'aBc']
+  const re2 = /abc/i
+	message.match(re) //  [abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
+  ```
 
-  - `String.prototype.search()` - 一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回 -1。
-  
-  - `String.prototype.replace()` - 一个在字符串中执行查找匹配的 String 方法，并且使用替换字符串替换掉匹配到的子字符串。
-  
-  - `String.prototype.split()` - 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 String 方法。
+- `String.prototype.matchAll()` - 一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。传入的正则必须有修饰符 `g`
 
----
+  ```javascript
+  const result3 = message.matchAll(re1)
+	result3.next()
+	result3.next()
+	// ...
+  ```
 
-# 字符类（Character classes）
+- `String.prototype.search()` - 一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回 -1。
 
-什么是字符类（Character classes）
+- `String.prototype.replace()` - 一个在字符串中执行查找匹配的 String 方法，并且使用替换字符串替换掉匹配到的子字符串。
 
-- 一个特殊的符号，匹配特定集中的任何符号。
+- `String.prototype.split()` - 一个使用正则表达式或者一个固定字符串分隔一个字符串，并将分隔后的子字符串存储到数组中的 String 方法。
 
-正则表达式规则 - 字符类有哪些？有什么用？
+## 字符类（Character classes）
+
+字符类（Character classes）是一个特殊的符号，匹配特定集中的任何符号。
+
+字符类有哪些？有什么用？
 
 | 字符                   | 含义                                                         |
 | ---------------------- | ------------------------------------------------------------ |
@@ -213,9 +196,7 @@ console.log(message.match(re2)) // ['4', index: 4, input: 'fdaa4 22242asfasdf224
 - `\S` 非空格符号：除 \s 以外的任何字符，例如字母。
 - `\W` 非单字字符：除 \w 以外的任何字符，例如非拉丁字母或空格。
 
----
-
-# 锚点（Anchors）
+## 锚点（Anchors）
 
 正则表达式规则 - 锚点（Anchors）有哪些？有什么用？
 
@@ -239,14 +220,12 @@ const info = "codaaaer"
 re.test(info) // false 正则是严格匹配的，如 /^coder$/ 不能匹配 codaaaer
 ```
 
----
-
-# 词边界（Word boundary）
+## 词边界（Word boundary）
 
 什么是词边界（Word boundary）？
 
 - 词边界 `\b` 是一种检查，就像 ^ 和 $ 一样，它会检查字符串中的位置是否是词边界。
-- 词边界测试: `\b` 检查位置的一侧是否匹配 `\w`，如匹配，则不是词边界。
+- 词边界测试: `\b` 检查位置的一侧是否匹配字符类 `\w`，如匹配，则不是词边界。
 - 在字符串 "Hello, Java!" 中，“Hello”和“Java”前后都有词边界。
 
 有什么用？案例理解。
