@@ -1,6 +1,6 @@
 # XHR 请求
 
-如何获取 XHR 的 readyStatus？
+## 如何获取 XHR 的 readyStatus？
 
 - 通过 `xhr.readyState` 获取。
 
@@ -26,15 +26,9 @@ xhr.send()
 | 3   | LOADING          | 下载中；responseText 属性已经包含部分数据。       |
 | 4   | DONE             | 下载操作已完成。                                  |
 
----
+> 这个状态并非是 HTTP 的响应状态，而是记录的 XMLHttpRequest 对象的状态变化。
 
-关于 XHR 的 readyStatus 的一点注意事项。
-
-- 这个状态并非是 HTTP 的响应状态，而是记录的 XMLHttpRequest 对象的状态变化。
-
----
-
-如何使用 XHR 发送同步请求。
+## 如何使用 XHR 发送同步请求。
 
 ```javascript
 const xhr = new XMLHttpRequest()
@@ -45,9 +39,9 @@ xhr.send()
 console.log(xhr.response)
 ```
 
-在开发中如何选择：一定选择异步。
+> 在开发中如何选择：一定选择异步。
 
----
+## XHR 的其它事件监听
 
 除了 `onreadystatechange` 之外，XHR 的其它事件监听有哪些？
 
@@ -59,11 +53,11 @@ console.log(xhr.response)
 - `timeout`：由于请求超时而取消了该请求（仅发生在设置了 timeout 的情况下）。
 - `loadend`：在 load，error，timeout 或 abort 之后触发。
 
-监听 `onload` 事件。
+监听 `load` 事件。
 
 ```javascript
 const xhr = new XMLHttpRequest()
-// onload监听数据加载完成
+// onload 监听数据加载完成
 xhr.onload = function() {
 	console.log("onload")
 }
@@ -71,7 +65,7 @@ xhr.open("get", "http://123.207.32.32:8000/home/multidata")
 xhr.send()
 ```
 
----
+## XHR 响应结果处理
 
 默认情况下，为什么响应头中设置了 `content-type: application/json`，拿到的却是文本类型。
 
@@ -109,27 +103,21 @@ xhr.open("get", "http://123.207.32.32:1888/01_basic/hello_json")
 xhr.send()
 ```
 
----
-
-xhr 对象的 resposeType 属性有什么用？
+### xhr 对象的 resposeType 属性有什么用？
 
 - 通过 `responseType` 可以设置获取数据的类型，如果设置为空字符串，则会使用 `text` 作为默认值。
 
----
-
-xhr 对象的 resposeText，resposeXML 有什么用？
+### xhr 对象的 resposeText，resposeXML 有什么用？
 
 - 早期通常服务器返回的数据是普通的文本和 XML，所以我们通常会通过 responseText、 responseXML 来获取响应结果，再将它们转化成 JavaScript 对象形式；
 - 目前服务器基本返回的都是 json 数据，直接将 resposeType 设置为 json 即可；
 
----
-
-如何通过 XHR 获取 HTTP 状态码？
+### 如何通过 XHR 获取 HTTP 状态码？
 
 - `xhr.status` - 获取状态码。
 - `xhr.statusText` - 获取状态描述
 
-如何区分 XHR 请求的成功与失败？
+### 如何区分 XHR 请求的成功与失败？
 
 - 使用状态码区分。
 
@@ -155,9 +143,7 @@ xhr.open("get", "http://123.207.32.32:8000/home/multidata")
 xhr.send()
 ```
 
----
-
-常用的 GET / POST 请求传递参数的 4 种方式。
+### 常用的 GET / POST 请求传递参数的 4 种方式。
 
 1. GET 请求的 query 参数 
 2. POST 请求 x-www-form-urlencoded 格式 
@@ -170,6 +156,7 @@ xhr.send()
 	<input type="password" name="password">
 </form>
 <button class="send">发送请求</button>
+
 <script>
 	const formEl = document.querySelector(".info")
 	const sendBtn = document.querySelector(".send")
@@ -207,14 +194,12 @@ xhr.send()
 </script>
 ```
 
----
-
-XHR 超时设置
+### XHR 超时设置
 
 - 当达到超时时间后依然没有获取到数据，那么这个请求会自动被取消掉； 
 - 默认值为0，表示没有设置超时时间；
 
-XHR 的取消请求。
+### XHR 的取消请求
 
 - `xhr.abort()` - 强制取消请求。
 
@@ -244,9 +229,7 @@ cancelBtn.onclick = function() {
 }
 ```
 
----
-
-封装基本的 ajax 网络请求。
+## 封装基本的 ajax 网络请求。
 
 ```javascript
 function hyajax({
@@ -292,11 +275,9 @@ function hyajax({
 }
 ```
 
----
-
 # Fetch 函数
 
-Fetch 与 XHR 相比有什么优势？
+## Fetch 与 XHR 相比有什么优势？
 
 - Fetch 可以看做是早期的 XMLHttpRequest 的替代方案。
 - 返回值是一个 Promise，提供了一种更加优雅的处理结果方式 
@@ -304,7 +285,7 @@ Fetch 与 XHR 相比有什么优势？
 	- 在请求发送失败时，调用 reject 回调 catch；
 - 不像 XMLHttpRequest，所有的操作都在一个对象上；
 
-Fetch 如何使用？
+## Fetch 如何使用？
 
 - `Promise<Response> fetch(input[, init]);`
 
@@ -324,9 +305,7 @@ fetch("http://123.207.32.32:8000/home/multidata").then(response => {
 })
 ```
 
----
-
-Fetch 数据的相应处理，2 个阶段。：
+## Fetch 数据的相应处理，2 个阶段。：
 
 1. 当服务器返回了响应（response） 
    - fetch 返回的 promise 就使用内建的 Response class 对象来对响应头进行解析； 
@@ -340,9 +319,7 @@ Fetch 数据的相应处理，2 个阶段。：
 	- `response.text()`：读取 response，并以文本形式返回 response；
 	- `response.json()`：将 response 解析为 JSON；
 
-------
-
-Fetch 使用的优化 3 个
+## Fetch 使用的优化 3 个
 
 优化一：
 
@@ -401,36 +378,33 @@ async function getData2() {
 getData2()
 ```
 
----
-
-使用 Fetch 发送 POST 请求。
+## 使用 Fetch 发送 POST 请求。
 
 - method：HTTP 方法，例如 `POST`， 
 - body：request body： 
 	- 字符串（例如 JSON 编码的，`JSON.stringfy(xxx)`），
 	- FormData 对象，以 `multipart/form-data` 形式发送数据
 
----
-
-前端文件上传的 2 点注意事项。
+# 前端文件上传的 2 点注意事项。
 
 - XMLHttpRequest 可以监听文件上传的进度。
 - 文件上传如果不使用 base64 格式，都是使用 POST 请求。
 
----
-
-使用 XHR 进行文件上传。进度监听。
+## 使用 XHR 进行文件上传。进度监听。
 
 ```html
 <input class="file" type="file">
 <button class="upload">上传文件</button>
+
 <script>
 	// 表单
 	const fileEl = document.querySelector(".file")
+	const uploadBtn = document.querySelector(".upload")
+  
 	const file = fileEl.files[0]
 	const formData = new FormData
 	formData.append("avatar", file)
-	const uploadBtn = document.querySelector(".upload")
+  
 	uploadBtn.onclick = function() {
 		// 1.创建对象
 		const xhr = new XMLHttpRequest()
@@ -448,20 +422,21 @@ getData2()
 </script>
 ```
 
----
-
-使用 Fetch 进行文件上传。
+## 使用 Fetch 进行文件上传。
 
 ```html
 <input class="file" type="file">
-<button class="upload">上传文件</button>  
+<button class="upload">上传文件</button>
+
 <script>
   // 表单
   const fileEl = document.querySelector(".file")
+  const uploadBtn = document.querySelector(".upload")
+  
   const file = fileEl.files[0]
   const formData = new FormData()
   formData.append("avatar", file)
-	const uploadBtn = document.querySelector(".upload")
+	
 	uploadBtn.onclick = async function() {
 		// 发送 fetch 请求
 		const response = await fetch("http://123.207.32.32:1888/02_param/upload", {

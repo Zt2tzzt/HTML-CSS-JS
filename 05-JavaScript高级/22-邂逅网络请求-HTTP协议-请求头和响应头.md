@@ -1,3 +1,5 @@
+# 后端渲染
+
 什么是后端渲染（服务端渲染）？理解图解。
 
 - 早期的网页都是通过后端渲染来完成的：服务器端渲染（SSR，server side render）：
@@ -5,14 +7,12 @@
 
 ![后端渲染图解](NodeAssets/后端渲染图解.jpg)
 
----
-
 后端渲染有什么缺点？
 
 - 当用户点击页面中的某个按钮向服务器发送请求时，页面本质上只是一些数据发生了变化，而此时服务器却要将重绘的整个页面再返 回给浏览器加载，这显然有悖于程序员的“DRY（ Don‘t repeat yourself ）”原则；
 - 而且明明只是一些数据的变化却迫使服务器要返回整个 HTML 文档，这本身也会给网络带宽带来不必要的开销。
 
----
+# AJAX
 
 AJAX 的由来。
 
@@ -27,13 +27,13 @@ AJAX 的由来。
 - 在不重新加载页面的情况下发送请求给服务器；
 - 接受并使用从服务器发来的数据。
 
----
+# 前后端分离
 
 什么是前后端分离（客户端渲染）？理解图解。
 
 ![前后端分离图解](NodeAssets/前后端分离图解.jpg)
 
----
+# HTTP
 
 什么是 HTTP？理解图解。
 
@@ -51,8 +51,6 @@ HTTP 有什么用？
 
 ![HTTP图解](NodeAssets/HTTP图解.jpg)
 
----
-
 理解网页中资源的获取图解
 
 - 网页中的资源通常是被放在 Web 资源服务器中，由浏览器自动发送 HTTP 请求来获取、解析、展示的。
@@ -63,9 +61,7 @@ HTTP 有什么用？
 
 ![网络分层架构图解](NodeAssets/网络分层架构图解.jpg)
 
----
-
-理解 HTTP 组成的图解。
+## 理解 HTTP 组成的图解。
 
 请求 Request 组成图解。
 
@@ -75,9 +71,7 @@ HTTP 有什么用？
 
 ![响应 Respose 组成图解](NodeAssets/响应 Respose 组成图解.jpg)
 
----
-
-HTTP 有哪些版本？
+## HTTP 有哪些版本？
 
 - HTTP/0.9
   - 发布于 1991 年；
@@ -93,9 +87,7 @@ HTTP 有哪些版本？
 - 2015 年，HTTP/2.0
 - 2018 年，HTTP/3.0
 
----
-
-HTTP 有哪些请求方式？有什么用？
+## HTTP 有哪些请求方式？有什么用？
 
 在 RFC 中定义了一组请求方式，来表示要对给定资源执行的操作，通过同样的接口，如“/user”，根据不同的请求方式，可以发送不同的请求，服务器中就可以对应做不同的操作。
 
@@ -109,21 +101,15 @@ HTTP 有哪些请求方式？有什么用？
 - `CONNECT`：CONNECT 方法建立一个到目标资源标识的服务器的隧道，通常用在代理服务器，网页开发很少用到。
 - `TRACE`：TRACE 方法沿着到目标资源的路径执行一个消息回环测试。
 
----
+> 在浏览器调试工具中查看网络请求 NetWork -> Fetch/XHR
 
-在浏览器调试工具中查看网络请求 NetWork -> Fetch/XHR
-
----
-
-HTTP Request Header 是什么，
+## HTTP Request Header 是什么，
 
 - 在 request 对象的 header 中也包含很多有用的信息，客户端会默认传递过来一些信息：
 
 ![HTTP-Request-Headers](NodeAssets/HTTP-Request-Headers.jpg)
 
----
-
-什么是 HTTP Request Header 中 `content-type` ？
+### 什么是 HTTP Request Header 中 `content-type` ？
 
 - content-type 是这次请求携带的数据的类型：
 
@@ -135,9 +121,7 @@ HTTP Request Header 是什么，
 - `application/xml`：表示是 xml 类型；
 - `multipart/form-data`：表示是上传文件；
 
----
-
-HTTP Request Header 中还有哪些属性，分别有什么用？
+### HTTP Request Header 中还有哪些属性，分别有什么用？
 
 - `content-length`：文件的大小长度
 - `connection`：
@@ -153,7 +137,7 @@ HTTP Request Header 中还有哪些属性，分别有什么用？
 - `accept`：告知服务器，客户端可接受文件的格式类型，可理解为数据的格式。
 - `user-agent`：客户端相关的信息；
 
----
+### HTTP Response 响应状态码
 
 HTTP Response 响应状态码有什么用，有哪些，代表什么含义？
 
@@ -172,9 +156,7 @@ HTTP Response 响应状态码有什么用，有哪些，代表什么含义？
 - \> 400，一般代表客户端发生错误
 - \> 500，一般代表服务器端发生错误。
 
----
-
-服务器响应错误的不同方式处理 2 种。
+## 服务器响应错误的不同方式处理 2 种。
 
 1. http status code: 401
 2. http status code: 200，自行设计 错误码
@@ -185,11 +167,7 @@ HTTP Response 响应状态码有什么用，有哪些，代表什么含义？
 	}
 	```
 
----
-
-使用浏览器直接发送请求，输入 url，默认是 GET 请求。
-
----
+> 使用浏览器直接发送请求，输入 url，默认是 GET 请求。
 
 AJAX 可以发送哪些格式的请求？
 
