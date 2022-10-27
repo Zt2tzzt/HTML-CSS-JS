@@ -25,7 +25,7 @@
 
 - JavaScript 库是一个预先编写好并实现了一些特定功能的代码片段的集合。
 - 一个库中会包含许多的函数、变量等，可根据需求引入到项目中使用。
-- 一些常见的库有 jQuery、Day.js、Lodash 和 React 等
+- 一些常见的库有 jQuery、Day.js、Lodash 和 React 等。
 
 什么是框架（framework）
 
@@ -39,7 +39,7 @@ jQuery 的优点
 
 - 易于学习：相对于其它的前端框架，jQuery 更易于学习，它支持 JavaScript 的编码风格。
 - 少写多做（Write less, do more）
-	- jQuery 提供了丰富的功能(DOM操作、过滤器、事件、动画、Ajax 等)。
+	- jQuery 提供了丰富的功能( DOM 操作、过滤器、事件、动画、Ajax 等)。
 	- 可以编写更少的代码和可读性高的代码来提高开发人员的工作效率。
 - 优秀的 API 文档：jQuery 提供了优秀的在线 API 文档。
 - 跨浏览器支持：提供出色的跨浏览器支持 (IE9+)，无需编写额外代码。
@@ -54,9 +54,9 @@ jQuery 的缺点。
 
 了解 jQuery 的起源和历史。
 
-1. 2005年8月22日，John Resig（一名从事自己项目的Web开发人员）首次提出支持 CSS 选择器的 JavaScript 库，其语法比当时现有的库（例如：Behaviour ）更简洁。
+1. 2005年8月22日，John Resig（一名从事自己项目的 Web 开发人员）首次提出**支持 CSS 选择器**的 JavaScript 库，其语法比当时现有的库（例如：Behaviour ）更简洁。
 2. 在2006年之前，John Resig 对编写跨浏览器的 JavaScript 感到非常繁琐。
-3. 直到2006-8-26才发布了1.0版本。原本打算使用 JSelect（JavaScript Selectors）命名该库，但域名都已被占用。
+3. 直到2006年8月26才发布了1.0版本。原本打算使用 JSelect（JavaScript Selectors）命名该库，但域名都已被占用。
 
 了解 jQuery 的历史版本特性。
 
@@ -121,7 +121,7 @@ jQuery 的使用步骤
 
 # jQuery 的基本使用
 
-jQuery的引入和基本使用。
+## 引入和基本使用。
 
 方式一：CDN
 
@@ -160,17 +160,15 @@ jQuery的引入和基本使用。
 </script>
 ```
 
-方式三：npm安装
+方式三：npm 安装
 
 ```kotlin
 npm install jquery
 ```
 
------
+## 实现计数器案例
 
-使用 jQuery 实现计数器案例，与原生对比，事件监听的写法。
-
-原生：
+### 原生方式实现：
 
 ```html
 <button class="sub">-</button>
@@ -190,7 +188,7 @@ npm install jquery
 </script>
 ```
 
-jQuery：
+### jQuery 实现：
 
 ```html
 <button class="sub">-</button>
@@ -211,7 +209,7 @@ jQuery：
 </script>
 ```
 
------
+## 监听文档加载实现
 
 jQuery 监听文档（document）的 `DOMContentLoaded `事件的4种写法：
 
@@ -247,7 +245,9 @@ jQuery 监听文档（document）的 `DOMContentLoaded `事件的4种写法：
   })
   ```
 
-优化：使用 jQuery 实现计数器案例
+## 优化计数器案例
+
+使用 jQuery 实现计数器案例
 
 ```javascript
 $(function () {
@@ -264,8 +264,6 @@ $(function () {
 })
 ```
 
------
-
 jQuery 监听 window load 事件的写法。
 
 ```javascript
@@ -274,9 +272,7 @@ $(window).on('load', function() {
 })
 ```
 
------
-
-如何解决 jQuery 与其它库的变量名冲突问题。
+## 解决 jQuery 与其它库的变量名冲突问题。
 
 - 在 jQuery 中，$ 是 jQuery 的别名。 
 - 如果我们在使用 jQuery 库之前，其它库已经使用了 $ 作为函数或者变量的标识符，这时就会出现冲突的情况。 
