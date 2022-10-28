@@ -63,7 +63,7 @@ jQuery 函数的参数
 
 - jQuery 对象是一个包含所匹配到元素的集合，该集合是类数组 ( array-like ) 对象。
 - jQuery 对象是通过调用 jQuery 函数来创建的。
-- jQuery 对象中会包含N（>=0）个匹配到的元素。
+- jQuery 对象中会包含 N（>=0）个匹配到的元素。
 - jQuery 对象原型中包含了很多已封装好的方法。例如：DOM 操作、事件处理、动画等方法。
 
 如何创建 jQuery 对象
@@ -75,8 +75,6 @@ jQuery 函数的参数
 document 的 jQuery 对象
 
 ![document的jQuery对象](NodeAssets/document的jQuery对象.jpg)
-
------
 
 ## jQuery 对象与 DOM Element 的区别
 
@@ -171,8 +169,6 @@ document 的 DOM Element 对象
 })
 ```
 
------
-
 # jQuery 支持选择器传参
 
 jQuery 支持使用哪些选择器
@@ -200,6 +196,7 @@ jQuery 支持使用哪些选择器
     <li class="li-4">li-4</li>
     <li class="li-5">li-5</li>
   </ul>
+  
   <script src="../libs/jquery-3.6.0.js"></script>
   <script>
     // 1.基本的选择器
@@ -218,11 +215,7 @@ jQuery 支持使用哪些选择器
 </body>
 ```
 
------
-
-了解 VSCode 生成代码片段的工具网站。
-
------
+> 了解 VSCode 生成代码片段的工具网站 [生成网站](https://snippet-generator.app/)。
 
 # jQuery 中的过滤器
 
@@ -248,6 +241,7 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
     <li class="li-4">li-4</li>
     <li class="li-5">li-5</li>
   </ul>
+  
   <script src="../libs/jquery-3.6.0.js"></script>
   <script>
     // 1.监听文档完全解析完成
@@ -267,7 +261,7 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
       // 5.filter()
       console.log($('ul li').filter('.li-4') )
       console.log($('ul li').filter('.li-4, .li-3') )
-      // 6.jQuery原型上的方法，大部分支持链式调用
+      // 6.jQuery 原型上的方法，大部分支持链式调用
       var $el = $('ul li')
                 .filter('.li-2, .li-3, .li-4')
                 .eq(1)
@@ -276,8 +270,6 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
   </script>
 </body>
 ```
-
------
 
 # jQuery 对文本操作的 api
 
@@ -318,6 +310,7 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
   <input class="password" type="text" placeholder="请求输入密码">
   <button class="login">登录</button>
   <button class="setUserPas">设置用户名密码</button>
+  
   <script src="../libs/jquery-3.6.0.js"></script>
   <script>
     // 1.监听文档完全解析完成
@@ -335,10 +328,8 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
         $('.password').val('admin')
       })
     })
-  </script>
+	</script>
 	```
-
------
 
 # jQuery 对 css 操作的 api
 
@@ -346,14 +337,14 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
 	- 获取匹配到元素集合中第一个元素的宽度或设置每个匹配到元素的宽度。
 
 	```javascript
-	// 1.获取到元素的width
+	// 1.获取到元素的 width
 	// width: content ;
 	// innerWidth: content + padding;
 	// outerWidth: content + padding + border
 	console.log($('ul').width()) // 返回的结果是 number
-	// 2.设置ul元素的width
-	$('ul').width(300)  // 直接给style设置一个width
-	$('ul').width('500px')  // 直接给style设置一个width
+	// 2.设置 ul 元素的 width
+	$('ul').width(300)  // 直接给 style 设置一个 width
+	$('ul').width('500px')  // 直接给 style 设置一个 width
 	```
 	
 - `.height()`、`height(value)`
@@ -362,7 +353,7 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
 
 - `.css(propertyName)`、`.css(propertyNamesArr)`
 
-	- 获取匹配到元素集中第一个元素样式属性的值，底层是调用 getComputedStyle 函数获取。
+	- 获取匹配到元素集中第一个元素样式属性的值，底层是调用 `getComputedStyle` 函数获取。
 	- .css( "width" ) 和 .width() 之间的区别:
 		- width() 返回一个无单位的像素值（例如，400），而 css() 返回一个具有完整单位的值（例如，400px）
 - `.css(propertyName, value)`、`.css(properties)Obj`
@@ -389,13 +380,11 @@ jQuery 中过滤器有哪些（即 jQuery 函数显示原型上的方法）？�
 		})
   ```
 
------
-
 # jQuery 的 class 属性操作
 
 - `.addClass(className)`、`.addClass(classNamesArr)`、`.addClass(funcntion)`
 	- 将指定的类添加到匹配元素集合中的每个元素，每次都是追加 class。
-	- 底层调用的是 `setAttribute( "class", finalValue )` 方法添加class。
+	- 底层调用的是 `setAttribute( "class", finalValue )` 方法添加 class。
 - `.hasClass(className)`
 	- 是否给任意匹配到的元素分配了该类。
 	- 底层是通过 `getAttribute( "class" ).indexOf()` 来判断是否存在。
