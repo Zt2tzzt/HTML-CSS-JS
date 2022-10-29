@@ -101,8 +101,6 @@ jQuery 元素对象中对自定义 data-xxx 属性的操作。理解该操作中
 	$('ul').removeData(['name', 'age', 'height'])  // 只能删除 缓存中的数据
 	````
 
------
-
 # jQuery 元素对象 DOM 操作
 
 ## 插入内容（一）5种方式
@@ -144,8 +142,6 @@ $('ul').append(liEl)
 $('ul').append( $('.li-6') ) // move, 不是 clone
 ```
 
------
-
 ## 插入内容（二）3种方式
 
 - `.appendTo(target) `
@@ -170,15 +166,13 @@ $('<li>')
 	.addClass('li-6')
 	.css('color', 'red')
 	.text('我是li-6')  // 创建一个li元素(必须是一个jQuery对象)
-	// 方式一: 支持 jQuery对象
+	// 方式一: 支持 jQuery 对象
 	.appendTo( $('ul') )
-	// 方式二: 支持 字符串类型的选择器
+	// 方式二: 支持字符串类型的选择器
 	.appendTo( 'ul' )
-	// 方式三: 支持 元素对象
+	// 方式三: 支持元素对象
 	.appendTo( document.querySelector('ul') )
 ```
-
------
 
 ## 移除，替换，克隆元素。
 
@@ -255,8 +249,6 @@ $('<li>')
 	  .appendTo('ul')
 	```
 
------
-
 # jQuery 元素对象上的事件
 
 什么是事件？
@@ -294,8 +286,6 @@ $('<li>')
 	})
 	```
 
------
-
 ## jQuery 元素对象自动触发事件的方法
 
 ```javascript
@@ -303,13 +293,11 @@ $('ul').trigger('click')  // 模拟用户点击了ul元素
 $('ul').trigger('mouseenter')
 ```
 
------
-
 ## click 方法和 on 方法有什么区别？
 
-- click 是 on 的简写。它们重复监听，不会出现覆盖情况，都支持事件委托，底层用的是 addEventListener。 
+- click 是 on 的简写。它们重复监听，不会出现覆盖情况，都支持事件委托，底层用的是 `addEventListener`。 
 
-- 如果 on 没有使用 selector 的话，那么和使用 click 是一样的。 
+- 如果 `on('click')` 没有使用 selector 的话，那么和使用 `click` 是一样的。 
 
 - on 函数可以接受一个 selector 参数，用于过滤触发事件的后代元素。
 
@@ -327,8 +315,6 @@ $('ul').trigger('mouseenter')
 		$('ul').off('click.zzt') // 根据命名空间取消 click 对应的事件。
 	})
 	```
-
------
 
 ## click 方法和 on 方法中 this 的指向。
 
