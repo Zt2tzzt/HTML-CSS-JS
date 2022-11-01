@@ -15,20 +15,14 @@
 - IE<9 仅采用了事件冒泡的方式，Netscape 采用了事件捕获的方式；
 - IE9+ 和现在所有主流浏览器都已支持这两种方式。
 
------
+> jQuery 为了更好的兼容老版本的IE，底层并**没有实现事件捕获**。
 
-jQuery 为了更好的兼容老版本的IE，底层并**没有实现事件捕获**。
+## jQuery 事件对象的特点
 
------
+- 原生事件对象的大多数属性都被复制到新的 jQuery 事件对象上。如altKey, clientX, clientY, currentTarget, data, detail, key, keyCode, offsetX, offsetY, originalTarget, pageX, pageY, relatedTarget, screenX, screenY, target, ......
 
-jQuery 事件对象的特点，
-
-- 原生事件对象的大多数属性都被复制到新的 jQuery 事件对象上。如，
-> altKey, clientX, clientY, currentTarget, data, detail, key, keyCode, offsetX, offsetY, originalTarget, pageX, pageY, relatedTarget, screenX, screenY, target, ......
-- jQuery 事件对象通用的属性（以下属性已实现跨浏览器的兼容）：
-> target、relatedTarget、pageX、pageY、which、metaKey
-
-jQuery 事件对象，有哪些常用属性和方法？
+- jQuery 事件对象通用的属性（以下属性已实现跨浏览器的兼容）：target、relatedTarget、pageX、pageY、which、metaKey
+## jQuery 事件对象，常用属性和方法
 
 - 属性：`originalEvent`：获取原生对象。
 - 方法：`preventDefault()`：取消事件的默认行为（例如，a标签、表单事件等）
@@ -65,9 +59,7 @@ jQuery 事件对象，有哪些常用属性和方法？
 </script>
 ```
 
------
-
-什么是事件委托？
+## 什么是事件委托？
 
 - 事件冒泡在某种情况下可以帮助我们实现强大的事件处理模式 – 事件委托模式（也是一种设计模式）
 
@@ -79,6 +71,7 @@ jQuery 事件对象，有哪些常用属性和方法？
 		<p class="p1">我是p元素</p>
 	</li>
 </ul>
+
 <script src="../libs/jquery-3.6.0.js"></script>
 <script>
 $(function() {
@@ -90,9 +83,9 @@ $(function() {
 </script>
 ```
 
------
+## jQuery 中的常见事件
 
-jQuery 中的常见事件，用法参考 DOM Element 原生事件。
+用法参考 DOM Element 原生事件。
 
 - 鼠标事件（Mouse Events）
 	- `.click() 、.dblclick()、.hover()、.mousedown() 、.mouseup() `
@@ -132,9 +125,7 @@ $('input').on('input', function() {
 })
 ```
 
------
-
-使用 jQuery 实现选项卡切换案例理解。
+## 选项卡切换案例理解。
 
 ```html
 <div class="nav">
@@ -155,11 +146,11 @@ $(function() {
 </script>
 ```
 
------
+# jQuery 的动画操作 animate 实现
 
-jQuery 的动画操作 animate 实现，传4个参数的写法，传2个参数的写法。
+传4个参数的写法，传2个参数的写法。
 
-- `.animate()`：执行一组 CSS属性的自定义动画，允许支持数字的CSS属性上创建动画
+- `.animate()`：执行一组 CSS 属性的自定义动画，允许支持数字的 CSS 属性上创建动画
 - `.animate( properties [, duration ] [, easing ] [, complete ] )`
   - duration 也支持关键字，`slow`：600ms；`fast`：200ms
   - easing 只支持两个关键字，`linear`：匀速；`swing`：先慢后快再慢。
@@ -227,9 +218,7 @@ $('.toggle').click(function() {
 })
 ```
 
------
-
-jQuery 封装好的常见动画函数，用法。
+## jQuery 封装好的常见动画函数，用法。
 
 - .显示和隐藏匹配的元素 
 	- `.hide() 、.hide( [duration ] [, complete ] )、.hide( options )` - 隐藏元素 
@@ -264,9 +253,7 @@ jQuery 封装好的常见动画函数，用法。
 	- `.fadeToggle()、.fadeToggle( [duration ] [, complete ] )、.fadeToggle( options )` - 淡入淡出的切换
 	- `.fadeTo( duration, opacity [, complete ] )` - 渐变到
 
------
-
-什么是 jQuery 元素中的动画队列？
+## 什么是 jQuery 元素中的动画队列？
 
 -  jQuery 匹配元素中的 animate 和 delay 动画是通过一个动画队列 (queue) 来维护的。
 
@@ -304,9 +291,7 @@ $('.stop').click(function() {
 })
 ```
 
------
-
-jQuery 实现隐藏侧边广告栏动画
+## 隐藏侧边广告栏动画
 
 ```html
 <div class="box">
@@ -318,6 +303,7 @@ jQuery 实现隐藏侧边广告栏动画
     <img src="./images/bottom.png" alt="">
   </div>
 </div>
+
 <script src="../libs/jquery-3.6.0.js"></script>
 <script>
   // 1.监听文档完全解析完成
@@ -334,9 +320,8 @@ jQuery 实现隐藏侧边广告栏动画
 </script>
 ```
 
------
+# jQuery 的遍历方式：
 
-jQuery 的遍历方式2种：
 - `.each( function )`：遍历一个 jQuery 对象，为每个匹配的元素执行一个回调函数。 
 	
 	- function 参数: Function( index, element )，
@@ -367,18 +352,16 @@ jQuery 的遍历方式2种：
 - `.each()` 是 jQuery 对象上的实例方法，用于遍历 jQuery 对象。
 - `jQuery.each()` 是 jQuery 函数上的类方法，可以遍历对象、数组、类数组等，它是一个通用的工具函数。
 
------
-
-什么是 AJAX？
+# 什么是 AJAX？
 
 - 发起异步请求获取数据来更新页面的技术。
 
-AJAX 请求方法（Method）：
+## AJAX 请求方法（Method）：
 
 - GET、POST：普通软件架构模式。
 - GET、POST、PUT、PACTH、DELETE 等：RESTful 软件架构模式。
 
------
+## jQuery 对 Ajax 进行了封装
 
 jQuery 对原生 AJAX 技术提供的 api （XMLHttpRequest）进行了封装，有哪些方法？请求参数的含义。
 
