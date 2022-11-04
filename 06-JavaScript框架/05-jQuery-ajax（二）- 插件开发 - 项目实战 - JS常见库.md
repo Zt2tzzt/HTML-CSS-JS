@@ -17,7 +17,7 @@ jQuery 请求参数以及含义：
 - `success` - 请求成功回调的函数。
 - `error` - 请求失败回调的函数。
 
----
+## 基本使用
 
 jQuery AJAX 初体验，
 
@@ -65,7 +65,7 @@ $('button').click(function () {
 })
 ```
 
----
+## GET 请求
 
 jQuery GET 请求处理几种常见情况。
 
@@ -126,7 +126,7 @@ $.get('http://httpbin.org/get')
 	})
 ```
 
------
+## POST 请求
 
 jQuery POST 请求处理几种常见情况。 
 
@@ -202,15 +202,11 @@ $.post('http://httpbin.org/post', {
 	})
 ```
 
----
-
 #  jQuery 的插件
 
 什么是 jQuery 的插件？
 
 - 编写的一些新方法，并将这些方法添加到 jQuery 的原型对象上。
-
----
 
 编写 jQuery 插件的步骤。
 
@@ -218,8 +214,6 @@ $.post('http://httpbin.org/post', {
 2. 在**立即执行函数**中编写插件，这样可以避免插件中的变量与全局变量冲突。
 3. 在 jQuery 的原型对象上新增方法。
 4. 最后在 html 中导入，就可以像其他 jQuery 对象实例方法一样使用了。
-
----
 
 编写一个 jQuery 插件，在 a 元素文本后显示链接地址。
 
@@ -247,7 +241,7 @@ jquery.showlinklocation.js
     console.log(this) // jQuery对象集合
 		// 2.过滤出a元素的集合，遍历a元素
     this.filter('a').each(function() {
-      var $a = $(this) // DOM Element
+      var $a = $(this) // DOM Element -> jQuery 对象集合
       var link = $a.attr('href')
       $a.append(`(${link})`)
     })
@@ -255,8 +249,6 @@ jquery.showlinklocation.js
   }
 })(window, jQuery)
 ```
-
----
 
 # 项目实战
 
