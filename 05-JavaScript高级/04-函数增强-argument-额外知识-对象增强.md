@@ -30,7 +30,7 @@ arguments 是什么？
 - 但是它却拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
 - 但是它却没有数组的一些方法，比如 `filter`、 `map` 等；
 
-## arguments 转输组
+## arguments 转数组
 
 arguments 转数组的3种方式（slice 方法回顾）
 
