@@ -14,9 +14,7 @@
 - 可以让我们免去编写大量的 CSS 代码（Write less），让我们更专注于网站业务逻辑的开发。
 - 是开源免费的，可以从 GitHub 直接拿到源码。
 
------
-
-了解 Bootstrap 的起源。
+# 了解 Bootstrap 的起源。
 
 - Bootstrap 原名 Twitter Blueprint，由 Twitter 公司的 Mark Otto 和 Jacob Thornton 编写。 他们的本意是想制作一套可以让网页保持统一风格的前端框架。
 - 在 Bootstrap 之前，Twitter 团队在开发界面时，不同的项目组会使用不同的代码库。 这样就会很容易导致界面风格不一致等问题，从而增加了后期的维护成本。
@@ -31,9 +29,7 @@
 
 <img src="NodeAssets/Bootstrap 3到5版本的区别.jpg" alt="Bootstrap 3到5版本的区别" style="zoom:100%;" />
 
------
-
-Bootstrap 框架有什么优缺点？
+# Bootstrap 框架有什么优缺点？
 
 优点：
 - 具有简单的文件结构，只需要懂 HTML、CSS 和 JS 的基本知识，就可以上手使用 Bootstrap，甚至阅读其源码，对于初学者来是说易于学习。
@@ -55,22 +51,18 @@ Bootstrap 框架有什么优缺点？
 - Bootstrap 使用 jQuery 与 HTML 交互。对于初学者来说，它将是一个不错的入门方式。
 - 同时 Bootstrap 框架优秀的设计和架构思想也是非常值得学习。
 
------
-
-Bootstrap 的安装前提
+# Bootstrap 的安装前提
 
 - Bootstrap 是一个前端框架。该框架主要是由 CSS 和 JS 组成，但是也会依赖一小部分的 HTML。 
 - 因此在安装 Bootstrap 时，我们需要引入相应的 CSS 和 JS 文件，当然也需要添加一些全局的配置。 
 - 在 Bootstrap 5 版本以前，Bootstrap 是依赖 jQuery 的。
 - 那么如果使用的是 Bootstrap 5 以下的版本，需在引入 Bootstrap 之前先引入 jQuery 库。
 
-Bootstrap 的安装方式有哪些。
+# Bootstrap 的安装方式有哪些。
 
 1. 在页面中，直接通过 CDN 的方式引入。 
 2. 下载 Bootstrap 框架，并在页面中手动引入。（没有网时，用这种方式）
 3. 使用 npm 包管理工具安装到项目中（npm 在 Node 基础阶段会讲解）
-
------
 
 # 引入 Bootstrap
 
@@ -113,13 +105,9 @@ CDN引入方式
 </html>
 ```
 
------
-
-了解 Bootstrap 软件包有哪些内容。
+# 了解 Bootstrap 软件包有哪些内容。
 
 <img src="NodeAssets/Bootstrap 软件包有哪些内容.jpg" alt=" Bootstrap 软件包有哪些内容1" style="zoom:100%;" />
-
------
 
 开发两个按钮，使用 Bootstrap 来实现。
 
@@ -129,13 +117,9 @@ CDN引入方式
 <div class="btn btn-warning">按钮2</div>
 ```
 
------
-
 了解 Bootstrap 4 的架构图，框架中集成了哪些模块。
 
 <img src="NodeAssets/Bootstrap4 框架设计图.jpg" alt="Bootstrap4 框架设计图1" style="zoom:50%;" />
-
------
 
 # Bootstrap 的屏幕尺寸的分割点
 
@@ -146,8 +130,6 @@ CDN引入方式
 - 媒体查询是 CSS 的一项功能，它允许你根据浏览器的分辨率来应用不同的 CSS 样式，如 `@media (min-width: 576px){}`
 
 ![屏幕尺寸的分割点](NodeAssets/屏幕尺寸的分割点.jpg)
-
------
 
 # Bootstrap 的响应式容器 
 
@@ -175,8 +157,6 @@ Containers 基本使用。
   我是box
 </div>
 ```
-
------
 
 # Bootstrap 的网格系统
 
