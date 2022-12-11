@@ -106,8 +106,8 @@ btnSubEl.onclick = function () {
 - `clientHeight`：contentHeight+padding 
 - `offsetWidth`：元素完整的宽度
 - `offsetHeight`：元素完整的高度 
-- `offsetLeft`：距离父元素的x 
-- `offsetTop`：距离父元素的y
+- `offsetLeft`：距离最近定位元素的x 
+- `offsetTop`：距离最近定位元素的y
 - `clientTop`：border-top 的宽度 
 - `clientLeft`：border-left 的宽度
 
