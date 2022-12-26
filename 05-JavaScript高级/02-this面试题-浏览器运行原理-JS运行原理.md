@@ -136,9 +136,9 @@ this 相关的4道面试题。
   }
   ```
 
-- video、canvas、iframe 
+- video、canvas、iframe
 
-- animation 或 transition 设置了opacity、transform；动画转换时； 
+- animation 或 transition 设置了 opacity、transform；动画转换时； 
 
   ```css
   .container {
