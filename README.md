@@ -1,7 +1,8 @@
 # HTML-CSS-JS
 
 #### 介绍
-ZeTian的前端学习资料分享：HTML-CSS-JS
+
+HTML-CSS-JS；coderwhy 前端学习笔记分享；
 
 #### 软件架构
 软件架构说明
