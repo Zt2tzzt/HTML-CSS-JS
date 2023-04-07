@@ -6,23 +6,23 @@
 
 ```javascript
 function requestData(url) {
-	return new Promise(resolve => {
-		setTimeout(() => {
-			resolve(url)
-		}, 1000);
-	})
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(url)
+    }, 1000)
+  })
 }
 // 回调地狱写法。
 function getData() {
   // 1.第一次请求
-  requestData("zzt").then(res1 => {
-    console.log("第一次结果:", res1)
+  requestData('zzt').then(res1 => {
+    console.log('第一次结果:', res1)
     // 2.第二次请求
-    requestData(res1 + "kobe").then(res2 => {
-      console.log("第二次结果:", res2)
+    requestData(res1 + 'kobe').then(res2 => {
+      console.log('第二次结果:', res2)
       // 3.第三次请求
-      requestData(res2 + "james").then(res3 => {
-        console.log("第三次结果:", res3)
+      requestData(res2 + 'james').then(res3 => {
+        console.log('第三次结果:', res3)
       })
     })
   })
@@ -36,15 +36,18 @@ getData()
 
 ```javascript
 function getData() {
-  requestData("zzt").then(res1 => {
-    console.log("第一次结果:", res1)
-    return requestData(res1 + "kobe") // then 方法传入的回调函数中返回一个 Promise
-  }).then(res2 => {
-    console.log("第二次结果:", res2)
-    return requestData(res2 + "james")
-  }).then(res3 => {
-    console.log("第三次结果:", res3)
-  })
+  requestData('zzt')
+    .then(res1 => {
+      console.log('第一次结果:', res1)
+      return requestData(res1 + 'kobe') // then 方法传入的回调函数中返回一个 Promise
+    })
+    .then(res2 => {
+      console.log('第二次结果:', res2)
+      return requestData(res2 + 'james')
+    })
+    .then(res3 => {
+      console.log('第三次结果:', res3)
+    })
 }
 getData()
 ```
@@ -53,12 +56,12 @@ getData()
 
 ```javascript
 function* getData() {
-  const res1 = yield requestData("zzt")
-  console.log("res1:", res1)
-  const res2 = yield requestData(res1 + "kobe")
-  console.log("res2:", res2)
-  const res3 = yield requestData(res2 + "james")
-  console.log("res3:", res3)
+  const res1 = yield requestData('zzt')
+  console.log('res1:', res1)
+  const res2 = yield requestData(res1 + 'kobe')
+  console.log('res2:', res2)
+  const res3 = yield requestData(res2 + 'james')
+  console.log('res3:', res3)
 }
 const generator = getData()
 generator.next().value.then(res1 => {
@@ -74,12 +77,12 @@ generator.next().value.then(res1 => {
 
 ```javascript
 async function getData() {
-  const res1 = await requestData("zzt")
-  console.log("res1:", res1)
-  const res2 = await requestData(res1 + "kobe")
-  console.log("res2:", res2)
-  const res3 = await requestData(res2 + "james")
-  console.log("res3:", res3)
+  const res1 = await requestData('zzt')
+  console.log('res1:', res1)
+  const res2 = await requestData(res1 + 'kobe')
+  console.log('res2:', res2)
+  const res3 = await requestData(res2 + 'james')
+  console.log('res3:', res3)
 }
 getData()
 ```
@@ -90,28 +93,28 @@ getData()
 
 ```javascript
 function* getData() {
-	const res1 = yield requestData('zzt')
-	console.log(res3);
-	const res2 = yield requestData(res1 + 'kobe')
-	console.log(res3);
-	const res3 = yield requestData(res2 + 'james')
-	console.log(res3);
+  const res1 = yield requestData('zzt')
+  console.log(res3)
+  const res2 = yield requestData(res1 + 'kobe')
+  console.log(res3)
+  const res3 = yield requestData(res2 + 'james')
+  console.log(res3)
 }
 function execGeneratorAuto(execFn) {
-	const generator = execFn()
-	function exec(res) {
-		const { done, value } = generator.next(res)
-		if (done) return value
-		value.then(res => {
-			exec(res)
-		})
-	}
-	exec()
+  const generator = execFn()
+  function exec(res) {
+    const { done, value } = generator.next(res)
+    if (done) return value
+    value.then(res => {
+      exec(res)
+    })
+  }
+  exec()
 }
 execGeneratorAuto(getData)
 ```
 
------
+---
 
 # async
 
@@ -121,13 +124,13 @@ execGeneratorAuto(getData)
 
 ## 异步函数和普通函数的区别
 
-异步函数和普通函数最大的区别：返回值的区别；3种情况。
+异步函数和普通函数最大的区别：返回值的区别；3 种情况。
 
 1. 异步函数的返回值相当于被包裹到 `Promise.resolve` 中；
 2. 如果异步函数的返回值是 Promise，状态会由 Promise 决定；
 3. 如果异步函数的返回值是一个 thenable 对象，那么会由对象的 then 方法来决定；
 
-异步函数返回的 promise 的3种状态，对应异步函数执行的3个时机。
+异步函数返回的 promise 的 3 种状态，对应异步函数执行的 3 个时机。
 
 1. `pending`，异步函数执行过程中。
 2. `fulfilled`，异步函数有返回普通值。
@@ -141,7 +144,7 @@ execGeneratorAuto(getData)
 
 ## 使用场景
 
-await 关键字使用的2个场景。
+await 关键字使用的 2 个场景。
 
 - async （异步）函数中。
 - 顶层模块中（ES13）新特性。
@@ -180,11 +183,11 @@ await 关键字使用的2个场景。
 
 ```javascript
 function bar() {
-  console.log("bar function")
+  console.log('bar function')
   return new Promise(resolve => {
     setTimeout(() => {
-      resolve("bar")
-    }, 2000);
+      resolve('bar')
+    }, 2000)
   })
 }
 async function foo() {
@@ -197,13 +200,15 @@ async function foo() {
 
 ## 认识进程和现场
 
-线程和进程是操作系统的2个概念，说明并解释。
+线程和进程是操作系统的 2 个概念，说明并解释。
 
 进程（process）：
+
 - 计算机已经运行的程序，是操作系统管理程序的一种方式。
 - 启动一个应用程序，就会默认启动一个或多个进程。
 
 线程（thread）：
+
 - 操作系统能够运行运算调度的最小单位，通常境况下，它包含在进程中。
 - 每一个进程中，都会启动至少一个线程来执行代码，这个线程被称之为主线程。
 
@@ -217,19 +222,18 @@ async function foo() {
 
 ## 操作系统如何做到同时让多个进程工作
 
-1. CPU运算速度很快，可以在多个进程之间迅速的切换。（多核 CPU 可以做到真正的并行）
+1. CPU 运算速度很快，可以在多个进程之间迅速的切换。（多核 CPU 可以做到真正的并行）
 2. 进程中的线程获取到时间片时，就可以快速执行编写的代码。
 3. 对于用户来说是感受不到这种快速切换的。
 
 ## 浏览器中 JavaScript 的进程管理。
 
 - JavaScript 是单线程的，但是 JS 应该有自己的容器进程：浏览器或 Node
-  - JS是单线程执行的，在同一个时刻只能做一件事。
+  - JS 是单线程执行的，在同一个时刻只能做一件事。
   - 如果一件事很耗时，意味着当前线程会被阻塞。
-- 说明真正耗时的操作，不是由 Javascript 执行的，2点。
+- 说明真正耗时的操作，不是由 Javascript 执行的，2 点。
   - 浏览器每个进程都是多线程的，那么其它线程可以来完成这个耗时的操作。
-  - 比如网络请求，定时器，JS只需要在特定的时候执行应该有的回调即可。
-- 介绍浏览器中的进程管理，2点：
+  - 比如网络请求，定时器，JS 只需要在特定的时候执行应该有的回调即可。
+- 介绍浏览器中的进程管理，2 点：
   - 多数浏览器都是多进程的，打开一个 tab 页时，就会开启一个新进程，防止一个页面卡死整个浏览器无响应。
   - 每个进程中又有很多线程，其中包括执行 JavaScript 代码的线程。
-

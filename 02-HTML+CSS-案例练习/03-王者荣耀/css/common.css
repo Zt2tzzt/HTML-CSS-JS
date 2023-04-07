@@ -1,274 +1,274 @@
 body {
-	font: 14px/1.5 "Microsoft YaHei",Tahoma,"simsun",sans-serif;
-	min-width: 1300px;
-	color: #333;
+  font: 14px/1.5 'Microsoft YaHei', Tahoma, 'simsun', sans-serif;
+  min-width: 1300px;
+  color: #333;
 }
 
 .top_wrapper {
-	width: 980px;
-	margin: 0 auto;
+  width: 980px;
+  margin: 0 auto;
 }
 
 .header_wrapper {
-	width: 1300px;
-	margin: 0 auto;
+  width: 1300px;
+  margin: 0 auto;
 }
 
 .main_wrapper {
-	width: 1200px;
-	margin: 0 auto;
+  width: 1200px;
+  margin: 0 auto;
 }
 
 /* 文字不换行显示3 */
 .nowrap_ellipsis {
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 新闻图标 */
 .news_type::before {
-	display: inline-block;
-	width: 32px;
-	height: 16px;
-	margin-right: 5px;
-	border: 1px #f00 solid;
-	border-radius: 2px;
-	line-height: 16px;
-	text-align: center;
-	font-size: 12px;
+  display: inline-block;
+  width: 32px;
+  height: 16px;
+  margin-right: 5px;
+  border: 1px #f00 solid;
+  border-radius: 2px;
+  line-height: 16px;
+  text-align: center;
+  font-size: 12px;
 }
 
 .news_type_hot::before {
-	content: "热门";
-	color: #ff3636;
-	border-color: #ff3636;
+  content: '热门';
+  color: #ff3636;
+  border-color: #ff3636;
 }
 
 .news_type_notice::before {
-	content: "公告";
-	color: #f4be19;
-	border-color: #f4be19;
+  content: '公告';
+  color: #f4be19;
+  border-color: #f4be19;
 }
 
 .news_type_news::before {
-	content: "新闻";
-	color: #1e96ab;
-	border-color: #1e96ab;
+  content: '新闻';
+  color: #1e96ab;
+  border-color: #1e96ab;
 }
 
 .news_type_match {
-	display: inline-block;
-	width: 52px;
-	height: 23px;
-	margin-right: 12px;
-	border-radius: 10px;
-	line-height: 23px;
-	text-align: center;
-	color: #999;
-	font-size: 12px;
-	background-color: #e3e3e3;
+  display: inline-block;
+  width: 52px;
+  height: 23px;
+  margin-right: 12px;
+  border-radius: 10px;
+  line-height: 23px;
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  background-color: #e3e3e3;
 }
 
 /* header */
 .section_header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .section_header .header_left .title {
-	font-size: 22px;
-	color: #323235;
-	padding-left: 30px;
-	background: url(../img/main_sprite.png) no-repeat 0 -102px;
+  font-size: 22px;
+  color: #323235;
+  padding-left: 30px;
+  background: url(../img/main_sprite.png) no-repeat 0 -102px;
 }
 
 .section_header .header_left .title-icon-match {
-	background-position: 0 -180px;
+  background-position: 0 -180px;
 }
 
 .section_header .header_left .title-icon-hero {
-	background-position: 0 -139px;
+  background-position: 0 -139px;
 }
 
 .section_header .header_left .title-icon-schedule {
-	background-position: -157px -103px;
+  background-position: -157px -103px;
 }
 
 .section_header .header_right .more {
-	display: block;
-	padding-left: 22px;
-	background: url(../img/main_sprite.png) no-repeat -252px 4px;
+  display: block;
+  padding-left: 22px;
+  background: url(../img/main_sprite.png) no-repeat -252px 4px;
 }
 
 .section_header .header_right .more:hover {
-	color: #f3c258;
+  color: #f3c258;
 }
 
 /* tab */
 .tab_control {
-	display: flex;
-	align-items: center;
-	height: 32px;
-	line-height: 29px;
-	background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  line-height: 29px;
+  background-color: #f5f5f5;
 }
 
 .tab_control > .item {
-	flex: 1;
-	color: #999;
-	text-align: center;
-	cursor: pointer;
-	border-bottom: 3px transparent solid; /* hover状态设置border后文字上跳，给原状态设置透明border。
+  flex: 1;
+  color: #999;
+  text-align: center;
+  cursor: pointer;
+  border-bottom: 3px transparent solid; /* hover状态设置border后文字上跳，给原状态设置透明border。
 	*/
 }
 
 .tab_control > .item.item_wrap {
-	flex: 0 auto; /* flex-grow 为 0 时，flex-basis 设为 auto，宽度由内容决定 */
-	padding: 0 27px;
+  flex: 0 auto; /* flex-grow 为 0 时，flex-basis 设为 auto，宽度由内容决定 */
+  padding: 0 27px;
 }
 
 .tab_control > .item:hover,
 .tab_control > .item.active {
-	color: #333;
-	border-bottom-color: #f3c258;
+  color: #333;
+  border-bottom-color: #f3c258;
 }
 
 .tab_control > .line {
-	width: 1px;
-	height: 20px;
-	background-color: #e1e1e1;
+  width: 1px;
+  height: 20px;
+  background-color: #e1e1e1;
 }
 
 /* keyword */
 .tab_keyword {
-	display: flex;
-	flex-wrap: wrap;
-	margin-top: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 12px;
 }
 
 .tab_keyword > .item {
-	height: 24px;
-	line-height: 24px;
-	margin: 0 8px 10px 0;
-	padding: 0 15px;
-	color: #333;
-	background-color: #f5f5f5;
-	border: 1px #e5e5e5 solid;
-	border-radius: 10px;
-	cursor: pointer;
+  height: 24px;
+  line-height: 24px;
+  margin: 0 8px 10px 0;
+  padding: 0 15px;
+  color: #333;
+  background-color: #f5f5f5;
+  border: 1px #e5e5e5 solid;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .tab_keyword > .item:hover,
 .tab_keyword > .item.active {
-	color: #fff;
-	background-color: #f3c258;
-	border-color: #f3c258;
+  color: #fff;
+  background-color: #f3c258;
+  border-color: #f3c258;
 }
 
 /* video */
 .video_item {
-	display: block;
-	width: 209px;
+  display: block;
+  width: 209px;
 }
 
 .video_item .album {
-	position: relative;
-	border-radius: 3px;
-	overflow: hidden;
+  position: relative;
+  border-radius: 3px;
+  overflow: hidden;
 }
 
 .video_item .album img {
-	width: 100%;
+  width: 100%;
 }
 
 .video_item .album .info {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	height: 22px;
-	padding: 0 10px;
-	line-height: 22px;
-	background-color: rgba(0, 0, 0, .6);
-	font-size: 12px;
-	color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 22px;
+  padding: 0 10px;
+  line-height: 22px;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  color: #fff;
 }
 
 .video_item .album .info .count {
-	/* 精灵图水平方向有足够空间，所以可以直接给容器设置背景 */
-	padding-left: 16px;
-	background: url(../img/main_sprite.png) no-repeat -256px -59px;
+  /* 精灵图水平方向有足够空间，所以可以直接给容器设置背景 */
+  padding-left: 16px;
+  background: url(../img/main_sprite.png) no-repeat -256px -59px;
 }
 
 .video_item .album .cover {
-	display: none;
-	/* opacity: 0; */
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	background-color: rgba(0,0,0,.6);
-	/* transition: all 200ms linear; */
+  display: none;
+  /* opacity: 0; */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  /* transition: all 200ms linear; */
 }
 
 .video_item:hover .album .cover {
-	display: block;
-	/* opacity: 1; */
-	animation: itemCoverAnim 200ms linear forwards; /* 这种设置方法，鼠标离开时没有动画 */
+  display: block;
+  /* opacity: 1; */
+  animation: itemCoverAnim 200ms linear forwards; /* 这种设置方法，鼠标离开时没有动画 */
 }
 
 @keyframes itemCoverAnim {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .video_item .album .cover .icon_play {
-	position: absolute;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-	margin: auto;
-	width: 40px;
-	height: 40px;
-	background: url(../img/main_sprite.png) no-repeat -192px -64px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  background: url(../img/main_sprite.png) no-repeat -192px -64px;
 }
 
 .video_item .desc {
-	margin-top: 8px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 2;
-	-webkit-box-orient: vertical;
+  margin-top: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 /* icon_type */
 .icon_type {
-	display: inline-block;
-	width: 24px;
-	height: 24px;
-	margin-right: 2px;
-	background: url(../img/main_sprite.png) no-repeat;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 2px;
+  background: url(../img/main_sprite.png) no-repeat;
 }
 
 .icon_type_hot {
-	background-position: -162px -67px;
+  background-position: -162px -67px;
 }
 .icon_type_fans {
-	background-position: -135px -68px;
+  background-position: -135px -68px;
 }
 .icon_type_guard {
-	background-position: -134px -5px;
+  background-position: -134px -5px;
 }

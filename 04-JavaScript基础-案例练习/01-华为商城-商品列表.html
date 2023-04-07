@@ -1,49 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="./css/reset.css">
-	<link rel="stylesheet" href="./css/common.css">
-	<link rel="stylesheet" href="./css/product.css">
-</head>
-<body>
-
-	<div class="wrapper">
-		<!-- 面包屑 -->
-		<div class="crumbs">
-			<span class="item">首页</span>
-			<span>&gt;</span>
-			<span class="item">笔记本</span>
-		</div>
-		<!-- 操作导航 -->
-		<div class="operation">
-			<ul class="category row">
-				<li class="item">分类：</li>
-				<li class="item">笔记本</li>
-				<li class="item">台式机</li>
-				<li class="item">智慧屏</li>
-			</ul>
-			<ul class="discount row">
-				<li class="item">服务优惠：</li>
-				<li class="item">仅看有货</li>
-				<li class="item">分期免息</li>
-				<li class="item">优惠商品</li>
-			</ul>
-			<ul class="sort row">
-				<li class="item">排序：</li>
-				<li class="item active">综合</li>
-				<li class="item">最新</li>
-				<li class="item">评论数</li>
-				<li class="item">价格</li>
-			</ul>
-		</div>
-		<!-- 商品展示 -->
-		<ul class="products">
-			<!-- 用 dom 操作生成 -->
-			<!-- <li class="item">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/product.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- 面包屑 -->
+      <div class="crumbs">
+        <span class="item">首页</span>
+        <span>&gt;</span>
+        <span class="item">笔记本</span>
+      </div>
+      <!-- 操作导航 -->
+      <div class="operation">
+        <ul class="category row">
+          <li class="item">分类：</li>
+          <li class="item">笔记本</li>
+          <li class="item">台式机</li>
+          <li class="item">智慧屏</li>
+        </ul>
+        <ul class="discount row">
+          <li class="item">服务优惠：</li>
+          <li class="item">仅看有货</li>
+          <li class="item">分期免息</li>
+          <li class="item">优惠商品</li>
+        </ul>
+        <ul class="sort row">
+          <li class="item">排序：</li>
+          <li class="item active">综合</li>
+          <li class="item">最新</li>
+          <li class="item">评论数</li>
+          <li class="item">价格</li>
+        </ul>
+      </div>
+      <!-- 商品展示 -->
+      <ul class="products">
+        <!-- 用 dom 操作生成 -->
+        <!-- <li class="item">
 				<a href="#">
 					<img src="./img/product_01.webp" alt="" class="album">
 					<div class="name">HUAWEI MateBook E 12.6英寸</div>
@@ -59,72 +58,71 @@
 					</div>
 				</a>
 			</li> -->
-		</ul>
-	</div>
+      </ul>
+    </div>
 
-	<script src="./json/product_data.js"></script>
-	<script src="./js/utils.js"></script>
-	<script>
-		// 资源服务器地址
-		var SERVER_URL = 'https://res.vmallres.com/pimages'
-		// 1.动态展示商品列表
-		var productsEl = document.querySelector('.products')
-		resultList.forEach(resultItem => {
-			// 最外层 li
-			var liEl = document.createElement('li')
-			liEl.classList.add('item')
-			productsEl.append(liEl)
-			// li 中的 a 元素
-			var aEl = document.createElement('a')
-			aEl.href = '#'
-			liEl.append(aEl)
-			// a 中的 img
-			var alibumEl = document.createElement('img')
-			alibumEl.classList.add('album')
-			alibumEl.src = `${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}`
-			aEl.append(alibumEl)
-			// a 中的 name
-			var nameEl = document.createElement('div')
-			nameEl.classList.add('name')
-			nameEl.textContent = resultItem.name
-			aEl.append(nameEl)
-			// a 中的 discount
-			var discountEl = document.createElement('div')
-			discountEl.classList.add('discount')
-			discountEl.textContent = resultItem.promotionInfo
-			aEl.append(discountEl)
-			// a 中的 price
-			var priceEl = document.createElement('div')
-			priceEl.classList.add('price')
-			priceEl.textContent = '￥' + resultItem.price
-			aEl.append(priceEl)
-			// a 中的 service
-			var serviceEl = document.createElement('div')
-			serviceEl.classList.add('service')
-			// service 中的 tip
-			for (const label of resultItem.promoLabels) {
-				var tipEl = document.createElement('span')
-				tipEl.classList.add('tip')
-				tipEl.textContent = label
-				serviceEl.append(tipEl)
-			}
-			aEl.append(serviceEl)
-			// a 中的 comment
-			var commentEl = document.createElement('div')
-			commentEl.classList.add('comment')
-			// comment 中的 span
-			var countEl = document.createElement('span')
-			countEl.textContent = `${resultItem.rrateCount}人评论`
-			commentEl.append(countEl)
-			// comment 中的 span
-			var goodEl = document.createElement('span')
-			goodEl.textContent = `${resultItem.goodRate}% 好评`
-			commentEl.append(goodEl)
-			aEl.append(commentEl)
-		});
-		// flex 布局最后一行对齐
-		addProductsEmptyItem(productsEl, 2)
-
-	</script>
-</body>
+    <script src="./json/product_data.js"></script>
+    <script src="./js/utils.js"></script>
+    <script>
+      // 资源服务器地址
+      var SERVER_URL = 'https://res.vmallres.com/pimages'
+      // 1.动态展示商品列表
+      var productsEl = document.querySelector('.products')
+      resultList.forEach(resultItem => {
+        // 最外层 li
+        var liEl = document.createElement('li')
+        liEl.classList.add('item')
+        productsEl.append(liEl)
+        // li 中的 a 元素
+        var aEl = document.createElement('a')
+        aEl.href = '#'
+        liEl.append(aEl)
+        // a 中的 img
+        var alibumEl = document.createElement('img')
+        alibumEl.classList.add('album')
+        alibumEl.src = `${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}`
+        aEl.append(alibumEl)
+        // a 中的 name
+        var nameEl = document.createElement('div')
+        nameEl.classList.add('name')
+        nameEl.textContent = resultItem.name
+        aEl.append(nameEl)
+        // a 中的 discount
+        var discountEl = document.createElement('div')
+        discountEl.classList.add('discount')
+        discountEl.textContent = resultItem.promotionInfo
+        aEl.append(discountEl)
+        // a 中的 price
+        var priceEl = document.createElement('div')
+        priceEl.classList.add('price')
+        priceEl.textContent = '￥' + resultItem.price
+        aEl.append(priceEl)
+        // a 中的 service
+        var serviceEl = document.createElement('div')
+        serviceEl.classList.add('service')
+        // service 中的 tip
+        for (const label of resultItem.promoLabels) {
+          var tipEl = document.createElement('span')
+          tipEl.classList.add('tip')
+          tipEl.textContent = label
+          serviceEl.append(tipEl)
+        }
+        aEl.append(serviceEl)
+        // a 中的 comment
+        var commentEl = document.createElement('div')
+        commentEl.classList.add('comment')
+        // comment 中的 span
+        var countEl = document.createElement('span')
+        countEl.textContent = `${resultItem.rrateCount}人评论`
+        commentEl.append(countEl)
+        // comment 中的 span
+        var goodEl = document.createElement('span')
+        goodEl.textContent = `${resultItem.goodRate}% 好评`
+        commentEl.append(goodEl)
+        aEl.append(commentEl)
+      })
+      // flex 布局最后一行对齐
+      addProductsEmptyItem(productsEl, 2)
+    </script>
+  </body>
 </html>

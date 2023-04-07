@@ -23,9 +23,9 @@ jQuery AJAX 初体验，
 
 ```javascript
 $.ajax({
-	url: 'http://httpbin.org/get',
-	type: 'GET' // or method: 'GET'
-	// dataType: 'json', // 自动推断(content-type)
+  url: 'http://httpbin.org/get',
+  type: 'GET' // or method: 'GET'
+  // dataType: 'json', // 自动推断(content-type)
 })
 ```
 
@@ -33,14 +33,14 @@ $.ajax({
 
 ```javascript
 $.ajax({
-	url: 'http://httpbin.org/status/500', // 500 (后台代码异常)
-	method: 'POST',
-	success: function (res) {
-		console.log(res)
-	},
-	error: function (error) {
-		console.log('error=>', error) // 会打印
-	}
+  url: 'http://httpbin.org/status/500', // 500 (后台代码异常)
+  method: 'POST',
+  success: function (res) {
+    console.log(res)
+  },
+  error: function (error) {
+    console.log('error=>', error) // 会打印
+  }
 })
 ```
 
@@ -48,20 +48,20 @@ $.ajax({
 
 ```javascript
 var jqXHR = $.ajax({
-	url: 'http://httpbin.org/delay/7', // 后台需要在7秒后才会返回数据给我们
-	method: 'POST',
-	timeout: 5000, // 配置超时时间
-	success: function (res) {
-		console.log(res)
-	},
-	error: function (error) {
-		console.log(error) //超时后，会回调 error 函数。
-	}
+  url: 'http://httpbin.org/delay/7', // 后台需要在7秒后才会返回数据给我们
+  method: 'POST',
+  timeout: 5000, // 配置超时时间
+  success: function (res) {
+    console.log(res)
+  },
+  error: function (error) {
+    console.log(error) //超时后，会回调 error 函数。
+  }
 })
 // 取消这个请求
 $('button').click(function () {
-	// abort()
-	jqXHR.abort() // 手动取消请求
+  // abort()
+  jqXHR.abort() // 手动取消请求
 })
 ```
 
@@ -73,8 +73,8 @@ url 提交请求参数
 
 ```javascript
 $.ajax({
-	url: 'http://httpbin.org/get?cityId=404100&keyWord=天河公园',
-	method: 'GET'
+  url: 'http://httpbin.org/get?cityId=404100&keyWord=天河公园',
+  method: 'GET'
 })
 ```
 
@@ -82,12 +82,13 @@ data 提交请求参数
 
 ```javascript
 $.ajax({
-	url: 'http://httpbin.org/get', 
-	method: 'GET',
-	data: { // processData 默认值为 true，会将 data 转成 query 字符串添加到 url 的后面。
-		cityId: '504100',
-		keyWord: '小蛮腰'
-	}
+  url: 'http://httpbin.org/get',
+  method: 'GET',
+  data: {
+    // processData 默认值为 true，会将 data 转成 query 字符串添加到 url 的后面。
+    cityId: '504100',
+    keyWord: '小蛮腰'
+  }
 })
 ```
 
@@ -95,18 +96,18 @@ $.ajax({
 
 ```javascript
 $.ajax({
-	url: 'http://httpbin.org/get',
-	method: 'GET',
-	data: {
-		cityId: '504100',
-		keyWord: '小蛮腰'
-	},
-	headers: {
-		token: 'aaaaabbbbbcccccc'
-	},
-	success: function (res) {
-		console.log(res)
-	}
+  url: 'http://httpbin.org/get',
+  method: 'GET',
+  data: {
+    cityId: '504100',
+    keyWord: '小蛮腰'
+  },
+  headers: {
+    token: 'aaaaabbbbbcccccc'
+  },
+  success: function (res) {
+    console.log(res)
+  }
 })
 ```
 
@@ -115,27 +116,30 @@ GET 请求的简写
 ```javascript
 // jQuery 封装的 ajax 相关 api，支持 Promise 风格。
 $.get('http://httpbin.org/get')
-	.then(function(res) {  // jQuery 1.8
-		console.log(res)
-	})
-	.catch(function() {  //  fail
-		console.log('catch')
-	})
-	.always(function() {  // finally  
-		console.log('always')
-	})
+  .then(function (res) {
+    // jQuery 1.8
+    console.log(res)
+  })
+  .catch(function () {
+    //  fail
+    console.log('catch')
+  })
+  .always(function () {
+    // finally
+    console.log('always')
+  })
 ```
 
 ## POST 请求
 
-jQuery POST 请求处理几种常见情况。 
+jQuery POST 请求处理几种常见情况。
 
 url 提交请求参数，
 
 ```javascript
 $.ajax({
   url: 'http://httpbin.org/post?cityId=404100&keyWord=天河公园',
-  method: "POST"
+  method: 'POST'
 })
 ```
 
@@ -144,11 +148,11 @@ data 提交请求参数，
 ```javascript
 $.ajax({
   url: 'http://httpbin.org/post',
-  method: "POST",
+  method: 'POST',
   data: {
     cityId: '504100',
     keyWord: '小蛮腰'
-  },
+  }
   // contentType: 'application/x-www-form-urlencoded; charset=UTF-8', // 默认值
   // dataType: 'json', // 自动推断, response content-type
 })
@@ -158,13 +162,14 @@ data 提交 JSON 字符串，
 
 ```javascript
 $.ajax({
-	url: 'http://httpbin.org/post',
-	method: "POST",
-	data: JSON.stringify({ // 此时 data 为字符串，不需要设置 processData: false
-		cityId: '504100',
-		keyWord: '小蛮腰'
-	}),
-	contentType: 'application/json; charset=UTF-8'
+  url: 'http://httpbin.org/post',
+  method: 'POST',
+  data: JSON.stringify({
+    // 此时 data 为字符串，不需要设置 processData: false
+    cityId: '504100',
+    keyWord: '小蛮腰'
+  }),
+  contentType: 'application/json; charset=UTF-8'
 })
 ```
 
@@ -176,17 +181,17 @@ formData.append('cityId', 404100)
 formData.append('keyWord', '小蛮腰')
 // formData.append('file', 文件)
 $.ajax({
-	url: 'http://httpbin.org/post',
-	method: "POST",
-	data: formData,
-	processData: false, // processData:true, 会将 data 为对象的转成查询字符串
-	contentType: false, // 使用 原生 XHR 默认的 contentType，也就是 multiparty/formdata
-	headers: {
-		token: 'xxxxxxxsssssssssssd'
-	},
-	success: function(res) {
-		console.log(res)
-	}
+  url: 'http://httpbin.org/post',
+  method: 'POST',
+  data: formData,
+  processData: false, // processData:true, 会将 data 为对象的转成查询字符串
+  contentType: false, // 使用 原生 XHR 默认的 contentType，也就是 multiparty/formdata
+  headers: {
+    token: 'xxxxxxxsssssssssssd'
+  },
+  success: function (res) {
+    console.log(res)
+  }
 })
 ```
 
@@ -194,15 +199,14 @@ POST 请求的简写。
 
 ```javascript
 $.post('http://httpbin.org/post', {
-	cityId: '504100',
-	keyWord: '小蛮腰'
+  cityId: '504100',
+  keyWord: '小蛮腰'
+}).then(function (res) {
+  console.log(res)
 })
-	.then(function(res) {
-		console.log(res)
-	})
 ```
 
-#  jQuery 的插件
+# jQuery 的插件
 
 什么是 jQuery 的插件？
 
@@ -226,9 +230,9 @@ index.html
 <script src="../libs/jquery-3.6.0.js"></script>
 <script src="./utils/jquery.showlinklocation.js"></script>
 <script>
-	$(function () {
-		$('a').showlinklocation().css('color', 'red')
-	})
+  $(function () {
+    $('a').showlinklocation().css('color', 'red')
+  })
 </script>
 ```
 
@@ -329,22 +333,22 @@ ztLodash.js
 
 ```javascript
 ;(function (g) {
-	function Lodash() {}
-	Lodash.VERSION = '1.0.0'
-	// 添加类方法
-	Lodash.join = function (arr, separater) {
-		// todo ......
-		return arr.join(separater)
-	}
-	Lodash.debounce = function () {}
-	Lodash.throttle = function () {}
-	Lodash.random = function () {}
-	Lodash.endsWith = function () {}
-	Lodash.clone = function () {}
-	Lodash.cloneDeep = function () {}
-	Lodash.merge = function () {}
-	// ....
-	g._ = Lodash
+  function Lodash() {}
+  Lodash.VERSION = '1.0.0'
+  // 添加类方法
+  Lodash.join = function (arr, separater) {
+    // todo ......
+    return arr.join(separater)
+  }
+  Lodash.debounce = function () {}
+  Lodash.throttle = function () {}
+  Lodash.random = function () {}
+  Lodash.endsWith = function () {}
+  Lodash.clone = function () {}
+  Lodash.cloneDeep = function () {}
+  Lodash.merge = function () {}
+  // ....
+  g._ = Lodash
 })(window)
 ```
 
@@ -414,9 +418,9 @@ Day.js 的下载，安装；
 ```html
 <script src="./libs/dayjs.js"></script>
 <script>
-	console.log('%O', dayjs)
-	console.log('%O', dayjs()) // 创建 dayjs 对象
-	console.log(dayjs().format()) // 拿到当前的时间
+  console.log('%O', dayjs)
+  console.log('%O', dayjs()) // 创建 dayjs 对象
+  console.log(dayjs().format()) // 拿到当前的时间
 </script>
 ```
 
@@ -428,29 +432,29 @@ ztDay.js
 
 ```javascript
 ;(function (g) {
-	// browser -> window 全局对象，node -> global 全局对象
-	// globalThis -> ES11
-	g = typeof globalThis !== 'undefined' ? globalThis : g || self
-	// 构造函数
-	function Dayjs() {
-		var date = new Date()
-		this.$Y = date.getFullYear()
-		this.$M = date.getMonth()
-		this.$D = date.getDate()
-	}
-	// 原型上的方法
-	Dayjs.prototype.format = function () {
-		return `${this.$Y}-${this.$M + 1}-${this.$D}`
-	}
-	// 学习原型上的方法
-	// ......原型的方法
-	// 工厂函数
-	function dayjs() {
-		return new Dayjs()
-	}
-	dayjs.prototype = Dayjs.prototype
-	// 统一导出
-	g.dayjs = dayjs
+  // browser -> window 全局对象，node -> global 全局对象
+  // globalThis -> ES11
+  g = typeof globalThis !== 'undefined' ? globalThis : g || self
+  // 构造函数
+  function Dayjs() {
+    var date = new Date()
+    this.$Y = date.getFullYear()
+    this.$M = date.getMonth()
+    this.$D = date.getDate()
+  }
+  // 原型上的方法
+  Dayjs.prototype.format = function () {
+    return `${this.$Y}-${this.$M + 1}-${this.$D}`
+  }
+  // 学习原型上的方法
+  // ......原型的方法
+  // 工厂函数
+  function dayjs() {
+    return new Dayjs()
+  }
+  dayjs.prototype = Dayjs.prototype
+  // 统一导出
+  g.dayjs = dayjs
 })(this)
 ```
 
@@ -461,27 +465,20 @@ Day.js 的基本使用：获取，设置，操作时间。
 ```javascript
 // 1.获取时间
 var day = dayjs()
-console.log(
-	day.year(),
-	day.month() + 1,
-	day.date(),
-	day.hour(),
-	day.minute(),
-	day.second()
-)
+console.log(day.year(), day.month() + 1, day.date(), day.hour(), day.minute(), day.second())
 // 2.设置时间
 var day = dayjs().year(2021).month(5).date(1)
 // 3.操作时间
 var day = dayjs() // dayjs 对象
-	.add(1, 'year') // 增加一年
-	.add(2, 'month') // 增加2个月
-	.add(-1, 'month') // 减去一个月
-	.subtract(1, 'year') // 减去一年
-	.subtract(1, 'month') // 减去一月
-	.subtract(1, 'day') // 减去一天
-	.startOf('year') // 一年的开始 2022-01-01 00:00:00
-	.startOf('month') // 一月的开始
-	.startOf('day') // 一天的开始
+  .add(1, 'year') // 增加一年
+  .add(2, 'month') // 增加2个月
+  .add(-1, 'month') // 减去一个月
+  .subtract(1, 'year') // 减去一年
+  .subtract(1, 'month') // 减去一月
+  .subtract(1, 'day') // 减去一天
+  .startOf('year') // 一年的开始 2022-01-01 00:00:00
+  .startOf('month') // 一月的开始
+  .startOf('day') // 一天的开始
 ```
 
 ---
@@ -509,12 +506,13 @@ Day.js 的插件的使用。
 
 ```html
 <script src="./libs/dayjs.js"></script>
-<script src="./libs/dayjs.relative-time.min.js"></script><!-- 会在 Dayjs 的原型上添加: fromNow 方法 -->
+<script src="./libs/dayjs.relative-time.min.js"></script>
+<!-- 会在 Dayjs 的原型上添加: fromNow 方法 -->
 <script>
-	// 1.安装插件
-	dayjs.extend(dayjs_plugin_relativeTime)
-	var day = dayjs(1656206934331) // dayjs 对象
-	console.log(day.fromNow()) // 4 minutes ago
+  // 1.安装插件
+  dayjs.extend(dayjs_plugin_relativeTime)
+  var day = dayjs(1656206934331) // dayjs 对象
+  console.log(day.fromNow()) // 4 minutes ago
 </script>
 ```
 
@@ -522,14 +520,16 @@ Day.js 插件实现国际化，原理理解（在对象中，维护了关键字�
 
 ```html
 <script src="./libs/dayjs.js"></script>
-<script src="./libs/dayjs.relative-time.min.js"></script><!-- 会在 Dayjs 的原型上添加: fromNow .... -->
-<script src="./libs/dayjs.zh-cn.min.js"></script><!-- 给 Dayjs 的全局变量 Ls 添加了一个中文支持 -->
+<script src="./libs/dayjs.relative-time.min.js"></script>
+<!-- 会在 Dayjs 的原型上添加: fromNow .... -->
+<script src="./libs/dayjs.zh-cn.min.js"></script>
+<!-- 给 Dayjs 的全局变量 Ls 添加了一个中文支持 -->
 <script>
-	// 1.安装插件
-	dayjs.extend(dayjs_plugin_relativeTime)
-	// 2.切换使用中文
-	dayjs.locale('zh-cn')
-	var day = dayjs(1656206934331) // dayjs 对象
-	console.log(day.fromNow()) // 4分钟前
+  // 1.安装插件
+  dayjs.extend(dayjs_plugin_relativeTime)
+  // 2.切换使用中文
+  dayjs.locale('zh-cn')
+  var day = dayjs(1656206934331) // dayjs 对象
+  console.log(day.fromNow()) // 4分钟前
 </script>
 ```

@@ -1,146 +1,145 @@
-
 .news-section {
-	display: flex;
-	height: 342px;
-	background: url(../img/news_bg.png) no-repeat;
+  display: flex;
+  height: 342px;
+  background: url(../img/news_bg.png) no-repeat;
 }
 
 /* banner */
 .news-section .banner {
-	width: 605px;
+  width: 605px;
 }
 
 .news-section .banner .image-list {
-	display: flex;
-	width: 604px;
-	overflow: hidden;
+  display: flex;
+  width: 604px;
+  overflow: hidden;
 }
 
 .news-section .banner .image-list .item {
-	flex-shrink: 0;
-	width: 100%;
+  flex-shrink: 0;
+  width: 100%;
 }
 
 .news-section .banner .image-list .item a {
-	display: block;
+  display: block;
 }
 
 .news-section .banner .image-list a img {
-	width: 100%;
+  width: 100%;
 }
 
 .news-section .banner .title-list {
-	display: flex;
-	height: 44px;
-	line-height: 44px;
+  display: flex;
+  height: 44px;
+  line-height: 44px;
 }
 
 .news-section .banner .title-list .item {
-	flex: 1;
-	text-align: center;
+  flex: 1;
+  text-align: center;
 }
 
 .news-section .banner .title-list .item a {
-	display: block;
-	color: #b1b2be;
+  display: block;
+  color: #b1b2be;
 }
 
 .news-section .banner .title-list .item.active a,
 .news-section .banner .title-list .item a:hover {
-	color: #f3c258;
-	background-color: rgba(255, 255, 255, .15);
+  color: #f3c258;
+  background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* news */
 .news-section .news {
-	flex: 1;
-	overflow: hidden;
-	padding: 0 17px;
+  flex: 1;
+  overflow: hidden;
+  padding: 0 17px;
 }
 
 .news-section .news .title-list {
-	display: flex;
-	height: 48px;
-	border-bottom: 1px solid #000;
+  display: flex;
+  height: 48px;
+  border-bottom: 1px solid #000;
 }
 
 .news-section .news .title-list .item {
-	width: 52px;
+  width: 52px;
 }
 
 .news-section .news .title-list .item a {
-	display: block;
-	height: 48px;
-	box-sizing: border-box; /* 控制底部 border 建变动画效果从下往上 */
-	line-height: 48px;
-	color: #b8b9c5;
-	text-align: center;
-	transition: border-bottom 200ms ease; /* 给底部 border 加上渐变动画 */
+  display: block;
+  height: 48px;
+  box-sizing: border-box; /* 控制底部 border 建变动画效果从下往上 */
+  line-height: 48px;
+  color: #b8b9c5;
+  text-align: center;
+  transition: border-bottom 200ms ease; /* 给底部 border 加上渐变动画 */
 }
 
 .news-section .news .title-list .item.active a,
 .news-section .news .title-list .item:not(.more) a:hover {
-	color: #f3c258;
-	border-bottom: 3px #f3c258 solid;
+  color: #f3c258;
+  border-bottom: 3px #f3c258 solid;
 }
 
 .news-section .news .notice {
-	height: 36px;
-	line-height: 36px;
-	margin-top: 18px;
-	/* padding: 0 15px; */
-	background-color: #414046;
+  height: 36px;
+  line-height: 36px;
+  margin-top: 18px;
+  /* padding: 0 15px; */
+  background-color: #414046;
 }
 
 .news-section .news .notice > a {
-	display: block;
-	font-size: 18px;
-	color: #f3c258;
+  display: block;
+  font-size: 18px;
+  color: #f3c258;
 }
 
 .news-section .news .news-list {
-	margin-top: 12px;
+  margin-top: 12px;
 }
 
 .news-section .news .news-list .item {
-	display: flex;
-	align-items: center;
-	margin-bottom: 11px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 11px;
 }
 
 .news-section .news .news-list .item .desc {
-	flex: 1;
-	color: #b8b9c5;
-	white-space: nowrap;
+  flex: 1;
+  color: #b8b9c5;
+  white-space: nowrap;
 }
 
 .news-section .news .news-list .item .date {
-	padding: 0 8px;
-	color: #999;
-	font-size: 12px;
+  padding: 0 8px;
+  color: #999;
+  font-size: 12px;
 }
 
 /* download */
 .news-section .download {
-	width: 236px;
+  width: 236px;
 }
 
 .news-section .download a {
-	display: block;
-	background: url(../img/main_sprite.png) no-repeat;
+  display: block;
+  background: url(../img/main_sprite.png) no-repeat;
 }
 
 .news-section .download a.download-btn {
-	height: 128px;
-	background-position: 0 -219px;
+  height: 128px;
+  background-position: 0 -219px;
 }
 
 .news-section .download a.guard-btn {
-	height: 106px;
-	background-position: 0 -350px;
+  height: 106px;
+  background-position: 0 -350px;
 }
 
 .news-section .download a.experience-btn {
-	height: 108px;
-	background-position: 0 -461px;
+  height: 108px;
+  background-position: 0 -461px;
 }

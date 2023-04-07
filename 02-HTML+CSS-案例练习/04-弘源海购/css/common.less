@@ -1,40 +1,39 @@
 @import url(./variables.less);
 
 body {
-	font-size: @normalFontSize;
-	background-color: #f5f5f5;
+  font-size: @normalFontSize;
+  background-color: #f5f5f5;
 }
 
 // tags & tag
 .tags {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 
-	.tag {
-		position: relative;
-		height: 3.2vw;
-		margin-right: .8vw;
-		margin-top: 0.5333vw;
-		padding: 0 0.8vw;
-		line-height: 3.2vw;
-		font-size: 3.2vw;
-		color: @mainColor;
-		border: 1px solid @mainColor;
-		border-radius: .8vw;
+  .tag {
+    position: relative;
+    height: 3.2vw;
+    margin-right: 0.8vw;
+    margin-top: 0.5333vw;
+    padding: 0 0.8vw;
+    line-height: 3.2vw;
+    font-size: 3.2vw;
+    color: @mainColor;
+    border: 1px solid @mainColor;
+    border-radius: 0.8vw;
 
-		&.ticket {
-			padding-left: 6.8vw;
-		}
+    &.ticket {
+      padding-left: 6.8vw;
+    }
 
-		&.ticket::before {
-			content: "券";
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			padding: 0 1.6vw;
-			background-color: @lightBgColor;
-		}
-
-	}
+    &.ticket::before {
+      content: '券';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 0 1.6vw;
+      background-color: @lightBgColor;
+    }
+  }
 }

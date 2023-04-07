@@ -5,13 +5,16 @@
 css/reset.css
 
 ```css
-body, p, h3 {
+body,
+p,
+h3 {
   margin: 0;
   padding: 0;
 }
 body {
   background-color: #f5f5f5;
-  font: 12px/1.5 Helvetica Neue,Helvetica,Arial,Microsoft Yahei,Hiragino Sans GB,Heiti SC,WenQuanYi Micro Hei,sans-serif;
+  font: 12px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC,
+    WenQuanYi Micro Hei, sans-serif;
 }
 h3 {
   font-weight: 400;
@@ -28,7 +31,7 @@ demo1.html
 
 ```html
 <head>
-  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/reset.css" />
   <style>
     body {
       text-align: center;
@@ -43,7 +46,7 @@ demo1.html
       box-sizing: border-box;
     }
     .item:hover {
-      box-shadow:  0 2px 20px 5px rgba(0, 0, 0, .1)
+      box-shadow: 0 2px 20px 5px rgba(0, 0, 0, 0.1);
     }
     .item img {
       width: 160px;
@@ -76,11 +79,9 @@ demo1.html
 </head>
 <body>
   <a class="item" href="https://www.mi.com/xiaomipad5pro" target="_blank">
-    <img src="../images/xiaomi01.webp" alt="">
+    <img src="../images/xiaomi01.webp" alt="" />
     <h3 class="title">小米平板5 Pro</h3>
-    <p class="desc">
-      全新12代英特尔处理器，CNC一体精雕工艺，2.5K 120Hz高清屏，可选MX550独立显卡
-    </p>
+    <p class="desc">全新12代英特尔处理器，CNC一体精雕工艺，2.5K 120Hz高清屏，可选MX550独立显卡</p>
     <div class="price">
       <span class="new-price">2399元起</span>
       <span class="old-price">2499元</span>
@@ -89,7 +90,7 @@ demo1.html
 </body>
 ```
 
-5个注意事项。
+5 个注意事项。
 
 1. 浏览器调试，使用`:hov`选项，调试元素的伪类状态。
 
@@ -107,16 +108,16 @@ demo1.html
    }
    ```
 
-5. 使用选择器时，如后代选择器，不推荐超过4个。
+5. 使用选择器时，如后代选择器，不推荐超过 4 个。
 
-------
+---
 
 理解盒子模型案例二头条新闻热搜条目，实现过程。
 
 ```html
 <head>
   <title>Document</title>
-  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/reset.css" />
   <style>
     a {
       display: block;
@@ -159,12 +160,18 @@ demo1.html
   <div class="item">
     <div class="album">
       <a href="#">
-        <img src="https://i0.hdslb.com/bfs/archive/9c763bf06b7765462eac62cc0a9a34b260d3f9c8.jpg@672w_378h_1c.webp" referrerpolicy="no-referrer" alt="">
+        <img
+          src="https://i0.hdslb.com/bfs/archive/9c763bf06b7765462eac62cc0a9a34b260d3f9c8.jpg@672w_378h_1c.webp"
+          referrerpolicy="no-referrer"
+          alt=""
+        />
       </a>
     </div>
     <div class="info">
       <a href="#">
-        <p>萌化了！谁会不喜欢毛茸茸的小懒懒呢？萌化了！谁会不喜欢毛茸茸的小懒懒呢？萌化了！谁会不喜欢毛茸茸的小懒懒呢？萌化了！谁会不喜欢毛茸茸的小懒懒呢？</p>
+        <p>
+          萌化了！谁会不喜欢毛茸茸的小懒懒呢？萌化了！谁会不喜欢毛茸茸的小懒懒呢？萌化了！谁会不喜欢毛茸茸的小懒懒呢？萌化了！谁会不喜欢毛茸茸的小懒懒呢？
+        </p>
       </a>
       <a class="anchor" href="#">
         <span class="nickname">Muxi慕喜咩</span>
@@ -175,16 +182,17 @@ demo1.html
 </body>
 ```
 
-4个注意事项
-1. 解决b站视频封面url无法正常显示的方法：给img元素设置属性`referrerpolicy="no-referrer"`。
+4 个注意事项
 
-2. 插入图片的3种方案，
+1. 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性`referrerpolicy="no-referrer"`。
 
-     1. img元素。
-     2. 空元素 + background-img。
-     3. 伪元素。
+2. 插入图片的 3 种方案，
 
-3. 多文本2行显示省略号方案。固定写法。
+   1. img 元素。
+   2. 空元素 + background-img。
+   3. 伪元素。
+
+3. 多文本 2 行显示省略号方案。固定写法。
 
    ```css
    div {
@@ -197,11 +205,11 @@ demo1.html
    }
    ```
 
-4. a元素设置 inline-block，包裹的p元素内容无限延申解决方案，
-     1. 给a元素设置`width: 100%;`，意为占据父元素宽度，这样a元素就有了具体宽度。
-     2. 给a元素设置`display: block;` 让a元素占据父元素的宽度，这样a元素就有了具体的宽度。
+4. a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案，
+   1. 给 a 元素设置`width: 100%;`，意为占据父元素宽度，这样 a 元素就有了具体宽度。
+   2. 给 a 元素设置`display: block;` 让 a 元素占据父元素的宽度，这样 a 元素就有了具体的宽度。
 
-------
+---
 
 # background 背景
 
@@ -219,17 +227,17 @@ demo1.html
 }
 ```
 
-1个注意事项。
+1 个注意事项。
 
 - 如果元素没有设置宽高，背景图片是不会显示出来的。
 
-------
+---
 
 `background-repeat` 属性有什么用？
 
 - 用于设置背景图片是否要平铺。
 
-常见的设置4个。
+常见的设置 4 个。
 
 - `repeat`：平铺
 - `no-repeat`：不平铺
@@ -249,41 +257,41 @@ demo1.html
 }
 ```
 
-------
+---
 
 `background-size` 属性有什么用？
 
 - 用于设置背景图片的大小。
 
-常见的设置5个。
+常见的设置 5 个。
 
 - `auto`：默认值, 以背景图本身大小显示。
 - `cover`：缩放背景图，以完全覆盖铺满元素,可背景图片部分看不见。
 - `contain`：缩放背景图，宽度或者高度铺满元素，但是图片保持宽高比。
 - \<percentage\>：百分比，相对于背景区（background positioning area）
-- \<length\>：具体的大小，比如100px，第一个值宽度，第二个值高度。
+- \<length\>：具体的大小，比如 100px，第一个值宽度，第二个值高度。
 
 理解语法。
 
 - `[ <length-percentage> | auto ]{1,2} | cover | contain`
 
-------
+---
 
 `background-position` 有什么用？
 
 - 用于设置背景图片在水平垂直方向上的具体位置。
 
-常用的设置3个。
+常用的设置 3 个。
 
 - 可以设置具体的数值，比如 `20px` `30px`;
 - 水平方向还可以设值：`left`、`center`、`right`
 - 垂直方向还可以设值：`top`、`center`、`bottom`
 
-1个注意事项。
+1 个注意事项。
 
-- 如果只设置了1个方向，另一个方向默认是 `center`
+- 如果只设置了 1 个方向，另一个方向默认是 `center`
 
-------
+---
 
 浏览器缩放，背景图片总是展示中间部分的案例。
 
@@ -295,38 +303,38 @@ demo1.html
 }
 ```
 
-------
+---
 
 `background-attachment` 属性有什么用？
 
 - 决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。
 
-常用的3个值。
+常用的 3 个值。
 
 - `scroll`：表示背景相对于元素本身固定， 而不是随着它的内容滚动。
 - `local`：表示背景相对于元素的内容固定。如果一个元素拥有滚动机制，背景将会随着元素的内容滚动。
 - `fixed`：表示背景相对于视口固定。即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动。
 
-------
+---
 
 理解 background 缩写属性的格式。
 
 - `background-size` 可以省略，如果不省略，`background-size` 必须紧跟在 `background-position` 的后面
 - 其他属性也都可以省略，而且顺序任意
 
-------
+---
 
 `background-image` 和 `<img>` 元素的比较。
 
-|                        | img              | background-image |
-| ---------------------- | ---------------- | ---------------- |
-| 性质                   | HTML元素         | CSS样式          |
-| 图片是否占用空间       | ✔                | ❌                |
-| 浏览器右键直接查看地址 | ✔                | ❌                |
-| 支持 CSS Sprite 精灵图 | ❌                | ✔                |
-| 更有可能被搜索引擎收录 | ✔（结合alt属性） | ❌                |
+|                        | img                | background-image |
+| ---------------------- | ------------------ | ---------------- |
+| 性质                   | HTML 元素          | CSS 样式         |
+| 图片是否占用空间       | ✔                  | ❌               |
+| 浏览器右键直接查看地址 | ✔                  | ❌               |
+| 支持 CSS Sprite 精灵图 | ❌                 | ✔                |
+| 更有可能被搜索引擎收录 | ✔（结合 alt 属性） | ❌               |
 
 适用场景分别有哪些。
 
-- img，作为网页内容的重要组成部分，比如广告图片、LOGO图片、文章配图、产品图片
+- img，作为网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片
 - background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息

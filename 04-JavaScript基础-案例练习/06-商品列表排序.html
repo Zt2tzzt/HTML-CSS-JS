@@ -1,51 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <link rel="stylesheet" href="./css/product.css" />
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="./css/reset.css">
-	<link rel="stylesheet" href="./css/common.css">
-	<link rel="stylesheet" href="./css/product.css">
-</head>
-
-<body>
-
-	<div class="wrapper">
-		<!-- 面包屑 -->
-		<div class="crumbs">
-			<span class="item">首页</span>
-			<span>&gt;</span>
-			<span class="item">笔记本</span>
-		</div>
-		<!-- 操作导航 -->
-		<div class="operation">
-			<ul class="category row">
-				<li class="item">分类：</li>
-				<li class="item">笔记本</li>
-				<li class="item">台式机</li>
-				<li class="item">智慧屏</li>
-			</ul>
-			<ul class="discount row">
-				<li class="item">服务优惠：</li>
-				<li class="item">仅看有货</li>
-				<li class="item">分期免息</li>
-				<li class="item">优惠商品</li>
-			</ul>
-			<ul class="sort row">
-				<li class="item">排序：</li>
-				<li class="item active" data-key="default">综合</li>
-				<li class="item" data-key="goodRate">好评</li>
-				<li class="item" data-key="rateCount">评论数</li>
-				<li class="item" data-key="price">价格</li>
-			</ul>
-		</div>
-		<!-- 商品展示 -->
-		<ul class="products">
-			<!-- 用 dom 操作生成 -->
-			<!-- <li class="item">
+  <body>
+    <div class="wrapper">
+      <!-- 面包屑 -->
+      <div class="crumbs">
+        <span class="item">首页</span>
+        <span>&gt;</span>
+        <span class="item">笔记本</span>
+      </div>
+      <!-- 操作导航 -->
+      <div class="operation">
+        <ul class="category row">
+          <li class="item">分类：</li>
+          <li class="item">笔记本</li>
+          <li class="item">台式机</li>
+          <li class="item">智慧屏</li>
+        </ul>
+        <ul class="discount row">
+          <li class="item">服务优惠：</li>
+          <li class="item">仅看有货</li>
+          <li class="item">分期免息</li>
+          <li class="item">优惠商品</li>
+        </ul>
+        <ul class="sort row">
+          <li class="item">排序：</li>
+          <li class="item active" data-key="default">综合</li>
+          <li class="item" data-key="goodRate">好评</li>
+          <li class="item" data-key="rateCount">评论数</li>
+          <li class="item" data-key="price">价格</li>
+        </ul>
+      </div>
+      <!-- 商品展示 -->
+      <ul class="products">
+        <!-- 用 dom 操作生成 -->
+        <!-- <li class="item">
 				<a href="#">
 					<img src="./img/product_01.webp" alt="" class="album">
 					<div class="name">HUAWEI MateBook E 12.6英寸</div>
@@ -61,82 +59,84 @@
 					</div>
 				</a>
 			</li> -->
-		</ul>
-	</div>
+      </ul>
+    </div>
 
-	<script src="./json/product_data.js"></script>
-	<script src="./js/utils.js"></script>
-	<script>
-		// 资源服务器地址
-		var SERVER_URL = 'https://res.vmallres.com/pimages'
-		// 1.动态展示商品列表
-		var productsEl = document.querySelector('.products')
-		// 2.服务优惠的筛选
-		var operationEl = document.querySelector('.operation')
-		var discountEl = operationEl.querySelector('.discount')
-		
-		// 定义变量，记录选中的服务
-		var discountFilters = []
-		for (let i = 1; i < discountEl.children.length; i++) {
-			// 获取对应的 discountItemEl
-			var discountItemEl = discountEl.children[i]
-			// 监听 discountItemEl
-			discountItemEl.onclick = function() {
-				// 在 active 和非 active 之间切换
-				this.classList.toggle('active')
-				if (this.classList.contains('active')) {
-					discountFilters.push(this.textContent.trim())
-				} else {
-					var index = discountFilters.findIndex(item => item === this.textContent.trim())
-					discountFilters.splice(index, 1)
-				}
-				// 过滤 resultList
-				filterResultListAction()
-			}
-		}
+    <script src="./json/product_data.js"></script>
+    <script src="./js/utils.js"></script>
+    <script>
+      // 资源服务器地址
+      var SERVER_URL = 'https://res.vmallres.com/pimages'
+      // 1.动态展示商品列表
+      var productsEl = document.querySelector('.products')
+      // 2.服务优惠的筛选
+      var operationEl = document.querySelector('.operation')
+      var discountEl = operationEl.querySelector('.discount')
 
-		// 3.监听排序功能 ==============================
-		const sortEl = document.querySelector('.sort')
-		let activeItemEl = sortEl.querySelector('.active')
-		for (let i = 0; i < sortEl.children.length; i++) {
-			const sortItemEl = sortEl.children[i];
-			sortItemEl.index = i
-			sortItemEl.onclick = function() {
-				// 1.取消之前的，添加新的active
-				activeItemEl.classList.remove('active')
-				this.classList.add('active')
-				activeItemEl = this
-				// 2.获取信息
-				const sortKey =  this.dataset.key
-				// 3.根据key，对数据进行排序
-				sortResultListAction(sortKey)
-			}
-		}
+      // 定义变量，记录选中的服务
+      var discountFilters = []
+      for (let i = 1; i < discountEl.children.length; i++) {
+        // 获取对应的 discountItemEl
+        var discountItemEl = discountEl.children[i]
+        // 监听 discountItemEl
+        discountItemEl.onclick = function () {
+          // 在 active 和非 active 之间切换
+          this.classList.toggle('active')
+          if (this.classList.contains('active')) {
+            discountFilters.push(this.textContent.trim())
+          } else {
+            var index = discountFilters.findIndex(item => item === this.textContent.trim())
+            discountFilters.splice(index, 1)
+          }
+          // 过滤 resultList
+          filterResultListAction()
+        }
+      }
 
-		// 过滤后的数据列表
-		var showResultList = [...resultList]
-		function filterResultListAction() {
-			console.log('---resultList---', resultList)
-			// 过滤掉出包含 documentFilter 的 item
-			showResultList = resultList.filter(item => discountFilters.every(filter => item.services.includes(filter)) )
-			console.log('---showResultList---', showResultList)
-			// 重新展示数据
-			showResultListAction()
-		}
+      // 3.监听排序功能 ==============================
+      const sortEl = document.querySelector('.sort')
+      let activeItemEl = sortEl.querySelector('.active')
+      for (let i = 0; i < sortEl.children.length; i++) {
+        const sortItemEl = sortEl.children[i]
+        sortItemEl.index = i
+        sortItemEl.onclick = function () {
+          // 1.取消之前的，添加新的active
+          activeItemEl.classList.remove('active')
+          this.classList.add('active')
+          activeItemEl = this
+          // 2.获取信息
+          const sortKey = this.dataset.key
+          // 3.根据key，对数据进行排序
+          sortResultListAction(sortKey)
+        }
+      }
 
-		showResultListAction()
-		function showResultListAction() {
-			productsEl.innerHTML = ''
-			showResultList.forEach((resultItem, index) => {
-				// 最外层 li
-				var liEl = document.createElement('li')
-				liEl.classList.add('item')
-				// service 里面的内容
-				var serviceStr = ''
-				resultItem.promoLabels.forEach(label => {
-					serviceStr += `<span class="tip">${label}</span>`
-				});
-				liEl.innerHTML = `
+      // 过滤后的数据列表
+      var showResultList = [...resultList]
+      function filterResultListAction() {
+        console.log('---resultList---', resultList)
+        // 过滤掉出包含 documentFilter 的 item
+        showResultList = resultList.filter(item =>
+          discountFilters.every(filter => item.services.includes(filter))
+        )
+        console.log('---showResultList---', showResultList)
+        // 重新展示数据
+        showResultListAction()
+      }
+
+      showResultListAction()
+      function showResultListAction() {
+        productsEl.innerHTML = ''
+        showResultList.forEach((resultItem, index) => {
+          // 最外层 li
+          var liEl = document.createElement('li')
+          liEl.classList.add('item')
+          // service 里面的内容
+          var serviceStr = ''
+          resultItem.promoLabels.forEach(label => {
+            serviceStr += `<span class="tip">${label}</span>`
+          })
+          liEl.innerHTML = `
 				<a href="#">
 					<img class="album" src="${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}" alt="">
 					<div class="name">${resultItem.name}</div>
@@ -151,26 +151,24 @@
 					</div>
 				</a>
 			`
-				productsEl.append(liEl)
+          productsEl.append(liEl)
+        })
+        // 添加空 item，使得 flex 布局最后一行对齐
+        addProductsEmptyItem(productsEl, 2)
+      }
 
-			});
-			// 添加空 item，使得 flex 布局最后一行对齐
-			addProductsEmptyItem(productsEl, 2)
-		}
-
-		// 通过 key 进行排序 =====================
-		function sortResultListAction(key) {
-			switch (key) {
-				case 'default':
-					filterResultListAction()
-					break;
-				default:
-					showResultList.sort((item1, item2) => item2[key] - item1[key])
-					break;
-			}
-			showResultListAction()
-		}
-	</script>
-</body>
-
+      // 通过 key 进行排序 =====================
+      function sortResultListAction(key) {
+        switch (key) {
+          case 'default':
+            filterResultListAction()
+            break
+          default:
+            showResultList.sort((item1, item2) => item2[key] - item1[key])
+            break
+        }
+        showResultListAction()
+      }
+    </script>
+  </body>
 </html>

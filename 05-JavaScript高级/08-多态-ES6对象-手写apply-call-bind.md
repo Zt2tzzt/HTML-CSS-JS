@@ -5,17 +5,17 @@
 - 维基百科：多态（polymorphism）指为不同数据类型的实体提供统一的接口，或使用一个单一的符号 来表示多个不同的类型。
 - 个人总结：不同的数据类型进行同一个操作，表现出不同的行为，就是多态的体现。
 
------
+---
 
-传统的面向对象，多态的3个前提。
+传统的面向对象，多态的 3 个前提。
 
- 1. 必须有继承（或实现接口）
- 2. 必须有重写（子类方法重写父类方法）
- 3. 必须有父类引用指向子类对象。
+1.  必须有继承（或实现接口）
+2.  必须有重写（子类方法重写父类方法）
+3.  必须有父类引用指向子类对象。
 
------
+---
 
-从维基百科定义的角度，JS中到处都是多态，代码体现。
+从维基百科定义的角度，JS 中到处都是多态，代码体现。
 
 ```javascript
 // 表现一
@@ -23,24 +23,24 @@ function sum(a1, a2) {
   return a1 + a2
 }
 sum(20, 30)
-sum("abc", "cba")
+sum('abc', 'cba')
 //表现二
 var foo = 123
-foo = "Hello World"
+foo = 'Hello World'
 foo.split()
-foo = { running: function() {} }
+foo = { running: function () {} }
 foo.running()
 foo = []
 foo.length
 ```
 
------
+---
 
-# ES6对象增强
+# ES6 对象增强
 
-ES6对象字面量增强包含3部分。
+ES6 对象字面量增强包含 3 部分。
 
-- 属性的简写：Property Shorthand 
+- 属性的简写：Property Shorthand
 - 方法的简写：Method Shorthand
 - 计算属性名：Computed Property Names
 
@@ -48,15 +48,16 @@ ES6对象字面量增强包含3部分。
 const nam = 'zzt'
 const age = 18
 const obj = {
-	nam, // 属性的简写
-	foo() { // 方法的简写
-		console.log(this)
-	},
-	[nam + 123]: '哈哈' // 计算属性名
+  nam, // 属性的简写
+  foo() {
+    // 方法的简写
+    console.log(this)
+  },
+  [nam + 123]: '哈哈' // 计算属性名
 }
 ```
 
------
+---
 
 # 数组解构
 
@@ -70,7 +71,7 @@ const [ix, ...newArr] = names // 解构出新数组
 const [ia, ib, ic, id = 'aaa'] = names // 解构赋默认值
 ```
 
------
+---
 
 # 对象解构
 
@@ -85,19 +86,19 @@ const { address: newAddress = '广州市' } = obj // 解构赋默认值
 const { name, ...newObj } = obj // 解构出新对象
 ```
 
------
+---
 
-# 手写apply，call，bind方法
+# 手写 apply，call，bind 方法
 
-手写apply,  call 方法，并进行封装
+手写 apply, call 方法，并进行封装
 
 ```javascript
 // 1.2. 封装原型中
-Function.prototype.ztexec = function(thisArg, otherArgs) {
+Function.prototype.ztexec = function (thisArg, otherArgs) {
   // 1.获取 thisArg, 并且确保是一个对象类型
-  thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
+  thisArg = thisArg === null || thisArg === undefined ? window : Object(thisArg)
   // thisArg.fn = this
-  Object.defineProperty(thisArg, "fn", {
+  Object.defineProperty(thisArg, 'fn', {
     configurable: true,
     value: this
   })
@@ -106,11 +107,11 @@ Function.prototype.ztexec = function(thisArg, otherArgs) {
   return res
 }
 // 1.给函数对象添加方法: ztapply
-Function.prototype.ztapply = function(thisArg, otherArgs) {
+Function.prototype.ztapply = function (thisArg, otherArgs) {
   return this.ztexec(thisArg, otherArgs)
 }
 // 2.给函数对象添加方法: ztcall
-Function.prototype.ztcall = function(thisArg, ...otherArgs) {
+Function.prototype.ztcall = function (thisArg, ...otherArgs) {
   return this.ztexec(thisArg, otherArgs)
 }
 ```
@@ -118,10 +119,10 @@ Function.prototype.ztcall = function(thisArg, ...otherArgs) {
 手写 bind 方法
 
 ```javascript
-Function.prototype.ztbind = function(thisArg, ...args) {
+Function.prototype.ztbind = function (thisArg, ...args) {
   // console.log(this) // -> foo 函数对象
-  thisArg = (thisArg === null || thisArg === undefined) ? window : Object(thisArg)
-  Object.defineProperty(thisArg, "fn", {
+  thisArg = thisArg === null || thisArg === undefined ? window : Object(thisArg)
+  Object.defineProperty(thisArg, 'fn', {
     value: this
   })
   return (...newArgs) => {

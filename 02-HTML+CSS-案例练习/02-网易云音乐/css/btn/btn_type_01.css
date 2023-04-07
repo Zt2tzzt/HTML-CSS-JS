@@ -1,17 +1,17 @@
 .btn_sprite {
-	display: block;
-	background: url(../../image/btn_sprite.png) no-repeat;
-	height: 31px;
-	line-height: 31px;
-	text-align: center;
+  display: block;
+  background: url(../../image/btn_sprite.png) no-repeat;
+  height: 31px;
+  line-height: 31px;
+  text-align: center;
 }
 
 .btn_type_01_sup {
-	background-position: right -100px;
-	padding-right: 5px;
+  background-position: right -100px;
+  padding-right: 5px;
 }
 
 .btn_type_01_sub {
-	background-position: 0 -59px;
-	padding-left: 3px;
+  background-position: 0 -59px;
+  padding-left: 3px;
 }

@@ -1,4 +1,4 @@
-CSS样式规则顺序是怎样的（规范）？
+CSS 样式规则顺序是怎样的（规范）？
 
 1. 定位（Position），布局（Layout）
    1. position

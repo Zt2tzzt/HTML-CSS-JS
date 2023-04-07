@@ -1,10 +1,10 @@
 .main {
-	background: url(../img/bg-img.jpg) no-repeat center top/120% auto;
+  background: url(../img/bg-img.jpg) no-repeat center top/120% auto;
 }
 
 .main .link {
-	display: block;
-	width: 1200px;
-	height: 440px;
-	margin: 8px auto 12px;
+  display: block;
+  width: 1200px;
+  height: 440px;
+  margin: 8px auto 12px;
 }

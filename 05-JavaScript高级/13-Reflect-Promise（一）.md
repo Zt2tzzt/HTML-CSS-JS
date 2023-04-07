@@ -10,9 +10,9 @@
 
 ## 已有 Object 提供对象的操作，为什么还会出现 Reflect
 
-- 这是因为在早期的 ECMA 规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面； 
-- 但是 Object 作为一个**构造函数**，这些操作放到它身上并不合适； 
-- 另外还包含一些类似于 `in`、`delete` 操作符，让 JS 看起来是会有一些奇怪的； 
+- 这是因为在早期的 ECMA 规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面；
+- 但是 Object 作为一个**构造函数**，这些操作放到它身上并不合适；
+- 另外还包含一些类似于 `in`、`delete` 操作符，让 JS 看起来是会有一些奇怪的；
 - 所以在 ES6 中新增了 `Reflect`，让我们这些操作都集中到了 Reflect 对象上；
 - 另外在使用 Proxy 时，可以做到**不操作原对象**；
 
@@ -34,7 +34,7 @@
 
 > Reflect 通常和 Proxy 一起使用，共同完成代理。
 
-## 使用 Reflect 的好处3点。代码实现。
+## 使用 Reflect 的好处 3 点。代码实现。
 
 - 对对象进行操作时，不直接操作原对象。
 - 操作方法会返回布尔值，判断是否操作成功。
@@ -42,9 +42,9 @@
 
 ```javascript
 const obj = {
-  _name: "zzt",
+  _name: 'zzt',
   set name(newValue) {
-    console.log("this:", this) // 默认是 obj，使用 Reflect 调用该访问器，this 改为 reciver 参数。
+    console.log('this:', this) // 默认是 obj，使用 Reflect 调用该访问器，this 改为 reciver 参数。
     this._name = newValue
   },
   get name() {
@@ -52,7 +52,7 @@ const obj = {
   }
 }
 const objProxy = new Proxy(obj, {
-  set: function(target, key, newValue, receiver) {
+  set: function (target, key, newValue, receiver) {
     // target[key] = newValue
     // 1.好处一: 代理对象的目的: 不再直接操作原对象
     // 2.好处二: Reflect.set 方法有返回 Boolean 值, 可以判断本次操作是否成功
@@ -61,18 +61,18 @@ const objProxy = new Proxy(obj, {
          > receiver 就是外层 Proxy 对象
          > Reflect.set/get 最后一个参数, 可以决定对象访问器 setter / getter 的 this 指向
     */
-    console.log("proxy 中设置方法被调用")
+    console.log('proxy 中设置方法被调用')
     const isSuccess = Reflect.set(target, key, newValue, receiver)
     if (!isSuccess) {
       throw new Error(`set ${key} failure`)
     }
   },
-  get: function(target, key, receiver) {
-    console.log("proxy 中获取方法被调用")
+  get: function (target, key, receiver) {
+    console.log('proxy 中获取方法被调用')
     return Reflect.get(target, key, receiver)
   }
 })
-objProxy.name = "CR7"
+objProxy.name = 'CR7'
 objProxy.name
 ```
 
@@ -88,7 +88,7 @@ function Student(name, age) {
   const _this = Reflect.construct(Person, [name, age], Student)
   return _this
 }
-const stu = new Student("zzt", 18)
+const stu = new Student('zzt', 18)
 ```
 
 # Promise
@@ -100,30 +100,36 @@ const stu = new Student("zzt", 18)
 function execCode(counter, successCallback, failureCallback) {
   // 异步任务
   setTimeout(() => {
-    if (counter > 0) { // counter可以计算的情况 
+    if (counter > 0) {
+      // counter可以计算的情况
       let total = 0
       for (let i = 0; i < counter; i++) {
         total += i
       }
       // 在某一个时刻只需要回调传入的函数
       successCallback(counter)
-    } else { // 失败情况, counter有问题
+    } else {
+      // 失败情况, counter有问题
       failureCallback(`${counter}值有问题`)
     }
   }, 3000)
 }
 // 2.ES6 之前,处理异步的代码都是这样封装
-execCode(100, (value) => {
-  console.log("本次执行成功了:", value)
-}, (err) => {
-  console.log("本次执行失败了:", err)
-})
+execCode(
+  100,
+  value => {
+    console.log('本次执行成功了:', value)
+  },
+  err => {
+    console.log('本次执行失败了:', err)
+  }
+)
 ```
 
-1. 需要自行设计回调函数、回调函数的名称、回调函数的使用等； 
+1. 需要自行设计回调函数、回调函数的名称、回调函数的使用等；
 2. 对于不同的开发者、不同的框架设计出来的方案是不同的，那么调用者必须耐心去看别人的源码或者文档，以便理解函数到底怎么用；
 
------
+---
 
 ## 什么是 Promise？
 
@@ -131,8 +137,8 @@ execCode(100, (value) => {
 
 ## 如何使用？
 
-1. 通过 new 创建 Promise 对象时，我们需要传入一个回调函数，我们称之为 `executor` 
-2. 这个回调函数会被立即执行，并且给传入另外两个回调函数`resolve`、`reject`； 
+1. 通过 new 创建 Promise 对象时，我们需要传入一个回调函数，我们称之为 `executor`
+2. 这个回调函数会被立即执行，并且给传入另外两个回调函数`resolve`、`reject`；
 3. 当我们调用 `resolve` 回调函数时，会执行 Promise 对象的 `then` 方法传入的回调函数；
 4. 当我们调用 `reject` 回调函数时，会执行 Promise 对象的 `catch` 方法传入的回调函数；
 
@@ -143,14 +149,16 @@ function execCode(counter) {
   const promise = new Promise((resolve, reject) => {
     // 异步任务
     setTimeout(() => {
-      if (counter > 0) { // counter可以计算的情况 
+      if (counter > 0) {
+        // counter可以计算的情况
         let total = 0
         for (let i = 0; i < counter; i++) {
           total += i
         }
         // 成功的回调
         resolve(total)
-      } else { // 失败情况, counter有问题
+      } else {
+        // 失败情况, counter有问题
         // 失败的回调
         reject(`${counter}有问题`)
       }
@@ -158,14 +166,16 @@ function execCode(counter) {
   })
   return promise
 }
-execCode(255).then(value => {
-  console.log("成功:", value)
-}).catch(err => {
-  console.log("失败:", err)
-})
+execCode(255)
+  .then(value => {
+    console.log('成功:', value)
+  })
+  .catch(err => {
+    console.log('失败:', err)
+  })
 ```
 
-## Promise 执行过程的3个状态。
+## Promise 执行过程的 3 个状态。
 
 - 待定（`pending`）: 初始状态，既没有被兑现，也没有被拒绝；当执行 executor 中的代码时，处于该状态；
 - 已兑现（`fulfilled`）: 意味着操作成功完成；执行了 resolve 时，处于该状态，Promise 已经被兑现；
@@ -181,45 +191,45 @@ execCode(255).then(value => {
 
 如何在 executor 中确定状态。
 
-- 通过 `resolve`，可以兑现（fulfilled）Promise 的状态，也可以称之为已决议（resolved）； 
+- 通过 `resolve`，可以兑现（fulfilled）Promise 的状态，也可以称之为已决议（resolved）；
 - 通过 `reject`，可以拒绝（reject）Promise 的状态；
 
-## resolve 中传入3种不同值
+## resolve 中传入 3 种不同值
 
-resolve 中传入3种不同值的区别。
+resolve 中传入 3 种不同值的区别。
 
-- 如果 resolve 传入一个普通的值或者对象，那么这个值会作为 then 回调的参数； 
-- 如果 resolve 中传入的是另外一个 Promise，那么这个新 Promise 会决定原 Promise 的状态： 
+- 如果 resolve 传入一个普通的值或者对象，那么这个值会作为 then 回调的参数；
+- 如果 resolve 中传入的是另外一个 Promise，那么这个新 Promise 会决定原 Promise 的状态：
 - 如果 resolve 中传入的是一个对象，并且这个对象有实现 `then` 方法，那么会执行该 then 方法，并且根据 then 方法的结
-果来决定 Promise 的状态：
+  果来决定 Promise 的状态：
 
 ```javascript
-const p = new Promise((resolve) => {
+const p = new Promise(resolve => {
   // setTimeout(resolve, 2000)
   setTimeout(() => {
-    resolve("p的resolve")
+    resolve('p的resolve')
   }, 2000)
 })
 const promise = new Promise((resolve, reject) => {
   // ------- 伪代码 ----------
   // 1.普通值
   resolve([
-    {name: "macbook", price: 9998, intro: "有点贵"},
-    {name: "iPhone", price: 9.9, intro: "有点便宜"},
+    { name: 'macbook', price: 9998, intro: '有点贵' },
+    { name: 'iPhone', price: 9.9, intro: '有点便宜' }
   ])
   // 2.resolve(promise)，如果 resolve 的值本身是 Promise 对象, 那么当前的 Promise 的状态会由传入的 Promise 来决定
   resolve(p)
   // 3.resolve(thenable对象)
   resolve({
-    name: "kobe",
-    then: function(resolve) {
+    name: 'kobe',
+    then: function (resolve) {
       resolve(11111)
     }
   })
   // ------- 伪代码 ----------
 })
 promise.then(res => {
-  console.log("then中拿到结果:", res)
+  console.log('then中拿到结果:', res)
 })
 ```
 
@@ -229,38 +239,42 @@ promise.then(res => {
 
 - Promise 的实例方法，`Promise.prototype.then()`
 
-then 方法接收2个参数的写法。
+then 方法接收 2 个参数的写法。
 
 - fulfilled 的回调函数：当状态变成 fulfilled 时会回调的函数；
 - rejected 的回调函数：当状态变成 rejected 时会回调的函数；
 
 ```javascript
-promise.then(res => {
-  console.log("成功回调~", res)
-}, err => {
-  console.log("失败回调~", err)
-})
+promise.then(
+  res => {
+    console.log('成功回调~', res)
+  },
+  err => {
+    console.log('失败回调~', err)
+  }
+)
 ```
+
 then 方法多次调用的写法。
 
--  一个 Promise 的 then 方法是可以被多次调用的：
+- 一个 Promise 的 then 方法是可以被多次调用的：
 - 每次调用我们都可以传入对应的 fulfilled 回调；
--  当 Promise 的状态变成 fulfilled 的时候，这些回调函数都会被执行；
+- 当 Promise 的状态变成 fulfilled 的时候，这些回调函数都会被执行；
 
 ```javascript
 promise.then(res => {
-  console.log("成功回调~", res)
+  console.log('成功回调~', res)
 })
 promise.then(res => {
-  console.log("成功回调~", res)
+  console.log('成功回调~', res)
 })
 promise.then(res => {
-  console.log("成功回调~", res)
+  console.log('成功回调~', res)
 })
 // ...
 ```
 
------
+---
 
 如果有 Promise 会出现 rejected 状态，那么一般监听 then 方法，都要监听 catch（在 then 方法后链式调用，或者在 then 方法中传第二个参数），否则 rejected 后会报错。
 
@@ -268,7 +282,7 @@ promise.then(res => {
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
-	reject("failure")
+  reject('failure')
 })
 promise.then(res => console.log(res)) // 即使下面有 catch 方法，还是会报错。
 promise.catch(err => console.log(err))
@@ -278,18 +292,22 @@ promise.catch(err => console.log(err))
 
 ```javascript
 const promise = new Promise((resolve, reject) => {
-  reject("failure")
+  reject('failure')
 })
-promise.then(res => {
-  console.log("成功的回调:", res)
-}).catch(err => {
-  console.log("失败的回调:", err)
-})
+promise
+  .then(res => {
+    console.log('成功的回调:', res)
+  })
+  .catch(err => {
+    console.log('失败的回调:', err)
+  })
 // 或者
-promise.then(res => {
-  console.log("成功回调~", res)
-}, err => {
-  console.log("失败回调~", err)
-})
+promise.then(
+  res => {
+    console.log('成功回调~', res)
+  },
+  err => {
+    console.log('失败回调~', err)
+  }
+)
 ```
-

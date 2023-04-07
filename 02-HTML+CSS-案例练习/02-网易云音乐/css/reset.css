@@ -1,28 +1,38 @@
 html {
-	font-size: 12px;
-	margin-bottom: 200px;
+  font-size: 12px;
+  margin-bottom: 200px;
 }
-body, h1, ul, ol, li, dl, dt, dd, p {
-	padding: 0;
-	margin: 0;
+body,
+h1,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p {
+  padding: 0;
+  margin: 0;
 }
 h1 {
-	font-weight: 400;
+  font-weight: 400;
 }
 a {
-	text-decoration: none;
-	color: #000;
+  text-decoration: none;
+  color: #000;
 }
-ul, ol, li {
-	list-style: none;
+ul,
+ol,
+li {
+  list-style: none;
 }
 input {
-	outline: none;
-	border: none;
+  outline: none;
+  border: none;
 }
 img {
-	vertical-align: top;
+  vertical-align: top;
 }
 i {
-	font-style: normal;
+  font-style: normal;
 }

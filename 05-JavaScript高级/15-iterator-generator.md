@@ -6,7 +6,7 @@
 
 - String、Array、Map、Set、arguments 对象、NodeList 集合
 
------
+---
 
 ## 适用场景
 
@@ -26,23 +26,26 @@
 
 ```javascript
 class Classroom {
-	constructor(name, address, students) {
-		this.name = name
-		this.address = address
-		this.students = students
-	}
-	[Symbol.iterator]() {
-		let index = 0
-		return {
-			next: () => {
-				return index < this.students.length ? {
-					done: false, value: this.students[index++]
-				} : {
-					done: true
-				}
-			}
-		}
-	}
+  constructor(name, address, students) {
+    this.name = name
+    this.address = address
+    this.students = students
+  }
+  [Symbol.iterator]() {
+    let index = 0
+    return {
+      next: () => {
+        return index < this.students.length
+          ? {
+              done: false,
+              value: this.students[index++]
+            }
+          : {
+              done: true
+            }
+      }
+    }
+  }
 }
 ```
 
@@ -59,36 +62,41 @@ class Classroom {
 
 ```javascript
 class Classroom {
-	constructor(name, address, students) {
-		this.name = name
-		this.address = address
-		this.students = students
-	}
-	[Symbol.iterator]() {
-		let index = 0
-		return {
-			next: () => {
-				return index < this.students.length ? {
-					done: false, value: this.students[index++]
-				} : {
-					done: true
-				}
-			},
-			return: () => { // 可迭代协议中，也可实现 return 方法。
-				console.log('监听到迭代器终止运行');
-				return { done: true }
-			}
-		}
-	}
+  constructor(name, address, students) {
+    this.name = name
+    this.address = address
+    this.students = students
+  }
+  [Symbol.iterator]() {
+    let index = 0
+    return {
+      next: () => {
+        return index < this.students.length
+          ? {
+              done: false,
+              value: this.students[index++]
+            }
+          : {
+              done: true
+            }
+      },
+      return: () => {
+        // 可迭代协议中，也可实现 return 方法。
+        console.log('监听到迭代器终止运行')
+        return { done: true }
+      }
+    }
+  }
 }
 const classromm = new Classroom('一年二班', '5栋505号', ['abc', 'cba', 'nba'])
 for (const stu of classromm) {
-	if (stu === 'cba') {
-		break
-	}
+  if (stu === 'cba') {
+    break
+  }
 }
 ```
------
+
+---
 
 # generator
 
@@ -109,8 +117,8 @@ for (const stu of classromm) {
 - 生成器函数需要在 `function` 的后面加一个符号：`*`
 - 生成器函数可以通过 `yield` 关键字来控制函数的执行流程：
 - 生成器函数的返回值是一个 Generator（生成器）：
-	- 生成器事实上是一种特殊的迭代器；（它既是迭代器，又是一个可迭代对象）
-	- MDN：Instead, they return a special type of iterator, called a Generator.
+  - 生成器事实上是一种特殊的迭代器；（它既是迭代器，又是一个可迭代对象）
+  - MDN：Instead, they return a special type of iterator, called a Generator.
 
 ## 生成器函数的执行流程
 
@@ -123,15 +131,15 @@ for (const stu of classromm) {
 ```javascript
 // 1.定义了一个生成器函数
 function* foo() {
-  console.log("1111")
-  console.log("2222")
+  console.log('1111')
+  console.log('2222')
   yield
-  console.log("3333")
-  console.log("4444")
+  console.log('3333')
+  console.log('4444')
   yield
-  console.log("5555")
-  console.log("6666")
-	yield
+  console.log('5555')
+  console.log('6666')
+  yield
 }
 // 2.调用生成器函数, 返回一个生成器对象
 const generator = foo()
@@ -141,20 +149,21 @@ generator.next() // {value: undefined, done: false}
 generator.next() // {value: undefined, done: false}
 generator.next() // {value: undefined, done: true}
 ```
+
 ## 在生成器函数中使用 return，返回值是怎样的？
 
 ```javascript
 function* foo() {
-	console.log("1111")
-	console.log("2222")
-	yield 'aaa'
-	console.log("3333")
-	console.log("4444")
-	yield 'bbb'
-	return
-	console.log("5555")
-	console.log("6666")
-	yield 'ccc'
+  console.log('1111')
+  console.log('2222')
+  yield 'aaa'
+  console.log('3333')
+  console.log('4444')
+  yield 'bbb'
+  return
+  console.log('5555')
+  console.log('6666')
+  yield 'ccc'
 }
 const generator = foo()
 generator.next() // {value: 'aaa', done: false}
@@ -174,15 +183,15 @@ generator.next() // {value: undefined, done: true}
 
 ```javascript
 function* foo(name1) {
-  console.log("执行内部代码:1111", name1) // name1
-  console.log("执行内部代码:2222", name1) // name1
-  const name2 = yield "aaaa"
-  console.log("执行内部代码:3333", name2) // name2
-  console.log("执行内部代码:4444", name2) // name2
-  const name3 = yield "bbbb"
-  console.log("执行内部代码:5555", name3) // name3
-  console.log("执行内部代码:6666", name3) // name3
-  yield "cccc"
+  console.log('执行内部代码:1111', name1) // name1
+  console.log('执行内部代码:2222', name1) // name1
+  const name2 = yield 'aaaa'
+  console.log('执行内部代码:3333', name2) // name2
+  console.log('执行内部代码:4444', name2) // name2
+  const name3 = yield 'bbbb'
+  console.log('执行内部代码:5555', name3) // name3
+  console.log('执行内部代码:6666', name3) // name3
+  yield 'cccc'
 }
 const generator = foo('name1')
 generator.next() // {value: ‘aaa’, done: false}
@@ -199,15 +208,15 @@ generator.next('name4') // {value: undefined, done: true}
 
 ```javascript
 function* foo(name1) {
-	console.log("执行内部代码:1111", name1) // name1
-	console.log("执行内部代码:2222", name1) // name1
-	const name2 = yield "aaaa"
-	console.log("执行内部代码:3333", name2) // 不会打印
-	console.log("执行内部代码:4444", name2) // 不会打印
-	const name3 = yield "bbbb"
-	console.log("执行内部代码:5555", name3) // 不会打印
-	console.log("执行内部代码:6666", name3) // 不会打印
-	yield "cccc"
+  console.log('执行内部代码:1111', name1) // name1
+  console.log('执行内部代码:2222', name1) // name1
+  const name2 = yield 'aaaa'
+  console.log('执行内部代码:3333', name2) // 不会打印
+  console.log('执行内部代码:4444', name2) // 不会打印
+  const name3 = yield 'bbbb'
+  console.log('执行内部代码:5555', name3) // 不会打印
+  console.log('执行内部代码:6666', name3) // 不会打印
+  yield 'cccc'
 }
 const generator = foo('name1')
 generator.next() // {value: 'aaa', done: false}
@@ -219,25 +228,25 @@ generator.next('name4') // {value: undefined, done: true}
 
 生成器函数返回的生成器调用`throw` 方法。
 
-- 抛出异常后我们可以在生成器函数中捕获异常； 
+- 抛出异常后我们可以在生成器函数中捕获异常；
 - 在 catch 语句中不能继续 yield 新的值了，但是可以在 catch 语句外使用 yield 继续中断函数的执行；
 
 ```javascript
 function* foo(name1) {
-	console.log(name1) // name1
-	console.log(name1) // name1
+  console.log(name1) // name1
+  console.log(name1) // name1
   let name2
   try {
-    name2 = yield "aaaa"
+    name2 = yield 'aaaa'
   } catch (err) {
     console.log('err', err) // name3 error
   }
   console.log(name2) // undefined
   console.log(name2) // undefined
-  const name3 = yield "bbbb"
-	console.log(name3) // name3
-	console.log(name3) // name3
-	yield "cccc"
+  const name3 = yield 'bbbb'
+  console.log(name3) // name3
+  console.log(name3) // name3
+  yield 'cccc'
 }
 const generator = foo('name1')
 generator.next() // {value: ‘aaaa’, done: false}
@@ -250,9 +259,9 @@ generator.next('name3') // {value: 'ccc', done: false}
 利用生成器函数，使工厂函数生成迭代器，代码重构。
 
 ```javascript
-const names = ["abc", "cba", "nba"]
+const names = ['abc', 'cba', 'nba']
 function* createArrayIterator(arr) {
-  for(let i = 0; i < arr.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     yield arr[i]
   }
 }
@@ -269,7 +278,7 @@ namesIterator.next()
 对以上代码做重构。
 
 ```javascript
-const names = ["abc", "cba", "nba"]
+const names = ['abc', 'cba', 'nba']
 function* createArrayIterator(arr) {
   yield* arr
 }
@@ -278,17 +287,18 @@ namesIterator.next()
 namesIterator.next()
 // 。。。
 ```
+
 ## 使用 `yield*` 语法，重构生成可迭代对象的类。
 
 ```javascript
 class Classroom {
-	constructor(name, address, students) {
-		this.name = name
-		this.address = address
-		this.students = students
-	}
-	*[Symbol.iterator]() {
-		yield* this.students
-	}
+  constructor(name, address, students) {
+    this.name = name
+    this.address = address
+    this.students = students
+  }
+  *[Symbol.iterator]() {
+    yield* this.students
+  }
 }
 ```

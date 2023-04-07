@@ -1,147 +1,147 @@
 .rank-section .content {
-	display: flex;
-	height: 472px;
-	margin-top: 20px;
-	background: url(../../image/rank_bg.png) no-repeat;
+  display: flex;
+  height: 472px;
+  margin-top: 20px;
+  background: url(../../image/rank_bg.png) no-repeat;
 }
 
 .rank-section .content .rank {
-	width: 230px;
+  width: 230px;
 }
 
 .rank-section .content .rank .header {
-	display: flex;
-	height: 120px;
-	box-sizing: border-box;
-	padding: 20px 0 0 20px;
+  display: flex;
+  height: 120px;
+  box-sizing: border-box;
+  padding: 20px 0 0 20px;
 }
 
 .rank-section .rank .header .album {
-	position: relative;
-	width: 80px;
-	height: 80px;
+  position: relative;
+  width: 80px;
+  height: 80px;
 }
 
 .rank-section .rank .header .album img {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .rank-section .rank .header .album .cover {
-	position: absolute;
-	right: 0;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	background: url(../../image/coverall.png) no-repeat -145px -57px	;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: url(../../image/coverall.png) no-repeat -145px -57px;
 }
 
 .rank-section .rank .header .info {
-	padding: 10px 0 0 12px;
+  padding: 10px 0 0 12px;
 }
 
 .rank-section .rank .header .info .title {
-	font-size: 14px;
-	font-weight: bold;
-	color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
 }
 
 .rank-section .rank .header .info .operation {
-	margin-top: 12px;
+  margin-top: 12px;
 }
 
 .rank-section .rank .header .info .btn {
-	display: inline-block;
-	width: 22px;
-	height: 22px;
-	background: url(../../image/main_sprite.png) no-repeat;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background: url(../../image/main_sprite.png) no-repeat;
 }
 
 .rank-section .rank .header .info .btn.play {
-	background-position: -267px -205px;
+  background-position: -267px -205px;
 }
 .rank-section .rank .header .info .btn.play:hover {
-	background-position: -267px -235px;
+  background-position: -267px -235px;
 }
 
 .rank-section .rank .header .info .btn.favor {
-	background-position: -300px -205px;
-	margin-left: 8px;
+  background-position: -300px -205px;
+  margin-left: 8px;
 }
 .rank-section .rank .header .info .btn.favor:hover {
-	background-position: -300px -235px;
+  background-position: -300px -235px;
 }
 
 .rank-section .rank .list {
-	padding-left: 12px;
+  padding-left: 12px;
 }
 
 .rank-section .rank .list .item {
-	display: flex;
-	height: 32px;
-	line-height: 32px;
-	padding-left: 5px;
+  display: flex;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 5px;
 }
 
 .rank-section .rank .list .item .no {
-	width: 35px;
-	font-size: 16px;
-	color: #666;
-	text-align: center;
+  width: 35px;
+  font-size: 16px;
+  color: #666;
+  text-align: center;
 }
 
-.rank-section .rank .list .item:nth-child(-n+3) .no {
-	color: #c10d0c;
+.rank-section .rank .list .item:nth-child(-n + 3) .no {
+  color: #c10d0c;
 }
 
 .rank-section .rank .list .item .song {
-	flex: 1;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+  flex: 1;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .rank-section .rank .list .item .song:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 .rank-section .rank .list .item .operation {
-	display: none;
-	align-items: center;
-	width: 82px;
+  display: none;
+  align-items: center;
+  width: 82px;
 }
 
 .rank-section .rank .list .item:hover .operation {
-	display: flex;
+  display: flex;
 }
 
 .rank-section .rank .list .item .operation .btn {
-	width: 17px;
-	height: 17px;
-	margin-right: 8px;
-	background: url(../../image/main_sprite.png) no-repeat;
+  width: 17px;
+  height: 17px;
+  margin-right: 8px;
+  background: url(../../image/main_sprite.png) no-repeat;
 }
 
 .rank-section .rank .list .item .operation .btn.play {
-	background-position: -267px -268px;
+  background-position: -267px -268px;
 }
 
 .rank-section .rank .list .item .operation .btn.add {
-	background: url(../../image/icon.png) no-repeat;
-	background-position: 2px -698px;
+  background: url(../../image/icon.png) no-repeat;
+  background-position: 2px -698px;
 }
 
 .rank-section .rank .list .item .operation .btn.favor {
-	background-position: -297px -268px;
+  background-position: -297px -268px;
 }
 
 .rank-section .rank .list .more {
-	height: 32px;
-	line-height: 32px;
-	text-align: right;
-	padding-right: 32px;
+  height: 32px;
+  line-height: 32px;
+  text-align: right;
+  padding-right: 32px;
 }
 
 .rank-section .rank .list .more a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }

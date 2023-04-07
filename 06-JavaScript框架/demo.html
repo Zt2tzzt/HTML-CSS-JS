@@ -1,48 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
 
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<style>
-		.box {
-			width: 100px;
-			height: 100px;
-			background-color: #f00;
-		}
-	</style>
-</head>
+  <body>
+    <ul id="list">
+      <li class="li-1">li-1</li>
+      <li class="li-2">li-2</li>
+      <li class="li-3">li-3</li>
+      <li class="li-4">li-4</li>
+      <li class="li-5">li-5</li>
+    </ul>
 
-<body>
+    <div class="box"></div>
 
-	<ul id="list">
-		<li class="li-1">li-1</li>
-		<li class="li-2">li-2</li>
-		<li class="li-3">li-3</li>
-		<li class="li-4">li-4</li>
-		<li class="li-5">li-5</li>
-	</ul>
-
-	<div class="box"></div>
-
-	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-		crossorigin="anonymous"></script>
-	<script>
-
-		const arr = [1,2,3, '',4,5,6]
-		arr.forEach(item => {
-			if (item === 2) return
-			console.log('---item---', item)
-			if (item === 4) return false
-		});
-		const num = arr.reduce((accumulation, currentValue) => {
-			return accumulation + (currentValue || 0)
-		}, 0)
-		console.log('---num---', num);
-
-	</script>
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.js"
+      integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const arr = [1, 2, 3, '', 4, 5, 6]
+      arr.forEach(item => {
+        if (item === 2) return
+        console.log('---item---', item)
+        if (item === 4) return false
+      })
+      const num = arr.reduce((accumulation, currentValue) => {
+        return accumulation + (currentValue || 0)
+      }, 0)
+      console.log('---num---', num)
+    </script>
+  </body>
 </html>

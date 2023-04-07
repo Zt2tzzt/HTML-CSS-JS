@@ -53,17 +53,17 @@
 
 ```html
 <div class="container">
-	<!-- flex: 列宽是自动拉伸 -->
-	<div class="row">
-		<div class="col item">1</div>
-		<div class="col item">2</div>
-		<div class="col item">3</div>
-		<div class="col item">4</div>
-		<div class="col item">5</div>
-		<div class="col item">6</div>
-		<div class="col item">7</div>
-		<div class="col item">8</div>
-	</div>
+  <!-- flex: 列宽是自动拉伸 -->
+  <div class="row">
+    <div class="col item">1</div>
+    <div class="col item">2</div>
+    <div class="col item">3</div>
+    <div class="col item">4</div>
+    <div class="col item">5</div>
+    <div class="col item">6</div>
+    <div class="col item">7</div>
+    <div class="col item">8</div>
+  </div>
 </div>
 ```
 
@@ -71,25 +71,25 @@
 
 ```html
 <div class="container">
-	<div class="row">
-		<div class="col-6 item">
-			<!-- 嵌套网格系统( 嵌套的时候是可以省略 container ) -->
-			<div class="row">
-				<div class="col-3 item">1</div>
-				<div class="col-3 item">2</div>
-				<div class="col-3 item">3</div>
-				<div class="col-3 item">4</div>
-			</div>
-		</div>
-		<div class="col-6 item">
-			<div class="row">
-				<div class="col-3 item">1</div>
-				<div class="col-3 item">2</div>
-				<div class="col-3 item">3</div>
-				<div class="col-3 item">4</div>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-6 item">
+      <!-- 嵌套网格系统( 嵌套的时候是可以省略 container ) -->
+      <div class="row">
+        <div class="col-3 item">1</div>
+        <div class="col-3 item">2</div>
+        <div class="col-3 item">3</div>
+        <div class="col-3 item">4</div>
+      </div>
+    </div>
+    <div class="col-6 item">
+      <div class="row">
+        <div class="col-3 item">1</div>
+        <div class="col-3 item">2</div>
+        <div class="col-3 item">3</div>
+        <div class="col-3 item">4</div>
+      </div>
+    </div>
+  </div>
 </div>
 ```
 
@@ -107,15 +107,16 @@
 
   ```html
   <div class="container">
-  	<div class="row">
-  		<div class="col-auto item">auto layout layout layout</div><!--该列的宽度，由内容决定，不会拉伸-->
-  		<div class="col item">1</div>
-  		<div class="col item">2</div>
-  		<div class="col item">3</div>
-  	</div>
+    <div class="row">
+      <div class="col-auto item">auto layout layout layout</div>
+      <!--该列的宽度，由内容决定，不会拉伸-->
+      <div class="col item">1</div>
+      <div class="col item">2</div>
+      <div class="col item">3</div>
+    </div>
   </div>
   ```
-  
+
 - col-{num}: 指定某个列的宽（支持 12 列网格）。
 
   - 底层是 `flex: 0 0 x%`，`max-width: x%`
@@ -124,7 +125,7 @@
 
 网格系统响应式类的概念和使用。
 
-- 5个断点（Breakpoints）
+- 5 个断点（Breakpoints）
   - `none(xs)` : <576px 、`sm` : >=576px、`md` : >=768px、 `lg` : >=992、 `xl` : >=1200px
 - 响应式列布局的类
   - `col-sm` : 默认 width:100%，当屏幕>=576px 该类启用（flexbox 布局）, 启用：flex-grow: 1，max-width: 100%。
@@ -140,14 +141,14 @@
 
 ```html
 <div class="container">
-	<div class="row">
-		<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">1</div>
-		<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">2</div>
-		<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">3</div>
-		<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">4</div>
-		<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">5</div>
-		<div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">6</div>
-	</div>
+  <div class="row">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">1</div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">2</div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">3</div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">4</div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">5</div>
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 item">6</div>
+  </div>
 </div>
 ```
 
@@ -175,9 +176,7 @@
 <!-- 2.某个元素只在 lg(>=992px) 和 xl 屏隐藏 -->
 <h1 class="d-block d-lg-none">某个元素只在lg(>=992px) 和 xl 屏隐藏</h1>
 <!-- 3.某个元素只在 md(>=768px)，小于 lg 时屏隐藏；-->
-<h1 class="d-block d-md-none d-lg-block">
-	某个元素只在大于 md(768px)，小于 lg（992） 时 屏隐藏；
-</h1>
+<h1 class="d-block d-md-none d-lg-block">某个元素只在大于 md(768px)，小于 lg（992） 时 屏隐藏；</h1>
 ```
 
 ---
@@ -213,47 +212,40 @@
 ```html
 <h1>1.Brand</h1>
 <nav class="navbar navbar-dark bg-dark">
-	<a class="navbar-brand" href="#">
-		<img
-			src="https://v4.bootcss.com/docs/4.6/assets/brand/bootstrap-solid.svg"
-			width="30"
-			height="30"
-			alt=""
-		/>
-	</a>
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://v4.bootcss.com/docs/4.6/assets/brand/bootstrap-solid.svg"
+      width="30"
+      height="30"
+      alt=""
+    />
+  </a>
 </nav>
 
 <h1>2.Nav Link</h1>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<div class="container">
-		<a class="navbar-brand" href="#">Brand</a>
-		<button
-			class="navbar-toggler"
-			type="button"
-			data-toggle="collapse"
-			data-target="#navbarNav"
-		>
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav">
-				<li class="nav-item active">
-					<a class="nav-link" href="#"
-						>Home <span class="sr-only">(current)</span></a
-					>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Features</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Pricing</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled">Disabled</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+  <div class="container">
+    <a class="navbar-brand" href="#">Brand</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
 ```
 

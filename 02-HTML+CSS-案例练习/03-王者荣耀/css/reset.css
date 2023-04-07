@@ -1,21 +1,33 @@
-body, h1, h2, h3, ul, ol, li, dl, dt, dd, p {
-	margin: 0;
-	padding: 0;
+body,
+h1,
+h2,
+h3,
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+p {
+  margin: 0;
+  padding: 0;
 }
 
 a {
-	text-decoration: none;
-	color: #333;
+  text-decoration: none;
+  color: #333;
 }
 
 img {
-	vertical-align: top;
+  vertical-align: top;
 }
 
-ul, ol, li {
-	list-style: none;
+ul,
+ol,
+li {
+  list-style: none;
 }
 
 i {
-	font-style: normal;
+  font-style: normal;
 }

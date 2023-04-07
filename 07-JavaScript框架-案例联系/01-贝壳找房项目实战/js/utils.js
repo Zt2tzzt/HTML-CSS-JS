@@ -4,7 +4,7 @@ function debounce(fn, delay = 500, immediate = false) {
   let isInvoke = false
 
   // 2.真正执行的函数
-  const _debounce = function(...args) {
+  const _debounce = function (...args) {
     // 取消上一次的定时器
     if (timer) clearTimeout(timer)
 
@@ -32,8 +32,7 @@ function throttle(fn, interval = 400, options = { leading: true, trailing: false
   let timer = null
 
   // 2.事件触发时, 真正执行的函数
-  const _throttle = function(...args) {
-
+  const _throttle = function (...args) {
     // 2.1.获取当前事件触发时的时间
     const nowTime = new Date().getTime()
     if (!lastTime && !leading) lastTime = nowTime
@@ -56,7 +55,7 @@ function throttle(fn, interval = 400, options = { leading: true, trailing: false
     if (trailing && !timer) {
       timer = setTimeout(() => {
         timer = null
-        lastTime = !leading ? 0: new Date().getTime()
+        lastTime = !leading ? 0 : new Date().getTime()
         fn.apply(this, args)
       }, remainTime)
     }

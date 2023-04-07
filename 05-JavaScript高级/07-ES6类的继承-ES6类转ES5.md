@@ -13,10 +13,10 @@ class Student extends Person {}
 
 ## 使用方法
 
-super 关键字的2种使用。
+super 关键字的 2 种使用。
 
 - `super(...)` 来调用一个父类 constructor（只能在子类 constructor 中调用）
-- `super.method(...)` 来调用一个父类方法。 
+- `super.method(...)` 来调用一个父类方法。
 
 ## 调用时机
 
@@ -24,7 +24,7 @@ super 的调用时机。在子（派生）类的构造函数 constructor 中，*
 
 ## 使用场景
 
-super 的使用位置3个。
+super 的使用位置 3 个。
 
 - 子类的构造函数、
 - 实例方法、
@@ -41,10 +41,10 @@ class Person {
     this.age = age
   }
   running() {
-    console.log(this.name, "running~")
+    console.log(this.name, 'running~')
   }
   eating() {
-    console.log(this.name, "eating~")
+    console.log(this.name, 'eating~')
   }
   static sleeping() {
     console.log('sleeping~')
@@ -58,9 +58,9 @@ class Student extends Person {
   }
   studying() {
     super.eating()
-    console.log("studying~")
+    console.log('studying~')
   }
- 	static rest() {
+  static rest() {
     console.log('student rest')
     super.sleeping() // 只能在子类的静态方法中使用 super 调用父类的静态方法。
   }
@@ -74,23 +74,23 @@ class Student extends Person {
 ```javascript
 class Animal {
   running() {
-    console.log("running")
+    console.log('running')
   }
   eating() {
-    console.log("eating")
+    console.log('eating')
   }
   static sleep() {
-    console.log("static animal sleep")
+    console.log('static animal sleep')
   }
 }
 class Dog extends Animal {
   // 子类如果对于父类的方法实现不满意(继承过来的方法)，重新实现称之为重写(父类方法的重写)
   running() {
-    console.log("dog四条腿")
+    console.log('dog四条腿')
     super.running()
   }
   static sleep() {
-    console.log("趴着")
+    console.log('趴着')
     super.sleep()
   }
 }
@@ -130,36 +130,36 @@ JavaScript 中类不能实现多继承，不能实现接口。使用混入实现
 function mixinSwimming(BaseClass) {
   return class extends BaseClass {
     running() {
-      console.log("running~")
+      console.log('running~')
     }
   }
 }
 function mixinFlying(BaseClass) {
   return class extends BaseClass {
     flying() {
-      console.log("flying~")
+      console.log('flying~')
     }
   }
 }
 class Bird {
   eating() {
-    console.log("eating~")
+    console.log('eating~')
   }
 }
 const NewBird1 = mixinSwimming(mixinFlying(Bird))
-class NewBird2 extends mixinRunner(mixinAnimal(Bird)) { }
+class NewBird2 extends mixinRunner(mixinAnimal(Bird)) {}
 ```
 
 # 认识 babel
 
 babel 是什么？有什么用？
 
-- Babel 是一个工具链，最早用于在旧浏览器或环境中将ES6+代码转成向后兼容的版本。
+- Babel 是一个工具链，最早用于在旧浏览器或环境中将 ES6+代码转成向后兼容的版本。
 - 现在主要用于语法转换，源代码转换等。
 
-- Babel本质上是一个编译器。
+- Babel 本质上是一个编译器。
 
------
+---
 
 ## 纯函数标记
 
@@ -169,23 +169,23 @@ babel 是什么？有什么用？
 var Person = /*#__PURE__*/ (function () { ... })
 ```
 
------
+---
 
-理解使用 babel 将ES6中 class 编写的代码转成 ES5代码的过程。
+理解使用 babel 将 ES6 中 class 编写的代码转成 ES5 代码的过程。
 
------
+---
 
-# ES5中实现类（静态）方法的继承
+# ES5 中实现类（静态）方法的继承
 
 ```javascript
 function cerateObj2(obj) {
-	function Fn() { }
-	Fn.prototype = obj
-	return new Fn()
+  function Fn() {}
+  Fn.prototype = obj
+  return new Fn()
 }
 function inherit(Subtype, Supertype) {
   Subtype.prototype = createObject2(Supertype.prototype)
-  Object.defineProperty(Subtype.prototype, "constructor", {
+  Object.defineProperty(Subtype.prototype, 'constructor', {
     configurable: true,
     writable: true,
     value: Subtype
@@ -193,4 +193,3 @@ function inherit(Subtype, Supertype) {
   Object.setPrototypeOf(Subtype, Supertype) // 实现类（静态）方法的继承
 }
 ```
-

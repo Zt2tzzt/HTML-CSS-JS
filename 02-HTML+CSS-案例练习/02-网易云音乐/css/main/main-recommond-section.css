@@ -1,17 +1,17 @@
 .main .area-left .recommend-section .content {
-	padding: 20px 0 45px;
-	/* background-color: orange; */
+  padding: 20px 0 45px;
+  /* background-color: orange; */
 }
 .main .area-left .recommend-section .content ul {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 .main .area-left .recommend-section .content .box {
   width: 140px;
   height: 204px;
-	/* margin-right: 26px; */
-	margin-bottom: 30px;
+  /* margin-right: 26px; */
+  margin-bottom: 30px;
 }
 .main .area-left .recommend-section .content .box .top {
   /* top的宽高由img撑开 */
@@ -79,27 +79,27 @@
   margin-top: 10px;
   font-size: 14px;
   display: block;
-	
-	overflow: hidden;
-	text-overflow: ellipsis;
-	display: -webkit-box;
-	-webkit-line-clamp: 3;
-	-webkit-box-orient: vertical;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 .main .area-left .recommend-section .content .box .bottom:hover {
   text-decoration: underline;
 }
 
 .icon-radio {
-	position: relative;
-	top: 2px;
+  position: relative;
+  top: 2px;
 }
 .iconall_sprite {
-	display: inline-block;
-	background: url(../../image/icon.png);
+  display: inline-block;
+  background: url(../../image/icon.png);
 }
 .inconal_sprite_radio {
-	background-position: -31px -658px;
-	width: 35px;
-	height: 15px;
+  background-position: -31px -658px;
+  width: 35px;
+  height: 15px;
 }

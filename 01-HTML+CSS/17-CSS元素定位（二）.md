@@ -1,18 +1,18 @@
-绝对定位 absolute 的特性2点。
+绝对定位 absolute 的特性 2 点。
 
 - 元素脱离 normal flow（脱离标准流、脱标）
 - 可以通过 `left`、`right`、`top`、`bottom` 进行定位
-	- 定位参照对象是**最邻近的定位祖先**元素。
-	- 如果找不到这样的祖先元素，参照对象是视口。
+  - 定位参照对象是**最邻近的定位祖先**元素。
+  - 如果找不到这样的祖先元素，参照对象是视口。
 
------
+---
 
-什么是定位元素2点。
+什么是定位元素 2 点。
 
 - position 值不为 static 的元素。
 - 也就是 position 值为 **relative、absolute、fixed** 的元素。
 
------
+---
 
 元素嵌套定位案例的实现。
 
@@ -51,9 +51,9 @@
 </body>
 ```
 
------
+---
 
-子绝父相的理解2点（单纯记住，没有意义，有其它情况存在）。
+子绝父相的理解 2 点（单纯记住，没有意义，有其它情况存在）。
 
 - 在绝大多数情况下，子元素的绝对定位都是相对于父元素进行定位。
 - 如果希望子元素相对于父元素进行定位，又不希望父元素脱标，常用解决方案是：
@@ -62,7 +62,7 @@
 
 简称为“子绝父相"。
 
------
+---
 
 将 position 设置为 **absolute / fixed** 元素，称为 **绝对定位元素**（absolutely positioned element）。
 
@@ -70,14 +70,14 @@ position 值对应元素性质对比
 
 |                     | 脱离标准流 | 定位元素 | 绝对定位元素 | 定位参照对象                             |
 | ------------------- | ---------- | -------- | ------------ | ---------------------------------------- |
-| static - 静态定位   | ❌          | ❌        | ❌            | ❌                                        |
-| relative - 相对定位 | ❌          | ✔        | ❌            | 元素自己原来的位置                       |
+| static - 静态定位   | ❌         | ❌       | ❌           | ❌                                       |
+| relative - 相对定位 | ❌         | ✔        | ❌           | 元素自己原来的位置                       |
 | absolute - 绝对定位 | ✔          | ✔        | ✔            | 最邻近的祖先定位元素（找不到，参照视口） |
 | fixed - 固定定位    | ✔          | ✔        | ✔            | 视口                                     |
 
------
+---
 
-绝对定位元素的特点（一）5点。
+绝对定位元素的特点（一）5 点。
 
 - 可以随意设置宽高。宽高默认由内容决定。
 - 不再受标准流的约束，不再严格按照从上到下、从左到右排布。
@@ -85,25 +85,25 @@ position 值对应元素性质对比
 - 不再给父元素汇报宽高数据（此时如果父元素没有设置宽高，那么父元素会消失）。
 - 脱标元素内部默认还是按照标准流布局。
 
------
+---
 
 对于绝对定位元素来说：
 
 - 定位参照对象的宽度（固定） = left + right + margin-left + margin-right + 绝对定位元素的实际占用宽度。
 - 定位参照对象的高度（固定） = top + bottom + margin-top + margin-bottom + 绝对定位元素的实际占用高度。
 
-利用以上2个公式，实现绝对定位元素的水平，垂直居中。是绝对的居中显示，不存在兼容性问题。
+利用以上 2 个公式，实现绝对定位元素的水平，垂直居中。是绝对的居中显示，不存在兼容性问题。
 
-衍生出的规律2点。
+衍生出的规律 2 点。
 
 - 绝对定位元素的宽高和定位参照对象一样，可给绝对定位元素设置以下属性。
-	- left: 0、right: 0、top: 0、bottom: 0、margin: 0（不设置宽或高，浏览器会优先把父元素的宽高分配给绝对定位元素，导致宽或高占据父元素的100%）。
+  - left: 0、right: 0、top: 0、bottom: 0、margin: 0（不设置宽或高，浏览器会优先把父元素的宽高分配给绝对定位元素，导致宽或高占据父元素的 100%）。
 - 如果希望绝对定位元素在定位参照对象中居中显示，可以给绝对定位元素设置以下属性。
-	- left: 0、right: 0、top: 0、bottom: 0、margin: auto。具体的宽高值。
+  - left: 0、right: 0、top: 0、bottom: 0、margin: auto。具体的宽高值。
 
------
+---
 
-auto 到底是什么1点。
+auto 到底是什么 1 点。
 
 - auto，一般意为交给浏览器处理（定位元素，left。right 等属性设置成 auto，一般浏览器不会做等分处理）。
 
@@ -113,43 +113,41 @@ auto 到底是什么1点。
 - 块级元素 -> width: 包含块的宽度。
 - 绝对定位元素 -> width: 包裹内容。
 
------
+---
 
-绝对定位练习，网易云音乐item。
+绝对定位练习，网易云音乐 item。
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <link rel="stylesheet" href="./demo.css" >
-</head>
-<body>
-  <ul>
-    <li class="box">
-      <div class="top">
-        <!-- .top 最底层 -->
-        <img src="./images/music_item.jpg" alt="健身女孩">
-        <!-- 使用绝对定位，设置在 .top 第二层，覆盖整个.top -->
-        <a class="cover" href="#"></a>
-        <!-- 使用绝对定位，设置在 .top 最上层，背景图使用精灵图 -->
-        <div class="info">
-          <!-- 使用精灵图 -->
-          <i class="icon-music"></i>
-          <span class="count">306万</span>
-          <!-- 使用精灵图 -->
-          <a class="icon-play" href="#"></a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./demo.css" />
+  </head>
+  <body>
+    <ul>
+      <li class="box">
+        <div class="top">
+          <!-- .top 最底层 -->
+          <img src="./images/music_item.jpg" alt="健身女孩" />
+          <!-- 使用绝对定位，设置在 .top 第二层，覆盖整个.top -->
+          <a class="cover" href="#"></a>
+          <!-- 使用绝对定位，设置在 .top 最上层，背景图使用精灵图 -->
+          <div class="info">
+            <!-- 使用精灵图 -->
+            <i class="icon-music"></i>
+            <span class="count">306万</span>
+            <!-- 使用精灵图 -->
+            <a class="icon-play" href="#"></a>
+          </div>
         </div>
-      </div>
-      <a class="bottom" href="#">
-        一个健身女孩的{跑步歌单}
-      </a>
-    </li>
-  </ul>
-</body>
+        <a class="bottom" href="#"> 一个健身女孩的{跑步歌单} </a>
+      </li>
+    </ul>
+  </body>
 </html>
 ```
 
@@ -157,7 +155,9 @@ demo.css
 
 ```css
 /* 重置样式 */
-body, ul, li {
+body,
+ul,
+li {
   margin: 0;
   padding: 0;
 }
@@ -246,4 +246,3 @@ a {
   text-decoration: underline;
 }
 ```
-

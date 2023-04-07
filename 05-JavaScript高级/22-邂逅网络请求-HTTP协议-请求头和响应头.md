@@ -160,12 +160,12 @@ HTTP Response 响应状态码有什么用，有哪些，代表什么含义？
 
 1. http status code: 401
 2. http status code: 200，自行设计 错误码
-	```json
-	{
-		code: -1004
-		message: '您没有登录，请登陆后操作'
-	}
-	```
+   ```json
+   {
+   	code: -1004
+   	message: '您没有登录，请登陆后操作'
+   }
+   ```
 
 > 使用浏览器直接发送请求，输入 url，默认是 GET 请求。
 
@@ -175,9 +175,8 @@ AJAX 可以发送哪些格式的请求？
 
 有哪些步骤？
 
-
 1. 创建网络请求的 AJAX 对象（使用 XMLHttpRequest ）
-2. 监听 XMLHttpRequest 对象状态的变化，或者监听 `onload ` 事件（请求完成时触发）； 
+2. 监听 XMLHttpRequest 对象状态的变化，或者监听 `onload ` 事件（请求完成时触发）；
 3. 配置网络请求（通过 open 方法）；
 4. 发送 send 网络请求；
 
@@ -188,11 +187,11 @@ AJAX 可以发送哪些格式的请求？
 const xhr = new XMLHttpRequest()
 // 2.监听状态的改变(宏任务)
 xhr.onreadystatechange = function () {
-	if (xhr.readyState !== XMLHttpRequest.DONE) return
-	const res = JSON.parse(xhr.response) // 将字符串转成js对象
+  if (xhr.readyState !== XMLHttpRequest.DONE) return
+  const res = JSON.parse(xhr.response) // 将字符串转成js对象
 }
 // 3.配置请求open
-xhr.open("get", "http://123.207.32.32:8000/home/multidata")
+xhr.open('get', 'http://123.207.32.32:8000/home/multidata')
 // 4.发送请求(浏览器帮助发送对应请求)
 xhr.send()
 ```

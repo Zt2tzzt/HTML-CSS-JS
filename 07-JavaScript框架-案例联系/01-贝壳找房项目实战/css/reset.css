@@ -1,13 +1,17 @@
-body, ul, li, input, h2, p {
+body,
+ul,
+li,
+input,
+h2,
+p {
   padding: 0;
   margin: 0;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
 }
-
-
 
 a {
   text-decoration: none;
@@ -18,10 +22,10 @@ img {
   vertical-align: top;
 }
 
-input{
+input {
   outline: none;
   border: 0;
 }
-i{
+i {
   font-style: normal;
 }

@@ -43,31 +43,31 @@ storage 常见的方法：
 
 ```javascript
 class Cache {
-	constructor(isLocal = true) {
-		this.storage = isLocal ? localStorage : sessionStorage
-	}
-	get length() {
-		return this.storage.length
-	}
-	setCache(key, value) {
-		if (value !== undefined && value !== null) {
-			this.storage.setItem(key, JSON.stringify(value))
-		} else {
-			throw new Error('value error: value 必须有值!')
-		}
-	}
-	getCache(key) {
-		const result = this.storage.getItem(key)
-		if (result !== undefined && result !== null) {
-			return JSON.parse(result)
-		}
-	}
-	removeCache(key) {
-		this.storage.removeItem(key)
-	}
-	clear() {
-		this.storage.clear()
-	}
+  constructor(isLocal = true) {
+    this.storage = isLocal ? localStorage : sessionStorage
+  }
+  get length() {
+    return this.storage.length
+  }
+  setCache(key, value) {
+    if (value !== undefined && value !== null) {
+      this.storage.setItem(key, JSON.stringify(value))
+    } else {
+      throw new Error('value error: value 必须有值!')
+    }
+  }
+  getCache(key) {
+    const result = this.storage.getItem(key)
+    if (result !== undefined && result !== null) {
+      return JSON.parse(result)
+    }
+  }
+  removeCache(key) {
+    this.storage.removeItem(key)
+  }
+  clear() {
+    this.storage.clear()
+  }
 }
 ```
 
@@ -113,7 +113,7 @@ const re2 = /abc/gi // 字面量创建
 ```javascript
 const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
 // 需求: 将所有的 abc(忽略大小写)换成 cba
-/* 写法一 */ const newMessage = message.replaceAll("abc", "cba") // 这样写，只能匹配小写”abc“
+/* 写法一 */ const newMessage = message.replaceAll('abc', 'cba') // 这样写，只能匹配小写”abc“
 /* 写法二 */ const newMessage = message.replace(/abc/gi, 'cba')
 console.log(newMessage) // fdcba123 fcba323 dfcba222 A2324acba
 // 需求: 将字符串中数字全部删除
@@ -149,18 +149,18 @@ String 的 match、matchAll、replace、search 和 split 方法；
   ```javascript
   const re1 = /abc/gi
   const message = 'fdabc123 faBC323 dfABC222 A2324aaBc'
-	message.match(re) //  ['abc', 'aBC', 'ABC', 'aBc']
+  message.match(re) //  ['abc', 'aBC', 'ABC', 'aBc']
   const re2 = /abc/i
-	message.match(re) //  [abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
+  message.match(re) //  [abc', index: 2, input: 'fdabc123 faBC323 dfABC222 A2324aaBc', groups: undefined]
   ```
 
 - `String.prototype.matchAll()` - 一个在字符串中执行查找所有匹配的 String 方法，它返回一个迭代器（iterator）。传入的正则必须有修饰符 `g`
 
   ```javascript
   const result3 = message.matchAll(re1)
-	result3.next()
-	result3.next()
-	// ...
+  result3.next()
+  result3.next()
+  // ...
   ```
 
 - `String.prototype.search()` - 一个在字符串中测试匹配的 String 方法，它返回匹配到的位置索引，或者在失败时返回 -1。
@@ -175,15 +175,15 @@ String 的 match、matchAll、replace、search 和 split 方法；
 
 字符类有哪些？有什么用？
 
-| 字符                   | 含义                                                         |
-| ---------------------- | ------------------------------------------------------------ |
-| \d（“d” 来自 “digit”） | 数字：从 0 到 9 的字符。相当于 `[0-9]`                       |
+| 字符                   | 含义                                                                             |
+| ---------------------- | -------------------------------------------------------------------------------- |
+| \d（“d” 来自 “digit”） | 数字：从 0 到 9 的字符。相当于 `[0-9]`                                           |
 | \s（“s” 来自 “space”） | 空格符号：包括空格，制表符 \t，换行符 \n 和其他少数稀有字符，例如 \v，\f 和 \r。 |
-| \w（“w” 来自 “word”）  | “单字”字符：拉丁字母或数字或下划线 \_。相当于 `[a-zA-Z0-9_]` |
-| .（点）                | 点 . 是一种特殊字符类，它与“除换行符之外的任何字符” 匹配     |
+| \w（“w” 来自 “word”）  | “单字”字符：拉丁字母或数字或下划线 \_。相当于 `[a-zA-Z0-9_]`                     |
+| .（点）                | 点 . 是一种特殊字符类，它与“除换行符之外的任何字符” 匹配                         |
 
 ```javascript
-const message = "fdaa4 22242asfasdf2242"
+const message = 'fdaa4 22242asfasdf2242'
 const re1 = /\d+/g // \d+ 表示匹配1个或多个
 console.log(message.match(re1)) //  ['4', '22242', '2242']
 const re2 = /\d+/
@@ -205,18 +205,25 @@ console.log(message.match(re2)) // ['4', index: 4, input: 'fdaa4 22242asfasdf224
 - 符号 `$` 匹配文本末尾；
 
 ```javascript
-const message = "My name is ZZT."
+const message = 'My name is ZZT.'
 // 字符串方法
-message.startsWith("my") // false
-message.endsWith("zzt") // false
-// 正则: 锚点
-(/^my/i).test(message) // true
-(/zzt\.$/i).test(message) // true
+message.startsWith('my') // false
+message
+  .endsWith('zzt')(
+    // false
+    // 正则: 锚点
+    /^my/i
+  )
+  .test(message)(
+    // true
+    /zzt\.$/i
+  )
+  .test(message) // true
 ```
 
 ```javascript
 const re = /^coder$/
-const info = "codaaaer"
+const info = 'codaaaer'
 re.test(info) // false 正则是严格匹配的，如 /^coder$/ 不能匹配 codaaaer
 ```
 
@@ -232,8 +239,7 @@ re.test(info) // false 正则是严格匹配的，如 /^coder$/ 不能匹配 cod
 
 ```javascript
 // 匹配下面字符串中的时间：
-const infos = "now time is 11:56, 12:00 eat food, number is 123:456"
-const timeRe = /\b\d\d:\d\d\b/ig
+const infos = 'now time is 11:56, 12:00 eat food, number is 123:456'
+const timeRe = /\b\d\d:\d\d\b/gi
 console.log(infos.match(timeRe)) // ['11:56', '12:00']
 ```
-

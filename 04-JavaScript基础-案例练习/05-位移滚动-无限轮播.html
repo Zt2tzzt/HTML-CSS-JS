@@ -1,224 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=i.0">
-	<title>Document</title>
-	<link rel="stylesheet" href="./css/reset.css">
-	<link rel="stylesheet" href="./css/common.css">
-	<style>
-		.banner {
-			position: relative;
-			overflow: hidden;
-		}
-		.banner .images {
-			position: relative;
-			display: flex;
-			height: 550px;
-			transition: all 500ms ease;
-		}
-		.banner .images .item {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 100%;
-			overflow: hidden;
-		}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=i.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+    <style>
+      .banner {
+        position: relative;
+        overflow: hidden;
+      }
+      .banner .images {
+        position: relative;
+        display: flex;
+        height: 550px;
+        transition: all 500ms ease;
+      }
+      .banner .images .item {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        overflow: hidden;
+      }
 
-		.banner .images .item img {
-			width: 1920px;
-			height: 550px;
-			margin-left: 50%;
-			transform: translate(-50%);
-		}
+      .banner .images .item img {
+        width: 1920px;
+        height: 550px;
+        margin-left: 50%;
+        transform: translate(-50%);
+      }
 
-		/* 轮播指示器 */
-		.indicator {
-			position: absolute;
-			left: 0;
-			right: 0;
-			bottom: 32px;
-			display: flex;
-			justify-content: center;
-		}
+      /* 轮播指示器 */
+      .indicator {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 32px;
+        display: flex;
+        justify-content: center;
+      }
 
-		.indicator .item {
-			width: 8px;
-			height: 8px;
-			margin: 0 10px;
-			border-radius: 50%;
-			background-color: #aaa;
-			cursor: pointer;
-		}
+      .indicator .item {
+        width: 8px;
+        height: 8px;
+        margin: 0 10px;
+        border-radius: 50%;
+        background-color: #aaa;
+        cursor: pointer;
+      }
 
-		.indicator .item.active {
-			background-color: #f00;
-		}
-	</style>
-</head>
-<body>
-	<div class="banner">
-		<ul class="images"></ul>
-		<div class="indicator">
-			<!-- <div class="item"></div>
+      .indicator .item.active {
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="banner">
+      <ul class="images"></ul>
+      <div class="indicator">
+        <!-- <div class="item"></div>
 			<div class="item"></div>
 			<div class="item"></div>
 			<div class="item"></div> -->
-		</div>
-		<div class="control">
-			<button class="prev">上一个</button>
-			<button class="next">下一个</button>
-		</div>
-	</div>
+      </div>
+      <div class="control">
+        <button class="prev">上一个</button>
+        <button class="next">下一个</button>
+      </div>
+    </div>
 
-	<script src="./json/banner_data.js"></script>
-	<script>
-		const BANNER_SERVER_URL = 'https://res.vmallres.com/'
-		const ANIMATION_DURATION = 500
-		const bannersCount = banners.length
+    <script src="./json/banner_data.js"></script>
+    <script>
+      const BANNER_SERVER_URL = 'https://res.vmallres.com/'
+      const ANIMATION_DURATION = 500
+      const bannersCount = banners.length
 
-		// 1.动态添加轮播图图片数据
-		const imagesEl = document.querySelector('.images')
-		let activeItemEl = null
-		for (let i = 0; i < banners.length; i++) {
-			// 获取数据
-			const banner = banners[i];
-			// 创建 li 元素
-			const itemEl = document.createElement('li')
-			itemEl.classList.add('item')
-			if (i === 0) {
-				itemEl.classList.add('active')
-				activeItemEl = itemEl
-			}
-			imagesEl.append(itemEl)
-			// 设置 itemEl 的样式
-			itemEl.style.left = `${i * 100}%`
-			// 创建 img 元素
-			const imgEl = document.createElement('img')
-			imgEl.src = `${BANNER_SERVER_URL}${banner.imgUrl}`
-			itemEl.append(imgEl)
-		}
+      // 1.动态添加轮播图图片数据
+      const imagesEl = document.querySelector('.images')
+      let activeItemEl = null
+      for (let i = 0; i < banners.length; i++) {
+        // 获取数据
+        const banner = banners[i]
+        // 创建 li 元素
+        const itemEl = document.createElement('li')
+        itemEl.classList.add('item')
+        if (i === 0) {
+          itemEl.classList.add('active')
+          activeItemEl = itemEl
+        }
+        imagesEl.append(itemEl)
+        // 设置 itemEl 的样式
+        itemEl.style.left = `${i * 100}%`
+        // 创建 img 元素
+        const imgEl = document.createElement('img')
+        imgEl.src = `${BANNER_SERVER_URL}${banner.imgUrl}`
+        itemEl.append(imgEl)
+      }
 
-		// 1.3. 无限轮播，最后和最前分别添加一个元素 =======================
-		const firstitem = imagesEl.children[0].cloneNode(true)
-		const lastItem = imagesEl.children[bannersCount - 1].cloneNode(true)
-		imagesEl.append(firstitem) // 将一个第一个元素，添加到最后，实现无限轮播
-		imagesEl.prepend(lastItem) // 将一个最后一个元素，添加到最前面，实现无限轮播
-		// 调整位置
-		lastItem.style.left = '-100%'
-		firstitem.style.left = `${bannersCount * 100}%`
+      // 1.3. 无限轮播，最后和最前分别添加一个元素 =======================
+      const firstitem = imagesEl.children[0].cloneNode(true)
+      const lastItem = imagesEl.children[bannersCount - 1].cloneNode(true)
+      imagesEl.append(firstitem) // 将一个第一个元素，添加到最后，实现无限轮播
+      imagesEl.prepend(lastItem) // 将一个最后一个元素，添加到最前面，实现无限轮播
+      // 调整位置
+      lastItem.style.left = '-100%'
+      firstitem.style.left = `${bannersCount * 100}%`
 
-		// 1.3. 动态添加指示器内容
-		const indicatorEl = document.querySelector('.indicator')
-		for (let i = 0; i < bannersCount; i++) {
-			const itemEl = document.createElement('div')
-			itemEl.classList.add('item')
-			if (i === 0) itemEl.classList.add('active')
-			indicatorEl.append(itemEl)
+      // 1.3. 动态添加指示器内容
+      const indicatorEl = document.querySelector('.indicator')
+      for (let i = 0; i < bannersCount; i++) {
+        const itemEl = document.createElement('div')
+        itemEl.classList.add('item')
+        if (i === 0) itemEl.classList.add('active')
+        indicatorEl.append(itemEl)
 
-			// 监听指示器 item 的点击
-			itemEl.index = i
-			itemEl.onclick = function() {
-				previousIndex = currentIndex
-				currentIndex = this.index
-				switcbBannerItem()
-			}
-			
-		}
+        // 监听指示器 item 的点击
+        itemEl.index = i
+        itemEl.onclick = function () {
+          previousIndex = currentIndex
+          currentIndex = this.index
+          switcbBannerItem()
+        }
+      }
 
-		// 2.监听按钮的点击
-		let previousIndex = 0
-		let currentIndex = 0
-		const controlEl = document.querySelector('.control')
-		const prevBtnEl = controlEl.querySelector('.prev')
-		const nexBtnEl = controlEl.querySelector('.next')
-		prevBtnEl.onclick = function() {
-			previousSwitch()
-		}
-		nexBtnEl.onclick = function() {
-			nextSwitch()
-		}
+      // 2.监听按钮的点击
+      let previousIndex = 0
+      let currentIndex = 0
+      const controlEl = document.querySelector('.control')
+      const prevBtnEl = controlEl.querySelector('.prev')
+      const nexBtnEl = controlEl.querySelector('.next')
+      prevBtnEl.onclick = function () {
+        previousSwitch()
+      }
+      nexBtnEl.onclick = function () {
+        nextSwitch()
+      }
 
-		// 自动播放计时器
-		let timer = null
-		// 开启定时器
-		startTimer()
-		// 鼠标指针进入/离开图片，停止/开始轮播。
-		const bannerEl = document.querySelector('.banner')
-		bannerEl.onmouseenter = function() {
-			stopTimer()
-		}
-		bannerEl.onmouseleave = function() {
-			startTimer()
-		}
+      // 自动播放计时器
+      let timer = null
+      // 开启定时器
+      startTimer()
+      // 鼠标指针进入/离开图片，停止/开始轮播。
+      const bannerEl = document.querySelector('.banner')
+      bannerEl.onmouseenter = function () {
+        stopTimer()
+      }
+      bannerEl.onmouseleave = function () {
+        startTimer()
+      }
 
-		// 播放前一个
-		function previousSwitch() {
-			// 找到上一张
-			previousIndex = currentIndex--
-			switcbBannerItem()
-		}
-		// 播放下一个
-		function nextSwitch() {
-			// 找到下一个
-			previousIndex = currentIndex++
-			switcbBannerItem()
-		}
-		// 切换轮播图
-		function switcbBannerItem() {
-			// 1.切换 imagesEl 的 transform ===============================
-			imagesEl.style.transition = `all ${ANIMATION_DURATION}ms ease`
-			imagesEl.style.transform = `translateX(${-currentIndex*100}%)`
-			switch (currentIndex) {
-				case bannersCount:
-					currentIndex = 0
-					fixBannerPosition()
-					break;
-				case -1:
-					currentIndex = bannersCount - 1
-					fixBannerPosition()
-			}
-			// 2.切换指示器的item
-			var currentInItemEl = indicatorEl.children[currentIndex]
-			var previousInItemEl = indicatorEl.children[previousIndex]
-			previousInItemEl.classList.remove('active')
-			currentInItemEl.classList.add('active')
-		}
-		// 开始自动播放
-		function startTimer() {
-			if (timer) return
-			timer = setInterval(() => {
-				nextSwitch()
-			}, 3000);
-		}
-		// 停止自动播放
-		function stopTimer() {
-			if (!timer) return
-			clearInterval(timer)
-			timer = null
-		}
+      // 播放前一个
+      function previousSwitch() {
+        // 找到上一张
+        previousIndex = currentIndex--
+        switcbBannerItem()
+      }
+      // 播放下一个
+      function nextSwitch() {
+        // 找到下一个
+        previousIndex = currentIndex++
+        switcbBannerItem()
+      }
+      // 切换轮播图
+      function switcbBannerItem() {
+        // 1.切换 imagesEl 的 transform ===============================
+        imagesEl.style.transition = `all ${ANIMATION_DURATION}ms ease`
+        imagesEl.style.transform = `translateX(${-currentIndex * 100}%)`
+        switch (currentIndex) {
+          case bannersCount:
+            currentIndex = 0
+            fixBannerPosition()
+            break
+          case -1:
+            currentIndex = bannersCount - 1
+            fixBannerPosition()
+        }
+        // 2.切换指示器的item
+        var currentInItemEl = indicatorEl.children[currentIndex]
+        var previousInItemEl = indicatorEl.children[previousIndex]
+        previousInItemEl.classList.remove('active')
+        currentInItemEl.classList.add('active')
+      }
+      // 开始自动播放
+      function startTimer() {
+        if (timer) return
+        timer = setInterval(() => {
+          nextSwitch()
+        }, 3000)
+      }
+      // 停止自动播放
+      function stopTimer() {
+        if (!timer) return
+        clearInterval(timer)
+        timer = null
+      }
 
-		// 修正位移的位置 ============================
-		function fixBannerPosition() {
-			setTimeout(() => {
-				imagesEl.style.transition = 'none'
-				imagesEl.style.transform = `translateX(${-currentIndex * 100}%)`
-			}, ANIMATION_DURATION);
-		}
+      // 修正位移的位置 ============================
+      function fixBannerPosition() {
+        setTimeout(() => {
+          imagesEl.style.transition = 'none'
+          imagesEl.style.transform = `translateX(${-currentIndex * 100}%)`
+        }, ANIMATION_DURATION)
+      }
 
-		// 通过 window 的焦点，修复一次性回滚多张的bug =======================
-		document.onvisibilitychange = function() {
-			switch (document.visibilityState) {
-				case 'visible':
-					console.log(`---visibility---`, document.visibilityState);
-					startTimer()
-					break;
-				case 'hidden':
-					console.log(`---visibility---`, document.visibilityState);
-					stopTimer()
-			}
-		}
-	</script>
-</body>
+      // 通过 window 的焦点，修复一次性回滚多张的bug =======================
+      document.onvisibilitychange = function () {
+        switch (document.visibilityState) {
+          case 'visible':
+            console.log(`---visibility---`, document.visibilityState)
+            startTimer()
+            break
+          case 'hidden':
+            console.log(`---visibility---`, document.visibilityState)
+            stopTimer()
+        }
+      }
+    </script>
+  </body>
 </html>

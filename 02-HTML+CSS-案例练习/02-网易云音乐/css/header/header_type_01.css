@@ -1,19 +1,19 @@
 .header_type_01 {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding-bottom: 5px;
-	border-bottom: 1px #ccc solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 5px;
+  border-bottom: 1px #ccc solid;
 }
 
 .header_type_01 .title {
-	color: #333;
+  color: #333;
 }
 
 .header_type_01 .more {
-	color: #666;
+  color: #666;
 }
 
 .header_type_01 .more:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
