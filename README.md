@@ -2,7 +2,7 @@
 
 #### 介绍
 
-HTML-CSS-JS；coderwhy 前端学习笔记分享；
+HTML-CSS-JS；我的 coderwhy 学习笔记；
 
 #### 软件架构
 软件架构说明
