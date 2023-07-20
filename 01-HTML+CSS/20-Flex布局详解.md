@@ -111,7 +111,7 @@ flex container 的 `justify-content` 属性有什么用？
   - flex items 之间的距离相等
   - flex items 与 main start、main end 之间的距离 等于 flex items 之间的距离
 
-![justify-content的布局模型图](NodeAssets/flex container 的 justify-content 属性值.jpg)
+![justify-content的布局模型图](NodeAssets/flex container的justify-content属性值.jpg)
 
 ---
 
