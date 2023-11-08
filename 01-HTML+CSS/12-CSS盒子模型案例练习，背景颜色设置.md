@@ -1,4 +1,8 @@
-# 盒子模型案例练习
+# CSS盒子模型案例练习，背景颜色设置
+
+## 一、盒子模型案例练习
+
+### 1.小米商城商品案例
 
 理解盒子模型案例一小米商城商品，实现过程。
 
@@ -19,6 +23,7 @@ body {
 h3 {
   font-weight: 400;
 }
+
 /* a的重置 */
 a {
   text-decoration: none;
@@ -31,6 +36,7 @@ demo1.html
 
 ```html
 <head>
+  <!-- 给案例引入重置样式。-->
   <link rel="stylesheet" href="./css/reset.css" />
   <style>
     body {
@@ -58,6 +64,7 @@ demo1.html
     .item .desc {
       color: #999;
       margin-top: 8px;
+
       /* 单行显示省略号 */
       white-space: nowrap;
       overflow: hidden;
@@ -90,29 +97,29 @@ demo1.html
 </body>
 ```
 
-5 个注意事项。
+> 注意事项：
+>
+> 浏览器调试，使用`:hov`选项，调试元素的伪类状态。
+>
+> 网站背景偏灰，通常设置颜色`#f5f5f5`。
+>
+> 使用选择器时，如后代选择器，不推荐超过 4 个。
 
-1. 浏览器调试，使用`:hov`选项，调试元素的伪类状态。
+#### 1.多文本单行显示省略号
 
-2. 网站背景偏灰，通常设置颜色`#f5f5f5`。
+多文本单行显示省略号的方案。固定写法。
 
-3. 给案例引入重置样式。
+```css
+.item .desc {
+  white-space: nowrap; /* 设置后不会换行 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* ellipsis 省略的意思 */
+}
+```
 
-4. 多文本单行显示省略号的方案。固定写法。
+### 2.头条新闻热搜条目
 
-   ```css
-   .item .desc {
-     white-space: nowrap; /* 设置后不会换行 */
-     overflow: hidden;
-     text-overflow: ellipsis; /* ellipsis 省略的意思 */
-   }
-   ```
-
-5. 使用选择器时，如后代选择器，不推荐超过 4 个。
-
----
-
-理解盒子模型案例二头条新闻热搜条目，实现过程。
+理解盒子模型案例二：头条新闻热搜条目，实现过程。
 
 ```html
 <head>
@@ -182,36 +189,39 @@ demo1.html
 </body>
 ```
 
-4 个注意事项
+注意事项
 
-1. 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性`referrerpolicy="no-referrer"`。
+> 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性`referrerpolicy="no-referrer"`。
+>
+> 插入图片的 3 种方案，
+>
+> 1. img 元素。
+> 2. 空元素 + background-img。
+> 3. 伪元素。
 
-2. 插入图片的 3 种方案，
+#### 1.多文本 2 行显示省略号方案
 
-   1. img 元素。
-   2. 空元素 + background-img。
-   3. 伪元素。
+多文本 2 行显示省略号方案。固定写法。
 
-3. 多文本 2 行显示省略号方案。固定写法。
+```css
+div {
+  /* white-space: nowrap; */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box; /* flex 布局的前身，现在多用于做多行保留场景。 */
+  -webkit-line-clamp: 2; /* clamp 保留，保持 */
+  -webkit-box-orient: vertical;
+}
+```
 
-   ```css
-   div {
-     /* white-space: nowrap; */
-     overflow: hidden;
-     text-overflow: ellipsis;
-     display: -webkit-box; /* flex 布局的前身，现在多用于做多行保留场景。 */
-     -webkit-line-clamp: 2; /* clamp 保留，保持 */
-     -webkit-box-orient: vertical;
-   }
-   ```
+a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案，
 
-4. a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案，
-   1. 给 a 元素设置`width: 100%;`，意为占据父元素宽度，这样 a 元素就有了具体宽度。
-   2. 给 a 元素设置`display: block;` 让 a 元素占据父元素的宽度，这样 a 元素就有了具体的宽度。
+1. 给 a 元素设置`width: 100%;`，意为占据父元素宽度，这样 a 元素就有了具体宽度。
+2. 给 a 元素设置`display: block;` 让 a 元素占据父元素的宽度，这样 a 元素就有了具体的宽度。
 
----
+## 二、background 属性
 
-# background 背景
+### 1.background-image 属性
 
 `background-image` 属性有什么用？
 
@@ -227,11 +237,26 @@ demo1.html
 }
 ```
 
-1 个注意事项。
+> 注意事项：
+>
+> 如果元素没有设置宽高，背景图片是不会显示出来的。
 
-- 如果元素没有设置宽高，背景图片是不会显示出来的。
+`background-image` 和 `<img>` 元素的比较。
 
----
+|                        | img                | background-image |
+| ---------------------- | ------------------ | ---------------- |
+| 性质                   | HTML 元素          | CSS 样式         |
+| 图片是否占用空间       | ✔                  | ❌                |
+| 浏览器右键直接查看地址 | ✔                  | ❌                |
+| 支持 CSS Sprite 精灵图 | ❌                  | ✔                |
+| 更有可能被搜索引擎收录 | ✔（结合 alt 属性） | ❌                |
+
+适用场景分别有哪些。
+
+- img，作为网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片
+- background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息
+
+### 2.background-repeat 属性
 
 `background-repeat` 属性有什么用？
 
@@ -257,7 +282,7 @@ demo1.html
 }
 ```
 
----
+### 3.background-size 属性
 
 `background-size` 属性有什么用？
 
@@ -275,7 +300,7 @@ demo1.html
 
 - `[ <length-percentage> | auto ]{1,2} | cover | contain`
 
----
+### 4.background-position 属性
 
 `background-position` 有什么用？
 
@@ -291,8 +316,6 @@ demo1.html
 
 - 如果只设置了 1 个方向，另一个方向默认是 `center`
 
----
-
 浏览器缩放，背景图片总是展示中间部分的案例。
 
 ```css
@@ -303,7 +326,7 @@ demo1.html
 }
 ```
 
----
+### 5.background-attachment 属性
 
 `background-attachment` 属性有什么用？
 
@@ -315,26 +338,9 @@ demo1.html
 - `local`：表示背景相对于元素的内容固定。如果一个元素拥有滚动机制，背景将会随着元素的内容滚动。
 - `fixed`：表示背景相对于视口固定。即使一个元素拥有滚动机制，背景也不会随着元素的内容滚动。
 
----
+### 6.background 属性缩写
 
 理解 background 缩写属性的格式。
 
 - `background-size` 可以省略，如果不省略，`background-size` 必须紧跟在 `background-position` 的后面
 - 其他属性也都可以省略，而且顺序任意
-
----
-
-`background-image` 和 `<img>` 元素的比较。
-
-|                        | img                | background-image |
-| ---------------------- | ------------------ | ---------------- |
-| 性质                   | HTML 元素          | CSS 样式         |
-| 图片是否占用空间       | ✔                  | ❌               |
-| 浏览器右键直接查看地址 | ✔                  | ❌               |
-| 支持 CSS Sprite 精灵图 | ❌                 | ✔                |
-| 更有可能被搜索引擎收录 | ✔（结合 alt 属性） | ❌               |
-
-适用场景分别有哪些。
-
-- img，作为网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片
-- background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息
