@@ -1,20 +1,34 @@
+# 10-CSS盒子模型（一）
+
+## 一、元素的隐藏方式
+
 元素的隐藏方法 4 种，如何使用。
 
-1. `display: none`
-   - 元素显示, 不占据任何空间。
-   - 浏览器调试时，代码中还是存在该元素。
-2. `visibility: hidden`
-   - 设为`hidden`, 元素不可见, 但会占据本应占据的空间;
-   - 默认`visible`, 元素是可见的;
-3. rgba 设置颜色, 将 a 的值设置为 0
-   - rgba 的 a 设置的是 alpha 值, 可以设置透明度, 不影响子元素（一次只能设置文本或背景的一种）;
-   - 透明度的一种写法：`rgba(0,0,0, .5)`
-   - rgba，十六进制写法，#ff0000ff：完全不透明，#ff000088：半透明。这种写法，是 color module 中比较新的写法，可能有些浏览器不支持。
-   - 通常元素的背景颜色默认值是 `background: transparent;` 相当于 `rgba(0, 0, 0, 0)`
-4. `opacity: 0;`
-   - 设置整个元素的透明度, 会影响所有的子元素（包括元素背景色和内容）;
+方式一：`display: none`
 
----
+- 元素显示, 不占据任何空间。
+- 浏览器调试时，代码中还是存在该元素。
+
+方式二：`visibility: hidden`
+
+- 设为`hidden`, 元素不可见, 但会占据本应占据的空间;
+- 默认`visible`, 元素是可见的;
+
+方式三：rgba 设置颜色, 将 a 的值设置为 0
+
+- rgba 的 a 设置的是 alpha 值, 可以设置透明度, 不影响子元素（一次只能设置文本或背景的一种）;
+- 透明度的一种写法：`rgba(0,0,0, .5)`
+- rgba，十六进制写法，
+  - #ff0000ff：完全不透明；
+  - #ff000088：半透明；
+  - 这种写法，是 color module 中比较新的写法，可能有些浏览器不支持。
+- 通常元素的背景颜色默认值是 `background: transparent;` 相当于 `rgba(0, 0, 0, 0)`
+
+方式四：`opacity: 0;`
+
+- 设置整个元素的透明度, 会影响所有的子元素（包括元素背景色和内容）;
+
+## 二、overflow 属性
 
 `overflow` 属性可设置的 4 个值，有什么作用。
 
@@ -23,20 +37,20 @@
 - `scroll`：溢出的内容被裁剪，但可以通过滚动机制查看 ，会一直显示滚动条区域，滚动条区域占用的空间属于 width、height
 - `auto`：自动根据内容是否溢出来决定是否提供滚动机制。
 
----
+## 三、CSS 属性不生效的原因
 
 CSS 属性不生效，可能有哪些原因。
 
-1. 选择器的优先级太低
-2. 选择器没选中对应的元素（写错）
-3. CSS 属性的使用形式不对
-   - 元素不支持此 CSS 属性，比如 span 默认是不支持 width 和 height 的
-   - 浏览器不支持此 CSS 属性，比如旧版本的浏览器不支持一些 css module3 的某些属性
-   - 被同类型的 CSS 属性覆盖，比如 font 覆盖 font-size
+1. 选择器的优先级太低。
+2. 选择器没选中对应的元素（写错）。
+3. CSS 属性的使用形式不对：
+   - 元素不支持此 CSS 属性，比如 span 默认是不支持 width 和 height 的；
+   - 浏览器不支持此 CSS 属性，比如旧版本的浏览器不支持一些 css module3 的某些属性；
+   - 被同类型的 CSS 属性覆盖，比如 font 覆盖 font-size。
 
 充分利用浏览器的开发者工具进行调试（增加、修改样式）、查错。
 
----
+## 四、盒子模型
 
 HTML 中每一个元素都可看作是一个盒子模型，具备 4 个属性。
 
@@ -45,44 +59,47 @@ HTML 中每一个元素都可看作是一个盒子模型，具备 4 个属性。
 - 边框（border），元素自己的边框
 - 外边距（margin），元素和其他元素之间的间距
 
----
-
 盒子模型有 4 边，所以 `padding`，`border`，`margin` 都包含 `top`, `right`, `bottom`, `left` 四个边。
-
----
 
 在浏览器开发者工具中，使用 computed 查看盒子模型。
 
----
+### 1.content 内容
 
 内容的高度，宽度设置，3 个方面注意事项。
 
-- 设置内容是通过宽度和高度设置的:
-  - 宽度设置: width （元素未设置 width，默认值是 auto。块级元素是父元素一行的宽度，行内级元素是包裹内容的宽度）
-  - 高度设置: height
-  - 注意: 对于行内级非替换元素来说, 设置宽高是无效的（再次强调）。
-- 另外我们还可以设置如下属性:
-  - min-width：最小宽度，无论内容多少，宽度都大于或等于 min-width （如果浏览器视口小于最小宽度，会出现进度条）
-  - max-width：最大宽度，无论内容多少，宽度都小于或等于 max-width
-  - 移动端适配时, 可以设置最大宽度和最小宽度
-- 下面两个属性不常用:
-  - min-height：最小高度，无论内容多少，高度都大于或等于 min-height
-  - max-height：最大高度，无论内容多少，高度都小于或等于 max-height
+设置内容是通过宽度，高度设置的:
 
----
+- 宽度设置: width
+  - 元素未设置 width，默认值是 auto；
+  - 块级元素是父元素一行的宽度，行内级元素是包裹内容的宽度）
+- 高度设置: height
+- 注意: 对于行内级非替换元素来说, 设置宽高是无效的（再次强调）。
+
+另外我们还可以设置如下属性:
+
+- `min-width`：最小宽度，无论内容多少，宽度都大于或等于 `min-width` （如果浏览器视口小于最小宽度，会出现进度条）
+- `max-width`：最大宽度，无论内容多少，宽度都小于或等于 `max-width`
+- 移动端适配时, 可以设置最大宽度和最小宽度
+
+下面两个属性不常用:
+
+- `min-height`：最小高度，无论内容多少，高度都大于或等于 `min-height`；
+- `max-height`：最大高度，无论内容多少，高度都小于或等于 `max-height。`
+
+### 2.padding 内边距
 
 内边距 padding 有什么用？
 
-- 用于设置边框与盒子的距离。不要使用 inline 元素设置 padding，会有问题（padding-top，padding-bottom 有问题，后续讲）。
+- 用于设置边框与盒子的距离。不要给行内（inline）元素设置 padding，会有问题（padding-top，padding-bottom 有问题，后续讲）。
 
 2 种写法。
 
 - `padding` 包括四个方向, 所以有如下的取值:
 
-  - `padding-top`：上内边距
-  - `padding-right`：右内边距
-  - `padding-bottom`：下内边距
-  - `padding-left`：左内边距
+  - `padding-top`：上内边距；
+  - `padding-right`：右内边距；
+  - `padding-bottom`：下内边距；
+  - `padding-left`：左内边距；
 
 - padding 的缩写属性：
 
@@ -95,14 +112,20 @@ HTML 中每一个元素都可看作是一个盒子模型，具备 4 个属性。
   | 2                | padding: 10px 20px;           | top / bottom: 10px, right / left: 20px           |
   | 1                | padding: 10px;                | top / right / bottom / left: 10px                |
 
----
+### 3.border 边框
 
 border 用于设置盒子的边框，3 个方面。
 
 - 设置边框宽度 width;
 - 设置边框样式 style;
 - 设置边框颜色 color;
-- border-top-[width / style / color]、border-right-[width / style / color]、border-bottom-[width / style / color]、border-left-[width / style / color]
+
+可进行如下设置：
+
+- border-top-[width / style / color]
+- border-right-[width / style / color]
+- border-bottom-[width / style / color]
+- border-left-[width / style / color]
 
 简写形式。
 
@@ -113,25 +136,22 @@ border 用于设置盒子的边框，3 个方面。
 
 - border 总体的缩写语法，`<line-width> || <line-style> || <color>`，顺序可互换，style 不能省略，其它两个可以省略。
 
----
+边框样式（vorder-style）可设置的值有哪些，代表什么意思。
 
-边框样式可设置的值有哪些，代表什么意思。
+- `solid`，实线 （常用）；
+- `dashed`，长虚线 （常用）；
+- `dotted`，点虚线；
+- `double`，双边框。
 
-- solid，实线 （常用）
-- dashed，长虚线 （常用）
-- dotted，点虚线
-- double，双边框
-
----
+#### 1.border-radius 属性
 
 border-radius 用于设置盒子的圆角。2 种设置方式。
 
 - 数值: 通常用来设置小的圆角, 比如 6px;
 - 百分比: 通常用来设置一定的弧度或者圆形;
-  - 百分数，水平方向相对于 border-box（内容 + padding + border），也就是 box width + border width，垂直方向相对于 box height + border width。两个方向计算出的实际值不相同，效果可能是不圆润的。
+  - 百分数，水平方向相对于 border-box（内容 + padding + border），也就是 box width + border width；
+  - 垂直方向相对于 box height + border width。两个方向计算出的实际值不相同，效果可能是不圆润的。
   - 设置百分比，常用于圆形。border-radius: 50%; 超过 50%，效果一样。
-
----
 
 border-radius 事实上是一个**缩写属性**，理解 2 点。
 
