@@ -1,17 +1,21 @@
+# CSS 盒子模型（二）
+
+## 一、margin 外边距
+
 外边距 margin 属性有什么用。
 
 - 用于设置盒子的外边距, 通常用于元素和元素之间的间距
 
 2 种写法。
 
-- margin 包括四个方向, 所以有如下的取值:
-  - margin-top：上外边距
-  - margin-right：右外边距
-  - margin-bottom：下外边距
-  - margin-left：左外边距
-- margin 的缩写属性：
+- `margin` 包括四个方向, 所以有如下的取值:
+  - `margin-top`：上外边距；
+  - `margin-right`：右外边距；
+  - `margin-bottom`：下外边距；
+  - `margin-left`：左外边距；
+- `margin` 的缩写属性：
 
-  - margin-top、margin-right、margin-bottom、margin-left 的简写属性（顺时钟方向）
+  - `argin-top`、`margin-right`、`margin-bottom`、`margin-left` 的简写属性（顺时钟方向）
 
   | margin 值的个数 | margin 属性声明              | 代表含义                                         |
   | --------------- | ---------------------------- | ------------------------------------------------ |
@@ -20,24 +24,24 @@
   | 2               | margin: 10px 20px;           | top / bottom: 10px, right / left: 20px           |
   | 1               | margin: 10px;                | top / right / bottom / left: 10px                |
 
----
+### 1.margin 与 padding 比较
 
 margin 与 padding 比较，2 个注意事项，
 
-1. 设置 padding，会撑开盒子的宽度。解决办法：设置 `box-sizing: border-box;`
-2. 设置 margin-top，有传递的特性，会影响父元素的 margin-top，解决办法：设置父元素的 `overflow：auto`。
+1. 设置 `padding`，会撑开盒子的宽度。解决办法：设置 `box-sizing: border-box;`
+2. 设置 `margin-top`，有传递的特性，会影响父元素的 `margin-top`，解决办法：设置父元素的 `overflow：auto`。
 
 margin 和 padding 的适用场景是什么。
 
 - margin 一般是用来设置兄弟元素之间的间距。
 - padding 一般是用来设置父子元素之间的间距。
 
----
+### 2.margin 上下传递
 
 什么是上下 margin 的传递（左右不会传递）
 
-- margin-top 传递：块级元素的顶部线，和父元素的顶部线重叠，那么这个块级元素的 margin-top 值会传递给父元素。
-- margin-bottom 传递：块级元素的底部线，和父元素的底部线重叠，**并且父元素的高度是 auto**，那么这个块级元素的 margin-bottom 值会传递给父元素
+- `margin-top` 传递：块级元素的顶部线，和父元素的顶部线重叠，那么这个块级元素的 margin-top 值会传递给父元素。
+- `margin-bottom` 传递：块级元素的底部线，和父元素的底部线重叠，**并且父元素的高度是 auto**，那么这个块级元素的 margin-bottom 值会传递给父元素
 
 解决办法 3 点。
 
@@ -45,7 +49,7 @@ margin 和 padding 的适用场景是什么。
 - 给父元素设置 border.
 - 触发 BFC（block formating context）: 设置`overflow: auto`
 
----
+### 3.margin 上下折叠
 
 什么是上下 margin 的折叠（左右不会折叠）2 种情况？
 
@@ -70,7 +74,7 @@ margin 和 padding 的适用场景是什么。
       width: 200px;
       height: 200px;
       background-color: #f00;
-      border: 1px solid black; /* 取消.content的margin传递 */
+      border: 1px solid black; /* 取消 .content 的 margin 传递 */
     }
     .content {
       width: 100px;
@@ -78,7 +82,7 @@ margin 和 padding 的适用场景是什么。
       background-color: #0f0;
       margin-bottom: 100px;
       margin-top: 10px;
-      border: 1px solid black; /* 取消.son的margin传递，.son的margin-top不会产生折叠 */
+      border: 1px solid black; /* 取消 .son 的 margin 传递，.son 的 margin-top 不会产生折叠 */
     }
     .son {
       background-color: #00f;
@@ -98,20 +102,23 @@ margin 和 padding 的适用场景是什么。
 </body>
 ```
 
----
+## 二、块级元素宽度计算公式
 
-块级元素宽度的计算公式。
+`block box width = content width + padding + border width + margin`
 
-- block box width = content width + padding + border width + margin
+## 三、块级元素水平居中原理
 
-使块级元素居中的原理。
+Ⅰ.块级元素设置宽度后，浏览器把这一行剩下的宽度，分配给了它的 margin-right。
 
-1. 块级元素设置宽度后，浏览器把这一行剩下的宽度，分配给了它的 margin-right。
-2. 设置该元素 margin: 0 auto; 将左右空间自动分配，达到水平居中的效果。
-3. 块级元素高度默认是内容高度，所以**不能**用`margin: auto 0;`来做垂直方向居中。同理，行内元素宽度是内容宽度，**不能**设置`margin: 0 auto`来做水平居中。
-4. 最终，居中布局还是推荐使用 flex 来做。
+Ⅱ.设置该元素 margin: 0 auto; 将左右空间自动分配，达到水平居中的效果。
 
----
+Ⅲ.块级元素高度默认是内容高度，所以**不能**用`margin: auto 0;`来做垂直方向居中。
+
+- 同理，行内元素宽度是内容宽度，**不能**设置`margin: 0 auto`来做水平居中。
+
+Ⅳ.最终，居中布局还是推荐使用 flex 来做。
+
+## 四、outline 属性
 
 什么是 outline？
 
@@ -119,9 +126,9 @@ margin 和 padding 的适用场景是什么。
 
 与它相关有哪些属性，
 
-- `outline-width`：外轮廓的宽度
-- `outline-style`：取值跟 border 的样式一样，比如 solid、dotted 等
-- `outline-color`：外轮廓的颜色
+- `outline-width`：外轮廓的宽度。
+- `outline-style`：取值跟 border 的样式一样，比如 solid、dotted 等。
+- `outline-color`：外轮廓的颜色。
 - `outline`：outline-width、outline-style、outline-color 的简写属性，跟 border 用法类似
 
 1 个应用场景。
@@ -134,7 +141,7 @@ margin 和 padding 的适用场景是什么。
   }
   ```
 
----
+## 五、box-shadow 属性
 
 `box-shadow` 属性有什么用？
 
@@ -142,13 +149,13 @@ margin 和 padding 的适用场景是什么。
 
 如何使用？
 
-- 每个阴影用`<shadow>`表示 多个阴影之间用逗号隔开，从前到后叠加。
+- 每个阴影用`<shadow>`表示，多个阴影之间用逗号隔开，从前到后叠加。
 
-1. 第 1 个<length>：offset-x, 水平方向的偏移，正数往右偏移
-2. 第 2 个<length>：offset-y, 垂直方向的偏移，正数往下偏移
-3. 第 3 个<length>：blur-radius, 模糊半径，可省略。
-4. 第 4 个<length>：spread-radius, 延伸半径 ，可省略。
-5. <color>：阴影的颜色，如果没有设置，就跟随 color 属性的颜色
+1. 第 1 个\<length\>：offset-x, 水平方向的偏移，正数往右偏移
+2. 第 2 个\<length\>：offset-y, 垂直方向的偏移，正数往下偏移
+3. 第 3 个\<length\>：blur-radius, 模糊半径，可省略。
+4. 第 4 个\<length\>：spread-radius, 延伸半径 ，可省略。
+5. \<color\>：阴影的颜色，如果没有设置，就跟随 color 属性的颜色
 6. inset：外框阴影变成内框阴影
 
 ```css
@@ -157,9 +164,9 @@ margin 和 padding 的适用场景是什么。
 }
 ```
 
-在线调整网站：https://html-css-js.com/css/generator/box-shadow/
+[在线调整网站](https://html-css-js.com/css/generator/box-shadow/)
 
----
+## 六、text-shadow 属性
 
 `text-shadow` 属性有什么用？
 
@@ -169,26 +176,31 @@ margin 和 padding 的适用场景是什么。
 
 - 相当于 box-shadow, 它没有 spread-radius 的值和 inset 值
 
-在线调整网站：https://html-css-js.com/css/generator/text-shadow/
+[在线调整网站](https://html-css-js.com/css/generator/text-shadow/)
 
----
+## 七、行内级元素设置盒子属性
 
 给行内级元素，设置盒子的属性，有几种情况。
 
-- 以下属性对行内级非替换元素不起作用
-  - width、height、margin-top、margin-bottom
-- 以下属性对行内级非替换元素的效果比较特殊
-  - padding-top、padding-bottom。border-top-xxx、border-bottom-xxx
-  - 内容会被撑开，但不占据空间，原因是 W3C 考略到会影响同行的行内元素。
+以下属性对行内级非替换元素不起作用：
 
----
+- width、height
+- margin-top、margin-bottom
+
+以下属性对行内级非替换元素的效果比较特殊：
+
+- padding-top、padding-bottom
+- border-top-xxx、border-bottom-xxx
+- 内容会被撑开，但不占据空间，原因是 W3C 考略到会影响同行的行内元素。
+
+## 八、背景色和前景色
 
 有关背景色与前景色对于 border 的影响的结论 2 点。
 
 1. 背景色设置到了 border，padding，content 下面。
 2. 前景色会在 border 没有设置颜色的情况下显示在 border 上，覆盖背景色。
 
----
+## 九、box-sizing 属性
 
 `box-sizing` 属性有什么用？
 
@@ -196,9 +208,7 @@ margin 和 padding 的适用场景是什么。
 
 它的两个属性值的含义。
 
-- `content-box`：默认值，padding，border 都布置在 width，height 外边。
-- `border-box`：padding，border 都布置在 width，height 里边。
+- `content-box`：默认值，`padding`，`border` 都布置在 `width`，`height` 外边。
+- `border-box`：`padding`，`border` 都布置在 `width`，`height` 里边。
 
----
-
-IE8 以下的盒子模型自带 `box-sizing: border-box`;
+> IE8 以下的盒子模型自带 `box-sizing: border-box`;
