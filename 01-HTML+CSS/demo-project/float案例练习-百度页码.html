@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      /* 重置样式 */
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+      ul,
+      li {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      }
+      /* 全局样式 */
+      body {
+        background-color: #f5f5f5;
+      }
+      /* 普通样式 */
+      li {
+        background-color: #fff;
+        width: 36px;
+        height: 36px;
+        float: left;
+        margin-right: 12px;
+        text-align: center;
+        line-height: 36px;
+      }
+      li > a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        color: #3951b3;
+        border-radius: 6px;
+      }
+      li > a:hover {
+        color: #fff;
+        background-color: #3951b3;
+      }
+      .next {
+        width: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+        <li><a href="#">7</a></li>
+        <li><a href="#">8</a></li>
+        <li><a href="#">9</a></li>
+        <li><a href="#">10</a></li>
+        <li class="next"><a href="#">下一页</a></li>
+      </ul>
+    </div>
+  </body>
+</html>
