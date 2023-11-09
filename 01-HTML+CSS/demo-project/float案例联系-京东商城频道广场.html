@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<head>
+  <title>Document</title>
+  <style>
+    .content {
+      width: 1190px;
+      margin: 0 auto;
+      background-color: #f00;
+      height: 1000px;
+    }
+    .content > .wrapper {
+      margin-right: -10px; /* 使用 margin 负值，将 wrapper 的宽度拉伸 */
+    }
+    .content > .wrapper > .item {
+      width: 290px;
+      background-color: purple;
+      margin-bottom: 10px;
+      float: left;
+      margin-right: 10px;
+    }
+    .content > .wrapper > .item.left {
+      height: 370px;
+    }
+    .content > .wrapper > .item.right {
+      height: 180px; /* 高度为left的一半+间隙10px */
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="wrapper">
+      <div class="item left"></div>
+      <div class="item left"></div>
+      <div class="item right"></div>
+      <div class="item right"></div>
+      <div class="item right"></div>
+      <div class="item right"></div>
+    </div>
+  </div>
+</body>
+</html>

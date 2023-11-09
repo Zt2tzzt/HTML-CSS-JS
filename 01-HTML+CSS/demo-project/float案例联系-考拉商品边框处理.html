@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+  <title>Document</title>
+  <style>
+    .content {
+      width: 1100px;
+      margin: 0 auto;
+      height: 800px;
+      background: #ccc;
+    }
+    .item {
+      width: 221px;
+      height: 168px;
+      background: orange;
+      color: #fff;
+      float: left;
+      border: 1px solid #000;
+      margin-right: -1px; /* 使用负值，使上一个元素右边框覆盖下一个元素的左边框 */
+      box-sizing: border-box;
+    }
+    .item.first {
+      width: 220px; /* 给第一个小盒子，宽度减去1px */
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <div class="box">
+      <div class="item first">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+    </div>
+  </div>
+</body>
+</html>

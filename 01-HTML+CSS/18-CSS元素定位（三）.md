@@ -161,6 +161,8 @@ float 常用的 3 个取值。
   - 以下案例中，box 相对于 content 是子元素。
 - 块级子元素的宽度：默认值是 auto，也就是父元素的宽度，设置 margin-right 负值后，宽度强行拉伸。
 
+01-HTML+CSS\demo-project\float案例联系-京东商品.html
+
 ```html
 <head>
   <title>Document</title>
