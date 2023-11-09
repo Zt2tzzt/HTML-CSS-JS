@@ -1,26 +1,30 @@
-# flex 布局概念
+# Flex布局详解
+
+## 一、flex 布局概念
+
+### 1.flex 布局的概念
 
 flex 布局的 2 个概念：
 
 - 开启了 flex 布局的元素叫 `flex containerr`。
 - flex containerr 里面的**直接子元素**叫做 `flex item`。
 
----
+### 2.flex item 的概念
 
 flex item 具备的 3 点特性：
 
 - 布局受 flex containerr 属性的控制；
-- 不再严格区分块级元素和行内级元素;（flex containerr 会区分）；
+- flex item 不再严格区分块级元素和行内级元素;（flex containerr 会区分）；
 - 默认是包裹内容的宽高, 但也可以设置宽高；
 
----
+### 3.flex 布局设置
 
-元素设置 `display` 属性为 `flex` 或者 `inline-flex`，该元素可以成为 flex container，2 点理解。
+元素设置 `display` 属性为 `flex` 或者 `inline-flex`，该元素可以成为 flex container，
 
 - `flex`：flex containerr 以 block-level 形式存在
 - `inline-flex`：flex containerr 以 inline-level 形式存在
 
----
+### 4.flex 布局模型图
 
 理解 flex 布局模型图，主轴，交叉轴相关概念，
 
@@ -30,8 +34,6 @@ flex item 具备的 3 点特性：
 - 交叉轴开始位置（cross start），交叉轴结束位置（cross end）
 
 ![flex布局模型](NodeAssets/flex模型图-主轴-交叉轴.jpg)
-
----
 
 flex containerr 的相关属性：
 
@@ -51,9 +53,9 @@ flex items 的相关属性。
 - `flex-basis`
 - `flex`
 
-# flex containerr 的属性
+## 二、flex containerr 的属性
 
-## flex-direction
+### 1.flex-direction
 
 flex container 的 `flex-direction` 属性有什么用，
 
@@ -66,9 +68,7 @@ flex container 的 `flex-direction` 属性有什么用，
 - `column`：从 cross start 到 cross end。
 - `column-reverse`：column 反转。
 
----
-
-## flex-wrap
+### 2.flex-wrap
 
 flex container 的 `flex-wrap` 属性有什么用？
 
@@ -80,17 +80,13 @@ flex container 的 `flex-wrap` 属性有什么用？
 - `wrap`：多行
 - `wrap-reverse`：多行（对比 wrap，cross start 与 cross end 相反）
 
----
-
-## flex-flow
+### 3.flex-flow
 
 flex container 的 `flex-flow` 属性有什么用？
 
-- `flex-direction` 和 `flex-wrap` 的简写，顺序任何，并且都可以省略。
+`flex-direction` 和 `flex-wrap` 的简写，顺序任意，并且都可以省略。
 
----
-
-## justify-content
+### 4.justify-content
 
 flex container 的 `justify-content` 属性有什么用？
 
@@ -113,9 +109,7 @@ flex container 的 `justify-content` 属性有什么用？
 
 ![justify-content的布局模型图](NodeAssets/flex container的justify-content属性值.jpg)
 
----
-
-## align-item
+### 5.align-item
 
 flex containerr 的 `align-item` 属性有什么用？
 
@@ -132,9 +126,7 @@ flex containerr 的 `align-item` 属性有什么用？
 
 ![align-item的布局模型图](NodeAssets/flex containerr 的 align-item 属性.jpg)
 
----
-
-## align-content
+### 6.align-content
 
 flex containerr 的 `align-content` 属性有什么用？
 
@@ -158,18 +150,16 @@ flex containerr 的 `align-content` 属性有什么用？
 
 ![](NodeAssets/flex containerr 的 align-content 属性.jpg)
 
-# flex item 的属性
+## 三、flex item 的属性
 
-## order
+### 1.order
 
 flex item 的 `order` 属性有什么用？
 
 - 决定了 flex item 的排布顺序。
 - 可以设置任意整数（正整数、负整数、0），值越小就越排在前面，默认值是 0
 
----
-
-## align-self
+### 2.align-self
 
 flex-item 的 `align-self` 属性有什么用？
 
@@ -183,7 +173,7 @@ flex-item 的 `align-self` 属性有什么用？
 
 ---
 
-## flex-grow
+### 3.flex-grow
 
 flex item 的 `flex-grow` 属性有什么用？
 
@@ -202,9 +192,7 @@ flex item 的 `flex-grow` 属性有什么用？
 
 ![flex-grow布局模型](NodeAssets/flex item 的 flex-grow 属性.jpg)
 
----
-
-## flex-shrink
+### 4.flex-shrink
 
 flex item 的 `flex-shrink` 属性有什么用？
 
@@ -221,9 +209,7 @@ flex item 的 `flex-shrink` 属性有什么用？
   - flex items 超出 flex container 的 size \* (flex-shrink / flex-shrink sum)
 - flex items 收缩后的最终 size 不能小于 min-width \ min-height
 
----
-
-## flex-basis
+### 5.flex-basis
 
 flex item 的 `flex-basis` 属性有什么用？
 
@@ -240,14 +226,12 @@ flex item 的 `flex-basis` 属性有什么用？
 使用的规律。
 
 - 决定 flex items 最终 base size 的因素，从优先级高到低：
-  1.  max-width \ max-height \ min-width \ min-height
-  2.  flex-basis
-  3.  width \ height
-  4.  内容本身的 size
+  1. max-width \ max-height \ min-width \ min-height
+  2. flex-basis
+  3. width \ height
+  4. 内容本身的 size
 
----
-
-## flex
+### 6.flex
 
 flex item 的 `flex` 属性有什么用？
 
@@ -272,7 +256,7 @@ flex item 的 `flex` 属性有什么用？
   - 第二个值必须为一个无单位数，并且它会被当作 flex-shrink 的值。
   - 第三个值必须为一个有效的宽度值， 并且它会被当作 flex-basis 的值
 
----
+## 四、解决 justify-content: space-between; 最后一行显示不对齐的问题
 
 如何解决 `justify-content: space-between;` 布局后，最后一行显示不对齐的问题，如图所是。案例理解。
 
