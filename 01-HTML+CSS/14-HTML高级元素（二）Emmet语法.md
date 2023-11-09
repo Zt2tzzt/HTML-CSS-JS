@@ -1,23 +1,6 @@
 # HTML高级元素（二）Emmet语法
 
-## 一、Emmet 语法
-
-使用 Emmet 写法写一个表格结构。
-
-```html
-table > (tr > td * 5) * 3
-```
-
-使用结构伪类选中表格的前 2 行。
-
-```css
-table tr:nth-child(-n + 2) {
-  font-weight: 700;
-  font-size: 20px;
-}
-```
-
-## 二、课程表案例
+## 一、课程表案例
 
 理解课程表案例的实现过程（结构伪类，跨行/跨列的使用）。
 
@@ -141,7 +124,7 @@ table tr:nth-child(-n + 2) {
 </html>
 ```
 
-## 三、form 表单
+## 二、form 表单
 
 用于表单的常见元素。
 
@@ -168,19 +151,19 @@ input 元素`type`属性有哪些值？有什么用？
 
 Input 元素有哪些属性。
 
-- readonly：只读（布尔属性）
-- disabled：禁用（布尔属性）
-- autofocus：当页面加载时，自动聚焦（布尔属性）
-- checked：默认被选中，只有当 type 为 radio 或 checkbox 时可用（布尔属性）
-- name：名字，在提交数据给服务器时，可用于区分数据类型
-- value：取值
+- readonly：（布尔属性）只读
+- disabled：（布尔属性）禁用
+- autofocus：（布尔属性）当页面加载时，自动聚焦
+- checked：（布尔属性）默认被选中，只有当 type 为 radio 或 checkbox 时可用
+- name：名字（在提交数据给服务器时，可用于区分数据类型）。
+- value：取值。
 
 > 布尔属性在 HTML 元素中的写法。
 >
-> - 常见的布尔属性有`disabled、checked、readonly、autofocus、multiple、selected`
-> - 布尔属性可以没有属性值，写上属性名就代表使用这个属性，如果要给布尔属性设值，值就是属性名本身
+> - 常见的布尔属性有`disabled、checked、readonly、autofocus、multiple、selected`。
+> - 布尔属性可以没有属性值，写上属性名就代表使用这个属性，如果要给布尔属性设值，值就是属性名本身。
 
-input 元素是否为可替换元素？定义比较模糊，原因。
+input 元素是否为可替换元素？定义比较模糊，因为：
 
 - imput 元素不好定义，它是否是可替换元素，取决于它的 type，或者不同的浏览器。大多数情况下，可把它看作是一个可替换元素。
 
@@ -190,9 +173,9 @@ input 元素是否为可替换元素？定义比较模糊，原因。
 - 重置按钮（type="reset"）：重置它所属 form 的所有表单元素（包括 input、textarea、select） 。
 - 提交按钮（type="submit"）：提交它所属 form 的表单数据给服务器（包括 input、textarea、select）。
 
-注意事项。
-
-- 放到 form 元素中，才有效果。
+> 注意事项：
+>
+> 放到 form 元素中，才有效果。
 
 使用 button 实现相同效果。
 
@@ -215,13 +198,13 @@ input 元素是否为可替换元素？定义比较模糊，原因。
 </form>
 ```
 
----
+### 2.input 和 label 的关系
 
-input 和 lable 之间的关系，它们结合使用。
+input 和 label 之间的关系，它们结合使用。
 
 - label 元素一般跟 input 配合使用，用来表示 input 的标题。
 - label 可以跟某个 input 绑定，点击 label 就可以激活对应的 input 变成选中。
-- 给 input 添加**id 属性**，给 label 元素添加**for 属性**，将它们关联起来，
+- 给 input 添加 **id 属性**，给 label 元素添加 **for 属性**，将它们关联起来，
 
 ```html
 <form>
@@ -231,6 +214,7 @@ input 和 lable 之间的关系，它们结合使用。
       <input id="username" type="text" />
     </label>
   </div>
+  
   <div>
     <label for="password">
       密码:
@@ -240,29 +224,34 @@ input 和 lable 之间的关系，它们结合使用。
 </form>
 ```
 
----
+### 3.input 实现单选框
 
 使用 input 来实现表单单选框（radio）。结合 label 使用。
 
-- label 的 for 属性，关联 input 的 id 属性，input 使用 name 做唯一区分。通过 value 定义值。
+- `<label>` 的 `for` 属性，关联 `<input>` 的 `id` 属性；
+- `<input>` 使用 `name` 做唯一区分。通过 `value` 定义值。
 
 ```html
 <form action="/abc">
-  <label for="male"> <input id="male" type="radio" name="sex" value="male" />男 </label>
-  <label for="female"> <input id="female" type="radio" name="sex" value="female" />女 </label>
+  <label for="male">
+    <input id="male" type="radio" name="sex" value="male" />男
+  </label>
+  
+  <label for="female">
+    <input id="female" type="radio" name="sex" value="female" />女
+  </label>
+  
   <button type="submit">提交按钮</button>
 </form>
 ```
 
----
+在表单中提交按钮 radio 选中的值。观察 url 变化成了：`127.0.0.1:5500/abc?sex=male`
 
-在表单中提交按钮 radio 选中的值。观察 url 变化。`127.0.0.1:5500/abc?sex=male`
+### 4.input 实现复选框
 
----
+checkbox 属性的使用，结合 label 元素，`name`，`value` 属性提交表单。
 
-checkbox 属性的使用，结合 label 元素，name，value 属性提交表单。
-
-- 属于同一种类型的 checkbox，name 值要保持一致
+属于同一种类型的 checkbox，`name` 值要保持一致
 
 ```html
 <form action="/cba">
@@ -272,16 +261,18 @@ checkbox 属性的使用，结合 label 元素，name，value 属性提交表单
       <!-- 布尔类型 checked 表示默认选中。 -->
       <input id="basketball" type="checkbox" name="hobby" value="basketball" checked />篮球
     </label>
+    
     <label for="football">
       <input id="football" type="checkbox" name="hobby" value="football" />足球
     </label>
   </div>
+  
   <input type="submit" />
 </form>
 <!-- http://127.0.0.1:5500/abc?hobby=basketball&hobby=football -->
 ```
 
----
+### 5.textarea 元素
 
 textarea 元素的使用，2 个属性的作用。
 
@@ -310,16 +301,16 @@ textarea {
 }
 ```
 
----
+### 6.select 元素
 
-select 和 option 的使用，
+`<select>` 和 `<option>` 的使用，
 
-select 的 2 个常用属性。
+`<select>` 的 2 个常用属性。
 
-- multiple：可以多选 。
-- size：显示多少项。
+- `multiple`：可以多选 。
+- `size`：显示多少项。
 
-option 的 1 个常用属性。
+`<option>` 的 1 个常用属性。
 
 - selected：默认被选中。
 
@@ -334,7 +325,7 @@ option 的 1 个常用属性。
 <!-- http://127.0.0.1:5500/abc?fruits=apple&fruits=banana -->
 ```
 
----
+## 三、form 元素作用
 
 form 元素有什么用 3 点？
 
@@ -342,10 +333,12 @@ form 元素有什么用 3 点？
 - 比如对整个表单进行重置;
 - 比如对整个表单的数据进行提交;
 
+## 四、form 常见的3个属性
+
 常见的 3 个属性。
 
 - action，用于提交表单数据的请求 URL
-- method，请求方法（get 和 post），默认是 get
+- method，请求方法（`get` 和 `post`），默认是 `get`
 - target，在什么地方打开 URL（参考 a 元素的 target）
 
 ```html
@@ -361,18 +354,22 @@ form 元素有什么用 3 点？
 </form>
 ```
 
----
+> 后端服务器应该记录密码的密文而不是明文。
 
-后端服务器应该记录密码的密文而不是明文。
+## 五、Emmet 语法
 
----
+使用 Emmet 写法写一个表格结构。
+
+```html
+table > (tr > td * 5) * 3
+```
 
 什么是 Emmet 语法？生成 HTML5 代码结构，使用`!`。
 
 - Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具。
 - VsCode 内置了 Emmet 语法,在后缀为`.html/.css`中输入缩写后按 Tab/Enter 键即会自动生成相应代码。
 
----
+### 1.HTML Emmet 语法
 
 Emmet 的 6 个语法细节（正式写法中不要有空格）。
 
@@ -414,7 +411,7 @@ Emmet 的 6 个语法细节（正式写法中不要有空格）。
    <div class="box"></div>
    ```
 
----
+### 2.CSS Emmet 语法
 
 CSS Emmet 的 5 种写法。
 
