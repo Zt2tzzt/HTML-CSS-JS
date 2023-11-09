@@ -1,4 +1,6 @@
-# transform 属性
+# 额外知识补充-transform属性
+
+## transform 属性
 
 transform 属性有什么用？
 
@@ -6,7 +8,7 @@ transform 属性有什么用？
 
 > transform 对于行内级非替换元素，table columns / table colums-group 是无效的；
 
-# transform translate 函数
+## transform translate 函数
 
 > `none | <transform-function>+`
 
@@ -81,7 +83,7 @@ transform 属性 translate 函数的特性补充 4 点。
 
 ---
 
-# 水平居中方案 5 点总结：
+## 水平居中方案 5 点总结：
 
 1. 行内级元素:
    - 设置父元素的 `text-align: center;`
@@ -93,7 +95,7 @@ transform 属性 translate 函数的特性补充 4 点。
 5. flex
    - `justify-content: center;`
 
-# 垂直居中方案 3 点总结，
+## 垂直居中方案 3 点总结，
 
 缺点有哪些？
 
@@ -108,7 +110,7 @@ transform 属性 translate 函数的特性补充 4 点。
 
 ---
 
-# transform scale 函数
+## transform scale 函数
 
 transform 属性 scale 函数作用，
 
@@ -128,7 +130,7 @@ transform 属性 scale 函数作用，
 
 ---
 
-# transform rotate 函数
+## transform rotate 函数
 
 transform 属性 rotate 函数作用：
 
@@ -155,7 +157,7 @@ transform 属性 rotate 函数的 2 点补充：
 
 ---
 
-# transform-origin 属性
+## transform-origin 属性
 
 transform-origin 属性的作用，
 
@@ -180,7 +182,7 @@ transform-origin 属性的作用，
 
 ---
 
-# transform skew 函数
+## transform skew 函数
 
 transform 属性 skew 函数的作用：
 
