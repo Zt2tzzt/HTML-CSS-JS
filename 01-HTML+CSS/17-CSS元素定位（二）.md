@@ -94,8 +94,8 @@ position 值对应元素性质对比
 
 对于绝对定位元素来说，定位参照对象的：
 
-- 宽度（固定） = left + right + margin-left + margin-right + 绝对定位元素的实际占用宽度。
-- 高度（固定） = top + bottom + margin-top + margin-bottom + 绝对定位元素的实际占用高度。
+- 宽度（固定） = `eft + right + margin-left + margin-right + 绝对定位元素的实际占用宽度`
+- 高度（固定） = `top + bottom + margin-top + margin-bottom + 绝对定位元素的实际占用高度`。
 
 利用以上 2 个公式，实现绝对定位元素的水平，垂直居中。是绝对的居中显示，不存在兼容性问题。
 
