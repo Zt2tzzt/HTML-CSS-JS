@@ -1,29 +1,25 @@
-# this 面试题
+# this面试题-浏览器运行原理-JS运行原理
+
+## 一、this 面试题
 
 this 相关的 4 道面试题。
 
----
-
-# 网页解析过程图解
+## 二、网页解析过程图解
 
 理解网页被解析过程图解。
 
 ![网页被解析过程](NodeAssets/网页被解析过程.jpg)
 
----
-
-# 高级语言分为 2 类
+## 三、高级语言分为 2 类
 
 高级语言分为编译型和解释型：
 
 - 编译型：如 C, C++, Java 把代码编译成可执行文件再执行。
 - 解释型：如 JavaScript, Python 边读源代码边做解释，再执行。
 
----
+## 四、浏览器内核
 
-# 浏览器内核
-
-网页解析由浏览器内核完成，常见的浏览器内核有哪些，
+网页解析，由浏览器内核完成，常见的浏览器内核有哪些，
 
 - Gecko（壁虎）：早期被 NetScape 和 Mozilla FireFox 浏览器使用。
 - Trident （三叉戟）：微软开发，被 IE4-IE11 使用，edge 已转向 Blink
@@ -38,9 +34,7 @@ this 相关的 4 道面试题。
 - 页面渲染引擎（rendering engine）。
 - 样版引擎。
 
----
-
-# JavaScript 引擎
+## 五、JavaScript 引擎
 
 常见的 JavaScript 引擎 4 个
 
@@ -49,9 +43,7 @@ this 相关的 4 道面试题。
 - JavaScriptCore：WebKit 中的 Javascript 引擎，Apple 公司开发。
 - V8：Google 开发的强大的 Javascript 引擎，也帮助 Chrome 从众多浏览器中脱颖而出。
 
----
-
-# 浏览器内核渲染页面的流程。
+## 六、浏览器内核渲染页面的流程
 
 ![浏览器内核渲染页面的流程1](NodeAssets/浏览器内核渲染页面的流程1.jpg)
 
@@ -68,61 +60,54 @@ this 相关的 4 道面试题。
 
 ![布局和绘制](NodeAssets/布局和绘制.jpg)
 
-> - link 元素不会阻塞 DOM Tree 的构建过程，但是会阻塞 Render Tree 的构建过程，因为 Render Tree 在构建时，需要对应的 CSSOM Tree（当加载时间过长，浏览器会做一定优化，先展示 DOM Tree，不会一直等待。）
-> - Render Tree 和 DOM Tree 并不是一一对应的关系，比如对于 `display: none;` 的元素，压根不会出现在 Render Tree 中；
+> link 元素不会阻塞 DOM Tree 的构建过程，但是会阻塞 Render Tree 的构建过程，因为 Render Tree 在构建时，需要对应的 CSSOM Tree（当加载时间过长，浏览器会做一定优化，先展示 DOM Tree，不会一直等待。）
+>
+> Render Tree 和 DOM Tree 并不是一一对应的关系，比如对于 `display: none;` 的元素，压根不会出现在 Render Tree 中；
 
----
-
-# 回流
+## 七、回流
 
 什么是回流（reflow）？
 
-- 第一次确定节点的大小和位置，称之为布局（layout）。
-- 之后对节点的大小、位置修改后重新计算称之为回流。
+- 第一次确定节点的大小和位置，称之为**布局（layout）**。
+- 之后对节点的大小、位置修改后重新计算，称之为**回流（reflow）**。
 
 什么情况下会引起回流？
 
 - DOM 结构发生改变（添加新的节点或者移除节点）；
 - 改变了布局（修改了 width、height、padding、font-size 等值）
 - 窗口 resize（修改了窗口的尺寸等）
-- 调用 `getComputedStyle` 方法获取尺寸、位置信息；
+- 调用 `getComputedStyle` 方法，获取尺寸、位置信息；
 
----
-
-# 重绘
+## 八、重绘
 
 什么是重绘（repaint）？
 
-- 第一次渲染内容称之为绘制（paint）。
-- 之后重新渲染称之为重绘。
+- 第一次渲染内容称之为**绘制（paint）**。
+- 之后重新渲染称之为**重绘（repaint）**。
 
 什么情况下会引起重绘？
 
 - 修改背景色、文字颜色、边框颜色、等样式；
 - 回流一定会引起重绘，所以回流是一件很消耗性能的事情。
 
----
-
-# 如何避免回流、重绘
+## 九、避免回流、重绘
 
 开发应尽量避免回流，重绘，采取的措施。
 
 1. 修改样式时尽量一次性修改
    - 比如通过 `cssText` 修改，比如通过动态添加 class 修改。
 2. 尽量避免频繁的操作 DOM
-   - 我们可以在一个 DocumentFragment 或者父元素中 将要操作的 DOM 操作完成，再一次性的操作（前端框架中的虚拟 DOM 很好的做到了这一点）
+   - 我们可以在一个 DocumentFragment 或者父元素中，将要操作的 DOM 操作完成，再一次性的操作（前端框架中的虚拟 DOM 很好的做到了这一点）
 3. 尽量避免通过 `getComputedStyle` 获取尺寸、位置等信息；
 4. 对某些元素使用 `position: absolute / fixed`
    - 会引起回流，但是开销相对较小，不会对其他元素造成影响。
 
----
-
-# 合成层
+## 十、合成层
 
 什么是 composite 合成。合成层的特性，
 
-- 绘制的过程，可以将布局后的元素绘制到多个合成图层中。这是浏览器的一种优化手段；
-- 默认情况下，标准流中的内容都是被绘制在同一个图层（Layer）中；
+- 绘制的过程，可以将布局后的元素绘制到多个合成图层中；这是浏览器的一种优化手段；
+- 默认情况下，标准流中的内容，都是被绘制在同一个**图层（Layer）**中；
 - 而一些特殊的属性，会创建一个新的合成层（CompositingLayer ），并且新的图层可以利用 GPU 来加速绘制；
 - 因为每个合成层都是单独渲染的；
 
@@ -157,16 +142,12 @@ this 相关的 4 道面试题。
   ```
 
 > 分层确实可以提高性能，但是它以内存管理为代价，因此不应作为 web 性能优化策略的一部分过度使用。
+>
+> 在浏览器中查看图层模型。
+>
+> - 浏览器调试工具 -> 右上角 3 点 -> More tools -> Layers
 
----
-
-在浏览器中查看图层模型。
-
-- 浏览器调试工具 -> 右上角 3 点 -> More tools -> Layers
-
----
-
-# JavaScript 解析
+## 十一、JavaScript 解析
 
 script 元素和页面解析的关系 3 点。
 
@@ -187,9 +168,7 @@ script 元素和页面解析关系，引出 2 个问题。
 1. 在目前的开发模式中（比如 Vue、React），脚本往往比 HTML 页面更“重”，处理时间需要更长；
 2. 所以会造成页面的解析阻塞，在脚本下载、执行完成之前，用户在界面上什么都看不到；
 
----
-
-## \<script\> 上的 defer & async
+### 1.\<script\> 上的 defer & async
 
 script 提供的 2 个属性（attribute）是什么，有什么用？
 
@@ -213,32 +192,25 @@ script 提供的 2 个属性（attribute）是什么，有什么用？
 </head>
 ```
 
----
+### 2.浏览器内核包含 2 部分，以 webkit 为例
 
-## 浏览器内核包含 2 部分，以 webkit 为例
+WebCore：负责 HTML 解析、布局、渲染等等相关的工作；
 
-- WebCore：负责 HTML 解析、布局、渲染等等相关的工作；
-- JavaScriptCore：解析、执行 JavaScript 代码；
+JavaScriptCore：解析、执行 JavaScript 代码；
 
-<img src="NodeAssets/浏览器内核组成.jpg" alt="浏览器内核组成" style="zoom:70%;" />
+![浏览器内核组成](NodeAssets/浏览器内核组成.jpg)
 
----
-
-## 什么是 V8 引擎？
+### 3.什么是 V8 引擎？
 
 - V8 是用 C++ 编写的 Google 开源高性能 JavaScript 和 WebAssembly 引擎，它用于 Chrome 和 Node.js 等。
 - 它实现 ECMAScript 和 WebAssembly，并在 Windows7 或更高版本，macOS 10.12+ 和使用 x64，IA-32，ARM 或 MIPS 处理器的 Linux 系统上运行（跨平台运行）。
 - V8 可以独立运行，也可以嵌入到任何 C++ 应用程序中。
 
----
-
-## JS 在 V8 中的执行流程
+### 4.JS 在 V8 中的执行流程
 
 理解 V8 引擎执行原理图。
 
 ![V8引擎原理图](NodeAssets/V8引擎原理图.jpg)
-
----
 
 理解 V8 引擎的架构。
 
@@ -250,8 +222,6 @@ script 提供的 2 个属性（attribute）是什么，有什么用？
 - `Turbofan` 是一个编译器，它将字节码编译成 CPU 可以直接执行的机器码
   - 如果一个函数被多次调用，那么会被标记为**热点函数**，会经过 Turbofan 转换成优化的机器码，提高代码的执行性能。
   - 但是，机器码实际上也会被还原为 Bytecode，这是因为如果后续执行函数的过程中，函数参数类型发生了变化，之前优化的机器码并不能正确的处理运算，就会逆向的转换成字节码
-
----
 
 理解 V8 引擎的解析图，
 
@@ -265,20 +235,16 @@ script 提供的 2 个属性（attribute）是什么，有什么用？
 - 语法分析（syntactic analysis，也叫 parsing）
   - 语法分析器也可以称之为 parser。
 
----
-
 说说 V8 执行 JavaScript 的细节 4 点。
 
-1.  Blink 将源码交给 V8 引擎，Stream 获取到源码并进行编码转换。
-2.  Scanner 会进行词法分析（lexical analysis），词法分析会将代码转换成 tokens。
-3.  经过 Parser 和 PreParser，tokens 会转换成 AST 树结构。
-    1.  Parser 就是直接将 tokens 转成 AST 树结构。
-    2.  PreParser 称之为预解析，为什么需要预解析。
-        1.  因为并非所有 JS 代码，在一开始就会执行，对所有 JS 代码解析，必然会影响网页的运行速度。
-        2.  V8 引擎实现了 Lazy Parsing（延迟解析）的方案，它的作用是将不必要的函数进行预解析，而对函数的全量解析是在函数被调用时才会进行
-4.  生成的 AST 树，会被 ignition 转成字节码（bytecode），之后的过程就是代码的执行过程
-
----
+1. Blink 将源码交给 V8 引擎，Stream 获取到源码并进行编码转换。
+2. Scanner 会进行词法分析（lexical analysis），词法分析会将代码转换成 tokens。
+3. 经过 Parser 和 PreParser，tokens 会转换成 AST 树结构。
+    1. Parser 就是直接将 tokens 转成 AST 树结构。
+    2. PreParser 称之为预解析，为什么需要预解析。
+        1. 因为并非所有 JS 代码，在一开始就会执行，对所有 JS 代码解析，必然会影响网页的运行速度。
+        2. V8 引擎实现了 Lazy Parsing（延迟解析）的方案，它的作用是将不必要的函数进行预解析，而对函数的全量解析是在函数被调用时才会进行
+4. 生成的 AST 树，会被 ignition 转成字节码（bytecode），之后的过程就是代码的执行过程
 
 JavaScript 代码执行原理 3 个版本。
 
