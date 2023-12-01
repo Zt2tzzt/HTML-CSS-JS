@@ -1,7 +1,11 @@
-解决图片下方 3 像素的方法 2 个，代码演示。
+# vertical-align
+
+## 一、图片下方3px解决
+
+解决图片下方 3 像素的方法，有如下 2 个，代码演示。
 
 1. 将行盒中的行内块级/行内可替换元素 vertical-align 改为 top / middle / bottom。
-2. 将行盒中的行内块级/行内可替换元素改为块级元素。
+2. 将行盒中的行内块级/行内可替换元素，改为块级元素。
 
 ```html
 <head>
@@ -30,20 +34,25 @@
 </body>
 ```
 
----
+## 二、vertical-align 可以设的值
 
-vertical-align 可以设的值。
+`baseline`：默认值，基线对齐。
 
-- `baseline`：默认值，基线对齐。
-- `top`：把行内级盒子的顶部跟行盒（line boxes）顶部对齐。
-- `middle`：行内级盒子的中心点与父盒基线上字母 x 高度一半的线对齐。
-- `bottom`：把行内级盒子的底部跟行盒（line box）底部对齐。
-- \<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是[`line-height`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height)属性的百分比。可以是负数。
-- \<length\>：使元素的基线对齐到父元素的基线之上的给定长度。可以是负数。
+`top`：把行内级盒子的顶部跟行盒（line boxes）顶部对齐。
 
-middle 为什么不能做垂直居中？代码演示。
+`middle`：行内级盒子的中心点与父盒基线上字母 x 高度一半的线对齐。
 
-- 因为大部分字体，都会进行文本下沉，所以 x-height 的一半，在文本中线靠下的位置。即使文本居中了，但与文本中线对齐的图片仍不居中。
+`bottom`：把行内级盒子的底部跟行盒（line box）底部对齐。
+
+\<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是[`line-height`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height)属性的百分比。可以是负数。
+
+\<length\>：使元素的基线对齐到父元素的基线之上的给定长度。可以是负数。
+
+## 三、middle 不能做垂直居中
+
+为什么 `vertical-align: middle` 不能做垂直居中？
+
+因为大部分字体，都会进行文本下沉，所以 x-height 的一半，在文本中线靠下的位置。即使文本居中了，但与文本中线对齐的图片仍不居中。
 
 ```html
 <head>
@@ -59,6 +68,7 @@ middle 为什么不能做垂直居中？代码演示。
     }
   </style>
 </head>
+
 <body>
   <div class="content">
     我是普通文本xxx
@@ -67,7 +77,7 @@ middle 为什么不能做垂直居中？代码演示。
 </body>
 ```
 
----
+## 四、行内块级元素的居中
 
 行内块级元素在行盒中居中的方法 3 步，代码实现。
 
@@ -102,4 +112,4 @@ middle 为什么不能做垂直居中？代码演示。
 </body>
 ```
 
-![](NodeAssets/行内块级元素在行盒中居中未设置line-height.jpg)
+![行内块级元素在行盒中居中未设置line-height](NodeAssets/行内块级元素在行盒中居中未设置line-height.jpg)
