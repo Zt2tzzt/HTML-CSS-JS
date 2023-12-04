@@ -276,16 +276,19 @@ nav {
 
 在其中可以写一些 css 代码。
 
-通常与 `@use` 结合使用。
+通常与 `@use` 结合使用，见下方。
 
 ### 5.scss 模块化
 
-scss 支持模块化，使用 `@use` 在 scss 文件中，引入其它的 scss 文件，并指定一个命名空间。
+scss 支持模块化；
+
+使用 `@use` 在 scss 文件中，引入其它的 scss 文件，并指定一个命名空间。
 
 就可以使用其中的变量，混入，函数...
 
+_base.scss
+
 ```scss
-// _base.scss
 $font-stack: Helvetica, sans-serif;
 $primary-color: #333;
 
@@ -295,8 +298,9 @@ body {
 }
 ```
 
+styles.scss
+
 ```scss
-// styles.scss
 @use 'base'; // 可省略 .scss 后缀名
 
 .inverse {
@@ -307,7 +311,7 @@ body {
 
 ### 6.scss 混入
 
-使用混入，复用样式代码，可传递参数。
+混入，用于复用样式代码，可传递参数。
 
 ```scss
 @mixin theme($theme: DarkGray) {
@@ -329,7 +333,7 @@ body {
 
 ### 7.scss 继承
 
-可避免 css 文件中，重复的代码。
+继承，用于避免 css 文件中，重复的代码。
 
 ```scss
 /* This CSS will print because %message-shared is extended. */
@@ -390,7 +394,7 @@ body {
 
 ### 8.scss 运算
 
-scss 支持 +, -, *, math.div, % 等运算符。
+scss 支持 `+`, `-`, `*`, `math.div`, `%` 等运算符。
 
 ```scss
 @use "sass:math";
