@@ -259,8 +259,8 @@ BFC 解决高度塌陷需要 2 个条件。(BFC 不能解决绝对定位元素�
 
   ```css
   /*
-  	all: 媒体类型
-  	(max-width: 800px)：媒体特性
+    all: 媒体类型
+    (max-width: 800px)：媒体特性
   */
   @media all and (max-width: 800px) {
     body {
