@@ -11,7 +11,7 @@ table tr:nth-child(-n + 2) {
 }
 ```
 
-### 1.:-nth-child() 用法
+### 1.:nth-child() 用法
 
 `:nth-child()` 的 4 种使用方法。
 
