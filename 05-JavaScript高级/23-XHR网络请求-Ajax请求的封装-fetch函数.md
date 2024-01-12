@@ -425,7 +425,7 @@ getData2()
 
 `body`：request body：
 
-- 字符串（例如 JSON 编码的，`JSON.stringfy(xxx)`），
+- 字符串（例如 JSON 编码的，`JSON.stringify(xxx)`），
 - `FormData` 对象，以 `multipart/form-data` 形式发送数据
 
 ## 三、前端文件上传（ 2 点注意事项）
