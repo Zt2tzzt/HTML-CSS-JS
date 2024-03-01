@@ -1,14 +1,16 @@
-# Reflect
+# Reflect-Promise（一）
 
 ## Reflect 是什么？
 
 - 一个内置对象。
 
-## 有什么用？
+## Reflect 有什么用？
 
 - 提供了很多操作对象的方法，有点像 Object 中操作对象的方法；
 
-## 已有 Object 提供对象的操作，为什么还会出现 Reflect
+## Reflect 和 Object
+
+已有 Object 提供对象的操作，为什么还会出现 Reflect
 
 - 这是因为在早期的 ECMA 规范中没有考虑到这种对**对象本身**的操作如何设计会更加规范，所以将这些 API 放到了 Object 上面；
 - 但是 Object 作为一个**构造函数**，这些操作放到它身上并不合适；
@@ -16,7 +18,7 @@
 - 所以在 ES6 中新增了 `Reflect`，让我们这些操作都集中到了 Reflect 对象上；
 - 另外在使用 Proxy 时，可以做到**不操作原对象**；
 
-## Reflect 的常见方法。
+## Reflect 的常见方法
 
 - `Reflect.getPrototypeOf(target)` - 类似于 Object.getPrototypeOf()。
 - `Reflect.setPrototypeOf(target, prototype)` - 设置对象原型的函数. 返回一个 Boolean，如果更新成功，则返回 true。
@@ -34,7 +36,7 @@
 
 > Reflect 通常和 Proxy 一起使用，共同完成代理。
 
-## 使用 Reflect 的好处 3 点。代码实现。
+## Reflect 的好处 3 点
 
 - 对对象进行操作时，不直接操作原对象。
 - 操作方法会返回布尔值，判断是否操作成功。
@@ -76,7 +78,9 @@ objProxy.name = 'CR7'
 objProxy.name
 ```
 
-## 了解使用 Reflect 的 construct 重写借用构造函数继承（理解，不会实际用）。
+## Reflect 补充
+
+了解使用 Reflect 的 construct 重写借用构造函数继承（理解，不会实际用）
 
 ```javascript
 function Person(name, age) {
@@ -91,9 +95,7 @@ function Student(name, age) {
 const stu = new Student('zzt', 18)
 ```
 
-# Promise
-
-## ES6 之前异步函数的处理。有什么缺陷
+## ES6 之前异步函数的处理
 
 ```javascript
 // 1.设计这样的一个函数
@@ -131,11 +133,11 @@ execCode(
 
 ---
 
-## 什么是 Promise？
+## Promise 是什么？
 
 - 一个内置类。
 
-## 如何使用？
+## Promise 怎么用？
 
 1. 通过 new 创建 Promise 对象时，我们需要传入一个回调函数，我们称之为 `executor`
 2. 这个回调函数会被立即执行，并且给传入另外两个回调函数`resolve`、`reject`；
@@ -175,7 +177,7 @@ execCode(255)
   })
 ```
 
-## Promise 执行过程的 3 个状态。
+## Promise 执行过程的 3 个状态
 
 - 待定（`pending`）: 初始状态，既没有被兑现，也没有被拒绝；当执行 executor 中的代码时，处于该状态；
 - 已兑现（`fulfilled`）: 意味着操作成功完成；执行了 resolve 时，处于该状态，Promise 已经被兑现；
@@ -183,7 +185,7 @@ execCode(255)
 
 > Promise 的状态一旦确定下来，就不会再更改。
 
-## Promise 中的 executor
+## Promise 的 executor
 
 什么是 Promise 中的 executor？
 
@@ -194,7 +196,7 @@ execCode(255)
 - 通过 `resolve`，可以兑现（fulfilled）Promise 的状态，也可以称之为已决议（resolved）；
 - 通过 `reject`，可以拒绝（reject）Promise 的状态；
 
-## resolve 中传入 3 种不同值
+## resolve 传入 3 种不同值
 
 resolve 中传入 3 种不同值的区别。
 

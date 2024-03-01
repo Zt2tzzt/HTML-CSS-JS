@@ -1,4 +1,8 @@
-# then 方法
+# Promise（二）-iterator
+
+## Promise 的实例方法
+
+### then 方法
 
 then 方法的返回值是一个 `promise`；该 promise 处于什么状态有 3 种情况。
 
@@ -44,7 +48,7 @@ promise
 
 ---
 
-# catch 方法
+### catch 方法
 
 Promise 如果被拒绝，会回调最近一个相关联的 catch 方法。代码理解。
 
@@ -101,7 +105,7 @@ p.catch(err => {
 
 ---
 
-# finally 方法
+### finally 方法
 
 finally 方法是什么？
 
@@ -129,9 +133,9 @@ promise
 
 ---
 
-# Promise 静态方法
+## Promise 静态方法
 
-## resolve
+### resolve
 
 resolve 方法有什么用，怎么用？
 
@@ -147,7 +151,7 @@ p.then(res => {
 
 ---
 
-## reject
+### reject
 
 reject 方法有什么用，怎么用？
 
@@ -161,15 +165,13 @@ p.catch(err => {
 })
 ```
 
-## 函数参数占位的规范写法。
+### 函数参数占位的规范写法
 
 ```javascript
 new Promise((_, reject) => {...}) // 使用 “_” 占位
 ```
 
----
-
-## all
+### all
 
 all 方法有什么用，怎么用？
 
@@ -205,7 +207,7 @@ Promise.all([p1, p2, p3])
 
 ---
 
-## allSettled
+### allSettled
 
 allSettled 方法有什么用，怎么用？
 
@@ -220,14 +222,14 @@ Promise.allSettled([p1, p2, p3]).then(res => {
   console.log('all settled:', res)
 })
 /* res: [
-		{status: 'rejected', reason: 'p1 reject error'},
-		{status: 'fulfilled', value: 'p2 resolve'},
-		{status: 'fulfilled', value: 'p3 resolve'}
-	 ]
+    {status: 'rejected', reason: 'p1 reject error'},
+    {status: 'fulfilled', value: 'p2 resolve'},
+    {status: 'fulfilled', value: 'p3 resolve'}
+    ]
 */
 ```
 
-## race
+### race
 
 race 方法有什么用？怎么用？
 
@@ -243,7 +245,7 @@ Promise.race([p1, p2, p3])
   })
 ```
 
-## any
+### any
 
 any 方法有什么用？怎么用？
 
@@ -261,9 +263,58 @@ Promise.any([p1, p2, p3])
   })
 ```
 
----
+### withResolvers 方法
 
-# iterator 迭代器
+该方法是 ES2024 的新特性。
+
+在没有该方法前，基本上是这种写法：
+
+```javascript
+let resolve, reject;
+const promise = new Promise((res, rej) => {
+  // 还是回调函数
+  resolve = res;
+  reject = rej;
+});
+
+resolve(data);
+reject(error);
+```
+
+`Promise.withResolvers()` 方法返回一个对象，其包含一个新的 Promise 对象和两个函数 resolve 和 reject，对应于传入给 Promise() 构造函数执行器的两个参数。使用 `Promise.withResolvers()` 优化后的代码：
+
+```javascript
+const { promise, resolve, reject } = Promise.withResolvers();
+
+resolve(data);
+reject(error);
+```
+
+该方法关键在于 `resolve`、`reject` 函数，与 `Promise` 本身处于同一作用域，而不是在执行器中被创建和一次性使用。
+
+这可能使得一些更高级的用例成为可能，
+
+例如：在重复事件中重用它们，特别是在处理流和队列时。这通常也意味着相比在执行器内包装大量逻辑，嵌套会更少。
+
+```javascript
+async function* readableToAsyncIterable(stream) {
+  let { promise, resolve, reject } = Promise.withResolvers();
+  stream.on("error", (error) => reject(error));
+  stream.on("end", () => resolve());
+  stream.on("readable", () => resolve());
+
+  while (stream.readable) {
+    await promise;
+    let chunk;
+    while ((chunk = stream.read())) {
+      yield chunk;
+    }
+    ({ promise, resolve, reject } = Promise.withResolvers());
+  }
+}
+```
+
+## iterator 迭代器
 
 什么是迭代器（iterator）？
 
@@ -274,7 +325,7 @@ Promise.any([p1, p2, p3])
 
 ---
 
-## 认识 JS 中的迭代器
+## JS 中的迭代器
 
 在 JS 中，迭代器指的是什么？
 
@@ -284,7 +335,7 @@ Promise.any([p1, p2, p3])
 
 ---
 
-## 迭代器中的 next 方法
+## 迭代器的 next 方法
 
 迭代协议中 `next` 方法有什么要求。
 
@@ -295,9 +346,7 @@ Promise.any([p1, p2, p3])
 - value
   - 迭代器返回的任何 JavaScript 值。done 为 true 时可省略。
 
-## 基本使用
-
-### 为一个数组创建一个迭代器
+## 为一个数组创建一个迭代器
 
 ```javascript
 const names = ['abc', 'cba', 'nba']
@@ -318,7 +367,7 @@ console.log(namesIterator.next()) // { done: false, value: 'nba' }
 console.log(namesIterator.next()) // { done: true, value: undefined }
 ```
 
-### 将以上代码封装在一个工厂函数中
+## 将以上代码封装在一个工厂函数中
 
 ```javascript
 const names = ['abc', 'cba', 'nba']
@@ -343,7 +392,7 @@ console.log(namesIterator.next())
 
 ---
 
-# 可迭代对象
+## 可迭代对象是什么
 
 什么是可迭代对象？
 
@@ -356,7 +405,7 @@ console.log(namesIterator.next())
 - 当一个对象变成一个可迭代对象的时候，就可以进行某些迭代操作；
 - 比如 for...of 操作时，其实就会调用它的 @@iterator 方法；
 
-## 创建一个可迭代对象。
+## 创建一个可迭代对象
 
 ```javascript
 const iterableObj = {
@@ -384,7 +433,9 @@ const iterableObj = {
 }
 ```
 
-## 数组是一个可迭代对象，获取数组中的迭代器。
+## 数组是一个可迭代对象
+
+获取数组中的迭代器。
 
 ```javascript
 const names = ['abc', 'cba', 'nba']
@@ -394,7 +445,7 @@ namesIterator.next()
 // ...
 ```
 
-## 将一个对象变为可迭代对象。
+## 将一个对象变为可迭代对象
 
 ```javascript
 const infos = {
