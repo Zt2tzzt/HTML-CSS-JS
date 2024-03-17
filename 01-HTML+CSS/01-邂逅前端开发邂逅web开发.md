@@ -29,9 +29,7 @@ canvas / svg / c3 动画 / echarts / 大屏适配（基于矢量图，不会失�
 
 ## 四、为什么还需要学习 jQuery
 
-jQuery 已退出历史舞台，为不出现断层，需要回顾下其中某些 api，例举。
-
-- ajax，http 请求头 / 响应头，fetch 等网络请求相关的 api
+jQuery 已退出历史舞台，为不出现断层，需要回顾下其中某些 api，比如：ajax，http 请求头 / 响应头，fetch 等网络请求相关的 api
 
 ## 五、Node 学习
 
@@ -91,7 +89,7 @@ Node 中分为服务器开发和数据库，在此基础上学习 SSR，开发�
 大前端开发的内容包括：
 
 - 前端范畴：web 开发、小程序开发；
-- 大前端范畴：移动端、桌面端（electron、vscode）、服务器开发（Node）
+- 非前端范畴：移动端、桌面端（electron、vscode）、服务器开发（Node）
 
 ## 九、学习方法和建议
 

@@ -58,17 +58,18 @@ A(文字（自然语言）) -->B(字符编码 encode（ASCLL/UTF8/GBK）)
 
 CSS 全称 Cascading Style Sheet，意为层叠样式表。
 
-CSS 是**样式表语言，计算机语言**，不是编程语言。
+CSS 是样式表语言，计算机语言，不是编程语言。
 
 ### 1.CSS 历史
 
-1. 早期的网页都是通过 HTML 来编写，如果希望 HTML 页面可以更加丰富，这时就增加很多具备特殊样式的元素：比如 i、strong、del...；
-2. 后来也有不同的浏览器，实现各自的样式语言，但是没有统一的规划；
-3. 1994 年，哈肯·维姆·莱和伯特·波斯合作设计 CSS，在 1996 年的时候发布了 CSS1；
-4. 1997 年初，W3C 组织专门成立了 CSS 的工作组；
-5. 1998 年 5 月发布了 CSS2；
-6. 2006~2009 年，非常流行 “DIV+CSS” 布局的方式来替代所有的 html 标签；
-7. 2011 年 6 月 7 日，CSS Color Module 发布为 W3C Recommendation，标志着第一个 CSS 模块发布。这个版本的 CSS 被广泛称为 CSS3，从 CSS3 开始，所有的 CSS 分成了不同的模块（modules），每一个“modules”都有相对 CSS2 中额外增加的功能，以及向后兼容。（事实上，没有真正意义上的 CSS3 版本，现在的 CSS 都是分模块发布的）
+1. 早期的网页都是通过 HTML 来编写，如果希望 HTML 页面可以更加丰富，就要增加很多具备特殊样式的元素：比如 i、strong、del...；
+2. 然后各浏览器，实现各自的样式语言，但是没有统一的规划；
+3. 1994 年，哈肯·维姆·莱和伯特·波斯合作设计 CSS。
+4. 1996 年，发布了 CSS1；
+5. 1997 年初，W3C 组织专门成立了 CSS 的工作组；
+6. 1998 年 5 月发布了 CSS2；
+7. 2006~2009 年，非常流行 “DIV+CSS” 布局的方式来替代所有的 html 标签；
+8. 2011 年 6 月 7 日，CSS Color Module 发布为 W3C Recommendation，标志着第一个 CSS 模块发布。这个版本的 CSS 被广泛称为 CSS3，从 CSS3 开始，所有的 CSS 分成了不同的模块（modules），每一个“modules”都有相对 CSS2 中额外增加的功能，以及向后兼容（事实上，没有真正意义上的 CSS3 版本，现在的 CSS 都是分模块发布的）。
 
 ### 2.CSS 的作用
 
@@ -90,11 +91,11 @@ CSS 美化 HTML 的 2 种方式。
 
 形式二：内部样式表（internal style sheet），也称为：文档样式表（document style sheet）、内嵌样式表（embed style sheet）。
 
-形式三：外部样式表（external style sheet）。
+形式三：外部样式表（external style sheet）。也称为：外联样式表。
 
 #### 1.行内样式
 
-存在于 HTML 元素的 `style` 属性之中
+行内样式存在于 HTML 元素的 `style` 属性之中。
 
 ```html
 <div style="color: red; font-size: 30px;">我是div元素</div>
@@ -102,11 +103,9 @@ CSS 美化 HTML 的 2 种方式。
 
 #### 2.内部样式表
 
-内部样式表带写法如下（使用元素选择器，类选择器）。
+内部样式表写法如下（使用元素选择器，类选择器），将 CSS 放在 `<html>` 元素里的 `<head>` 元素里的 `<style>` 元素之中；
 
-将 CSS 放在 HTML 元素 `<head>` 元素里的 `<style>` 元素之中；
-
-> 在 Vue 的开发过程中，每个组件也会有一个 `<style>` 元素，和内部样式表非常的相似（原理并不相同）；
+> 在 Vue 的开发过程中，每个组件也会有一个 `<style>` 元素，和内部样式表非常的相似，然而原理并不相同；
 
 ```html
 <html lang="en">
@@ -116,14 +115,14 @@ CSS 美化 HTML 的 2 种方式。
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      /* 两个 div 都可以找到 */
+      /* body 中的两个 div 都可以找到 */
       div {
         color: red;
         font-size: 30px;
         background-color: orange;
       }
       
-      /* 找到 class 为 .div-one 的元素 */
+      /* bodu 中 class 为 .div-one 的元素可以找到 */
       .div-one {
         color: red;
         font-size: 30px;
@@ -140,7 +139,7 @@ CSS 美化 HTML 的 2 种方式。
 
 #### 3.外部样式表
 
-将 CSS 编写在一个独立的文件中，并且通过 `<link>` 元素（单标签元素）引入进来。
+将 CSS 编写在一个独立的文件中，然后在 html 文件中，通过 `<link>` 元素（单标签元素）引入进来。
 
 ./css/style.css
 
