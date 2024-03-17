@@ -1,4 +1,4 @@
-# 邂逅CSS（一）
+# 元素语义化、块级元素、SEO、网页渲染、字符编码、邂逅CSS（一）
 
 ## 一、元素的语义化
 
@@ -32,19 +32,17 @@ SEO 是一种网页优化手段，通过了解搜索引擎的运作规则来调�
 
 ## 四、网页渲染模式
 
-在开发后台管理系统时，一般推荐使用 SPA（simple page application)）的开发模式，不用在意 SEO 优化，
+在开发后台管理系统时，一般推荐使用 SPA（simple page application)）的开发模式，因为不用在意 SEO 优化，
 
 在开发门户网站时，一般推荐使用 SSR 开发模式，这样有利于 SEO 优化。
 
-## 五、计算机的二进制
+## 五、字符编码
 
 计算机只能存储和处理 0、1 组成的二进制数字；它的底层硬件实现，是用电路的开和闭两个状态，表示 0 和 1 两个数字的。
 
 为了在计算机上处理文字，符号或者更复杂的内容；需要将这些字符（或更复杂内容）转换成二进制数字，
 
-### 1.字符编码
-
-字符编码和解码过程：
+这就是字符编码和解码的过程：
 
 ```mermaid
 graph LR
@@ -56,7 +54,7 @@ A(文字（自然语言）) -->B(字符编码 encode（ASCLL/UTF8/GBK）)
 
 ## 六、CSS
 
-CSS 全称 Cascading Style Sheet，意为层叠样式表。
+CSS (Cascading Style Sheet)，意为层叠样式表。
 
 CSS 是样式表语言，计算机语言，不是编程语言。
 
@@ -80,7 +78,7 @@ CSS 美化 HTML 的 2 种方式。
 
 ### 3.CSS 编写格式
 
-一个声明（Declaration），单独的 CSS 规则的写法：`[属性名]: [属性值];`
+一个声明（Declaration），单独的 CSS 规则的写法：`属性名: 属性值;`
 
 - 属性名（Property name）：要添加的 css 规则的名称；
 - 属性值（Property value）：要添加的 css 规则的值；
@@ -161,7 +159,7 @@ CSS 美化 HTML 的 2 种方式。
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <!-- link 元素是用来引入资源 -->
+    <!-- link 元素是用来引入外部样式表 -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
@@ -172,7 +170,7 @@ CSS 美化 HTML 的 2 种方式。
 
 ### 5.CSS 引入
 
-`@import` 的用法：
+在 css 文件中，引入其他外部样式表，`@import` 的用法：
 
 ./css/index.css
 
@@ -194,6 +192,7 @@ CSS 美化 HTML 的 2 种方式。
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <!-- 引入外部样式表 -->
     <link rel="stylesheet" href="./css/index.css" />
   </head>
   <body>
