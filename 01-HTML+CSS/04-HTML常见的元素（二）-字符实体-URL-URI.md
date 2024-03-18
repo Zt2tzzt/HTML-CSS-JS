@@ -37,14 +37,14 @@ a 元素可链接到其它 URL 地址，如下载压缩文件；发送邮件。
 
 iframe 元素，用于在一个 HTML 文档中，嵌入其它 HTML 文档。
 
-在 iframe 中它打开淘宝：
+在 iframe 中打开淘宝：
 
 ```html
 <!-- width, height 已不推荐作为属性使用。 -->
 <iframe src="http://www.taobao.com" width="800" height="600" frameborder="0"></iframe>
 ```
 
-> 禁止网页在 iframe 中被请求：在响应头中设置 `x-frame-option: sameorigin`，表示只能在同源的网络环境中加载。
+> 如果要禁止网页在 iframe 中被请求：那么就在响应头中设置 `x-frame-option: sameorigin`，表示只能在同源的网络环境中加载。
 
 iframe 元素 `frameborder` 属性的作用：用于规定是否显示边框：`1` 显示，`0` 不显示。
 
@@ -139,13 +139,13 @@ HTML 元素中常见的 4 个全局属性。
 
 常见的 3 个字符实体的写法。
 
-- `<`：`&lt;`
-- `>`：`&gt;`
+- 小于号 <：`&lt;`
+- 大于号 >：`&gt;`
 - 空格：`&nbsp;`
 
 ## 八、URL
 
-URL 的全称是 Uniform Resource Locator。意为**统一资源定位符**，它主要指的是：一个给定的独特资源，在 web 上的地址，用于标识 web 技术使用的逻辑或物理资源。每个有效的 URL 都指向一个唯一的资源，可以是一个 HTML 页面，一个 CSS 文档，一个图像等等。
+URL 的全称是 Uniform Resource Locator。意为**统一资源定位符**，它指的是：在 web 上一个独特资源的地址，用于标识 web 技术使用的逻辑或物理资源。每个有效的 URL 都指向一个唯一的资源，可以是一个 HTML 页面，一个 CSS 文档，一个图像...。
 
 URL 的标准格式：`[协议类型]://[用户信息]@[服务器地址]:[端口号]/[文件路径]/[文件名]?[查询(query)]#[片段ID(fragment)]`
 
@@ -155,6 +155,7 @@ query 有什么用：
 - 在前端路由中应用，组件之间传递数据。
 
 fragment 有什么用：
+
 - 可理解为前端的锚点。
 
 ## 九、URI

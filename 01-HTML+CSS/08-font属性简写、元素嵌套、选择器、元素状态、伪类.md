@@ -1,14 +1,10 @@
-# 字体属性-常见选择器
+# font属性简写、元素嵌套、选择器、元素状态、伪类
 
-## 一、font 属性缩写
+## 一、font 属性简写
 
-什么是 font 缩写属性?
+font 的缩写属性，用来作为 font-style, font-variant, font-weight, font-size, line-height 和 font-family；
 
-- 一个缩写属性，用来作为 `font-style, font-variant, font-weight, font-size, line-height` 和 `font-family`；
-
-它的规则是什么？
-
-- 属性的简写：`font-style font-variant font-weight font-size/line-height font-family`
+- 属性的简写顺序：`font-style font-variant font-weight font-size/line-height font-family`
 - 前 3 个属性值可调换顺序，也可省略。之后的属性值不能调换顺序，`line-height` 可省略。
 
 ```css
@@ -20,7 +16,7 @@
   font-size: 30px;
   line-height: 30px;
   font-family: serif;
-  
+
   /* 缩写属性 */
   /* 1.5 的行高是相对于 font-size 的 */
   font: italic small-caps 700 30px/1.5 serif;
@@ -31,19 +27,15 @@
 
 元素的嵌套，p 元素里不能放 div。
 
-## 三、通用选择器
+## 三、常见选择器
 
-什么是通用选择器，
+### 1.通用选择器
 
-- 所有的元素都会被选中的选择器。
+通用选择器，用于选中所有的元素。
 
-有什么用，
+一般用来给所有元素，做一些通用的设置，如内边距，外边距，重置一些样式。
 
-- 一般用来给所有元素做一些通用的设置，如内边距，外边距，重置一些内容。
-
-点注意事项。
-
-- 效率低，尽量不要使用。
+通用选择器的效率低，尽量不要使用。
 
 ```css
 * {
@@ -53,7 +45,7 @@
 }
 ```
 
-## 四、元素选择器
+### 2.元素选择器
 
 元素选择器（type selectors），使用元素名称。
 
@@ -63,7 +55,7 @@ div {
 }
 ```
 
-## 五、类选择器
+### 3.类选择器
 
 类选择器（class selectors），使用`.类名`。
 
@@ -73,7 +65,7 @@ div {
 }
 ```
 
-## 六、id 选择器
+### 4.id 选择器
 
 id 选择器（id selectors），使用`#id`
 
@@ -83,19 +75,18 @@ id 选择器（id selectors），使用`#id`
 }
 ```
 
-## 七、选择器的注意事项
+> 使用简单选择器的一些注意事项，
+>
+> - 一个 HTML 文档里面的 id 值是唯一的，不能重复 。
+> - id / class 值如果由多个单词组成，单词之间可以用连字符（`-`）、下划线（`_`）连接，也可以使用驼峰标识（大驼峰 AaBb 和 小驼峰 aaBb 都可以。用的很少）；
+> - 最好不要用标签名作为 id / class 值；
 
-使用简单选择器的注意事项，
+### 5.属性选择器
 
-- 一个 HTML 文档里面的 id 值是唯一的，不能重复 。
-- id / class 值如果由多个单词组成，单词之间可以用连字符/中划线（`-`）、下划线（`_`）连接，也可以使用驼峰标识（大驼峰 AaBb 和 小驼峰 aaBb 都可以。用的很少）；
-- 最好不要用标签名作为 id / class 值；
+属性选择器的两种用法。
 
-## 八、属性选择器
-
-使用属性选择器的用法。
-
-- 拥有某一个属性；属性等于某个值。
+- 拥有某一个属性。
+- 属性等于某个值。
 
 ```html
 <head>
@@ -104,6 +95,7 @@ id 选择器（id selectors），使用`#id`
     [title] {
       color: red;
     }
+
     /* 属性等于某个值 */
     [title='info1'] {
       background-color: blue;
@@ -118,13 +110,11 @@ id 选择器（id selectors），使用`#id`
 </body>
 ```
 
-## 九、后代选择器
+### 6.后代选择器，直接后代选择器
 
-后代选择器 2 种，使用方法。
+后代选择器：所有的后代（包括直接、间接的后代)），选择器之间以空格分割。
 
-- 后代选择器：所有的后代（直接/间接的后代)），选择器之间以空格分割
-
-- 直接后代选择器：选择器之间以 > 分割;
+直接后代选择器：选择器之间以 `>` 分割;
 
 ```html
 <!DOCTYPE html>
@@ -137,14 +127,14 @@ id 选择器（id selectors），使用`#id`
         color: red;
         font-size: 30px;
       }
-      
+
       /* .home 的子代的span元素设置一个背景 */
       .home > span {
         background-color: green;
       }
     </style>
   </head>
-  
+
   <body>
     <div class="home">
       <span>啦啦啦啦</span>
@@ -168,12 +158,13 @@ id 选择器（id selectors），使用`#id`
 </html>
 ```
 
-## 十、兄弟选择器
+### 7.相邻兄弟选择器、普通相抵选择器
 
 兄弟选择器 2 种（仅针对选中元素后面的兄弟），使用方法。
 
-- 相邻兄弟选择器，使用符号 + 连接。
-- 普通兄弟选择器，使用符号 ~ 连接。
+相邻兄弟选择器，使用符号 `+` 连接。
+
+普通兄弟选择器，使用符号 `~` 连接。
 
 ```html
 <!DOCTYPE html>
@@ -181,15 +172,18 @@ id 选择器（id selectors），使用`#id`
   <head>
     <title>Document</title>
     <style>
+      /* 相邻兄弟选择器 */
       .box + .content {
         color: red;
       }
+
+      /* 普通兄弟选择器 */
       .box ~ div {
         font-size: 30px;
       }
     </style>
   </head>
-  
+
   <body>
     <div class="home">
       <div>叽叽叽叽</div>
@@ -203,15 +197,11 @@ id 选择器（id selectors），使用`#id`
 </html>
 ```
 
-## 十一、交集选择器
+### 8.交集选择器
 
-什么是交集选择器，
+交集选择器，指的是同时符合两个选择器条件（两个选择器紧密连接）。
 
-- 需要同时符合两个选择器条件（两个选择器紧密连接）。
-
-有什么用？
-
-- 在开发中通常为了精准的选择某一个元素;
+用于精准的选择某一个元素;。
 
 ```html
 <!DOCTYPE html>
@@ -232,15 +222,11 @@ id 选择器（id selectors），使用`#id`
 </html>
 ```
 
-## 十二、并集选择器
+### 9.并集选择器
 
-什么是并集选择器。
+并集选择器，符合一个选择器条件即可（两个选择器之间，以逗号分割）
 
-- 符合一个选择器条件即可（两个选择器以逗号分割）
-
-有什么用？
-
-- 在开发中通常为了给多个元素设置相同的样式;
+用于给多个元素设置相同的样式;
 
 ```html
 <!DOCTYPE html>
@@ -264,34 +250,41 @@ id 选择器（id selectors），使用`#id`
 </html>
 ```
 
-## 十三、元素的状态
+## 四、元素的状态
 
-什么是元素的状态。
+元素的状态。指的是鼠标悬浮的元素；点击时的元素；点击后的元素...，这些都是有状态的元素。
 
-- 如鼠标悬浮的元素；点击时的元素；点击后的元素，都是有状态的元素。
+## 五、伪类
 
-## 十四、伪类
-
-什么是伪类？
-
-- 伪类（pseudo-classes）是选择器的一种，用于选择处于特定状态的元素。
+伪类（pseudo-classes）是选择器的一种，用于选择处于特定状态的元素。
 
 常见的伪类有哪些？
 
-1. 动态伪类（dynamic pseudo-classes）
-   - :link、:visited、:focus、:hover、:active
-2. 目标伪类（target pseudo-classes） 当元素 id，匹配当前 url 的 fragment 时，伪类生效。
-   - :target
-3. 语言伪类（language pseudo-classes） 如设置过 lang="en" 的元素，伪类 :lang(en) 生效（ lang 是 html 元素的全局属性）。
-   - :lang( )
-4. 元素状态伪类（UI element states pseudo-classes）
-   - :enabled、:disabled、:checked
-5. 结构伪类（structural pseudo-classes）(后续学习)
-   - :nth-child( )、:nth-last-child( )、:nth-of-type( )、:nth-last-of-type( )
-   - :first-child、:last-child、:first-of-type、:last-of-type
-   - :root（多指 html 元素。）、:only-child、:only-of-type、:empty
-6. 否定伪类（negation pseudo-classes）(后续学习)
-   - :not()
+动态伪类（dynamic pseudo-classes）
+
+- :link、:visited、:focus、:hover、:active
+
+目标伪类（target pseudo-classes） 当元素 id，匹配当前 url 的 fragment 时，伪类生效。
+
+- :target
+
+语言伪类（language pseudo-classes） 如设置过 lang="en" 的元素，伪类 `:lang(en)` 生效（ lang 是 html 元素的全局属性）。
+
+- :lang( )
+
+元素状态伪类（UI element states pseudo-classes）
+
+- :enabled、:disabled、:checked
+
+结构伪类（structural pseudo-classes）
+
+- :nth-child( )、:nth-last-child( )、:nth-of-type( )、:nth-last-of-type( )
+- :first-child、:last-child、:first-of-type、:last-of-type
+- :root（多指 html 元素）、:only-child、:only-of-type、:empty
+
+否定伪类（negation pseudo-classes）
+
+- :not()
 
 `<a>` 元素举例，动态伪类的使用，顺序是什么。
 
@@ -305,22 +298,27 @@ id 选择器（id selectors），使用`#id`
       a:link {
         color: red;
       }
+
       /* a 元素被访问过了 */
       a:visited {
         color: green;
       }
+
       /* a/input 元素聚焦(获取焦点)时 */
       a:focus {
         color: yellow;
       }
+
       /* a元素鼠标放到上面 */
       a:hover {
         color: blue;
       }
+
       /* a 元素点击时 */
       a:active {
         color: purple;
       }
+
       /* 所有的状态下同样的样式 */
       a {
         color: orange;
@@ -336,7 +334,6 @@ id 选择器（id selectors），使用`#id`
 </html>
 ```
 
-### 1.注意事项
+除了 a 元素，:focus、:hover、:active 也能用在其他元素上。
 
-1. 除了 a 元素，:focus、:hover、:active 也能用在其他元素上。
-2. 动态伪类编写顺序建议为 :link、:visited、:focus、:hover、:active。
+动态伪类编写顺序建议为 :link、:visited、:focus、:hover、:active。
