@@ -35,8 +35,6 @@ font 的缩写属性，用来作为 font-style, font-variant, font-weight, font-
 
 一般用来给所有元素，做一些通用的设置，如内边距，外边距，重置一些样式。
 
-通用选择器的效率低，尽量不要使用。
-
 ```css
 * {
   font-size: 30px;
@@ -44,6 +42,8 @@ font 的缩写属性，用来作为 font-style, font-variant, font-weight, font-
   padding: 0;
 }
 ```
+
+通用选择器的效率低，尽量不要使用。
 
 ### 2.元素选择器
 
@@ -75,7 +75,7 @@ id 选择器（id selectors），使用`#id`
 }
 ```
 
-> 使用简单选择器的一些注意事项，
+> 使用以上选择器的一些注意事项：
 >
 > - 一个 HTML 文档里面的 id 值是唯一的，不能重复 。
 > - id / class 值如果由多个单词组成，单词之间可以用连字符（`-`）、下划线（`_`）连接，也可以使用驼峰标识（大驼峰 AaBb 和 小驼峰 aaBb 都可以。用的很少）；
@@ -128,7 +128,7 @@ id 选择器（id selectors），使用`#id`
         font-size: 30px;
       }
 
-      /* .home 的子代的span元素设置一个背景 */
+      /* .home 的子代的 span 元素设置一个背景 */
       .home > span {
         background-color: green;
       }
@@ -209,6 +209,7 @@ id 选择器（id selectors），使用`#id`
   <head>
     <title>Document</title>
     <style>
+      /* 交集选择器（元素选择器和类选择器相连） */
       div.box {
         color: red;
         font-size: 30px;
@@ -252,7 +253,7 @@ id 选择器（id selectors），使用`#id`
 
 ## 四、元素的状态
 
-元素的状态。指的是鼠标悬浮的元素；点击时的元素；点击后的元素...，这些都是有状态的元素。
+元素是有状态的。比如：鼠标悬浮的元素；点击时的元素；点击后的元素...，这些都是有状态的元素。
 
 ## 五、伪类
 
@@ -286,7 +287,7 @@ id 选择器（id selectors），使用`#id`
 
 - :not()
 
-`<a>` 元素举例，动态伪类的使用，顺序是什么。
+`<a>` 元素举例，动态伪类的使用。
 
 ```html
 <!DOCTYPE html>

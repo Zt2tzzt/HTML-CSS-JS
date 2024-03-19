@@ -29,9 +29,17 @@ HTML 文档声明，必须放在 HTML 文档的最前面，不能省略，否则
 <!DOCTYPE html>
 ```
 
-HTML4.01，XHTML1.0 的文档声明写法如下图所示：
+HTML4.01 的文档声明写法如下：
 
-![早期文档说明](NodeAssets/早期文档说明.png)
+```html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+```
+
+XHTML1.0 的文档声明写法如下：
+
+```xml
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+```
 
 可知，HTML5 的文档声明简洁很多。
 
@@ -51,9 +59,9 @@ W3C 建议为 html 元素设置 `lang` 属性（一种全局属性），它能�
 
 ## 四、head 元素
 
-`<head>` 元素，可用于配置标题（ title 元素），设置图标（ link 元素），配置编码（ meta 元素），链接样式（ link 元素），
+`<head>` 元素，可用于配置编码（ meta 元素），设置图标（ link 元素），配置标题（ title 元素），链接样式（ link 元素），
 
-引用脚本（script 元素，一般不在这里引用）
+引用 JS 脚本（script 元素，一般不在这里引用）......
 
 ```html
 <head>
@@ -121,7 +129,7 @@ HTML5 新增元素，后续学习。
 
 > 一个元素，可使用另外资源，或另外形式替换掉，称之为可替换元素。
 
-`<img>` 元素的 2 个属性，分别有什么用。
+`<img>` 元素的 2 个属性：
 
 - `src` 属性（source）：包含了想要嵌入的图片路径。
 - `alt` 属性：作用一：图片加载不成功，会显示这段文本；作用二：屏幕阅读器会将这些描述读给需要使用阅读器的使用者听。让他们知道图像含义（帮助残障人士）。
@@ -130,9 +138,9 @@ HTML5 新增元素，后续学习。
 <img src="[url]" alt="一张关于XXX的图片" />
 ```
 
-`<img>` 的一些其它属性，如 `width`, `height`，`border`，已不再使用，而是使用 css 来代替它们的功能。
+`<img>` 的一些其它属性，如 `width`，`height`，`border` 已不再使用，而是使用 css 来代替它们的功能。
 
-`<img>` 的 `src` 属性，可设置 2 种类型的图片？
+`<img>` 的 `src` 属性，可设置 2 种类型的图片：
 
 - 网络图片：一个 URL 地址。
 - 本地图片：本地电脑上的图片，在前端工程化项目中，会作为静态资源和 html 一起部署到服务器上，此时对于用户来说，该图片还是网络图片，使用相对路径访问。

@@ -101,7 +101,7 @@ CSS 美化 HTML 的 2 种方式。
 
 #### 2.内部样式表
 
-内部样式表写法如下（使用元素选择器，类选择器），将 CSS 放在 `<html>` 元素里的 `<head>` 元素里的 `<style>` 元素之中；
+内部样式表写法如下，将 CSS 放在 `<html>` 元素里的 `<head>` 元素里的 `<style>` 元素之中，使用选择器选定元素编写样式。
 
 > 在 Vue 的开发过程中，每个组件也会有一个 `<style>` 元素，和内部样式表非常的相似，然而原理并不相同；
 
@@ -159,6 +159,7 @@ CSS 美化 HTML 的 2 种方式。
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    
     <!-- link 元素是用来引入外部样式表 -->
     <link rel="stylesheet" href="./css/style.css" />
   </head>
@@ -192,6 +193,7 @@ CSS 美化 HTML 的 2 种方式。
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    
     <!-- 引入外部样式表 -->
     <link rel="stylesheet" href="./css/index.css" />
   </head>
