@@ -59,7 +59,7 @@ img 的 alt 属性，全称是 alternative。
 
 ## 六、星球介绍案例
 
-星球介绍案例实现。
+星球介绍案例实现。其中介绍了快捷元素放在同一行的两种方式
 
 ```html
 <!DOCTYPE html>
@@ -73,9 +73,11 @@ img 的 alt 属性，全称是 alternative。
       .item {
         width: 500px;
         background-color: skyblue;
+        
         /* 方式一: 改变元素的特性和垂直方向的布局 */
         display: inline-block;
         vertical-align: top;
+        
         /* 方式二: 通过浮动完成 */
         /* float: left; */
       }
@@ -130,10 +132,10 @@ img 的 alt 属性，全称是 alternative。
 
 - 方案一：`display: inline-block;`，弊端：
   - 同行的块级元素之间有空隙，这是由换行符造成的；
-  - 同行的块级元素之间不会垂直居中对齐，涉及到的特性，后续会介绍。
+  - 同行的块级元素之间不会垂直居中对齐，涉及到的特性（`vertical-aligin: middle;`），后续会介绍。
 
 - 方案二：`float: left;`
-- 方案三：flex:布局。
+- 方案三：flex 布局。
 
 ## 七、link 元素
 
@@ -172,7 +174,7 @@ RGB 表示颜色的方式 3 种
 
 方式一：十六进制符号：`#RRGGBB[AA]`
 
-- R（红）、G（绿）、B （蓝）和 A （alpha）是十六进制字符（0–9、A–F）；A 是可选的。比如，`#ff0000`等价于`#ff0000ff`；
+- R（红）、G（绿）、B （蓝）和 A （alpha）是十六进制字符（0–9、A–F）；A 是可选的。比如：`#ff0000` 等价于 `#ff0000ff`；
 
 方式二：十六进制符号（简写）：`#RGB[A]`
 
