@@ -7,36 +7,34 @@
 方案一：`display: none;`
 
 - 元素不显示, 不占据任何空间。
-- 浏览器调试时，代码中还是存在该元素。
+- 浏览器调试时，html 代码中还是存在该元素。
 
 方式二：`visibility: hidden;`
 
-- 元素不显示， 但会占据本应占据的空间;
+- 元素不显示， 但会占据空间;
 - `visibility` 属性，默认值是 `visible`，表示元素是可见的;。
 
-方式三：rgba 设置颜色, 将 alpha 的值设置为 0
+方式三：将 rgba 颜色的 alpha 值设置为 0。
 
-- rgba 的 a 设置的是 alpha 值, 用于设置透明度, 该设置不影响子元素；
+- rgba 的 a 设置的是 alpha 值, 用于设置透明度, ==该设置不影响子元素==；
 - 这种方式，一次只能设置文本或背景的一种。
 - 透明度 rgba CSS 函数写法：`rgba(0,0,0, .5)`
 - 透明度 rgba，十六进制写法，
-  - #ff0000ff：完全不透明；
-  - #ff000088：半透明；
+  - `#ff0000ff`：完全不透明；
+  - `#ff000088`：半透明；
   - 这种写法，是 CSS3 color module 中比较新的写法，可能有些浏览器不支持。
-- 一般元素的背景颜色默认值是 `background: transparent;` 相当于 `rgba(0, 0, 0, 0)`
+- 一般元素的背景颜色默认值是 `background: transparent;` 相当于 `rgba(0, 0, 0, 0)`。
 
-方式四：`opacity: 0;`
-
-- 设置整个元素的透明度, 会影响该元素所有的子元素，也包括元素背景色和内容;
+方式四：`opacity: 0;`，设置整个元素的透明度，==会影响该元素所有的子元素==，也包括元素背景色和内容。
 
 ## 二、overflow 属性
 
-`overflow` 属性的用法：
+`overflow` 属性，用于设置超出元素内容的显示方式：
 
-- `visible`：溢出的内容照样可见 ，默认值。
-- `hidden`：溢出的内容直接裁剪。
-- `scroll`：溢出的内容被裁剪，但可以通过滚动机制查看 ，会一直显示滚动条区域，滚动条区域占用的空间属于 width、height。
-- `auto`：自动根据内容是否溢出来决定是否提供滚动机制。
+- `visible`：默认值，表示溢出的内容照样可见 。
+- `hidden`：表示溢出的内容直接裁剪。
+- `scroll`：表示溢出的内容被裁剪，但可以通过滚动机制查看 ，会一直显示滚动条区域，滚动条区域占用的空间属于 width、height。
+- `auto`：表示自动根据内容是否溢出来决定是否提供滚动机制。
 
 ## 三、CSS 属性不生效的原因
 
@@ -66,13 +64,15 @@ HTML 中每一个元素都可看作是一个盒子模型，具备 4 个属性。
 
 ### 1.content 内容
 
-设置内容是的宽度，高度:
+设置内容的宽度，高度:
 
-- 宽度设置:使用 width 属性。
-  - width 默认值是 auto；块级元素是父元素一行的宽度，行内级元素是包裹内容的宽度。
-- 高度设置使用: height 属性。
+- 宽度设置，使用 width 属性。
+  - width 默认值是 auto；
+  - 块级元素是父元素一行的宽度；
+  - 行内级元素是包裹内容的宽度。
+- 高度设置，使用 height 属性。
 
-> 注意: 对于行内级元素来说, 设置宽高是无效的（再次强调）。
+> 注意: 对于行内级元素来说, 设置宽、高是无效的（再次强调）。
 
 设置内容的最小、最大宽度，最小、最大高度:
 
@@ -83,8 +83,8 @@ HTML 中每一个元素都可看作是一个盒子模型，具备 4 个属性。
 
 设置内容的最小、最大高度:，这种设置不常用，一般由内容撑开高度：
 
-- `min-height`：最小高度，无论内容多少，高度都大于或等于 `min-height`；
-- `max-height`：最大高度，无论内容多少，高度都小于或等于 `max-height。`
+- `min-height`：最小高度，无论内容多少，高度都大于或等于 `min-height`。
+- `max-height`：最大高度，无论内容多少，高度都小于或等于 `max-height`。
 
 ### 2.padding 内边距
 
@@ -118,13 +118,6 @@ border 属性，用于设置盒子的边框，它可以：
 
 可进行如下设置：
 
-- border-top-[width / style / color]
-- border-right-[width / style / color]
-- border-bottom-[width / style / color]
-- border-left-[width / style / color]
-
-border 简写形式。
-
 - border-[width / style / color]: xxx xxx xxx xxx; （top，right，bottom，left 按照顺时钟顺序）
 - border-[top / right / bottom/ left]: xxx xxx xxx;；（width，style，color）
 
@@ -141,8 +134,8 @@ bordr 总体缩写语法：`border: <line-width> || <line-style> || <color>;`，
 
 border-radius 属性，用于设置盒子的圆角。2 种设置方式。
 
-- 数值: 通常用来设置小的圆角, 比如 6px;
-- 百分比: 通常用来设置一定的弧度或者圆形;
+- 数值: 通常用来设置小的圆角, 比如 6px；
+- 百分比: 通常用来设置一定的弧度或者圆形；
   - 水平方向相对于 border-box（内容 + padding + border），也就是 box width + border width；
   - 垂直方向相对于 border-box（内容 + padding + border），也就是 box height + border width。
   - 两个方向计算出的实际值不相同，效果可能是不圆润的。
@@ -151,4 +144,4 @@ border-radius 属性，用于设置盒子的圆角。2 种设置方式。
 border-radius 事实上是一个**缩写属性**，理解 2 点。
 
 - 将这四个属性 `border-top-left-radius`、`border-top-right-radius`、`border-bottom-right-radius`，和`border-bottom-left-radius` 简写为一个属性。
-- 可以设置两个值（如 `border-top-left-radius: 5px 10px;`），代表水平方向和垂直方向，两个值不一样，效果不圆润。
+- 可以设置两个值（如 `border-top-left-radius: 5px 10px;`），代表水平方向、垂直方向，两个值不一样，效果不圆润。

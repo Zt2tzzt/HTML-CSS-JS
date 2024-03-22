@@ -16,7 +16,7 @@
 理解 span 元素添加 `display: block;` 属性后，与 div 元素的区别。
 
 - div 元素默认有 `display: block;` 属性，在浏览器调试中，类型是 `user agent stylesheet`；
-- 相对的 span 元素，手动添加 `display: block;` 属性后，在浏览器调试中可勾选属性。
+- span 元素，手动添加 `display: block;` 属性后，在浏览器调试中可勾选属性。
 
 > 浏览器调试时，`computed` 选项的使用，可查看元素在浏览器中应用的样式。
 

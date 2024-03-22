@@ -1,4 +1,4 @@
-# CSS盒子模型案例练习，背景颜色设置
+# CSS盒子模型案例练习，单行、多行文本省略号、背景颜色设置
 
 ## 一、盒子模型案例练习
 
@@ -6,7 +6,13 @@
 
 理解盒子模型案例一小米商城商品，实现过程。
 
-css/reset.css
+知识点总结：
+
+- body、p、h、a 元素的样式重置。
+- 行内块级元素的居中展示。
+- 单行文字过多内容显示省略号。
+
+01-HTML+CSS/demo-project/04-小米商城商品案例/reset.css
 
 ```css
 body,
@@ -32,7 +38,7 @@ a {
 }
 ```
 
-demo1.html
+01-HTML+CSS/demo-project/04-小米商城商品案例/index.html
 
 ```html
 <head>
@@ -105,9 +111,9 @@ demo1.html
 >
 > 使用选择器时，如后代选择器，不推荐超过 4 个。
 
-#### 1.多文本单行显示省略号
+### 2.单行文本省略号
 
-多文本单行显示省略号的方案。固定写法。
+单行文本过多内容显示省略号的固定写法。
 
 ```css
 .item .desc {
@@ -117,9 +123,17 @@ demo1.html
 }
 ```
 
-### 2.头条新闻热搜条目
+### 3.头条新闻热搜条目
 
 理解盒子模型案例二：头条新闻热搜条目，实现过程。
+
+知识点总结：
+
+- 在 a 元素中包裹 img、p 元素。
+- 多行文本过多内容显示省略号。
+- 伪元素 before 的使用。
+
+01-HTML+CSS/demo-project/05-头条新闻热搜条目/index.html
 
 ```html
 <head>
@@ -189,17 +203,22 @@ demo1.html
 </body>
 ```
 
-注意事项
+注意事项：
 
-> 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性`referrerpolicy="no-referrer"`。
+> 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性 `referrerpolicy="no-referrer"`。
 >
 > 插入图片的 3 种方案，
 >
-> 1. img 元素。
-> 2. 空元素 + background-img。
-> 3. 伪元素。
+> - img 元素。
+> - 空元素 + background-img。
+> - 伪元素。
 
-#### 1.多文本 2 行显示省略号方案
+a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案，
+
+- 方案一：给 a 元素设置 `width: 100%;`，意为占据父元素宽度，这样 a 元素就有了具体宽度。
+- 方案二：给 a 元素设置 `display: block;`，让 a 元素占据父元素的宽度，这样 a 元素就有了具体的宽度。
+
+### 4.多行文本省略号
 
 多文本 2 行显示省略号方案。固定写法。
 
@@ -214,22 +233,13 @@ div {
 }
 ```
 
-a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案，
-
-1. 给 a 元素设置`width: 100%;`，意为占据父元素宽度，这样 a 元素就有了具体宽度。
-2. 给 a 元素设置`display: block;` 让 a 元素占据父元素的宽度，这样 a 元素就有了具体的宽度。
-
 ## 二、background 属性
 
 ### 1.background-image 属性
 
-`background-image` 属性有什么用？
+`background-image` 属性，用于设置元素的背景图片。
 
-- 用于设置元素的背景图片。
-
-设置多张图片方法，
-
-- 设置的第一张图片将显示在最上面，其它图片按顺序层叠在下面。
+设置多张图片方法，设置的第一张图片，将显示在最上面，其它图片按顺序层叠在下面。
 
 ```css
 .box {
@@ -237,13 +247,13 @@ a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案�
 }
 ```
 
-> 注意事项：
->
-> 如果元素没有设置宽高，背景图片是不会显示出来的。
+==注意事项：如果元素没有设置宽高，背景图片是不会显示出来的。==
+
+#### 1.background-image CSS 属性和 img 元素
 
 `background-image` 和 `<img>` 元素的比较。
 
-|                        | img                | background-image |
+| 对比项目               | img                | background-image |
 | ---------------------- | ------------------ | ---------------- |
 | 性质                   | HTML 元素          | CSS 样式         |
 | 图片是否占用空间       | ✔                  | ❌                |
@@ -251,27 +261,21 @@ a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案�
 | 支持 CSS Sprite 精灵图 | ❌                  | ✔                |
 | 更有可能被搜索引擎收录 | ✔（结合 alt 属性） | ❌                |
 
-适用场景分别有哪些。
+background-image CSS 属性和 img 元素适用场景分别有哪些。
 
 - img，作为网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片
 - background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息
 
 ### 2.background-repeat 属性
 
-`background-repeat` 属性有什么用？
+`background-repeat` 属性，用于设置背景图片是否要平铺。
 
-- 用于设置背景图片是否要平铺。
+- `repeat`：平铺。
+- `no-repeat`：不平铺。
+- `repeat-x`：只在水平方向平铺。
+- `repeat-y`：只在垂直平方向平铺。
 
-常见的设置 4 个。
-
-- `repeat`：平铺
-- `no-repeat`：不平铺
-- `repeat-x`：只在水平方向平铺
-- `repeat-y`：只在垂直平方向平铺
-
-理解背景墙案例。
-
-- 一张小图片，结合平铺属性，实现背景墙效果。
+一张小图片，结合平铺属性，可以实现背景墙效果。
 
 ```css
 .box {
@@ -284,37 +288,25 @@ a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案�
 
 ### 3.background-size 属性
 
-`background-size` 属性有什么用？
-
-- 用于设置背景图片的大小。
-
-常见的设置 5 个。
+`background-size` 属性，用于设置背景图片的大小。
 
 - `auto`：默认值, 以背景图本身大小显示。
-- `cover`：缩放背景图，以完全覆盖铺满元素,可背景图片部分看不见。
-- `contain`：缩放背景图，宽度或者高度铺满元素，但是图片保持宽高比。
+- `cover`：按比例缩放背景图，以完全覆盖铺满元素（背景图片部分可能看不见）。
+- `contain`：按比例缩放背景图，宽度或者高度铺满元素（图片会显示完整）。
 - \<percentage\>：百分比，相对于背景区（background positioning area）
-- \<length\>：具体的大小，比如 100px，第一个值宽度，第二个值高度。
+- \<length\>：具体的大小，比如 `100px 100px`，第一个值宽度，第二个值高度。
 
-理解语法。
-
-- `[ <length-percentage> | auto ]{1,2} | cover | contain`
+语法总结：`[ <length-percentage> | auto ]{1,2} | cover | contain`
 
 ### 4.background-position 属性
 
-`background-position` 有什么用？
+`background-position` 属性，用于设置背景图片在水平、垂直方向上的具体位置。
 
-- 用于设置背景图片在水平垂直方向上的具体位置。
+- 可以设置具体的数值，比如 `20px 30px`，第一个值表示水平方向，第二个值表示垂直方向。
+- 第一个值（水平方向）还可以设值：`left`、`center`、`right`。
+- 第二个值（垂直方向）还可以设值：`top`、`center`、`bottom`。
 
-常用的设置 3 个。
-
-- 可以设置具体的数值，比如 `20px` `30px`;
-- 水平方向还可以设值：`left`、`center`、`right`
-- 垂直方向还可以设值：`top`、`center`、`bottom`
-
-1 个注意事项。
-
-- 如果只设置了 1 个方向，另一个方向默认是 `center`
+如果只设置了 1 个方向，另一个方向默认是 `center`。
 
 浏览器缩放，背景图片总是展示中间部分的案例。
 
@@ -328,11 +320,7 @@ a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案�
 
 ### 5.background-attachment 属性
 
-`background-attachment` 属性有什么用？
-
-- 决定背景图像的位置是在视口内固定，或者随着包含它的区块滚动。
-
-常用的 3 个值。
+`background-attachment` 属性，用于决定背景图像的位置是在视口内固定，还是随着包含它的区块滚动。
 
 - `scroll`：表示背景相对于元素本身固定， 而不是随着它的内容滚动。
 - `local`：表示背景相对于元素的内容固定。如果一个元素拥有滚动机制，背景将会随着元素的内容滚动。
@@ -340,7 +328,7 @@ a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案�
 
 ### 6.background 属性缩写
 
-理解 background 缩写属性的格式。
+background 缩写属性的格式：
 
-- `background-size` 可以省略，如果不省略，`background-size` 必须紧跟在 `background-position` 的后面
-- 其他属性也都可以省略，而且顺序任意
+- `background-size` 可以省略，如不省略，`background-size` 必须紧跟在 `background-position` 的后面
+- 其他属性也都可以省略，而且顺序任意。
