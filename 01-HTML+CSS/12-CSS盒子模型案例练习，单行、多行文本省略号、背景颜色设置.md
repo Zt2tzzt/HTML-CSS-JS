@@ -4,9 +4,9 @@
 
 ### 1.小米商城商品案例
 
-理解盒子模型案例一小米商城商品，实现过程。
+理解盒子模型案例：小米商城商品，实现过程。
 
-知识点总结：
+其中知识点总结有如下几点：
 
 - body、p、h、a 元素的样式重置。
 - 行内块级元素的居中展示。
@@ -127,9 +127,9 @@ a {
 
 理解盒子模型案例二：头条新闻热搜条目，实现过程。
 
-知识点总结：
+其中包含的知识点总结：
 
-- 在 a 元素中包裹 img、p 元素。
+- 在 a 元素中包裹 img、p 元素（设置 a 元素 `display: block;`）。
 - 多行文本过多内容显示省略号。
 - 伪元素 before 的使用。
 
@@ -203,8 +203,8 @@ a {
 </body>
 ```
 
-注意事项：
-
+> 注意事项：
+>
 > 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性 `referrerpolicy="no-referrer"`。
 >
 > 插入图片的 3 种方案，
@@ -213,7 +213,7 @@ a {
 > - 空元素 + background-img。
 > - 伪元素。
 
-a 元素设置 inline-block，包裹的 p 元素内容无限延申解决方案，
+如果 a 元素设置 `display: inline-block;`，那么它包裹的 p 元素的内容，会无限延申。解决方案，
 
 - 方案一：给 a 元素设置 `width: 100%;`，意为占据父元素宽度，这样 a 元素就有了具体宽度。
 - 方案二：给 a 元素设置 `display: block;`，让 a 元素占据父元素的宽度，这样 a 元素就有了具体的宽度。
@@ -228,7 +228,7 @@ div {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box; /* flex 布局的前身，现在多用于做多行保留场景。 */
-  -webkit-line-clamp: 2; /* clamp 保留，保持 */
+  -webkit-line-clamp: 2; /* clamp 意思是保留，保持 */
   -webkit-box-orient: vertical;
 }
 ```
@@ -247,11 +247,9 @@ div {
 }
 ```
 
-==注意事项：如果元素没有设置宽高，背景图片是不会显示出来的。==
+==注意事项：如果元素没有设置宽高，那么该元素的背景图片是不会显示出来的。==
 
-#### 1.background-image CSS 属性和 img 元素
-
-`background-image` 和 `<img>` 元素的比较。
+CSS 属性 `background-image` 和 HTML 元素 `<img>` 的比较：
 
 | 对比项目               | img                | background-image |
 | ---------------------- | ------------------ | ---------------- |
@@ -261,10 +259,10 @@ div {
 | 支持 CSS Sprite 精灵图 | ❌                  | ✔                |
 | 更有可能被搜索引擎收录 | ✔（结合 alt 属性） | ❌                |
 
-background-image CSS 属性和 img 元素适用场景分别有哪些。
+CSS 属性 `background-image` 和 HTML 元素 `<img>` 分别有哪些适用场景：
 
-- img，作为网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片
-- background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息
+- img 元素，是网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片。
+- background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息。
 
 ### 2.background-repeat 属性
 
@@ -286,19 +284,7 @@ background-image CSS 属性和 img 元素适用场景分别有哪些。
 }
 ```
 
-### 3.background-size 属性
-
-`background-size` 属性，用于设置背景图片的大小。
-
-- `auto`：默认值, 以背景图本身大小显示。
-- `cover`：按比例缩放背景图，以完全覆盖铺满元素（背景图片部分可能看不见）。
-- `contain`：按比例缩放背景图，宽度或者高度铺满元素（图片会显示完整）。
-- \<percentage\>：百分比，相对于背景区（background positioning area）
-- \<length\>：具体的大小，比如 `100px 100px`，第一个值宽度，第二个值高度。
-
-语法总结：`[ <length-percentage> | auto ]{1,2} | cover | contain`
-
-### 4.background-position 属性
+### 3.background-position 属性
 
 `background-position` 属性，用于设置背景图片在水平、垂直方向上的具体位置。
 
@@ -317,6 +303,18 @@ background-image CSS 属性和 img 元素适用场景分别有哪些。
   background-position: center;
 }
 ```
+
+### 4.background-size 属性
+
+`background-size` 属性，用于设置背景图片的大小。
+
+- `auto`：默认值, 以背景图本身大小显示。
+- `cover`：按比例缩放背景图，以完全覆盖铺满元素（背景图片部分可能看不见）。
+- `contain`：按比例缩放背景图，宽度或者高度铺满元素（图片会显示完整）。
+- \<percentage\>：百分比，相对于背景区（background positioning area）
+- \<length\>：具体的大小，比如 `100px 100px`，第一个值宽度，第二个值高度。
+
+语法总结：`[ <length-percentage> | auto ]{1,2} | cover | contain`
 
 ### 5.background-attachment 属性
 

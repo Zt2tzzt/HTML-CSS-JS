@@ -2,17 +2,15 @@
 
 ## 一、margin 外边距
 
-外边距 margin 属性，用于设置盒子的外边距，通常用于元素和元素之间的间距。它有 2 种写法。
+外边距 margin 属性，用于设置盒子的外边距，通常用于设置元素和元素之间的间距。它有 2 种写法。
 
-- `margin` 包括四个方向, 所以有如下的取值:
-  
-  - `margin-top`：上外边距；
-  - `margin-right`：右外边距；
-  - `margin-bottom`：下外边距；
-  - `margin-left`：左外边距；
-- `margin` 的缩写属性：
+- margin 包括四个方向, 所以有如下的取值:
 
-  - `argin-top`、`margin-right`、`margin-bottom`、`margin-left` 的简写属性（顺时钟方向）
+  - `margin-top`：设置上外边距；
+  - `margin-right`：设置右外边距；
+  - `margin-bottom`：设置下外边距；
+  - `margin-left`：设置左外边距；
+- margin 的缩写属性，语法：`margin: xxx`，这是 `margin-top`、`margin-right`、`margin-bottom`、`margin-left` 的简写属性（顺序按照顺时钟方向）。
 
   | margin 值的个数 | margin 属性声明              | 代表含义                                         |
   | --------------- | ---------------------------- | ------------------------------------------------ |
@@ -28,9 +26,9 @@ margin 与 padding 比较，2 个常见的问题，
 | 问题                                                         | 解决方案                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 设置 `padding`，会撑开盒子的宽度。                           | 设置 `box-sizing: border-box;`，将 padding 包含在盒子的 width、height 内。 |
-| 设置 `margin-top`，有传递的特性。会传递给父元素的 `margin-top`。 | 设置父元素的 `overflow：auto`。                              |
+| 设置 `margin-top`，有传递的特性。会传递给父元素的 `margin-top`。 | 设置父元素的 `overflow：auto`（原理是触发 BFC）。            |
 
-margin 和 padding 的适用场景是什么。
+margin 和 padding 的适用场景是什么：
 
 - margin 一般是用来设置兄弟元素之间的间距。
 - padding 一般是用来设置父子元素之间的间距。
@@ -44,13 +42,13 @@ margin-top，margin-bottom 有传递的特性（margin-left、margin-right 不�
 
 解决办法 3 点。
 
-- 方案一：给父元素设置 padding-top \ padding-bottom 来代替 margin 的方案。
+- 方案一：给父元素设置 `padding-top`、`padding-bottom` 来代替 margin 的方案。
 - 方案二：给父元素设置 border.
-- 方案三： 设置 `overflow: auto；`，触发 BFC（block formating context）。
+- 方案三： 设置 `overflow: auto;`，触发 BFC（block formating context）。
 
 ### 3.margin 上下折叠
 
-margin-top，margin-bottom 有折叠的特性（margin-left、margin-right 不会折叠）
+`margin-top`，`margin-bottom` 有折叠的特性（`margin-left`、`margin-right` 不会折叠）
 
 垂直方向上，相邻的 2 个 margin（margin-top 或 margin-bottom）有可能会合并为 1 个 margin，这种现象叫做 collapse（折叠），比如：
 
@@ -59,7 +57,9 @@ margin-top，margin-bottom 有折叠的特性（margin-left、margin-right 不�
 
 margin 折叠的计算规则：两个值进行比较，取较大的值
 
-如果要防止 margin 的折叠，那么一般只设置相邻元素其中一个元素的 margin
+如果要避免 margin 的折叠，那么一般只设置相邻元素其中一个元素的 margin。
+
+【示例说明】取消 margin 传递，避免 margin 折叠。
 
 ```html
 <head>
@@ -99,7 +99,7 @@ margin 折叠的计算规则：两个值进行比较，取较大的值
 
 ## 二、块级元素宽度计算公式
 
-`block box width = content width + padding + border width + margin`
+block box width = content width + padding + border width + margin
 
 ## 三、块级元素水平居中原理
 
@@ -107,10 +107,10 @@ margin 折叠的计算规则：两个值进行比较，取较大的值
 
 设置该元素 `margin: 0 auto;` 将左右空间自动分配，达到水平居中的效果。
 
-块级元素高度默认是内容高度，所以**不能**用 `margin: auto 0;` 来做垂直方向居中。
-
-同理，行内元素宽度是内容宽度，**不能**设置`margin: 0 auto;` 来做水平居中。
-
+> 块级元素高度默认是内容高度，所以**不能**用 `margin: auto 0;` 来做垂直方向居中。
+>
+> 同理，行内元素宽度是内容宽度，**不能**设置`margin: 0 auto;` 来做水平居中。
+>
 > 居中布局还是推荐使用 flex 来做。
 
 ## 四、outline 属性
@@ -170,12 +170,10 @@ a {
 - width、height
 - margin-top、margin-bottom
 
-以下属性对行内级（非替换）元素的效果比较特殊：
+以下属性对行内级（非替换）元素的效果比较特殊，设置这些属性后，内容会被撑开，但不占据空间，原因是 W3C 考略到会影响同行的行内元素。
 
 - padding-top、padding-bottom
 - border-top-xxx、border-bottom-xxx
-
-设置上面的属性后，内容会被撑开，但不占据空间，原因是 W3C 考略到会影响同行的行内元素。
 
 ## 八、背景色和前景色
 
