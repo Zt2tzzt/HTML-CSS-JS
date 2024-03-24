@@ -1,4 +1,4 @@
-# 盒子模型、块级元素宽度计算、块级元素水平居中原理、outline属性、box-shadow、text-shadow属性属性、行内级元素设置盒子属性、背景色和前景色、box-sizing属性
+# 盒子模型、块级元素宽度计算、块级元素水平居中原理、outline属性、box-shadow、text-shadow属性、行内级元素设置盒子属性、背景色和前景色、box-sizing属性
 
 ## 一、margin 外边距
 
@@ -105,7 +105,7 @@ block box width = content width + padding + border width + margin
 
 块级元素设置宽度后，浏览器把这一行剩下的宽度，分配给了它的 margin-right。
 
-设置该元素 `margin: 0 auto;` 将左右空间自动分配，达到水平居中的效果。
+块级元素设置宽度后，设置该元素 `margin: 0 auto;` ，将左右空间自动分配，达到水平居中的效果。
 
 > 块级元素高度默认是内容高度，所以**不能**用 `margin: auto 0;` 来做垂直方向居中。
 >
@@ -115,9 +115,7 @@ block box width = content width + padding + border width + margin
 
 ## 四、outline 属性
 
-outline 属性，用于显示在 border 外面的边框。它不占用空间。
-
-与它相关有哪些属性，
+outline 属性，用于显示在 border 外面的边框。它不占用空间。与它相关有哪些属性，
 
 - `outline-width`：外轮廓的宽度。
 - `outline-style`：取值跟 border 的样式一样，比如 solid、dotted 等。
@@ -170,7 +168,7 @@ a {
 - width、height
 - margin-top、margin-bottom
 
-以下属性对行内级元素的效果比较特殊，设置这些属性后，内容会被撑开，但不占据空间，原因是 W3C 考略到会影响同行的行内元素。
+以下属性对行内级元素的效果特殊，设置这些属性后，内容会被撑开，但不占据空间，原因是 W3C 考略到会影响同行的行内元素。
 
 - padding-top、padding-bottom
 - border-top-xxx、border-bottom-xxx

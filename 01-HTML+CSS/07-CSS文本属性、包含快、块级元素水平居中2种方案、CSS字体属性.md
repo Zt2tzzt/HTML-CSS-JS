@@ -38,7 +38,7 @@
 </style>
 ```
 
-## ⓸ text-align 属性
+### ⓸ text-align 属性
 
 `text-align` 属性，用于行内级元素，行内可替换元素（如 img，input  元素），行内块级元素，相对于它的父级元素定位。常用的 4 个属性如下：
 
