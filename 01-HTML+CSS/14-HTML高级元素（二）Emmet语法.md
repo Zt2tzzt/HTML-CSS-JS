@@ -1,4 +1,4 @@
-# table案例、form表单、Emmet语法
+# table 案例、form 表单、Emmet 语法
 
 ## 一、课程表案例
 
@@ -7,8 +7,7 @@
 知识点总结：
 
 - table 相关元素的使用。
-- 后代选择器的使用。
-- 属性选择器的使用。
+- 后代选择器、属性选择器的使用。
 - 结构伪类的使用。
 
 01-HTML+CSS/demo-project/06-课程表案例.html
@@ -148,24 +147,24 @@
 
 input 元素 `type` 属性可设置如下值：
 
-- text：表示文本输入框（明文输入）。
-- password：表示文本输入框（密文输入）。
-- radio：表示单选框。
-- checkbox：表示复选框。
-- button：表示按钮。
-- reset：表示重置。
-- submit：表示提交表单数据给服务器。
-- file：表示文件上传。
-- date：表示日期。
+- `text`：表示文本输入框（明文输入）。
+- `password`：表示文本输入框（密文输入）。
+- `radio`：表示单选框。
+- `checkbox`：表示复选框。
+- `button`：表示按钮。
+- `reset`：表示重置。
+- `submit`：表示提交表单数据给服务器。
+- `file`：表示文件上传。
+- `date`：表示日期。
 
 Input 元素还有一下属性：
 
-- readonly：（布尔属性）只读。
-- disabled：（布尔属性）禁用。
-- autofocus：（布尔属性）当页面加载时，自动聚焦。
-- checked：（布尔属性）默认被选中，只有当 `type` 为 `radio` 或 `checkbox` 时可用。
-- name：名字（在提交数据给服务器时，可用于区分数据类型）。
-- value：取值。
+- `readonly`：（布尔属性）只读。
+- `disabled`：（布尔属性）禁用。
+- `autofocus`：（布尔属性）当页面加载时，自动聚焦。
+- `checked`：（布尔属性）默认被选中，只有当 `type` 为 `radio` 或 `checkbox` 时可用。
+- `name`：名字（在提交数据给服务器时，可用于区分数据类型）。
+- `value`：取值。
 
 > 常见的布尔属性有 `disabled`、`checked`、`readonly`、`autofocus`、`multiple`、`selected`。布尔属性可以没有属性值，写上属性名就代表使用这个属性，如果要给布尔属性设值，值就是属性名本身。
 
@@ -180,7 +179,6 @@ input 元素是否为可替换元素？定义比较模糊，因为：imput 元�
 - 提交按钮（type="submit"）：提交它所属 form 的表单数据给服务器（包括 input、textarea、select）。
 
 > 注意事项：以上 input 元素生成的按钮效果，放到 form 元素中，才有效。
->
 
 使用 button 元素实现 input 元素作为按钮的相同效果。
 
@@ -209,7 +207,8 @@ input 元素和 label 元素之间的关系，
 
 - label 元素一般跟 input 元素配合使用，用来表示 input 的标题。
 - label 可以跟某个 input 绑定，点击 label 就可以激活对应的 input 变成选中。
-- 给 input 添加 **id 属性**，给 label 元素添加 **for 属性**，将它们关联起来，
+
+给 input 添加 **id 属性**，给 label 元素添加 **for 属性**，将它们关联起来，
 
 ```html
 <form>
@@ -231,7 +230,7 @@ input 元素和 label 元素之间的关系，
 
 #### 3.input 实现单选框
 
-使用 input 来实现表单单选框（radio）。结合 label 使用。
+使用 input 来实现表单单选框（radio 元素的使用）。结合 label 使用。
 
 - `<input>` 的 `type` 属性设置为 `radio`。
 - `<label>` 的 `for` 属性，关联 `<input>` 的 `id` 属性；
@@ -239,13 +238,9 @@ input 元素和 label 元素之间的关系，
 
 ```html
 <form action="/abc">
-  <label for="male">
-    <input id="male" type="radio" name="sex" value="male" />男
-  </label>
+  <label for="male"> <input id="male" type="radio" name="sex" value="male" />男 </label>
 
-  <label for="female">
-    <input id="female" type="radio" name="sex" value="female" />女
-  </label>
+  <label for="female"> <input id="female" type="radio" name="sex" value="female" />女 </label>
 
   <button type="submit">提交按钮</button>
 </form>
@@ -255,7 +250,11 @@ input 元素和 label 元素之间的关系，
 
 #### 4.input 实现复选框
 
-checkbox 属性的使用，结合 label 元素，`name`，`value` 属性提交表单。
+使用 input 来实现表单单选框（checkbox 元素的使用）。结合 label 使用。
+
+- `<input>` 的 `type` 属性设置为 `checkbox`。
+- `<label>` 的 `for` 属性，关联 `<input>` 的 `id` 属性；
+- `<input>` 使用 `name` 定义复选框值的 key。通过 `value` 定义值。
 
 属于同一种类型的 checkbox，`name` 值要保持一致
 
@@ -319,7 +318,7 @@ textarea {
 
 `<option>` 的 1 个常用属性。
 
-- selected：默认被选中。
+- `selected`：默认被选中。
 
 ```html
 <label for="fruits">
@@ -339,7 +338,7 @@ form 元素，用于将整个表单作为一个整体来进行操作：
 - 比如：对整个表单进行重置;
 - 比如：对整个表单的数据进行提交;
 
-## 四、form 常见的3个属性
+## 四、form 常见的 3 个属性
 
 `action` 属性，用于提交表单数据的请求 URL。
 
@@ -374,33 +373,33 @@ table > (tr > td * 5) * 3
 
 ```html
 <table>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>
 ```
 
 Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具。
 
-VsCode 内置了 Emmet 语法,在后缀为`.html`、`.css` 文件中，输入缩写后按 Tab/Enter 键即会自动生成相应代码。
+VsCode 内置了 Emmet 语法，在后缀为 `.html`、`.css` 文件中，输入缩写后按 Tab / Enter 键即会自动生成相应代码。
 
 比如：生成 HTML5 代码结构，使用`!`。
 
@@ -472,11 +471,10 @@ div > ( header > ul > li * 2 > a ) + footer > p
 </div>
 ```
 
-语法四：属性（`#`id 属性、`.`class 属性、`[xxx]`普通属性）， {}（内容）
+语法四：属性（`#` id 属性、`.` class 属性、`[xxx]` 普通属性）， {}（内容）
 
 ```html
-#header + #main > .container > a[href=https://www.baidu.com]{百度一下} //
-这里使用了隐藏标签的写法
+#header + #main > .container > a[href=https://www.baidu.com]{百度一下}
 ```
 
 会生成如下机构：
@@ -490,14 +488,14 @@ div > ( header > ul > li * 2 > a ) + footer > p
 </div>
 ```
 
-> 什么是隐藏标签？
+> 这里使用了隐藏标签的写法，什么是隐藏标签？
 >
 > ```html
 > .box =>
 > <div class="box"></div>
 > ```
 
-语法五：`$`数字，$$$表示从 001 开始的数字。
+语法五：`$` 数字，`$$$` 表示从 `001 开始的数字。
 
 ```html
 ul > li.item$ * 5

@@ -103,9 +103,9 @@ block box width = content width + padding + border width + margin
 
 ## 三、块级元素水平居中原理
 
-块级元素设置宽度后，浏览器把这一行剩下的宽度，分配给了它的 margin-right。
+**块级元素设置宽度后**，浏览器把这一行剩下的宽度，分配给了它的 margin-right。
 
-块级元素设置宽度后，设置该元素 `margin: 0 auto;` ，将左右空间自动分配，达到水平居中的效果。
+**块级元素设置宽度后**，设置该元素 `margin: 0 auto;` ，将左右空间自动分配，达到水平居中的效果。
 
 > 块级元素高度默认是内容高度，所以**不能**用 `margin: auto 0;` 来做垂直方向居中。
 >
@@ -155,7 +155,7 @@ a {
 
 `text-shadow` 属性，用于给文字添加阴影的效果。
 
-相当于 box-shadow, 它没有 spread-radius 的值和 inset 值
+相当于 box-shadow, 它没有 spread-radius、inset 值
 
 [在线调整网站](https://html-css-js.com/css/generator/text-shadow/)
 
@@ -184,7 +184,7 @@ a {
 
 `box-sizing` 属性，用来设置盒子模型中宽高的行为。
 
-- `content-box`：是默认值，表示 `padding`，`border` 都布置在 `width`，`height` 外边。
+- `content-box`：默认值，表示 `padding`，`border` 都布置在 `width`，`height` 外边。
 - `border-box`：表示 `padding`，`border` 都布置在 `width`，`height` 里边。
 
 > IE8 以下的盒子模型自带 `box-sizing: border-box`;

@@ -1,4 +1,4 @@
-# 结构伪类-否定伪类-border制作三角形-Web字体-字体图标
+# 结构伪类、否定伪类、border制作三角形、Web字体、字体图标
 
 ## 一、结构伪类
 
@@ -15,24 +15,12 @@ table tr:nth-child(-n + 2) {
 
 `:nth-child()` 的 4 种使用方法。
 
-:nth-child(1)
+用法一：`:nth-child(1)`，表示是父元素中的第 1 个子元素。与 `:first-child` 同义。
 
-- 是父元素中的第 1 个子元素。**与`:first-child`同义。**
+用法二：`:nth-child(an + b)`，n 代表任意正整数和 0，表示父元素中每 a 个子元素的后 b 个元素被选中。
 
-:nth-child(2n) ，n 可以是任意正整数和 0。
-
-- 表示父元素中的第偶数个子元素（第 2、4、6、8......个）
-- **跟`:nth-child(even)`同义。**
-- :nth-child(xn)，每 x 个元素，选中一个。
-
-:nth-child(2n + 1) ，n 可以是任意正整数和 0。
-
-- 表示父元素中的第奇数个子元素（第 1、3、5、7......个）。
-- 跟`:nth-child(odd)`同义。
-
-:nth-child(-n + 2)
-
-- 代表前 2 个子元素。
+- 常见的用法有：`:nth-child(2n)`，表示选中父元素中子元素的第偶数个元素（第 2、4、6、8......个），与 `:nth-child(even)`同义。
+- 常见的用法有：`:nth-child(zn + 1)`，表示父元素中的第奇数个子元素（第 1、3、5、7......个） 被选中。与 `:nth-child(odd)` 同义。
 
 ```css
 ul li:nth-child(2n) {
@@ -40,18 +28,21 @@ ul li:nth-child(2n) {
 }
 ```
 
+用法三：`:nth-child(-n + x)`：n 代表任意正整数和 0，表示父元素中前 x 个子元素被选中。
+
 ### 2.:nth-last-child() 用法
 
-`:nth-last-child()` 的 2 种使用写法（用法与 :nth-child() 类似，从最后一个子元素开始往前计数）。
+`:nth-last-child()` 的 2 种使用写法（用法与 `:nth-child()` 类似，从最后一个子元素开始往前计数）。
 
-- **:nth-last-child(1)**，代表倒数第一个子元素 ，**`:last-child`** 同义。
-- **:nth-last-child(-n + 2)**，代表最后 2 个子元素。
+用法一：`:nth-last-child(1)`，表示父元素中倒数第一个子元素被选中 ，与 **`:last-child`** 同义。
+
+用法二：`:nth-last-child(-n + 2)`，表示父元素中最后 2 个子元素被选中。
 
 ### 3.:nth-of-type() 用法
 
-`:nth-of-type()` 用法跟 :nth-child() 类似，区别。
+`:nth-of-type()` 用法跟 `:nth-child()` 类似，
 
-- :nth-of-type() 计数时只计算同种类型的元素，结合后代选择器，表示该选择器选中的类型。
+它们的区别在于。`:nth-of-type()` 计数时，只计算同种类型的元素，结合后代选择器，表示该选择器选中的类型。
 
 ```css
 .box > div:nth-of-type(3) {
@@ -72,20 +63,18 @@ ul li:nth-child(2n) {
 
 ### 4.:nth-last-of-type() 用法
 
-:nth-last-of-type() 用法跟 :nth-of-type() 类似，区别。
+`:nth-last-of-type()` 用法跟 `:nth-of-type()` 类似，区别在于 `:nth-last-of-type()` 从最后一个这种类型的子元素开始往前计数。
 
-- :nth-last-of-type() 从最后一个这种类型的子元素开始往前计数。
-
-### 5.衍生出的结构为类
+### 5.结构伪类简写
 
 衍生出其它常见的结构伪类简写 6 个。用法。
 
-- :first-child，等同于:nth-child(1) 。
-- :last-child，等同于:nth-last-child(1) 。
-- :first-of-type，等同于:nth-of-type(1) 。
-- :last-of-type，等同于:nth-last-of-type(1) 。
-- :only-child，是父元素中唯一的子元素 。
-- :only-of-type，是父元素中唯一的这种类型的子元素。
+- `:first-child`，等同于 `:nth-child(1)`。
+- `:last-child`，等同于 `:nth-last-child(1)`。
+- `:first-of-type`，等同于 `:nth-of-type(1)`。
+- `:last-of-type`，等同于 `:nth-last-of-type(1)`。
+- `:only-child`，是父元素中唯一的子元素 。
+- `:only-of-type`，是父元素中唯一的这种类型的子元素。
 
 ```css
 .box > :only-child {
@@ -113,22 +102,49 @@ ul li:nth-child(2n) {
 
 ### 6.其它结构伪类
 
-偶尔会使用的结构伪类 2 个，用法。
+`:root`，表示根元素，在 HTML 中匹配根元素 `<html>`。在 XML (包括SVG) 中，`:root` 匹配的是文档树的根元素。
 
-- :root，根元素，就是 html 元素。
+最常见的用法可能是在定义 CSS 自定义属性（也称为 CSS 变量）因为 `:root` 选择器对整个 HTML 文档都有效，所以在 `:root` 伪类里定义的 CSS 变量，整个文档中的元素都能访问。
 
-- :empty，代表里面完全空白的元素（小程序中用来做默认插槽）。
+```css
+:root {
+  --main-color: #06c;
+}
+
+body {
+  background-color: var(--main-color);
+}
+```
+
+`:empty`，它选择没有子节点（包括文本节点）的元素（小程序中用来做默认插槽）。
+
+例如，下面的 CSS 会选择所有空的 `<p>` 元素，并将它们的背景色设置为红色：
+
+```css
+p:empty {
+  background-color: red;
+}
+```
+
+```html
+<div>
+  <p></p> <!-- :empty 会选择这个 -->
+</div>
+
+<div>
+  <p> </p> <!-- :empty 不会选择这个，因为包含一个空格 -->
+</div>
+```
+
+需要注意的是，如果一个元素内含有包括空白和换行符在内的文本，那么这个元素将不会被 `:empty` 选择器选中。同样，如果元素内含有其他元素，也无论这些元素是否空，它都不会被 `:empty` 选中。所以 `:empty` 伪类主要应用于确定一个元素是否为空，即无内容。
 
 ## 二、否定伪类
 
-否定伪类选择器的用法。
+`:not()` 表示否定伪类选择器。的格式是 :not(xxx)；xxx 表示一个简单选择器：
 
-- :not()，的格式是 :not(xxx)；
-- xxx 是一个简单选择器，如通用选择器，元素选择器、属性选择器、类选择器、伪类（**除否定伪类**）、id 选择器。
+- 比如：通用选择器，元素选择器、属性选择器、类选择器、伪类（**除否定伪类**）、id 选择器。
 
-注意事项。
-
-- :not(xxx)，表示除 xxx 以外的元素，经常需要结合后代选择器一起使用，否则会选中整个 HTML 页面大部分元素。
+`:not(xxx)`，表示除 xxx 以外的元素，经常需要结合后代选择器一起使用，否则会选中整个 HTML 页面大部分元素。
 
 ```css
 .box :not(.zzt) {
@@ -146,7 +162,7 @@ ul li:nth-child(2n) {
 </div>
 ```
 
-## 三、案例：使用 border 制作三角形
+## 三、border 制作三角形
 
 使用 border 制作三角形，将图形旋转。
 
@@ -158,9 +174,11 @@ ul li:nth-child(2n) {
       width: 100px;
       height: 100px;
       box-sizing: border-box;
-      /* border样式调整 */
+
+      /* border 样式调整 */
       border: 50px solid transparent; /* 宽度为 width 的一半，使得 border 呈现三角形 */
-      border-top-color: orange; /* border上边框作为一个有颜色的三角形 */
+      border-top-color: orange; /* border 上边框作为一个有颜色的三角形 */
+
       /* 旋转 */
       transform-origin: center 25%;
       transform: rotate(180deg);
@@ -184,15 +202,13 @@ ul li:nth-child(2n) {
 web-font 的工作原理。
 
 - 首先, 通过渠道获取希望使用的字体（不是开发来做的事情）
-  - 收费的字体, 获取到对应的授权;
-  - 公司定制的字体, 需要设计人员来设计;
-  - 免费的字体, 获取到对应的字体文件;
+  - 收费的字体, 获取到对应的授权；
+  - 公司定制的字体, 需要设计人员来设计；
+  - 免费的字体, 获取到对应的字体文件，
 - 其次, 在我们的 CSS 代码当中使用该字体(重要):
 - 最后, 在部署静态资源时, 将 HTML/CSS/JavaScript/Font 一起部署在静态服务器中。
 
 ### 2.Web 字体使用步骤
-
-使用 web-font 的步骤。
 
 第一步：获取字体资源。
 
@@ -203,9 +219,9 @@ web-font 的工作原理。
 
 1. 将字体放到对应的目录中。
 
-2. 通过`@font-face`来引入字体, 并且设置格式 。
+2. 在 CSS 中，通过 `@font-face` 来引入字体, 并且设置格式 。
 
-3. 使用字体。
+3. 在其它 CSS 选择器中，使用字体。
 
 ```html
 <head>
@@ -227,18 +243,17 @@ web-font 的工作原理。
 </body>
 ```
 
-### 3.truetype 字体
+### 3.truetype 和其它常见字体类型
 
-什么是 truetype 字体。
+truetype 字体，拓展名是`.ttf` 的字体。
 
-- 拓展名是`.ttf`的字体。
+OpenType / TrueType 字体：拓展名是 .ttf、otf，建立在 TrueType 字体之上。
 
-还有哪些字体 4 种。
+Embedded OpenType 字体：拓展名是 .eot，OpenType 字体的压缩版。
 
-- OpenType / TrueType 字体：拓展名是 .ttf、otf，建立在 TrueType 字体之上。
-- Embedded OpenType 字体：拓展名是 .eot，OpenType 字体的压缩版。
-- SVG 字体：拓展名是 .svg、.svgz
-- WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建立在 TrueType 字体之上
+SVG 字体：拓展名是 .svg、.svgz
+
+WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建立在 TrueType 字体之上
 
 了解他们在各浏览器中的兼容性。
 
@@ -253,8 +268,8 @@ web-font 的工作原理。
     @font-face {
       font-family: 'zzt';
       /* 写2个src，用于适配老的IE浏览器。 */
-      src: url('./fonts02/AaQingHuanYuanTi.eot'); /* IE9 */
       /* format 用于帮助浏览器快速识别字体的格式; */
+      src: url('./fonts02/AaQingHuanYuanTi.eot'); /* IE9 */
       src: url('./fonts02/AaQingHuanYuanTi.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
           url('./fonts02/AaQingHuanYuanTi.woff') format('woff'),
         /* chrome、firefox */ url('./fonts02/AaQingHuanYuanTi.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
@@ -274,11 +289,7 @@ web-font 的工作原理。
 
 ## 五、字体图标
 
-什么是字体图标？
-
-- 把字体直接设计成图标的样子就是字体图标。
-
-优势 3 点。
+字体图标，指的是把字体直接设计成图标的样子。它有 3 点优势。
 
 - 放大不会失真。
 - 可以任意切换颜色（color）。
@@ -286,15 +297,9 @@ web-font 的工作原理。
 
 字体图标的使用步骤。
 
-Ⅰ.字体图标的使用：
+Ⅰ.登录 [iconfont](https://www.iconfont.cn),下载代码，并且拷贝到项目中。
 
-- 登录[iconfont](https://www.iconfont.cn)
-- 下载代码，并且拷贝到项目中。
-
-Ⅱ.将字体文件和默认的 css 文件导入到项目中，并使用。
-
-- 第一步: 通过 link 引入 iconfont.css 文件。
-- 第二步: 使用字体图标
+Ⅱ.将字体文件和默认的 css 文件放入到项目目录中，并在项目 css 中通过 link 引入 iconfont.css 文件。
 
 Ⅲ.如果有新的字体图标加入，需要重复以上操作。
 
@@ -328,9 +333,10 @@ web-font 的工作原理。
 ```html
 <head>
   <title>Document</title>
+  <!-- 引入 iconfont.css 文件 -->
   <link rel="stylesheet" href="./fonts03/iconfont.css" />
   <style>
-    /* iconfont.css中已定义了.icon-shouye选择器，可直接使用，这里对它的样式做一些扩充 */
+    /* iconfont.css 中已定义了 .icon-shouye 选择器，可直接使用，这里对它的样式做一些扩充 */
     .icon-shouye {
       font-size: 30px;
       color: red;
