@@ -13,14 +13,14 @@ table tr:nth-child(-n + 2) {
 
 ### 1.:nth-child() 用法
 
-`:nth-child()` 的 4 种使用方法。
+`:nth-child()` 的三种使用方法：
 
-用法一：`:nth-child(1)`，表示是父元素中的第 1 个子元素。与 `:first-child` 同义。
+用法一：`:nth-child(1)`，表示是父元素中的第 1 个子元素。与  `:first-child` 同义。
 
 用法二：`:nth-child(an + b)`，n 代表任意正整数和 0，表示父元素中每 a 个子元素的后 b 个元素被选中。
 
 - 常见的用法有：`:nth-child(2n)`，表示选中父元素中子元素的第偶数个元素（第 2、4、6、8......个），与 `:nth-child(even)`同义。
-- 常见的用法有：`:nth-child(zn + 1)`，表示父元素中的第奇数个子元素（第 1、3、5、7......个） 被选中。与 `:nth-child(odd)` 同义。
+- 常见的用法有：`:nth-child(2n + 1)`，表示父元素中的第奇数个子元素（第 1、3、5、7......个） 被选中。与 `:nth-child(odd)` 同义。
 
 ```css
 ul li:nth-child(2n) {
@@ -102,7 +102,7 @@ ul li:nth-child(2n) {
 
 ### 6.其它结构伪类
 
-`:root`，表示根元素，在 HTML 中匹配根元素 `<html>`。在 XML (包括SVG) 中，`:root` 匹配的是文档树的根元素。
+`:root`，表示根元素，在 HTML 中匹配根元素 `<html>`。在 XML (包括 SVG) 中，`:root` 匹配的是文档树的根元素。
 
 最常见的用法可能是在定义 CSS 自定义属性（也称为 CSS 变量）因为 `:root` 选择器对整个 HTML 文档都有效，所以在 `:root` 伪类里定义的 CSS 变量，整个文档中的元素都能访问。
 
@@ -140,7 +140,7 @@ p:empty {
 
 ## 二、否定伪类
 
-`:not()` 表示否定伪类选择器。的格式是 :not(xxx)；xxx 表示一个简单选择器：
+`:not()` 表示否定伪类选择器。格式是 :not(xxx)；xxx 表示一个简单选择器：
 
 - 比如：通用选择器，元素选择器、属性选择器、类选择器、伪类（**除否定伪类**）、id 选择器。
 
@@ -199,13 +199,13 @@ p:empty {
 
 ### 1.Web 字体工作原理
 
-web-font 的工作原理。
+web-font 的工作原理：
 
-- 首先, 通过渠道获取希望使用的字体（不是开发来做的事情）
+- 首先, 通过渠道获取希望使用的字体；
   - 收费的字体, 获取到对应的授权；
   - 公司定制的字体, 需要设计人员来设计；
   - 免费的字体, 获取到对应的字体文件，
-- 其次, 在我们的 CSS 代码当中使用该字体(重要):
+- 其次, 在我们的 CSS 代码当中使用该字体；
 - 最后, 在部署静态资源时, 将 HTML/CSS/JavaScript/Font 一起部署在静态服务器中。
 
 ### 2.Web 字体使用步骤
@@ -217,7 +217,7 @@ web-font 的工作原理。
 
 第二步：使用字体；
 
-1. 将字体放到对应的目录中。
+1. 将字体放到项目对应的目录中。
 
 2. 在 CSS 中，通过 `@font-face` 来引入字体, 并且设置格式 。
 
@@ -227,11 +227,13 @@ web-font 的工作原理。
 <head>
   <title>Document</title>
   <style>
-    /* 将这个字体引入到网页中 */
+    /* 将这个字体引入到网页中，并命名为 zzt */
     @font-face {
       font-family: 'zzt';
       src: url('./fonts/AaQingHuanYuanTi-2.ttf');
     }
+    
+    /* 使用字体 zzt */
     .box {
       font-family: 'zzt';
     }
@@ -263,11 +265,11 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
 <head>
   <title>Document</title>
   <style>
-    /* 这被称为"bulletproof @font-face syntax（刀枪不入的 @font-face 语法）
+    /* 这被称为 "bulletproof @font-face syntax（刀枪不入的 @font-face 语法）
     这是 Paul Irish 早期的一篇文章提及后 @font-face 开始流行起来 */
     @font-face {
       font-family: 'zzt';
-      /* 写2个src，用于适配老的IE浏览器。 */
+      /* 写2个src，用于适配老的 IE 浏览器。 */
       /* format 用于帮助浏览器快速识别字体的格式; */
       src: url('./fonts02/AaQingHuanYuanTi.eot'); /* IE9 */
       src: url('./fonts02/AaQingHuanYuanTi.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
@@ -277,6 +279,7 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
       font-style: normal;
       font-weight: 400;
     }
+    
     body {
       font-family: 'zzt';
     }
@@ -297,7 +300,7 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
 
 字体图标的使用步骤。
 
-Ⅰ.登录 [iconfont](https://www.iconfont.cn),下载代码，并且拷贝到项目中。
+Ⅰ.登录 [iconfont](https://www.iconfont.cn)，下载代码，并且拷贝到项目中。
 
 Ⅱ.将字体文件和默认的 css 文件放入到项目目录中，并在项目 css 中通过 link 引入 iconfont.css 文件。
 
@@ -335,8 +338,9 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
   <title>Document</title>
   <!-- 引入 iconfont.css 文件 -->
   <link rel="stylesheet" href="./fonts03/iconfont.css" />
+  
   <style>
-    /* iconfont.css 中已定义了 .icon-shouye 选择器，可直接使用，这里对它的样式做一些扩充 */
+    /* iconfont .css 中已定义了 .icon-shouye 选择器，可直接使用，这里对它的样式做一些扩充 */
     .icon-shouye {
       font-size: 30px;
       color: red;
