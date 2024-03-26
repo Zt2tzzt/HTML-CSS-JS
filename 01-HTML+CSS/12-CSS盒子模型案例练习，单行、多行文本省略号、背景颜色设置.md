@@ -154,8 +154,7 @@ a {
     .item .info p {
       font-size: 15px;
       margin-top: 8px;
-      /* 显示一行 */
-      /* white-space: nowrap; */
+      /* 多行文本显示省略号 */
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;
@@ -203,14 +202,12 @@ a {
 </body>
 ```
 
-> 注意事项：
->
 > 解决 b 站视频封面 url 无法正常显示的方法：给 img 元素设置属性 `referrerpolicy="no-referrer"`。
 >
 > 插入图片的 3 种方案，
 >
 > - img 元素。
-> - 空元素 + background-img。
+>- 空元素 + background-img。
 > - 伪元素。
 
 如果 a 元素设置 `display: inline-block;`，那么它包裹的 p 元素的内容，会无限延申。解决方案，
@@ -224,11 +221,10 @@ a {
 
 ```css
 div {
-  /* white-space: nowrap; */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box; /* flex 布局的前身，现在多用于做多行保留场景。 */
-  -webkit-line-clamp: 2; /* clamp 意思是保留，保持 */
+  -webkit-line-clamp: 2; /* clamp 意思是保留，保持，这里保留的是两行文本 */
   -webkit-box-orient: vertical;
 }
 ```
