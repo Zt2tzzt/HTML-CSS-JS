@@ -1,0 +1,92 @@
+/* 重置样式 */
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
+ul li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* 公共样式 */
+/* 普通样式 */
+.box {
+  width: 140px;
+  height: 204px;
+  margin: 10px auto;
+}
+.box .top {
+  /* top 的宽高由img撑开 */
+  position: relative;
+}
+.box .top img {
+  vertical-align: top; /* 去除图片底部经典3px，临时解决办法 */
+}
+.box .top .cover {
+  /* cover宽高占据整个top */
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: url(https://s2.music.126.net/style/web2/img/coverall.png?c3f6557b90288c705d1fb2ea6549f303); /* 设置对角线精灵图 */
+  background-position: 0 0;
+}
+.box .top .info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 27px; /* info 盖度为 27px，设置在 img 底部 */
+  background-image: url(https://s2.music.126.net/style/web2/img/coverall.png?c3f6557b90288c705d1fb2ea6549f303); /* 设置图片底部信息显示栏精灵图 */
+  background-position: 0 -537px;
+  /* 设置播放量字体 */
+  font-size: 12px;
+  color: #ccc;
+  line-height: 27px;
+}
+.box .top .info .icon-music {
+  display: inline-block;
+  /* 设置音乐图标精灵图 */
+  background-image: url(https://s2.music.126.net/style/web2/img/iconall.png?f73c146a001f5fe7f01b30bb88f8d42a);
+  background-position: 0 -24px;
+  width: 14px;
+  height: 11px;
+  /* 元素位置定位，微调 */
+  position: relative;
+  left: 10px;
+  top: 2px;
+}
+.box .top .info .count {
+  margin-left: 12px;
+}
+.box .top .info .icon-play {
+  display: inline-block;
+  /* 设置播放图标精灵图 */
+  background-image: url(https://s2.music.126.net/style/web2/img/iconall.png?f73c146a001f5fe7f01b30bb88f8d42a);
+  background-position: 0 0;
+  width: 16px;
+  height: 17px;
+  /* 元素位置定位 */
+  position: absolute; /* 子绝父绝 */
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  margin: auto 0; /* 垂直居中 */
+}
+.box .top .info .icon-play:hover {
+  background-position: 0 -60px;
+}
+.box .bottom {
+  margin-top: 10px;
+  font-size: 14px;
+  display: block;
+}
+.box .bottom:hover {
+  text-decoration: underline;
+}

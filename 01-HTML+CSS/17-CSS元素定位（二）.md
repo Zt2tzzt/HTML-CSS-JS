@@ -1,22 +1,15 @@
-# CSS元素定位（二）
+# CSS元素定位-子绝父相-绝对定位-水平垂直居中、auto判定
 
 ## 一、absolute 绝对定位
 
 绝对定位 absolute 的特性 2 点。
 
-- 元素脱离 normal flow（脱离标准流、脱标）
+- 元素脱离标准流（脱标）。
 - 可以通过 `left`、`right`、`top`、`bottom` 进行定位
   - 定位参照对象是**最邻近的定位祖先**元素。
   - 如果找不到这样的祖先元素，参照对象是视口。
 
-## 二、定位元素的概念
-
-什么是定位元素 2 点。
-
-- position 值不为 `static` 的元素。
-- 也就是 position 值为 **relative、absolute、fixed** 的元素。
-
-## 三、案例理解：元素嵌套定位
+## 二、子绝父相
 
 元素嵌套定位案例的实现。
 
@@ -29,6 +22,7 @@
       background-color: #f00;
       position: relative;
     }
+    
     /* .box 和 container 形成子绝父相 */
     .container > .box {
       width: 300px;
@@ -38,6 +32,7 @@
       bottom: 0;
       right: 0;
     }
+    
     /* span 和 .box 形成子绝父绝 */
     .container > .box > span {
       position: absolute;
@@ -56,20 +51,14 @@
 </body>
 ```
 
-## 四、子绝父相
-
-子绝父相的理解 2 点（单纯记住，没有意义，有其它情况存在）。
-
-在绝大多数情况下，子元素的绝对定位都是相对于父元素进行定位。
-
-如果希望子元素相对于父元素进行定位，又不希望父元素脱标，常用解决方案是：
+通常，子元素的绝对定位都是相对于父元素进行定位（希望子元素相对于父元素进行定位，又不希望父元素脱标）：
 
 1. 父元素设置 `position: relative;`（让父元素成为定位元素，而且父元素不脱离标准流）。
 2. 子元素设置 `position: absolute;`。
 
 简称为“子绝父相"。
 
-## 五、绝对定位
+## 五、绝对定位元素
 
 将 position 设置为 **absolute / fixed** 元素，称为 **绝对定位元素**（absolutely positioned element）。
 
@@ -84,7 +73,7 @@ position 值对应元素性质对比
 
 绝对定位元素的特点（一）5 点。
 
-- 可以随意设置宽高。宽高默认由内容决定。
+- 宽高默认由内容决定，可以随意设置宽高。
 - 不再受标准流的约束（不再严格按照从上到下、从左到右排布）。
 - 不再严格区分块级（block）、行内级（inline），行内块级（inline-block）元素，它们的很多特性都会消失。
 - 不再给父元素汇报宽高数据（此时如果父元素没有设置宽高，那么父元素会消失）。
@@ -94,7 +83,7 @@ position 值对应元素性质对比
 
 对于绝对定位元素来说，定位参照对象的：
 
-- 宽度（固定） = `eft + right + margin-left + margin-right + 绝对定位元素的实际占用宽度`
+- 宽度（固定） = `left + right + margin-left + margin-right + 绝对定位元素的实际占用宽度`
 - 高度（固定） = `top + bottom + margin-top + margin-bottom + 绝对定位元素的实际占用高度`。
 
 利用以上 2 个公式，实现绝对定位元素的水平，垂直居中。是绝对的居中显示，不存在兼容性问题。
@@ -120,33 +109,36 @@ position 值对应元素性质对比
 - `auto`，一般意为交给浏览器处理；
 - 定位元素，left。right 等属性设置成 auto，一般浏览器不会做等分处理。
 
-给一下元素设置`width: auto;`分别有什么含义？
+给以下元素设置 `width: auto;`分别有什么含义？
 
-- 行内非替换元素 -> width: 包裹内容。
+- 行内元素 -> width: 包裹内容。
 - 块级元素 -> width: 包含块的宽度。
 - 绝对定位元素 -> width: 包裹内容。
 
-## 七、案例练习：网易云音乐
+## 七、网易云音乐item案例
 
-绝对定位练习，网易云音乐 item。
+知识点总结：
+
+- 绝对定位的使用。
+- 精灵图的使用。
+
+01-HTML+CSS/demo-project/09-绝对定位-网易云音乐item/index.html
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="./demo.css" />
+    <title>网易云音乐</title>
+    <link rel="stylesheet" href="./index.css" />
   </head>
-
   <body>
     <ul>
       <li class="box">
         <div class="top">
           <!-- .top 最底层 -->
-          <img src="./images/music_item.jpg" alt="健身女孩" />
+          <img src="../../images/music_item.jpg" alt="健身女孩" />
           <!-- 使用绝对定位，设置在 .top 第二层，覆盖整个.top -->
           <a class="cover" href="#"></a>
           <!-- 使用绝对定位，设置在 .top 最上层，背景图使用精灵图 -->
@@ -163,9 +155,10 @@ position 值对应元素性质对比
     </ul>
   </body>
 </html>
+
 ```
 
-demo.css
+01-HTML+CSS/demo-project/09-绝对定位-网易云音乐item/index.css
 
 ```css
 /* 重置样式 */
@@ -182,6 +175,7 @@ a {
   text-decoration: none;
   color: #333;
 }
+
 /* 公共样式 */
 /* 普通样式 */
 .box {
@@ -190,7 +184,7 @@ a {
   margin: 10px auto;
 }
 .box .top {
-  /* top的宽高由img撑开 */
+  /* top 的宽高由img撑开 */
   position: relative;
 }
 .box .top img {
@@ -211,7 +205,7 @@ a {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 27px; /* info盖度为27px，设置在img底部 */
+  height: 27px; /* info 盖度为 27px，设置在 img 底部 */
   background-image: url(https://s2.music.126.net/style/web2/img/coverall.png?c3f6557b90288c705d1fb2ea6549f303); /* 设置图片底部信息显示栏精灵图 */
   background-position: 0 -537px;
   /* 设置播放量字体 */
@@ -259,4 +253,5 @@ a {
 .box .bottom:hover {
   text-decoration: underline;
 }
+
 ```

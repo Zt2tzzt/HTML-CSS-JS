@@ -96,7 +96,7 @@ HTML 标准流（normal flow）也称常规流、正常流、文档流【documen
 
 ## 四、CSS 元素定位
 
-CSS 元素的定位（脱离标准流），指的是定位元素从正常的文档流布局中，脱离出来，并使它们具有不同的行为。
+CSS 元素的定位（脱离标准流），指的是定位元素从正常的标准流布局中，脱离出来，并使它们具有不同的行为。
 
 ### 1.CSS position 属性
 
@@ -111,17 +111,18 @@ CSS position 属性用来对元素进行定位。
 - `fixed`：固定定位。
 - `sticky`：粘性定位。
 
+CSS 定位元素指的是：
+
+- position 值不为 `static` 的元素。
+- 也就是 position 值为 **relative、absolute、fixed** 的元素。
+
 ### 2.static 静态定位
 
 静态定位 static，是 position 属性的默认值。元素按照标准流布局。`left`、`right`、`top`、`bottom` 等属性没有任何作用。
 
 ### 3.relative 相对定位
 
-相对定位的特性 3 点：
-
-- 元素仍按照标准流布局。
-- 可以通过 `left`、`right`、`top`、`bottom` 进行定位，可设置负数。
-- 定位参照对象是元素自己原来的位置。
+相对定位的特性 3 点：元素仍按照标准流布局。可以通过 `left`、`right`、`top`、`bottom` 进行定位，可设置负数。定位参照对象是元素自己原来的位置。
 
 举例；数学表达式案例。
 
@@ -164,7 +165,7 @@ CSS position 属性用来对元素进行定位。
 </body>
 ```
 
-使用 img 元素的方案（相对定位 + margin-left）
+使用 img 元素的方案（margin-left + 相对定位）
 
 - 实现方式一：`transform: translate(-50%)`，translate 中的百分比是相对于自己（即图片一半的宽度 960px）。
 - 实现方式二：`left: -960px;` 相对于自己移动图片一半的宽度（即图片一半的宽度 960px）。
@@ -176,12 +177,16 @@ CSS position 属性用来对元素进行定位。
       margin: 0;
       padding: 0;
     }
+    
     .box {
       height: 489px;
       /* div 元素会占据视口宽度，缩放浏览器时，视口宽度变小，而 img 元素不会换行，宽度不变，所以 img 宽度超出了 div 宽度，屏幕显示滚动条。*/
       overflow: hidden; /* img 超出的宽度不显示，滚动条隐藏。*/
     }
+    
     .box img {
+      margin-left: 50%; /* 向右边移动 .box 的一半 */
+      
       /* ---------伪代码------------ */
       /* 第一种方案 */
       position: relative;
@@ -190,8 +195,6 @@ CSS position 属性用来对元素进行定位。
       /* 第二种方案 */
       transform: translate(-50%); /* translate 中的百分比是相对于自己 */
       /* ---------伪代码------------ */
-
-      margin-left: 50%; /* 向右边移动 .box 的一半 */
     }
   </style>
 </head>

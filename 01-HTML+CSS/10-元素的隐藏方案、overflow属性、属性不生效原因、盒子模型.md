@@ -9,12 +9,12 @@
 - 元素不显示, 不占据任何空间。
 - 浏览器调试时，html 代码中还是存在该元素。
 
-方式二：`visibility: hidden;`
+方案二：`visibility: hidden;`
 
-- 元素不显示， 但会占据空间;
+- 元素不显示， 但会占据空间；
 - `visibility` 属性，默认值是 `visible`，表示元素是可见的;。
 
-方式三：将 rgba 颜色的 alpha 值设置为 0。
+方案三：将 rgba 颜色的 alpha 值设置为 0。
 
 - rgba 的 a 设置的是 alpha 值, 用于设置透明度, ==该设置不影响子元素==；
 - 这种方式，一次只能设置文本或背景的一种。
@@ -90,7 +90,7 @@ HTML 中每一个元素都可看作是一个盒子模型，具备 4 个属性。
 
 内边距 padding，用于设置边框与盒子的距离。
 
-不要给行内元素设置 padding，会有问题（主要是 padding-top，padding-bottom 有问题）。
+不要给行内元素设置 padding-top，padding-bottom 有问题。
 
 padding 包括四个方向, 所以有如下的取值:
 
@@ -143,5 +143,5 @@ border-radius 属性，用于设置盒子的圆角。2 种设置方式。
 
 border-radius 事实上是一个**缩写属性**，理解 2 点。
 
-- 将这四个属性 `border-top-left-radius`、`border-top-right-radius`、`border-bottom-right-radius`，和`border-bottom-left-radius` 简写为一个属性。
+- 将这四个属性 `border-top-left-radius`、`border-top-right-radius`、`border-bottom-right-radius`，和 `border-bottom-left-radius` 简写为一个属性。
 - 可以设置两个值（如 `border-top-left-radius: 5px 10px;`），代表水平方向、垂直方向，两个值不一样，效果不圆润。

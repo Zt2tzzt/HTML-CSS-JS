@@ -15,12 +15,12 @@ table tr:nth-child(-n + 2) {
 
 `:nth-child()` 的三种使用方法：
 
-用法一：`:nth-child(1)`，表示是父元素中的第 1 个子元素。与  `:first-child` 同义。
+用法一：`:nth-child(1)`，表示是第 1 个子元素被选中。与  `:first-child` 同义。
 
-用法二：`:nth-child(an + b)`，n 代表任意正整数和 0，表示父元素中每 a 个子元素的后 b 个元素被选中。
+用法二：`:nth-child(an + b)`，n 代表任意正整数和 0，表示每 a 个子元素的后 b 个元素被选中。
 
-- 常见的用法有：`:nth-child(2n)`，表示选中父元素中子元素的第偶数个元素（第 2、4、6、8......个），与 `:nth-child(even)`同义。
-- 常见的用法有：`:nth-child(2n + 1)`，表示父元素中的第奇数个子元素（第 1、3、5、7......个） 被选中。与 `:nth-child(odd)` 同义。
+- 常见的用法有：`:nth-child(2n)`，表示第偶数个元素（第 2、4、6、8......个）被选中，与 `:nth-child(even)`同义。
+- 常见的用法有：`:nth-child(2n + 1)`，表示第奇数个子元素（第 1、3、5、7......个） 被选中。与 `:nth-child(odd)` 同义。
 
 ```css
 ul li:nth-child(2n) {
@@ -333,26 +333,6 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
 
 方式二：利用已经编写好的 class, 直接使用即可（使用伪元素）
 
-```html
-<head>
-  <title>Document</title>
-  <!-- 引入 iconfont.css 文件 -->
-  <link rel="stylesheet" href="./fonts03/iconfont.css" />
-  
-  <style>
-    /* iconfont .css 中已定义了 .icon-shouye 选择器，可直接使用，这里对它的样式做一些扩充 */
-    .icon-shouye {
-      font-size: 30px;
-      color: red;
-    }
-  </style>
-</head>
-
-<body>
-  <i class="iconfont icon-shouye"></i>
-</body>
-```
-
 iconfont.css
 
 ```css
@@ -388,4 +368,24 @@ iconfont.css
 .icon-music1:before {
   content: '\e654';
 }
+```
+
+```html
+<head>
+  <title>Document</title>
+  <!-- 引入 iconfont.css 文件 -->
+  <link rel="stylesheet" href="./fonts03/iconfont.css" />
+  
+  <style>
+    /* iconfont .css 中已定义了 .icon-shouye 选择器，可直接使用，这里对它的样式做一些扩充 */
+    .icon-shouye {
+      font-size: 30px;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <i class="iconfont icon-shouye"></i>
+</body>
 ```
