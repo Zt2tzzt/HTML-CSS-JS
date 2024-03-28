@@ -19,9 +19,7 @@
   | 2               | margin: 10px 20px;           | top / bottom: 10px, right / left: 20px           |
   | 1               | margin: 10px;                | top / right / bottom / left: 10px                |
 
-### 1.margin 与 padding 比较
-
-margin 与 padding 比较，2 个常见的问题，
+### 1.margin 与 padding 常见问题、适用场景
 
 | 问题                                                         | 解决方案                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -103,9 +101,7 @@ block box width = content width + padding + border width + margin
 
 ## 三、块级元素水平居中原理
 
-**块级元素设置宽度后**，浏览器把这一行剩下的宽度，分配给了它的 margin-right。
-
-**块级元素设置宽度后**，设置该元素 `margin: 0 auto;` ，将左右空间自动分配，达到水平居中的效果。
+**块级元素设置宽度后**，浏览器把这一行剩下的宽度，分配给了它的 margin-right。设置该元素 `margin: 0 auto;` ，将左右空间自动分配，即可达到水平居中的效果。
 
 > 块级元素高度默认是内容高度，所以**不能**用 `margin: auto 0;` 来做垂直方向居中。
 >

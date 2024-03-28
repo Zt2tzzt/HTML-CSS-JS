@@ -151,8 +151,8 @@
 
 input 元素 `type` 属性可设置如下值：
 
-- `text`：表示文本输入框（明文输入）。
-- `password`：表示文本输入框（密文输入）。
+- `text`：表示明文文本输入框。
+- `password`：表示密码文本输入框。
 - `radio`：表示单选框。
 - `checkbox`：表示复选框。
 - `button`：表示普通按钮。
@@ -172,7 +172,7 @@ Input 元素还有以下属性：
 
 > 常见的布尔属性有 `disabled`、`checked`、`readonly`、`autofocus`、`multiple`、`selected`。布尔属性可以没有属性值，写上属性名就代表使用这个属性，如果要给布尔属性设值，值就是属性名本身。
 
-input 元素是否为可替换元素？定义比较模糊，因为：imput 元素不好定义，它是否是可替换元素，取决于它的 type，或者不同的浏览器。大多数情况下，可把它看作是一个可替换元素。
+input 元素是否为可替换元素？定义比较模糊，取决于它的 type，或者不同的浏览器。大多数情况下，可把它看作是一个可替换元素。
 
 #### 1.input 实现表单按钮
 
@@ -477,7 +477,7 @@ div > ( header > ul > li * 2 > a ) + footer > p
 </div>
 ```
 
-语法四：属性（`#` 表示 id 属性、`.` 表示 class 属性、`[xxx]` 表示普通属性）， {}（内容）
+语法四：属性（`#` 表示 id 属性、`.` 表示 class 属性、`[xxx]` 表示普通属性）， `{}` 表示内容。
 
 ```html
 #header + #main > .container > a[href=https://www.baidu.com]{百度一下}
