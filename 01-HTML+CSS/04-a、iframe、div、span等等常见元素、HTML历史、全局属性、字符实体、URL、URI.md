@@ -37,14 +37,14 @@ a 元素可链接到其它 URL 地址，如下载压缩文件；发送邮件。
 
 iframe 元素，用于在一个 HTML 文档中，嵌入其它 HTML 文档。
 
-在 iframe 中打开淘宝：
+比如：在 iframe 中打开淘宝：
 
 ```html
 <!-- width, height 已不推荐作为属性使用。 -->
 <iframe src="http://www.taobao.com" width="800" height="600" frameborder="0"></iframe>
 ```
 
-> 如果要禁止网页在 iframe 中被请求：那么就在响应头中设置 `x-frame-option: sameorigin`，表示只能在同源的网络环境中加载。
+> 如果要禁止网页在 iframe 中被请求：那么就在 Web 服务器配置文件中配置响应头 `x-frame-option: sameorigin`，表示只能在同源的网络环境中加载。
 
 iframe 元素 `frameborder` 属性：用于规定是否显示边框：`1` 显示，`0` 不显示。
 
@@ -122,12 +122,9 @@ div、span 元素的作用和区别。
 HTML 元素中常见的 4 个全局属性。
 
 - `id`：定义唯一标识符，其值在整个文档中是唯一的，目的是精确标识元素。
-
-`class`：其值是以空格分割，允许 css 或 JavaScript 通过类选择器或 DOM 方法来选择和访问特定的元素。
-
-`style`：给元素添加内联样式。
-
-`title`：包含表示与其所属元素相关信息的文本，这些信息通常作为提示呈现给用户，不是必须的。
+- `class`：其值是以空格分割，允许 css 或 JavaScript 通过类选择器或 DOM 方法来选择和访问特定的元素。
+- `style`：给元素添加内联样式。
+- `title`：包含表示与其所属元素相关信息的文本，这些信息通常作为提示呈现给用户，不是必须的。
 
 [更多属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Global_attributes)
 
