@@ -255,7 +255,7 @@ CSS 属性 `background-image` 和 HTML 元素 `<img>` 的比较：
 | 支持 CSS Sprite 精灵图 | ❌                  | ✔                |
 | 更有可能被搜索引擎收录 | ✔（结合 alt 属性） | ❌                |
 
-CSS 属性 `background-image` 和 HTML 元素 `<img>` 分别有哪些适用场景：
+它们分别有哪些适用场景：
 
 - img 元素，是网页内容的重要组成部分，比如广告图片、LOGO 图片、文章配图、产品图片。
 - background-image，可有可无。有，能让网页更加美观。无，也不影响用户获取完整的网页内容信息。

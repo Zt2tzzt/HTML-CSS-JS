@@ -44,7 +44,20 @@ iframe 元素，用于在一个 HTML 文档中，嵌入其它 HTML 文档。
 <iframe src="http://www.taobao.com" width="800" height="600" frameborder="0"></iframe>
 ```
 
-> 如果要禁止网页在 iframe 中被请求：那么就在 Web 服务器配置文件中配置响应头 `x-frame-option: sameorigin`，表示只能在同源的网络环境中加载。
+> 如果要禁止网页在 iframe 中被请求：那么就在 Web 服务器配置文件中配置响应头 `x-frame-option: sameorigin`，表示只能在同源的网络环境中加载。比如在 nginx 中进行如下配置
+>
+> ```nginx
+> server {
+>   listen 9001;
+>   server_name localhost;
+> 
+>   location / {
+>     root /home/zetian/workshop/cimc/ddzx-bi/dist;
+>     add_header X-Frame-Options SAMEORIGIN always; # 设置 X-Frame-Options SAMEORIGIN
+>     index index.html index.htm;
+>   }
+> }
+> ```
 
 iframe 元素 `frameborder` 属性：用于规定是否显示边框：`1` 显示，`0` 不显示。
 
