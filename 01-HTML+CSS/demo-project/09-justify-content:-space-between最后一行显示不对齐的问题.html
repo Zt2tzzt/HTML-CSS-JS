@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+    <style>
+      .container {
+        width: 500px;
+        background-color: orange;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+      }
+      .item {
+        width: 110px; /* 比较container的宽度可知，每一行会有4个container */
+        height: 140px;
+        background-color: pink;
+      }
+      .container > i {
+        /* i元素成为 flex item 后，不严格区分行内级元素，可设置宽度 */
+        width: 110px; /* 占位元素需要有宽度 */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item3">3</div>
+      <!-- 添加 i 的个数是列数减2，也就是 4-2=2个 -->
+      <i></i>
+      <i></i>
+    </div>
+
+    <script>
+      // Get all elements with class "item"
+      const items = document.querySelectorAll('.item');
+
+      // Set a random background color for each item
+      items.forEach(item => {
+          const randomColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+          item.style.backgroundColor = randomColor;
+      });
+  </script>
+  </body>
+</html>

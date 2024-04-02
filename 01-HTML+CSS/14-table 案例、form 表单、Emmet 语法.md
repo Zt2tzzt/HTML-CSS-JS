@@ -179,8 +179,8 @@ input 元素是否为可替换元素？定义比较模糊，取决于它的 type
 使用 input 来实现表单按钮 3 个。
 
 - 普通按钮（type="button"）：使用 `value` 属性设置按钮文字 。
-- 重置按钮（type="reset"）：重置它所属 form 的所有表单元素（包括 input、textarea、select） 。
-- 提交按钮（type="submit"）：提交它所属 form 的表单数据给服务器（包括 input、textarea、select）。
+- 重置按钮（type="reset"）：重置它所属 form 的所有表单元素（包括 input、textarea、select...） 。
+- 提交按钮（type="submit"）：提交它所属 form 的表单数据给服务器（包括 input、textarea、select...）。
 
 > 注意事项：以上 input 元素生成的按钮效果，放到 form 元素中，才有效。
 
@@ -207,10 +207,9 @@ input 元素是否为可替换元素？定义比较模糊，取决于它的 type
 
 #### 2.input 元素和 label 元素的关系
 
-input 元素和 label 元素之间的关系，
+label 元素一般跟 input 元素配合使用，表示 input 的标题。
 
-- label 元素一般跟 input 元素配合使用，用来表示 input 的标题。
-- label 可以跟某个 input 绑定，点击 label 就可以激活对应的 input 变成选中。
+label 可以跟某个 input 绑定，点击 label 就可以激活对应的 input 变成选中。
 
 给 input 添加 **id 属性**，给 label 元素添加 **for 属性**，将它们关联起来，
 
@@ -242,9 +241,13 @@ input 元素和 label 元素之间的关系，
 
 ```html
 <form action="/abc">
-  <label for="male"> <input id="male" type="radio" name="sex" value="male" />男 </label>
+  <label for="male">
+    <input id="male" type="radio" name="sex" value="male" />男
+  </label>
 
-  <label for="female"> <input id="female" type="radio" name="sex" value="female" />女 </label>
+  <label for="female">
+    <input id="female" type="radio" name="sex" value="female" />女
+  </label>
 
   <button type="submit">提交按钮</button>
 </form>
@@ -405,7 +408,7 @@ table > (tr > td * 5) * 3
 
 Emmet (前身为 Zen Coding) 是一个能大幅度提高前端开发效率的一个工具。
 
-VsCode 内置了 Emmet 语法，在后缀为 `.html`、`.css` 文件中，输入缩写后按 Tab / Enter 键即会自动生成相应代码。
+VSCode 内置了 Emmet 语法，在后缀为 `.html`、`.css` 文件中，输入缩写后按 Tab / Enter 键即会自动生成相应代码。
 
 比如：生成 HTML5 代码结构，使用 `!`。
 

@@ -56,8 +56,8 @@ ul li:nth-child(2n) {
   <p>我是p元素</p>
   <span>我是span1</span>
   <div>我是列表2</div>
-  <div>我是列表3</div>
   <!-- 被选中 -->
+  <div>我是列表3</div>
 </div>
 ```
 
@@ -249,7 +249,7 @@ web-font 的工作原理：
 
 truetype 字体，拓展名是`.ttf` 的字体。
 
-OpenType / TrueType 字体：拓展名是 .ttf、otf，建立在 TrueType 字体之上。
+OpenType / TrueType 字体：拓展名是 .ttf、otf，它们建立在 TrueType 字体之上。
 
 Embedded OpenType 字体：拓展名是 .eot，OpenType 字体的压缩版。
 
