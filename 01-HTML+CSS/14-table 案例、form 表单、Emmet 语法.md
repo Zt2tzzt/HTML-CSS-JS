@@ -176,7 +176,7 @@ input 元素是否为可替换元素？定义比较模糊，取决于它的 type
 
 #### 1.input 实现表单按钮
 
-使用 input 来实现表单按钮 3 个。
+使用 input 来实现三种类型的表单按钮。
 
 - 普通按钮（type="button"）：使用 `value` 属性设置按钮文字 。
 - 重置按钮（type="reset"）：重置它所属 form 的所有表单元素（包括 input、textarea、select...） 。
