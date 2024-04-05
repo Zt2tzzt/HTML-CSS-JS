@@ -18,6 +18,8 @@ transform 属性，用于对元素进行形变，包括平移，旋转，缩放�
 
 ### 1.translate 函数
 
+translate 函数，用于移动元素在平面上的位置。
+
 语法：`none | <transform-function>+`；
 
 上面的语法中，`+`  代表可写一个或多个值，以空格区分。
@@ -32,11 +34,9 @@ transform 属性，用于对元素进行形变，包括平移，旋转，缩放�
 >
 > ```css
 > .box {
->   box-shadow: 1px 1px 1px 1px #f00, 5px 5px 5px #ccc;
+>     box-shadow: 1px 1px 1px 1px #f00, 5px 5px 5px #ccc;
 > }
 > ```
-
-translate 函数，用于移动元素在平面上的位置。
 
 可设值个数，
 
@@ -65,8 +65,8 @@ translate 函数，用于移动元素在平面上的位置。
   background-color: #f00;
 
   /* 2步:
-      1.让元素向下位移包含快的50%
-      2.让元素向上位移自身的50%
+      1.让元素向下位移包含快的 50%
+      2.让元素向上位移自身的 50%
   */
   /* margin-top 的百分比是相对于包含块（父元素）的**宽度**，所以不能用 margin-to，而是使用绝对定位和 topp */
   position: absolute;
@@ -86,7 +86,7 @@ translate 函数，用于移动元素在平面上的位置。
 
 ### 2.scale 函数
 
-transform 属性 scale 函数作用：改变元素的大小。
+transform 属性 scale 函数，用于改变元素的大小。
 
 可设值个数：
 
@@ -110,24 +110,20 @@ transform 属性 rotate 函数作用：旋转元素。
 
 可设值类型：
 
-- 常用单位 deg：旋转的角度（ degrees ）。
-- 正数为顺时针。
-- 负数为逆时针。
+- 常用单位 deg：表示旋转的角度（ degrees ）。正数为顺时针。负数为逆时针。
 
-transform 属性 rotate 函数的 2 点补充：
+`rotate` 函数是 `rotateZ` 函数的简写写法（`rotate3d` 后续了解）。
 
-1. `rotate` 函数是 `rotateZ` 函数的简写写法（`rotate3d` 后续了解）。
-2. `rotate` 函数的其他单位：
-   - 度（degrees）；
-   - 百分度（gradians，90deg = 100grad）；
-   - 弧度（radians）
-   - 圈数（tums）。
+`rotate` 函数的其他单位：
+
+- 度（degrees）；
+- 百分度（gradians，90deg = 100grad）；
+- 弧度（radians）
+- 圈数（tums）。
 
 ### 4.skew 函数
 
-transform 属性 skew 函数的作用：
-
-- 定义了一个元素在二维平面上的倾斜转换。
+transform 属性 skew 函数，用于定义一个元素在二维平面上的倾斜转换。
 
 可设值的个数：
 
@@ -136,9 +132,7 @@ transform 属性 skew 函数的作用：
 
 可设值的类型：
 
-- deg：倾斜的角度。
-- 正数为顺时针。
-- 负数为逆时针。
+- deg：倾斜的角度。正数为顺时针。负数为逆时针。
 
 ```css
 .box {
@@ -171,15 +165,15 @@ transform-origin 属性，用于设置元素形变的原点，如在进行 scale
 
 ## 四、水平居中方案 5 点总结
 
-方案一：将要居中的元素，设为行内级元素、行内块级元素，再设置父元素的 `text-align: center;`。
+方案一：将要居中的元素，设为行内级元素，或行内块级元素，再为父元素设置 `text-align: center;`。
 
-方案二：将要居中的元素，设为块级元素，再设置当前块级元素(宽度) `margin: 0 auto;`。
+方案二：将要居中的元素，设为块级元素，再为当前块级元素设置 `margin: 0 auto;`。
 
 方案三-1：将要居中的元素，设为块级元素，再设置  `margin-left: 50%` 和 `transform: translate(-50%)`。
 
-方案三-1：将要居中的元素设为定位元素，再设置  `margin-left: 50%` 和 `left: [元素宽度]`。
+方案三-1：将要居中的元素设为相对定位元素，再设置  `margin-left: 50%` 和 `left: [元素宽度]`。
 
-方案三-2：将要居中的元素设为定位元素，再设置 `left: 50%;` 和  `transform: translate(-50%)`。
+方案三-2：将要居中的元素设为绝对定位元素，再设置 `left: 50%;` 和  `transform: translate(-50%)`。
 
 > 方案三，参考[梦幻西游背景图居中案例](./16-额外知识补充-CSS元素定位（一）（布局）.md/#1.梦幻西游背景图居中案例)
 >

@@ -2,28 +2,16 @@
 
 ## 一、transition  动画
 
-### 1.transition 动画是什么
+transition 动画是更改 CSS 属性时，控制动画速度的方法。可让 CSS 属性变为持续一段时间的过程，而不是立即生效的。并让这个过程加上一定的渐变效果，包括一定的曲线速率变化。
 
-transition 动画是：
-
-- 更改 CSS 属性时，控制动画速度的方法。
-- 可让 CSS 属性变为持续一段时间的过程，而不是立即生效的。
-- 并让这个过程加上一定的渐变效果，包括一定的曲线速率变化。
-
-### 2.transition 动画的作用
-
-transition 动画的作用。
+transition 动画用于：
 
 - 决定哪些属性发生动画效果 (明确地列出这些属性)。
 - 决定持续多久 (设置 transition-duration)。
 - 决定如何动画 (定义 timing function，比如匀速地，或先快后慢地)。
 - 决定何时开始 (设置 delay）。
 
-### 3.支持 transition 动画的属性
-
-并非所有 CSS 属性都支持动画，在[在 MDN 可执行动画的 CSS 属性中查询](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_animated_properties)上查询是否支持，或者阅读 CSS 属性的文档说明，查看 Animation type。
-
-### 4.transition 动画的属性（四个）
+并非所有 CSS 属性都支持 transition 动画，在[在 MDN 可执行动画的 CSS 属性中查询](https://developer.mozilla.org/zh-CN/docs/Web/CSS/CSS_animated_properties)上查询是否支持，或者阅读 CSS 属性的文档说明，查看 Animation type。
 
 CSS transition 属性有以下 4 个：
 
@@ -33,9 +21,7 @@ CSS transition 属性有以下 4 个：
 - `none`：所有属性都不执行动画；.
 - CSS 属性名，如 `width`、`left`、`transform` 等等.
 
-`transition-duration`：指定过渡动画所需的时间。
-
-- 单位可以是秒（s）或毫秒（ms）.
+`transition-duration`：指定过渡动画所需的时间。单位可以是秒（s）或毫秒（ms）.
 
 `transition-timing-function`：指定动画的变化曲线，具体设值，查找文档。
 
@@ -62,9 +48,7 @@ CSS transition 属性有以下 4 个：
 }
 ```
 
-### 5.transition 简写属性
-
-transition 简写属性的用法。
+CSS transition 简写属性的用法。
 
 ```css
 .box {
@@ -72,31 +56,25 @@ transition 简写属性的用法。
 }
 ```
 
-### 6.transition 动画的弊端
+transition 动画的弊端：
 
-弊端一：只能定义开始状态，结束状态，不能定义中间状态；
-
-弊端二：不能重复执行，除非一再触发动画；
-
-弊端三：需要在特定状态下会触发才能执行，比如某个属性被修改了；
+- 弊端一：只能定义开始状态，结束状态，不能定义中间状态；
+- 弊端二：不能重复执行，除非一再触发动画；
+- 弊端三：需要在特定状态下触发，才能执行，比如某个属性被修改了；
 
 ## 二、animation 动画
-
-### 1.animation 动画的使用
 
 CSS Animation 动画，可以有更多的状态，使用步骤分 2 步。
 
 1. 使用 `@keyframes` 定义动画序列（每一帧动画如何执行）。
 2. 配置动画执行的名称、持续时间、动画曲线、延迟、执行次数、方向，停留状态，播放状态等。
 
-### 2.animation 动画关键帧的规则
+使用 `@keyframes` 的规则：使用 percentage 来指定动画发生的时间点；
 
-使用 @keyframes 的规则：使用 percentage 来指定动画发生的时间点；
+- `0%`（也可用 `from`）表示动画的第一时刻；
+- `100%`（也可用 `to`）表示动画的最终时刻；
 
-- 0%（也可用 from）表示动画的第一时刻；
-- 100%（也可用 to）表示动画的最终时刻；
-
-### 3.animation 的属性
+animation 的有如下相关属性：
 
 `animation-name`：指定执行哪一个关键帧动画。
 
@@ -172,28 +150,31 @@ animation 简写属性的用法。
 
 ### 2.vertical-align 属性的作用
 
-影响一个行盒中行内级元素的对齐方式。
+影响一个行盒中，元素的对齐方式。
 
 ### 3.vertical-align: baseline; 的判定
 
 为行盒中元素的设置 `vertical-align: baseline;` 的影响：
 
-- 文本的 baseline 是基线（即字母 x 的下方）。
+对于行内级元素的影响：
 
-- 行内块级元素的 baseline 是 margin-bottom 的底部（没有 margin-bottom，就是盒子的底部）。
+- 文本的 baseline，是基线（即字母 x 的下方）。
 
-  ![Inline-block的baseline是margin-bottom的底部](NodeAssets/Inline-block的baseline是margin-bottom的底部.jpg)
+对于行内块级元素的影响：
 
-- 行内块级元素中有文本时，baseline 是最后一行文本的基线（x 的下方）。
+- 行内块级元素的 baseline，是 margin-bottom 的底部（没有 margin-bottom，就是盒子的底部）。
+
+![Inline-block的baseline是margin-bottom的底部](NodeAssets/Inline-block的baseline是margin-bottom的底部.jpg)
+
+- 行内块级元素中有文本时，它的 baseline 是最后一行文本的基线（x 的下方）。
 
   ![Inline-block中有文本时，baseline是最后一行文本的基线](NodeAssets/Inline-block中有文本时，baseline是最后一行文本的基线.jpg)
 
-### 4.行内块级元素、行内可替换元素下方产生3px的原因
+### 4.行内块级元素、行内可替换元素下方产生 3px 的原因
 
 行内块级元素、行内可替换元素，下方产生 3 像素的经典问题，原因到底是什么。
 
 - 首先：行盒会包裹当前行中所有的内容。
 - 其次，行盒中的元素的 `vertical-align` 属性，默认值是 `baseline`。
-- 这就意味着，默认情况下，行内块级元素、行内可替换元素的 `baseline` 是元素底部（有 margin-bottom 则是 margin-bottom 底部）。
-- 而行内级元素（如文本）的 baseline 是与字母 x 底部对齐的线。
-- 那么，当行内块级元素，或行内可替换元素，与行内级元素以 `baseline` 的方式对齐时，行内块级元素、行内可替换元素下方会产生部分空隙。
+- 这就意味着，默认情况下，行内块级元素、行内可替换元素的 `baseline` 是元素底部（有 margin-bottom 则是 margin-bottom 底部）。行内级元素（如文本）的 baseline 是与字母 x 底部对齐的线。
+- 所以，当行内块级元素，或行内可替换元素，与行内级元素以 `baseline` 的方式对齐时，行内块级元素、行内可替换元素下方就会产生部分空隙。
