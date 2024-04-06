@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>行内块级元素、行内可替换元素下方产生 3px 解决</title>
+    <style>
+      .content {
+        background-color: orange;
+      }
+      .content img {
+        vertical-align: top; /* 改变 vertical-align 对齐方式 */
+      }
+      .content span {
+        display: block; /* 改为块级元素 */
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      我是普通文本xxx
+      <img src="../images/music_item.jpg" alt="" />
+      <span class="box"></span>
+    </div>
+  </body>
+</html>

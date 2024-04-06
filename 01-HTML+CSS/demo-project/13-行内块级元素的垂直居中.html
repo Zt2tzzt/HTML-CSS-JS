@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>行内块级元素的垂直居中</title>
+    <style>
+      .content {
+        background-color: orange;
+        height: 300px;
+        line-height: 300px;
+      }
+      .content .box {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        background-color: #f00;
+        line-height: 100px; /* 如果这里不声明 line-height，则会继承 .content 的 line-height 属性，造成下图的效果。*/
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      我是普通文本xxx
+      <span class="box">哈哈哈xxx</span>
+      <!-- 此时 .box 在 .content 中是居中的 -->
+    </div>
+  </body>
+</html>

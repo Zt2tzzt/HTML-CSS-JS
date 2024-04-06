@@ -1,4 +1,4 @@
-# transition属性、animation属性、行盒-vertica-align属性
+# transition属性、animation属性、行盒-vertica-align属性-3px原因
 
 ## 一、transition  动画
 

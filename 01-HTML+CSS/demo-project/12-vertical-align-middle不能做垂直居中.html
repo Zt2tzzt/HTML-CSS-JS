@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vertical-align: middle; 不能做垂直居中</title>
+    <style>
+      .content {
+        background-color: orange;
+        height: 300px;
+        line-height: 300px;
+      }
+      .content img {
+        vertical-align: middle; /* 此时图片不居中，图片的垂直方向的中线，与外层行盒文本中字母 x 的中线对齐，而它是低于.content 垂直方向中线的。 */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="content">
+      我是普通文本xxx
+      <img src="../images/music_item.jpg" alt="" />
+    </div>
+  </body>
+</html>
