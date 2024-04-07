@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>gradient函数</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+
+        background-image: linear-gradient(red, blue); /* 默认方向从上到下 */
+        /* 改变方向 */
+        background-image: linear-gradient(to right, red, blue); /* 从左到右 */
+        background-image: linear-gradient(to right top, red, blue); /* 从左下到右上 */
+        background-image: linear-gradient(-45deg, red, blue); /* -45 度角方向 */
+        background-image: linear-gradient(
+          to right,
+          red,
+          blue 40px,
+          orange 60%,
+          purple 100%
+        ); /*设置颜色渐变所处的位置 */
+      }
+
+      .box {
+        background-image: radial-gradient(red, blue);
+        background-image: radial-gradient(at 0% 50%, red, blue);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box"></div>
+  </body>
+</html>
