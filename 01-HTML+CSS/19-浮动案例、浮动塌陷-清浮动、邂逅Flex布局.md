@@ -4,16 +4,17 @@
 
 ### 1.京东商城频道广场
 
-浮动案例-京东商城频道广场布局实现。
+浮动案例：京东商城频道广场布局实现。
 
 知识点总结：
 
 - 浮动的使用。
-- margin 负值的使用（父元素中设置 margin 负值，抵消子元素中的 margin 正值）。
+- margin 负值的使用（为盒子设置 margin 负值，用于抵消盒子中子元素的 margin 正值，以拉伸整个盒子的宽度至父容器的宽度）。
 
 01-HTML+CSS\demo-project\float案例联系-京东商城频道广场.html
 
 ```html
+<!DOCTYPE html>
 <head>
   <title>Document</title>
   <style>
@@ -53,15 +54,15 @@
     </div>
   </div>
 </body>
+</html>
 ```
 
 ### 2.考拉商品边框处理
 
-浮动案例-考拉商品边框处理，实现子元素在父容器中紧挨着布局。
+浮动案例：考拉商品边框处理，实现子元素在父容器中紧挨着布局。
 
-- 思路一：包裹盒子加 bordre，放入小盒子，小盒子仅加右边的 border。需要做很多微调实现起来麻烦（不推荐）。
-- 思路二：小盒子四边都加 border，使用 margin 负数值，将重复的 border 进行覆盖。这么做在最后会多出 1px，
-  - 将所有小盒子平分宽度后，加 1px，表示边框；将某一个小盒子（一般是最后一个或者第一个）减去 1px（保持原来的平分宽度）。
+- 思路一：容器盒子加 bordre，在其中放入小盒子，小盒子仅加右边的 border。需要做很多微调实现起来麻烦（不推荐）。
+- 思路二：容器盒子不加 border，小盒子四边都加 border，使用 margin 负值，将重复的 border 进行覆盖。这么做，最后会多出 1px，这种做法，要求将所有小盒子平分宽度后，宽度再加 1px，表示边框；将其中某一个小盒子（一般是最后一个或者第一个）减去 1px（即保持原来的平分宽度）。
 
 知识点总结：
 
@@ -86,7 +87,7 @@
       color: #fff;
       float: left;
       border: 1px solid #000;
-      margin-right: -1px; /* 使用负值，使上一个元素右边框覆盖下一个元素的左边框 */
+      margin-right: -1px; /* 使用负值，使上一个 .item 元素右边框覆盖下一个元素的左边框 */
       box-sizing: border-box;
     }
     .item.first {
@@ -123,17 +124,15 @@ CSS clear 属性，用于指定一个元素，是否必须移动到在它之前�
 - `both`：元素的顶部低于之前生成的所有浮动元素的底部。
 - `none`：默认值，无特殊要求。
 
-### 2.清浮动四种方法
+### 2.清浮动的 4 种方法
 
-清除浮动的 3 种方法。
+清除浮动的 4 种方法。
 
 方法一：给父元素设置固定高度（不推荐），扩展性不好。
 
 方法二：在父元素最后增加一个空的块级子元素，并给它声明 CSS 属性 `clear: both`（不推荐）。这么做，会增加很多无意义的空标签，维护麻烦；并违反了结构与样式分离的原则。
 
-方法三：给父元素添加一个伪元素（推荐），编写好后，通过添加类名，轻松实现清除浮动。
-
-- 方法三伪元素的兼容性写法如下：
+方法三：给父元素添加一个伪元素（推荐），通过添加类名，轻松实现清浮动。写法如下：
 
 ```css
 .clear_fix::after {
@@ -170,9 +169,39 @@ CSS clear 属性，用于指定一个元素，是否必须移动到在它之前�
 01-HTML+CSS/demo-project/16-BFC解决浮动元素高度塌陷.html
 
 ```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>16-BFC解决浮动元素高度塌陷</title>
+    <style>
+      .container {
+        background-color: orange;
+        position: relative;
+        /* 利用 BFC 解决浮动高度塌陷问题 */
+        overflow: auto;
+      }
+      .item {
+        float: left;
+        width: 400px;
+        height: 200px;
+        box-sizing: border-box;
+        border: 1px solid #000;
+        background-color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+      <div class="item"></div>
+    </div>
+  </body>
+</html>
 ```
-
-
 
 ## 六、布局方案总结
 
@@ -186,11 +215,11 @@ CSS clear 属性，用于指定一个元素，是否必须移动到在它之前�
 
 ## 七、flex 布局
 
-flex 布局（ flexible 布局，弹性布局），是使用 flexbox 来进行布局的方案。在移动端已完全普及，PC 几乎完全普及，少数网站依然在用浮动来布局，以提高兼容性。
+flex 布局（ flexible 布局，弹性布局），是使用 flexbox 来进行布局的方案。它在移动端已完全普及，PC 几乎完全普及，少数网站依然在用浮动来布局，以提高兼容性。
 
-长久以来，CSS 布局可跨浏览器兼容的布局工具只有 floats 和 positioning，他们实现的布局又 3 点痛点。
+长久以来，CSS 布局可跨浏览器兼容的布局工具只有 floats 和 positioning，他们实现的布局：
 
-- 无法在父容器里面，垂直居中一个块内容。
+- 不改变文档流的情况下，无法在父容器里面，垂直居中一个块内容。
 - 无法使容器的所有子项，等分可用宽度/高度，而不管有多少宽度/高度可用。
 - 无法使容器中多列布局的所有列，等分相同的高度，而不管它们包含的内容量多少。
 
@@ -198,4 +227,4 @@ flex 布局（ flexible 布局，弹性布局），是使用 flexbox 来进行�
 
 二维布局方法，grid，比 flex 强大，但兼容性较差。
 
-弹性盒子中的元素，可以膨胀填充额外的空间, 收缩适应更小的空间。
+弹性盒子中的元素，可以膨胀填充额外的空间，收缩适应更小的空间。

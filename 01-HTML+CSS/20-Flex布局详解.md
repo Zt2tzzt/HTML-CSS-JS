@@ -2,24 +2,23 @@
 
 ## 一、flex 布局概念
 
-### 1.flex 布局的概念
+### 1.flex Container
 
-flex 布局的 2 个概念：
-
-- 开启了 flex 布局的元素叫 `flex containerr`。
-- flex containerr 里面的**直接子元素**叫做 `flex item`。
+开启了 flex 布局的元素叫 `flex containerr`。
 
 ### 2.flex item 的概念
 
+flex containerr 里面的**直接子元素**叫做 `flex item`。
+
 flex item 具备的 3 点特性：
 
-- 布局受 flex containerr 属性的控制；
-- flex item 不再严格区分块级元素和行内级元素;（flex containerr 会区分）；
-- 默认是包裹内容的宽高, 但也可以设置宽高；
+- flex item 布局受 flex containerr 属性的控制；
+- flex item 不再严格区分块级元素和行内级元素（flex containerr 会区分）；
+- flex item 默认宽高是包裹内容的宽高，但也可以设置宽高；
 
 ### 3.flex 布局设置
 
-元素设置 `display` 属性为 `flex` 或者 `inline-flex`，则该元素会成为 flex container，
+元素设置以下属性，则该元素会成为 flex container。
 
 - `display: flex;`：表示 flex containerr 以 block-level 形式存在。
 - `display: inline-flex;`：表示 flex containerr 以 inline-level 形式存在。
@@ -35,6 +34,8 @@ flex item 具备的 3 点特性：
 
 ![flex布局模型](NodeAssets/flex模型图-主轴-交叉轴.jpg)
 
+## 二、flex containerr 的属性
+
 flex containerr 的相关属性：
 
 - `flex-direction`
@@ -43,17 +44,6 @@ flex containerr 的相关属性：
 - `justify-content`
 - `align-items`
 - `align-content`
-
-flex items 的相关属性。
-
-- `order`
-- `align-self`
-- `flex-grow`
-- `flex-shrink`
-- `flex-basis`
-- `flex`
-
-## 二、flex containerr 的属性
 
 ### 1.flex-direction
 
@@ -68,9 +58,9 @@ flex container 的 `flex-direction` 属性，用于决定主轴（main axis）�
 
 flex container 的 `flex-wrap` 属性，用于决定 flex-container 是单行还是多行。常用的设值如下：
 
-- `nowrap`（默认）：单行
-- `wrap`：多行
-- `wrap-reverse`：多行（对比 wrap，cross start 与 cross end 相反）
+- `nowrap`（默认）：单行。
+- `wrap`：多行。
+- `wrap-reverse`：多行（对比 wrap，cross start 与 cross end 相反）。
 
 ### 3.flex-flow
 
@@ -83,7 +73,7 @@ flex container 的 `justify-content` 属性，用于决定了 flex items 在 mai
 - `flex-start`：默认值，与 main start 对齐。
 - `flex-end`：与 main end 对齐。
 - `center`：居中对齐。
-- `space-between`：flex items 之间的距离相等，与 main start、main end 两端对齐
+- `space-between`：flex items 之间的距离相等，与 main start、main end 两端对齐。
 - `space-around`：flex items 之间的距离相等，与 main start、main end 之间的距离是 flex items 之间距离的一半。
 - `space-evenly`：flex items 之间的距离相等，与 main start、main end 之间的距离 等于 flex items 之间的距离。
 
@@ -99,7 +89,7 @@ flex containerr 的 `align-item` 属性，用于决定 flex items 在 cross axis
 - `flex-end`：与 cross end 对齐。
 - `center`：居中对齐。
 - `stretch`：当 flex items 在 cross axis 方向的 height 为 auto 时，会自动拉伸至填充 flex containerr。如果有固定 height，则不会。
-- `normal`：在弹性布局中，效果和 stretch 一样
+- `normal`：在弹性布局中，效果和 stretch 一样。
 - `baseline`：与基准线对齐。
 
 ![align-item的布局模型图](NodeAssets/flexContainerr的align-item属性.jpg)
@@ -108,7 +98,7 @@ flex containerr 的 `align-item` 属性，用于决定 flex items 在 cross axis
 
 flex containerr 的 `align-content` 属性，用于决定多行 flex items 在 cross axis 上的对齐方式，用法与 justify-content 类似，
 
-用的较少，因为一般情况外部盒子高度由内容撑开。常用的设值有：
+用的较少，因为一般情况外部盒子不会设置固定高度，而是由内容撑开。常用的设值有：
 
 - `flex-start`：与 cross start 对齐。
 - `flex-end`：与 cross end 对齐。
@@ -118,9 +108,18 @@ flex containerr 的 `align-content` 属性，用于决定多行 flex items 在 c
 - `space-around`：flex items 之间的距离相等，与 cross start、cross end 之间的距离是 flex items 之间距离的一半.
 - `space-evenly`：flex items 之间的距离相等，与 cross start、cross end 之间的距离等于 flex items 之间的距离
 
-![](NodeAssets/flexContainerr的align-content属性.jpg)
+![flexContainerr的align-content属性](NodeAssets/flexContainerr的align-content属性.jpg)
 
 ## 三、flex item 的属性
+
+flex items 的相关属性。
+
+- `order`
+- `align-self`
+- `flex-grow`
+- `flex-shrink`
+- `flex-basis`
+- `flex`
 
 ### 1.order
 
@@ -128,15 +127,13 @@ flex item 的 `order` 属性，用于决定 flex item 的排布顺序。可以�
 
 ### 2.align-self
 
-flex-item 的 `align-self` 属性，用于覆盖 flex container 设置的 `align-items`，效果跟与它一致。常用的设值有：
+flex-item 的 `align-self` 属性，用于覆盖 flex container 设置的 `align-items`，效果与它一致。常用的设值有：
 
 - `flex-start`
 - `flex-end`
 - `center`
 - `stretch`
 - `baseline`
-
-
 
 ![align-self布局模型](NodeAssets/flexItem的align-self属性.jpg)
 
@@ -160,16 +157,15 @@ flex item 的 `flex-shrink` 属性，用于决定 flex items 如何收缩。
 
 可以设置任意非负数字（正小数、正整数、0），默认值是 1。
 
-- 当 flex items 在 main axis 方向上超过了 flex container 的 size，flex-shrink 属性才会有效
+当 flex items 在 main axis 方向上超过了 flex container 的 size，flex-shrink 属性才会有效
+
 - 如果所有 flex items 的 flex-shrink 总和 sum 超过 1，每个 flex item 收缩的 size 为：
   - flex items 超出 flex container 的 size \* (flex-shrink / flex-shrink sum)
 - flex items 收缩后的最终 size 不能小于 min-width \ min-height
 
 ### 5.flex-basis
 
-flex item 的 `flex-basis` 属性，用于设置 flex items 在 main axis 方向上的 base size。
-
-auto（默认值）、表示具体的宽度数值（如 100px）。
+flex item 的 `flex-basis` 属性，用于设置 flex items 在 main axis 方向上的 base size。默认值 auto、表示具体的宽度数值（如 100px）。
 
 使用场景：将很长的英文单词显示出来，用来扩展宽度。
 
@@ -226,10 +222,10 @@ flex 属性可以指定 1 个，2 个或 3 个值。语法如下：
     <style>
       .container {
         width: 500px;
-        background-color: orange;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        background-color: orange;
       }
       .item {
         width: 110px; /* 比较 container 的宽度可知，每一行会有 4 个 container */
