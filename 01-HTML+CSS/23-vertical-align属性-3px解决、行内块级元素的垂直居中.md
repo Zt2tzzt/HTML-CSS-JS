@@ -6,7 +6,7 @@
 
 方法二：将行盒中的行内块级、行内可替换元素，改为块级元素。
 
-01-HTML+CSS/demo-project/11-行内块级元素、行内可替换元素下方产生3px解决.html
+01-HTML+CSS/demo-project/11-行内块级元素、行内可替换元素下方产生 3px 解决.html
 
 ```html
 <!DOCTYPE html>
@@ -20,10 +20,10 @@
         background-color: orange;
       }
       .content img {
-        vertical-align: top; /* 改变 vertical-align 对齐方式 */
+        vertical-align: top; /* 方案一：改变 vertical-align 对齐方式 */
       }
       .content span {
-        display: block; /* 改为块级元素 */
+        display: block; /* 方案二：改为块级元素 */
         width: 100px;
         height: 100px;
         background-color: #f00;
@@ -48,7 +48,7 @@ vertical-align 可设值：
 - `top`：把行内级盒子的顶部跟行盒（line boxes）顶部对齐。
 - `middle`：行内级盒子的中心点与父盒基线上字母 x 高度一半的线对齐。
 - `bottom`：把行内级盒子的底部跟行盒（line box）底部对齐。
-- \<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是[`line-height`](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height)属性的百分比。可以是负数。
+- \<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是 [line-height](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height) 属性的百分比。可以是负数。
 - \<length\>：使元素的基线对齐到父元素的基线之上的给定长度。可以是负数。
 
 ## 四、vertical-align: middle; 不能做行内块级元素、行内可替换元素的垂直居中
@@ -80,11 +80,11 @@ vertical-align 可设值：
 </body>
 ```
 
-## 四、行内块级元素的垂直居中
+## 五、行内块级元素的垂直居中
 
 行内块级元素在行盒中实现垂直居中，要满足以下条件：
 
-1. 里层行内块级元素中有垂直居中的一行文本（不能多余一行）。
+1. 里层行内块级元素中有垂直居中的一行文本（不能多于一行）。
 2. 外层行盒中也有垂直居中的一行文本；
 3. 里层行内块级元素中的文本与外层行盒中的文本字体大小一致。
 4. 外层行盒有属性 `vertical-align: baseline;`
