@@ -2,10 +2,9 @@
 
 ## 一、font 属性简写
 
-font 的缩写属性，用来作为 font-style, font-variant, font-weight, font-size, line-height 和 font-family；
+font 的缩写属性，用来作为 `font-style`、`font-variant`、`font-weight`、`font-size`/`line-height` 和 `font-family`；
 
-- 属性的简写顺序：`font-style font-variant font-weight font-size/line-height font-family`
-- 前 3 个属性值可调换顺序，也可省略。之后的属性值不能调换顺序，`line-height` 可省略。
+前 3 个属性值可调换顺序，也可省略。之后的属性值不能调换顺序，`line-height` 可省略。
 
 ```css
 .box {
@@ -25,7 +24,7 @@ font 的缩写属性，用来作为 font-style, font-variant, font-weight, font-
 
 ## 二、元素的嵌套
 
-块级元素中可以嵌套：行内及元素，行内块级元素，块级元素。
+块级元素中，可以嵌套：行内及元素，行内块级元素，块级元素。
 
 > PS：p 元素里不能嵌套 div 等等块级元素。
 
@@ -82,7 +81,8 @@ id 选择器（id selectors），使用 `#id`
 > 使用以上选择器的一些注意事项：
 >
 > - 一个 HTML 文档里面的 id 值是唯一的，不能重复 。
-> - id、class 值如果由多个单词组成，单词之间可以用连字符（-）、下划线（_）连接，在HTML中，`id` 和 `class` 属性都被设计为**区分大小写**。也可以使用驼峰标识（大驼峰 AaBb 和小驼峰 aaBb 都可以。用的很少）；
+> - id、class 值如果由多个单词组成，单词之间可以用连字符（-）、下划线（_）连接，
+> - 在HTML中，`id` 和 `class` 属性都被设计为**区分大小写**。也可以使用驼峰标识（大驼峰 AaBb 和小驼峰 aaBb 都可以。用的很少）；
 > - 最好不要用标签名作为 id、class 值；
 
 ### 5.属性选择器
@@ -281,7 +281,7 @@ id 选择器（id selectors），使用 `#id`
 
 - :enabled、:disabled、:checked
 
-结构伪类（structural pseudo-classes）
+**结构伪类（structural pseudo-classes）**
 
 - :nth-child( )、:nth-last-child( )、:nth-of-type( )、:nth-last-of-type( )
 - :first-child、:last-child、:first-of-type、:last-of-type
