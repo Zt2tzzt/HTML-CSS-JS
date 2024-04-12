@@ -20,7 +20,7 @@
 
 ### 3.less 结构嵌套
 
-特殊符号&的使用。
+特殊符号 `&` 的使用。
 
 ```html
 <ul class="list">
@@ -80,6 +80,7 @@
 
 .box1 {
   background-color: #f00;
+  
   .nowrap_ellipsis(); // 混入在没有参数的情况下，小括号可以省略，但是不建议这样使用；
 }
 ```
@@ -136,13 +137,17 @@
 .box_border {
   border: 5px solid #f00;
 }
+
 .box {
   width: 100px;
+  
   &:extend(.box_border);
 }
+```
 
-// 以上代码，会被转化为以下代码
+以上代码，会被转化为以下代码
 
+```less
 .box_border,
 .box {
   border: 5px solid #f00;
@@ -195,7 +200,9 @@ Less 内置了多种函数用于转换颜色、处理字符串、算术运算等
 
 ```less
 @import url(./demo2.less);
+
 // 或者可写成
+
 @import url(./demo2);
 ```
 
@@ -203,10 +210,10 @@ Less 内置了多种函数用于转换颜色、处理字符串、算术运算等
 
 Sass 的语法，使用的是类似于 Ruby 的语法，没有花括号，没有分号，具有严格的缩进。
 
-后来官方推出了全新的语法 SCSS，意思是 Sassy CSS，他是完全兼容 CSS 的；
+后来，官方推出了全新的语法 SCSS，意思是 Sassy CSS，他是完全兼容 CSS 的；
 
-- SCSS 的语法也包括变量、嵌套、混入、函数、操作符、作用域等。
-- SCSS 通常也包括更为强大的控制语句、更灵活的函数、插值语法等。
+- SCSS 的语法，也包括变量、嵌套、混入、函数、操作符、作用域等。
+- SCSS 有更为强大的控制语句、更灵活的函数、插值语法等。
 
 ## 三、Scss 语法
 
@@ -270,46 +277,28 @@ nav {
 }
 ```
 
-### 4.scss Partials
+### 4.scss 运算
 
-创建 `_` 开头的 .scss 文件，如 `_partials.scss`，它不会被编译为 css 代码。
-
-在其中可以写一些 css 代码。
-
-通常与 `@use` 结合使用，见下方。
-
-### 5.scss 模块化
-
-scss 支持模块化；
-
-使用 `@use` 在 scss 文件中，引入其它的 scss 文件，并指定一个命名空间。
-
-就可以使用其中的变量，混入，函数...
-
-_base.scss
+scss 支持 `+`、`-`、`*`、`math.div`、`%` 等运算符。
 
 ```scss
-$font-stack: Helvetica, sans-serif;
-$primary-color: #333;
+@use "sass:math";
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
+.container {
+  display: flex;
+}
+
+article[role="main"] {
+  width: math.div(600px, 960px) * 100%;
+}
+
+aside[role="complementary"] {
+  width: math.div(300px, 960px) * 100%;
+  margin-left: auto;
 }
 ```
 
-styles.scss
-
-```scss
-@use 'base'; // 可省略 .scss 后缀名
-
-.inverse {
-  background-color: base.$primary-color;
-  color: white;
-}
-```
-
-### 6.scss 混入
+### 5.scss 混入
 
 混入，用于复用样式代码，可传递参数。
 
@@ -331,7 +320,7 @@ styles.scss
 }
 ```
 
-### 7.scss 继承
+### 6.scss 继承
 
 继承，用于避免 css 文件中，重复的代码。
 
@@ -392,24 +381,42 @@ styles.scss
 }
 ```
 
-### 8.scss 运算
+### 7.scss Partials
 
-scss 支持 `+`、`-`、`*`、`math.div`、`%` 等运算符。
+创建 `_` 开头的 .scss 文件，如 `_partials.scss`，它不会被编译为 css 代码。
+
+在其中可以写一些 css 代码。
+
+通常与 `@use` 结合使用，见下方。
+
+### 8.scss 模块化
+
+scss 支持模块化；
+
+使用 `@use` 在 scss 文件中，引入其它的 scss 文件，并指定一个命名空间。
+
+就可以使用其中的变量，混入，函数...
+
+_base.scss
 
 ```scss
-@use "sass:math";
+$font-stack: Helvetica, sans-serif;
+$primary-color: #333;
 
-.container {
-  display: flex;
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
 }
+```
 
-article[role="main"] {
-  width: math.div(600px, 960px) * 100%;
-}
+styles.scss
 
-aside[role="complementary"] {
-  width: math.div(300px, 960px) * 100%;
-  margin-left: auto;
+```scss
+@use 'base'; // 可省略 .scss 后缀名
+
+.inverse {
+  background-color: base.$primary-color;
+  color: white;
 }
 ```
 
@@ -431,7 +438,7 @@ aside[role="complementary"] {
 - 在 PC 端的页面中，不需要对视口进行区分，因为布局视口和视觉视口是同一个；
 - 在移动端，不太一样，布局的视口一般大于视觉视口。
 
-在移动端可将视口：
+移动端有哪些视口？
 
 - 布局视口（layout viewport）
   - 大部分浏览器，布局视口默认宽度为 980px，
@@ -441,7 +448,7 @@ aside[role="complementary"] {
 - 理想视口（ideal viewport）
   - 对布局视口进行宽度缩放设置，以满足正常在一个移动端窗口的布局。
 
-理想视口设置，设置 meta 中的 viewport。
+meta 元素设置 `name=viewport` 属性，表示理想视口设置。
 
 | 值            | 可能的附加值                           | 描述                                                                  |
 | ------------- | -------------------------------------- | --------------------------------------------------------------------- |
