@@ -40,9 +40,9 @@ HTML5 新增的语义化元素有哪些？
 
 ## 三、HTML5 多媒体类型支持
 
-HTML5 之前，通过 flash 或者其他插件实现多媒体类型支持, 但是会有很多问题。
+HTML5 之前，通过 flash 或者其他插件，实现多媒体类型支持, 但是会有很多问题。
 
-- 比如：无法很好的支持 HTML/CSS 特性, 兼容性问题等等;
+- 比如：无法很好的支持 HTML / CSS 特性, 兼容性问题等等;
 
 HTML5 新增了 2 种多媒体类型的支持：
 
@@ -90,7 +90,7 @@ video 支持的视屏格式有：
 
 ### 2.audio 元素
 
-audio 元素，用于在文档中嵌入音频内容, 和 video元素 的用法非常类似。
+audio 元素，用于在文档中嵌入音频内容, 和 video 元素的用法非常类似。
 
 ```html
 <audio src="./assets/yhbk.mp3" controls autoplay muted></audio>
@@ -124,16 +124,15 @@ input 元素在 HTML5 中扩展的属性
 
 ```html
 <input type="text" placeholder="占位文本" autofocus />
-
 ```
 
 > HTML5 select 元素扩展了 `multiple` 属性，用于多选：
 >
 > ```html
 > <select multiple size="2">
->   <option value="apple">苹果</option>
->   <option value="banana">香蕉</option>
->   <option value="orange">橘子</option>
+>     <option value="apple">苹果</option>
+>     <option value="banana">香蕉</option>
+>     <option value="orange">橘子</option>
 > </select>
 > ```
 
@@ -164,18 +163,18 @@ HTML5 新增全局属性 `data-*`，用于自定义数据属性。
 
 ```html
 <div class="box" age="18" data-name="zzt" data-age="18" data-height="1.88"></div>
+```
 
-<script>
-  const boxEl = document.querySelector('.box')
-  console.log(boxEl.dataset.age) // 18
-</script>
+```javascript
+const boxEl = document.querySelector('.box')
+console.log(boxEl.dataset.age) // 18
 ```
 
 在小程序中，经常使用 `data-*` 来传递数据。
 
 ## 六、white-space 属性
 
-CSS 属性 `white-space` 属性，用于设置空白处理和换行规则。它的属性有：
+CSS 属性 `white-space` 属性，用于设置空白处理，和换行规则。它的属性有：
 
 - `normal`：合并所有连续的空白，允许单词超屏时自动换行。
 - `nowrap`：合并所有连续的空白，不允许单词超屏时自动换行。
@@ -208,7 +207,7 @@ CSS 属性 `text-overflow` 属性，用于设置文本超出父容器的显示�
 ```css
 /* :root 结构为了，相当于 html 元素选择器 */
 :root {
-  /* 定义了一个变量（CSS属性），只有后代元素可以使用 */
+  /* 定义了一个变量（CSS 属性），只有后代元素可以使用 */
   --main-color: #f00;
 }
 
@@ -277,7 +276,6 @@ CSS 属性 `text-overflow` 属性，用于设置文本超出父容器的显示�
     </div>
   </body>
 </html>
-
 ```
 
 ### 4.xxx-gradient 函数
