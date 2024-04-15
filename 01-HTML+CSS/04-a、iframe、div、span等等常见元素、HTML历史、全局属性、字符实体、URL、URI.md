@@ -2,7 +2,7 @@
 
 ## 一、a 元素
 
-锚点链接可以实现跳转到网页中的具体位置，分 2 步。代码实现。
+锚点链接可以实现跳转到网页中的具体位置。
 
 1. 在要跳到的元素上定义一个 `id` 属性。
 2. 定义 a 元素，并且 a 元素的 href 指向对应的 id
@@ -48,14 +48,14 @@ iframe 元素，用于在一个 HTML 文档中，嵌入其它 HTML 文档。
 >
 > ```nginx
 > server {
->   listen 9001;
->   server_name localhost;
+>     listen 9001;
+>     server_name localhost;
 > 
->   location / {
->     root /home/zetian/workshop/cimc/ddzx-bi/dist;
->     add_header X-Frame-Options SAMEORIGIN always; # 设置 X-Frame-Options SAMEORIGIN
->     index index.html index.htm;
->   }
+>     location / {
+>       root /home/zetian/workshop/cimc/ddzx-bi/dist;
+>       add_header X-Frame-Options SAMEORIGIN always; # 设置 X-Frame-Options SAMEORIGIN
+>       index index.html index.htm;
+>     }
 > }
 > ```
 
@@ -118,15 +118,11 @@ div、span 元素的作用和区别。
 
 一些基本不用，或已被淘汰的元素。
 
-`<strong>`：内容加粗，强调。
-
-`<i>`：内容倾斜。
-
-`<code>`：用于使用等宽的字体显示代码。
-
-`<br>`：换行元素，已不再使用。
-
-`<hr>`：分割线元素。
+- `<strong>`：内容加粗，强调。
+- `<i>`：内容倾斜。
+- `<code>`：用于使用等宽的字体显示代码。
+- `<br>`：换行元素，已不再使用。
+- `<hr>`：分割线元素。
 
 [更多元素](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element)
 
@@ -145,7 +141,10 @@ HTML 元素中常见的 4 个全局属性。
 
 字符实体，就是以连字号 `&` 开头，以分号 `;` 结尾的文本。
 
-它主要用于：显示保留字符（这些字符会被解析为 HTML 代码）和不可见的字符（如“不换行空格”），以代替其它难以用标准键盘键入的字符。
+它主要用于：
+
+- 显示保留字符（这些字符会被解析为 HTML 代码）。
+- 显示不可见的字符（如“不换行空格”），以代替其它难以用标准键盘键入的字符。
 
 常见的 3 个字符实体的写法。
 
