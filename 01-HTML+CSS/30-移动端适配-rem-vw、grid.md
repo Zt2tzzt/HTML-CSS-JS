@@ -147,7 +147,7 @@ rem 与 vw 两方案之间的的关系。
 
 vw 相较于 rem 的优势：
 
-- 不需要去计算 html 的 font-size 大小，也不需要给 html 设置 font-size；也不会因为设置 html 的 font-size 大小，而必须给 body 再设置一个 font-size，防止继承；
+- 不需要去计算、设置 html 的 font-size；也不会因为设置 html 的 font-size 大小，而必须给 body 再设置一个 font-size，防止继承；
 - 因为不依赖 font-size 的尺寸，所以不用担心某些原因 html 的 font-size 尺寸被篡改，页面尺寸混乱；
 - vw 相比于 rem 更加语义化，1vw 是 1% 的 viewport 宽度大小;
 

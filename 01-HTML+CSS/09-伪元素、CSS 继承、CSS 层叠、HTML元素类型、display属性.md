@@ -198,7 +198,7 @@ font-weight、font-size、line-height、font-family、color、text-align 等等�
 - **块级元素（block-level elements）**: 独占父元素的一行。
 - **行内级元素（inline-level elements）**: 多个行内级元素可以在父元素的同一行中显示。
 
-> div 是块级元素，仅仅是因为浏览器默认设置了`display: block;`属性，我们可通过 CSS 样式层叠特性修改。
+> div 是块级元素，仅仅是因为浏览器默认设置了 `display: block;` 属性，我们可通过 CSS 样式层叠特性修改。
 >
 > 编写不同 HTML 元素类型需要注意。
 >
@@ -215,8 +215,8 @@ font-weight、font-size、line-height、font-family、color、text-align 等等�
 
 CSS 的 display 属性，可以设置 4 个值，
 
-- `block`：使元素显示为块级元素，这样元素就可以设置宽高（块级元素设置宽、度后，还是独占一行，这和块级元素的 margin 有关，默认 margin-right: auto;，此时浏览器会自动将一行右边的宽度分配给 margin-right）。
-- `inline`：使元素显示为行内级元素；不能设置宽高，宽高由内容决定。
+- `block`：使元素显示为块级元素，这样元素就可以设置宽高（块级元素设置宽、高后，还是独占一行，这和块级元素的 margin 有关，默认 margin-right: auto;，此时浏览器会自动将一行右边的宽度分配给 margin-right）。
+- `inline`：使元素显示为行内级元素；不能设置宽、高，它们由内容决定。
 - `inline-block`：让元素同时具备（对外的）行内级特征，比如：可在同一行显示；（对内的）块级元素特征；比如：可设置宽度和高度。
 - `none`：隐藏元素。
 
