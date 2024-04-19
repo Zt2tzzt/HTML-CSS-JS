@@ -19,9 +19,11 @@
       .content {
         background-color: orange;
       }
+      
       .content img {
         vertical-align: top; /* 方案一：改变 vertical-align 对齐方式 */
       }
+      
       .content span {
         display: block; /* 方案二：改为块级元素 */
         width: 100px;
@@ -48,7 +50,7 @@ vertical-align 可设值：
 - `top`：把行内级盒子的顶部跟行盒（line boxes）顶部对齐。
 - `middle`：行内级盒子的中心点与父盒基线上字母 x 高度一半的线对齐。
 - `bottom`：把行内级盒子的底部跟行盒（line box）底部对齐。
-- \<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比是 [line-height](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height) 属性的百分比。可以是负数。
+- \<percentage\>：使行内级元素的基线对齐到父元素的基线之上的给定百分比，该百分比相对于 [line-height](https://developer.mozilla.org/zh-CN/docs/Web/CSS/line-height) 属性的值。可以是负数。
 - \<length\>：使元素的基线对齐到父元素的基线之上的给定长度。可以是负数。
 
 ## 四、vertical-align: middle; 不能做行内块级元素、行内可替换元素的垂直居中
@@ -66,6 +68,7 @@ vertical-align 可设值：
       height: 300px;
       line-height: 300px;
     }
+    
     .content img {
       vertical-align: middle; /* 此时图片不居中，图片的垂直方向的中线，与外层行盒文本中字母 x 的中线对齐，而它是低于.content 垂直方向中线的。 */
     }
@@ -100,6 +103,7 @@ vertical-align 可设值：
       height: 300px;
       line-height: 300px;
     }
+    
     .content .box {
       display: inline-block;
       width: 100px;

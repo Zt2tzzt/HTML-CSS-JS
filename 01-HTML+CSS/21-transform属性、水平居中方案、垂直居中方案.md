@@ -52,7 +52,7 @@ translate 函数，用于移动元素在平面上的位置。
 
 `translate` 函数是 `translateX` 和 `translateY` 函数的简写（translate3d 后续了解）；
 
-百分比可以完成一个元素的水平、垂直居中：
+百分比可以完成一个元素的水平、垂直居中，下面以垂直居中为例：
 
 ```css
 .box1 {
@@ -68,7 +68,7 @@ translate 函数，用于移动元素在平面上的位置。
       1.让元素向下位移包含快的 50%
       2.让元素向上位移自身的 50%
   */
-  /* margin-top 的百分比是相对于包含块（父元素）的**宽度**，所以不能用 margin-to，而是使用绝对定位和 topp */
+  /* margin-top 的百分比是相对于包含块（父元素）的**宽度**，所以不能用 margin-top，而是使用绝对定位和 top */
   position: absolute;
   top: 50%; /* 相对于包含快的高度，包含快必须有高度 */
 
@@ -110,7 +110,7 @@ transform 属性 rotate 函数作用：旋转元素。
 
 可设值类型：
 
-- 常用单位 deg：表示旋转的角度（ degrees ）。正数为顺时针。负数为逆时针。
+- 常用单位 deg：表示旋转的角度（ degrees ）。**正数为顺时针。负数为逆时针**。
 
 `rotate` 函数是 `rotateZ` 函数的简写写法（`rotate3d` 后续了解）。
 
@@ -171,7 +171,7 @@ transform-origin 属性，用于设置元素形变的原点，如在进行 scale
 
 方案三-1：将要居中的元素，设为块级元素，再设置  `margin-left: 50%` 和 `transform: translate(-50%)`。
 
-方案三-1：将要居中的元素设为相对定位元素，再设置  `margin-left: 50%` 和 `left: [元素宽度]`。
+方案三-1：将要居中的元素设为相对定位元素，再设置  `margin-left: 50%` 和 `left: [元素一半宽度]`。
 
 方案三-2：将要居中的元素设为绝对定位元素，再设置 `left: 50%;` 和  `transform: translate(-50%)`。
 
@@ -224,10 +224,13 @@ transform-origin 属性，用于设置元素形变的原点，如在进行 scale
 
 ```css
 .box {
-  width: 66px;
   position: absolute;
   top: 0;
   bottom: 0;
+  
+  width: 66px;
+  height: 66px;
+  
   margin: auto 0
 }
 ```
