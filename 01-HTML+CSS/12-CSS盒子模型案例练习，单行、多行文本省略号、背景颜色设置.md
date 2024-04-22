@@ -50,12 +50,14 @@ a {
     }
     .item {
       display: inline-block;
+
       width: 234px;
       height: 300px;
       padding: 20px 10px;
+      box-sizing: border-box;
+
       text-align: center;
       background-color: #fff;
-      box-sizing: border-box;
     }
     .item:hover {
       box-shadow: 0 2px 20px 5px rgba(0, 0, 0, 0.1);
@@ -68,8 +70,8 @@ a {
       margin-top: 14px;
     }
     .item .desc {
-      color: #999;
       margin-top: 8px;
+      color: #999;
 
       /* 单行显示省略号 */
       white-space: nowrap;
@@ -207,7 +209,7 @@ a {
 > 插入图片的 3 种方案，
 >
 > - img 元素。
->- 空元素 + background-img。
+> - 空元素 + background-img。
 > - 伪元素。
 
 如果 a 元素设置 `display: inline-block;`，那么它包裹的 p 元素的内容，会无限延申。解决方案，

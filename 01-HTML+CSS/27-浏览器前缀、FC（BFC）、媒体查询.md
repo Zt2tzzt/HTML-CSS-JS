@@ -30,39 +30,25 @@ Formatting Context 简称 FC：
 
 ### 1.BFC 被创建的情况
 
-根元素（\<html\>）。
-
-浮动元素（元素的 `float` 不是 `none`）。
-
-绝对定位元素（元素的 `position` 为 `absolute` 或 `fixed`）。
-
-行内块元素（元素的 `display` 为 `inline-block`）。
-
-表格单元格（元素的 `display` 为 `table-cell`，HTML 表格单元格默认为该值）。
-
-表格标题（元素的 `display` 为 `table-caption`，HTML 表格标题默认为该值）。
-
-匿名表格单元格元素（元素的 `display` 为 `table`、`table-row`、 `table-row-group`、`table-header-group`、`table-footer-group`（分别是 HTML 元素table、 row、tbody、thead、tfoot 的默认属性）或 `inline-table`）
-
-块元素，`overflow` 计算值（Computed）不为 `visible` 的。
-
-弹性元素（`display` 为 `flex` 或 `inline-flex` 元素的直接子元素）。
-
-网格元素（`display` 为 `grid` 或 `inline-grid` 元素的直接子元素）
-
-`display` 值为 `flow-root` 的元素
+- 根元素（\<html\>）。
+- 浮动元素（元素的 `float` 不是 `none`）。
+- 绝对定位元素（元素的 `position` 为 `absolute` 或 `fixed`）。
+- 行内块元素（元素的 `display` 为 `inline-block`）。
+- 表格单元格（元素的 `display` 为 `table-cell`，HTML 表格单元格默认为该值）。
+- 表格标题（元素的 `display` 为 `table-caption`，HTML 表格标题默认为该值）。
+- 匿名表格单元格元素（元素的 `display` 为 `table`、`table-row`、 `table-row-group`、`table-header-group`、`table-footer-group`（分别是 HTML 元素table、 row、tbody、thead、tfoot 的默认属性）或 `inline-table`）
+- 块元素，`overflow` 计算值（Computed）不为 `visible` 的。
+- 弹性元素（`display` 为 `flex` 或 `inline-flex` 元素的直接子元素）。
+- 网格元素（`display` 为 `grid` 或 `inline-grid` 元素的直接子元素）。
+- `display` 值为 `flow-root` 的元素。
 
 ### 2.BFC 有什么用
 
-在 BFC 中，盒子会在垂直方向上一个挨着一个的排布；
-
-垂直方向的间距由 margin 属性决定；
-
-在 BFC 中，每个元素的左边缘是紧挨着包含块的左边缘的。
-
-在同一个 BFC 中，相邻两个 box 之间的 margin 会折叠（collapse）；
-
-BFC 解决浮动元素高度塌陷（BFC 不能解决绝对定位元素的高度塌陷问题）。
+- 在 BFC 中，盒子会在垂直方向上一个挨着一个的排布；
+- 垂直方向的间距由 margin 属性决定；
+- 在 BFC 中，每个元素的左边缘是紧挨着包含块的左边缘的。
+- 在同一个 BFC 中，相邻两个 box 之间的 margin 会折叠（collapse）；
+- BFC 解决浮动元素高度塌陷（BFC 不能解决绝对定位元素的高度塌陷问题）。
 
 #### 1.BFC 解决 margin 折叠问题
 
@@ -121,8 +107,8 @@ BFC 解决浮动元素高度塌陷（BFC 不能解决绝对定位元素的高度
     <title>16-BFC解决浮动元素高度塌陷</title>
     <style>
       .container {
-        background-color: orange;
         position: relative;
+        background-color: orange;
         /* 利用 BFC 解决浮动高度塌陷问题 */
         overflow: auto;
       }
