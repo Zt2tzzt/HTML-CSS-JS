@@ -17,6 +17,7 @@
   visibility: hidden;
   height: 0;
 }
+
 .clear_fix {
   *zoom: 1;
 }
