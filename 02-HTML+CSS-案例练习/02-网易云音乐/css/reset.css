@@ -2,6 +2,7 @@ html {
   font-size: 12px;
   margin-bottom: 200px;
 }
+
 body,
 h1,
 ul,
@@ -14,25 +15,31 @@ p {
   padding: 0;
   margin: 0;
 }
+
 h1 {
   font-weight: 400;
 }
+
 a {
   text-decoration: none;
   color: #000;
 }
+
 ul,
 ol,
 li {
   list-style: none;
 }
+
 input {
   outline: none;
   border: none;
 }
+
 img {
   vertical-align: top;
 }
+
 i {
   font-style: normal;
 }

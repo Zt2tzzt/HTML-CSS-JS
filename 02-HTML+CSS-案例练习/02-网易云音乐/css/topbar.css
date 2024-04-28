@@ -15,23 +15,26 @@
 .topbar .left {
   display: flex;
 }
+
+/* 顶部 Header Logo */
 .topbar .left .logo {
-  text-indent: -9999px;
   width: 157px;
   height: 100%;
   padding-right: 20px;
+  text-indent: -9999px;
 }
+/* 顶部 Header 标签 */
 .topbar .left > .tags {
   display: flex;
 }
 .topbar .left .tag {
   position: relative;
   display: block;
+  height: 100%;
+  padding: 0 19px;
   font-size: 14px;
   color: #ccc;
   line-height: 70px;
-  height: 100%;
-  padding: 0 19px;
 }
 .topbar .left .tag.active,
 .topbar .left .tag:hover {
@@ -66,6 +69,7 @@
   line-height: 70px;
 }
 
+/* 顶部 Header 自定义搜索框 */
 .topbar .right .search {
   display: flex;
   justify-content: flex-end;
@@ -85,6 +89,7 @@
   color: #9b9b9b;
 }
 
+/* 顶部 Header 登录按钮 */
 .topbar .right .login {
   color: #787878;
   width: 28px;
