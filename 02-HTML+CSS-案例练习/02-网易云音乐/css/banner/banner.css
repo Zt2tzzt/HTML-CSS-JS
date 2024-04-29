@@ -9,7 +9,8 @@
   height: 285px;
   margin: 0 auto;
 }
-/* 左边轮播图部分 */
+
+/* 顶部 Banner 左边轮播图部分 */
 .banner .images-area {
   position: relative;
   width: 730px;
@@ -32,6 +33,8 @@
   width: 100%;
   height: 285px;
 }
+
+/* 顶部 Banner 左侧论不同下方标点 */
 .banner .dots {
   position: absolute;
   display: flex;
@@ -53,6 +56,7 @@
 .banner .dots a:hover {
   background: url(../../image/banner.png) -16px -343px;
 }
+
 /* 右边下载客户端部分 */
 .banner .dowload {
   position: absolute;
@@ -77,6 +81,7 @@
   color: #8d8d8d;
   margin-top: 10px;
 }
+
 /* 左右控制轮播图的按钮 */
 .banner .wrap .control {
   position: absolute;
