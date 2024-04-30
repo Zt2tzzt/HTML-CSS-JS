@@ -25,7 +25,7 @@ flex item 具备的 3 点特性：
 
 ### 4.flex 布局模型图
 
-理解 flex 布局模型图，主轴，交叉轴相关概念，
+理解 flex 布局模型图中的相关概念：
 
 - 主轴（main axis），交叉轴（cross axis）。
 - 主轴尺寸（main size），交叉轴尺寸（cross size）。
@@ -85,9 +85,9 @@ flex containerr 的 `align-item` 属性，用于决定 flex items 在 cross axis
 
 常用的 6 个设置。
 
-- `flex-start`：默认值，与 cross start 对齐。
-- `flex-end`：与 cross end 对齐。
-- `center`：居中对齐。
+- `flex-start`：默认值，flex items 与 cross start 对齐。
+- `flex-end`：flex items 与 cross end 对齐。
+- `center`：flex items 居中对齐。
 - `stretch`：当 flex items 在 cross axis 方向的 height 为 auto 时，会自动拉伸至填充 flex containerr。如果有固定 height，则不会。
 - `normal`：在弹性布局中，效果和 stretch 一样。
 - `baseline`：与基准线对齐。
@@ -204,7 +204,7 @@ flex 属性可以指定 1 个，2 个或 3 个值。语法如下：
 
 ## 四、解决 justify-content: space-between; 最后一行显示不对齐的问题
 
-如何解决 `justify-content: space-between;` 布局后，最后一行显示不对齐的问题，如图所是。案例理解。
+如何解决 `justify-content: space-between;` 布局后，最后一行显示不对齐的问题，如图所示。案例理解。
 
 ![](NodeAssets/justify-content space-between布局后的问题.jpg)
 

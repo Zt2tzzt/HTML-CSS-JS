@@ -27,7 +27,7 @@
   align-items: center;
   width: 100%;
   padding-top: 10px;
-  flex-shrink: 0;
+  /* flex-shrink: 0; */
 }
 
 .disc-section .roller .list .item {
@@ -93,8 +93,6 @@
   top: 0;
   bottom: 0;
   margin: auto 0;
-  /* top: 72px; */
-  /* bottom: 0; */
   background-image: url(../../image/main_sprite.png);
 }
 
