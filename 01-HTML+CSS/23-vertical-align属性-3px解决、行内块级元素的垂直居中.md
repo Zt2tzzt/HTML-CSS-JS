@@ -53,7 +53,7 @@ vertical-align 可设值：
 
 ## 四、vertical-align: middle; 不能做行内块级元素、行内可替换元素的垂直居中
 
-为行内可替换元素、行内块级元素设置 `vertical-align: middle;` 不能做垂直居中。因为大部分字体，都会进行文本下沉，所以 x-height 的一半，在文本中线靠下的位置。即使文本居中了，但与文本中线对齐的图片仍不居中。
+为行内可替换元素、行内块级元素设置 `vertical-align: middle;` 不能在有行内及文本的盒子中，做垂直居中。因为大部分字体，都会进行文本下沉，所以 x-height 的一半，在文本中线靠下的位置。即使文本居中了，但与文本中线对齐的图片仍不居中。
 
 01-HTML+CSS/demo-project/12-vertical-align-middle不能做垂直居中.html
 
@@ -111,8 +111,8 @@ vertical-align 可设值：
 </head>
 <body>
   <div class="content">
-    我是普通文本xxx
-    <span class="box">哈哈哈xxx</span>
+    我是外层文本xxx
+    <span class="box">我是里层文本哈哈哈xxx</span>
     <!-- 此时 .box 在 .content 中是居中的 -->
   </div>
 </body>
