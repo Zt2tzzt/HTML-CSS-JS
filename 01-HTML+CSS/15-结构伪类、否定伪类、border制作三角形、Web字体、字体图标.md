@@ -63,11 +63,11 @@ ul li:nth-child(2n) {
 
 ### 4.:nth-last-of-type() 用法
 
-`:nth-last-of-type()` 用法跟 `:nth-of-type()` 类似，区别在于 `:nth-last-of-type()` 从最后一个这种类型的子元素开始往前计数。
+`:nth-last-of-type()` 用法跟 `:nth-of-type()` 类似，区别在于它从最后一个这种类型的子元素开始往前计数。
 
 ### 5.结构伪类简写
 
-衍生出其它常见的结构伪类简写 6 个。用法。
+常见的结构伪类简写 6 个。用法。
 
 - `:first-child`，等同于 `:nth-child(1)`。
 - `:last-child`，等同于 `:nth-last-child(1)`。
@@ -100,9 +100,9 @@ ul li:nth-child(2n) {
 </div>
 ```
 
-### 6.其它结构伪类
+### 6.:root 伪类
 
-`:root`，表示根元素，在 HTML 中匹配根元素 `<html>`。在 XML (包括 SVG) 中，`:root` 匹配的是文档树的根元素。
+`:root`，表示根元素，在 HTML 中匹配根 `<html>` 元素。在 XML（包括 SVG）中，`:root` 匹配的是文档树的根元素。
 
 最常见的用法可能是在定义 CSS 自定义属性（也称为 CSS 变量）因为 `:root` 选择器对整个 HTML 文档都有效，所以在 `:root` 伪类里定义的 CSS 变量，整个文档中的元素都能访问。
 
@@ -115,6 +115,8 @@ body {
   background-color: var(--main-color);
 }
 ```
+
+### 7.:empty 伪类
 
 `:empty`，它选择没有子节点（包括文本节点）的元素（小程序中用来做默认插槽）。
 
@@ -199,14 +201,17 @@ p:empty {
 
 ### 1.Web 字体工作原理
 
-web-font 的工作原理：
+1. 通过渠道获取希望使用的字体；
 
-- 首先, 通过渠道获取希望使用的字体；
-  - 收费的字体, 获取到对应的授权；
-  - 公司定制的字体, 需要设计人员来设计；
-  - 免费的字体, 获取到对应的字体文件，
-- 其次, 在我们的 CSS 代码当中使用该字体；
-- 最后, 在部署静态资源时, 将 HTML/CSS/JavaScript/Font 一起部署在静态服务器中。
+   - 收费的字体, 获取到对应的授权；
+
+   - 公司定制的字体, 需要设计人员来设计；
+
+   - 免费的字体, 获取到对应的字体文件，
+
+2. 在我们的 CSS 代码当中使用该字体；
+
+3. 在部署静态资源时, 将 HTML/CSS/JavaScript/Font 一起部署在静态服务器中。
 
 ### 2.Web 字体使用步骤
 
@@ -300,15 +305,13 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
 
 字体图标的使用步骤。
 
-Ⅰ.登录 [iconfont](https://www.iconfont.cn)，下载代码，并且拷贝到项目中。
-
-Ⅱ.将字体文件和默认的 css 文件放入到项目目录中，并在项目 css 中通过 link 引入 iconfont.css 文件。
-
-Ⅲ.如果有新的字体图标加入，需要重复以上操作。
+1. 登录 [iconfont](https://www.iconfont.cn)，下载代码，并且拷贝到项目中。
+2. 将字体文件和默认的 css 文件放入到项目目录中，并在项目 css 中通过 link 引入 iconfont.css 文件。
+3. 如果有新的字体图标加入，需要重复以上操作。
 
 使用方式 2 种
 
-方式一：通过对应字体图标的 Unicode 来显示代码（使用字符实体，不常用）;
+方式一：使用字符实体的形式，通过字体图标的 Unicode 来显示（不常用）;
 
 ```html
 <head>
@@ -331,7 +334,7 @@ WOFF 表示 Web Open Font Format，web 开放字体： 拓展名是 .woff，建�
 </body>
 ```
 
-方式二：利用已经编写好的 class, 直接使用即可（使用伪元素）
+方式二：使用伪元素的形式，利用已经编写好的 class, 即可。
 
 iconfont.css
 

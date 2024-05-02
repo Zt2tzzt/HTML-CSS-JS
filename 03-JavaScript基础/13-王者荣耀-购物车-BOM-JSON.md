@@ -497,7 +497,7 @@ JSON 的使用场景。
 
 JSON 的顶层支持 3 种类型的值。
 
-- 简单值：数字（Number）、字符串（String，不支持单引号）、布尔类型（Boolean）、nul l 类型；**没有 undefined**
+- 简单值：数字（Number）、字符串（String，不支持单引号）、布尔类型（Boolean）、null 类型；**没有 undefined**
 - 对象值：由 key、value 组成，key 是字符串类型，必须加双引号，值可以是简单值、对象值、数组值；
 - 数组值：数组的值可以是简单值、对象值、数组值；
 

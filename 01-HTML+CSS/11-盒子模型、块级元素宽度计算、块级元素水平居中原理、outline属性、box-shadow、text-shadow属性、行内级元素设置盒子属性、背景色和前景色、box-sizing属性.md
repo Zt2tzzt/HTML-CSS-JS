@@ -53,7 +53,7 @@ margin-top，margin-bottom 有传递的特性（margin-left、margin-right 不�
 - 两个兄弟块级元素之间上下 margin 的折叠。
 - 父子块级元素之间 margin 的折叠（通过 margin 的传递产生折叠，没有传递不会折叠）。
 
-margin 折叠的计算规则：两个值进行比较，取较大的值
+margin 折叠的计算规则：两个值进行比较，取较大的值。
 
 如果要避免 margin 的折叠，那么一般只设置相邻元素其中一个元素的 margin。
 
@@ -105,7 +105,7 @@ block box width = content width + padding + border width + margin
 
 > 块级元素高度默认是内容高度，所以**不能**用 `margin: auto 0;` 来做垂直方向居中。
 >
-> 同理，行内元素宽度是内容宽度，**不能**设置`margin: 0 auto;` 来做水平居中。
+> 同理，行内元素宽度是内容宽度，**不能**设置 `margin: 0 auto;` 来做水平居中。
 >
 > 居中布局还是推荐使用 flex 来做。
 

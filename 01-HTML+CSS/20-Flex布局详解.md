@@ -25,7 +25,7 @@ flex item 具备的 3 点特性：
 
 ### 4.flex 布局模型图
 
-理解 flex 布局模型图，主轴，交叉轴相关概念，
+理解 flex 布局模型图中的相关概念：
 
 - 主轴（main axis），交叉轴（cross axis）。
 - 主轴尺寸（main size），交叉轴尺寸（cross size）。
@@ -34,9 +34,9 @@ flex item 具备的 3 点特性：
 
 ![flex布局模型](NodeAssets/flex模型图-主轴-交叉轴.jpg)
 
-## 二、flex containerr 的属性
+## 二、flex container 的属性
 
-flex containerr 的相关属性：
+flex container 的相关属性：
 
 - `flex-direction`
 - `flex-wrap`
@@ -85,9 +85,9 @@ flex containerr 的 `align-item` 属性，用于决定 flex items 在 cross axis
 
 常用的 6 个设置。
 
-- `flex-start`：默认值，与 cross start 对齐。
-- `flex-end`：与 cross end 对齐。
-- `center`：居中对齐。
+- `flex-start`：默认值，flex items 与 cross start 对齐。
+- `flex-end`：flex items 与 cross end 对齐。
+- `center`：flex items 居中对齐。
 - `stretch`：当 flex items 在 cross axis 方向的 height 为 auto 时，会自动拉伸至填充 flex containerr。如果有固定 height，则不会。
 - `normal`：在弹性布局中，效果和 stretch 一样。
 - `baseline`：与基准线对齐。
@@ -204,13 +204,13 @@ flex 属性可以指定 1 个，2 个或 3 个值。语法如下：
 
 ## 四、解决 justify-content: space-between; 最后一行显示不对齐的问题
 
-如何解决 `justify-content: space-between;` 布局后，最后一行显示不对齐的问题，如图所是。案例理解。
+如何解决 `justify-content: space-between;` 布局后，最后一行显示不对齐的问题，如图所示。案例理解。
 
 ![](NodeAssets/justify-content space-between布局后的问题.jpg)
 
 解决办法：添加 (列数- 2) 个没有高度的元素，可以是 i、span 等等。
 
-01-HTML+CSS/demo-project/09-justify-content:-space-between最后一行显示不对齐的问题.html
+01-HTML+CSS/demo-project/10-justify-content:-space-between最后一行显示不对齐的问题.html
 
 ```html
 <!DOCTYPE html>
@@ -221,16 +221,15 @@ flex 属性可以指定 1 个，2 个或 3 个值。语法如下：
     <title>Demo</title>
     <style>
       .container {
-        width: 500px;
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        width: 700px;
         background-color: orange;
       }
       .item {
-        width: 110px; /* 比较 container 的宽度可知，每一行会有 4 个 container */
+        width: 110px; /* 比较container的宽度可知，每一行会有4个container */
         height: 140px;
-        background-color: pink;
       }
       .container > i {
         /* i元素成为 flex item 后，不严格区分行内级元素，可设置宽度 */
@@ -240,17 +239,23 @@ flex 属性可以指定 1 个，2 个或 3 个值。语法如下：
   </head>
   <body>
     <div class="container">
-      <div class="item item1">1</div>
-      <div class="item item2">2</div>
-      <div class="item item3">3</div>
-      <div class="item item1">1</div>
-      <div class="item item2">2</div>
-      <div class="item item3">3</div>
-      <div class="item item1">1</div>
-      <div class="item item2">2</div>
-      <div class="item item3">3</div>
-      <div class="item item3">3</div>
-      <!-- 添加 i 的个数是列数减 2，即 4 - 2 = 2个 -->
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <div class="item">3</div>
+      <!-- 添加 i 的个数是列数减2，也就是 6-2=4个 -->
+      <i></i>
+      <i></i>
       <i></i>
       <i></i>
     </div>
@@ -267,5 +272,4 @@ flex 属性可以指定 1 个，2 个或 3 个值。语法如下：
   </script>
   </body>
 </html>
-
 ```

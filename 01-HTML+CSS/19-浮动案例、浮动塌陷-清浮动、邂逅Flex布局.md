@@ -9,7 +9,7 @@
 知识点总结：
 
 - 浮动的使用。
-- margin 负值的使用（为盒子设置 margin 负值，用于抵消盒子中子元素的 margin 正值，以拉伸整个盒子的宽度至父容器的宽度）。
+- margin 负值的使用（为盒子设置 margin 负值，用于抵消盒子里子元素的 margin 正值，以拉伸整个盒子的宽度至父容器的宽度）。
 
 01-HTML+CSS\demo-project\float案例联系-京东商城频道广场.html
 
@@ -20,25 +20,25 @@
   <style>
     .content {
       width: 1190px;
+      height: 1000px;
       margin: 0 auto;
       background-color: #f00;
-      height: 1000px;
     }
     .content > .wrapper {
       margin-right: -10px; /* 使用 margin 负值，将 wrapper 的宽度拉伸 */
     }
     .content > .wrapper > .item {
-      width: 290px;
-      background-color: purple;
-      margin-bottom: 10px;
       float: left;
+      width: 290px;
+      margin-bottom: 10px;
       margin-right: 10px;
+      background-color: purple;
     }
     .content > .wrapper > .item.left {
       height: 370px;
     }
     .content > .wrapper > .item.right {
-      height: 180px; /* 高度为left的一半+间隙10px */
+      height: 180px; /* 高度为 left的一半+间隙10px */
     }
   </style>
 </head>
@@ -76,19 +76,19 @@
   <style>
     .content {
       width: 1100px;
-      margin: 0 auto;
       height: 800px;
+      margin: 0 auto;
       background: #ccc;
     }
     .item {
+      float: left;
       width: 221px;
       height: 168px;
-      background: orange;
-      color: #fff;
-      float: left;
       border: 1px solid #000;
       margin-right: -1px; /* 使用负值，使上一个 .item 元素右边框覆盖下一个元素的左边框 */
       box-sizing: border-box;
+      color: #fff;
+      background: orange;
     }
     .item.first {
       width: 220px; /* 给第一个小盒子，宽度减去1px，即保持平分的宽度 220px */
@@ -225,6 +225,6 @@ flex 布局（ flexible 布局，弹性布局），是使用 flexbox 来进行�
 
 使用 flex 布局的容器，称为弹性盒子（flexbox），是一种用于按行或列布局元素的一维布局盒子。
 
-二维布局方法，grid，比 flex 强大，但兼容性较差。
+二维布局方法 grid，比 flex 强大，但兼容性较差。
 
 弹性盒子中的元素，可以膨胀填充额外的空间，收缩适应更小的空间。

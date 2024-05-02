@@ -22,19 +22,19 @@ translate 函数，用于移动元素在平面上的位置。
 
 语法：`none | <transform-function>+`；
 
-上面的语法中，`+`  代表可写一个或多个值，以空格区分。
-
-```css
-.box {
-  transform: translate(50px) scale(1.2) rotate(45deg);
-}
-```
-
+> 上面的语法中，`+`  代表可写一个或多个值，以空格区分。
+>
+> ```css
+> .box {
+>   transform: translate(50px) scale(1.2) rotate(45deg);
+> }
+> ```
+>
 > `#`  代表可写一个或多个，以逗号区分。
 >
 > ```css
 > .box {
->     box-shadow: 1px 1px 1px 1px #f00, 5px 5px 5px #ccc;
+>  box-shadow: 1px 1px 1px 1px #f00, 5px 5px 5px #ccc;
 > }
 > ```
 
@@ -52,7 +52,7 @@ translate 函数，用于移动元素在平面上的位置。
 
 `translate` 函数是 `translateX` 和 `translateY` 函数的简写（translate3d 后续了解）；
 
-百分比可以完成一个元素的水平、垂直居中：
+百分比可以完成一个元素的水平、垂直居中，下面以垂直居中为例：
 
 ```css
 .box1 {
@@ -68,7 +68,7 @@ translate 函数，用于移动元素在平面上的位置。
       1.让元素向下位移包含快的 50%
       2.让元素向上位移自身的 50%
   */
-  /* margin-top 的百分比是相对于包含块（父元素）的**宽度**，所以不能用 margin-to，而是使用绝对定位和 topp */
+  /* margin-top 的百分比是相对于包含块（父元素）的宽度，所以不能用 margin-top，而是使用绝对定位和 top */
   position: absolute;
   top: 50%; /* 相对于包含快的高度，包含快必须有高度 */
 
@@ -82,7 +82,7 @@ translate 函数，用于移动元素在平面上的位置。
 
 #### 3.translate 相比 position
 
-`position` 定位元素，实际改变了元素位置，而 translate 函数是浏览器渲染时，做了位移。
+`translate` 函数是浏览器渲染时，做了位移，而 `position` 定位元素，实际改变了元素位置。
 
 ### 2.scale 函数
 
@@ -110,7 +110,7 @@ transform 属性 rotate 函数作用：旋转元素。
 
 可设值类型：
 
-- 常用单位 deg：表示旋转的角度（ degrees ）。正数为顺时针。负数为逆时针。
+- 常用单位 deg：表示旋转的角度（ degrees ）。**正数为顺时针。负数为逆时针**。
 
 `rotate` 函数是 `rotateZ` 函数的简写写法（`rotate3d` 后续了解）。
 
@@ -169,13 +169,13 @@ transform-origin 属性，用于设置元素形变的原点，如在进行 scale
 
 方案二：将要居中的元素，设为块级元素，再为当前块级元素设置 `margin: 0 auto;`。
 
-方案三-1：将要居中的元素，设为块级元素，再设置  `margin-left: 50%` 和 `transform: translate(-50%)`。
+方案三：向左位移父元素的 50%，在向右位移自身的 50%，可以有如下实现方式：
 
-方案三-1：将要居中的元素设为相对定位元素，再设置  `margin-left: 50%` 和 `left: [元素宽度]`。
+- 将要居中的元素，设为块级元素，再设置  `margin-left: 50%` 和 `transform: translate(-50%)`。
+- 将要居中的元素设为相对定位元素，再设置  `margin-left: 50%` 和 `left: [元素一半宽度]`。
+- 将要居中的元素设为绝对定位元素，再设置 `left: 50%;` 和  `transform: translate(-50%)`。
 
-方案三-2：将要居中的元素设为绝对定位元素，再设置 `left: 50%;` 和  `transform: translate(-50%)`。
-
-> 方案三，参考[梦幻西游背景图居中案例](./16-额外知识补充-CSS元素定位（一）（布局）.md/#1.梦幻西游背景图居中案例)
+> 方案三，参考[梦幻西游背景图居中案例](../16-精灵图、cusor属性、HTML标准流、CSS元素定位-图片居中展示.md/#3.relative 相对定位)
 >
 > ```css
 > .box img {
@@ -224,10 +224,13 @@ transform-origin 属性，用于设置元素形变的原点，如在进行 scale
 
 ```css
 .box {
-  width: 66px;
   position: absolute;
   top: 0;
   bottom: 0;
+  
+  width: 66px;
+  height: 66px;
+  
   margin: auto 0
 }
 ```
@@ -258,7 +261,7 @@ transform-origin 属性，用于设置元素形变的原点，如在进行 scale
 }
 ```
 
-方案二：设置要居中的元素的父容器，为 flex 布局，
+方案二：设置要居中的元素的父容器，为 flex container，
 
 - 为父元素（flex container）设置 `align-item: center;`。
 - 或着，为要居中的元素（flex item）设置 `align-self: center;`。

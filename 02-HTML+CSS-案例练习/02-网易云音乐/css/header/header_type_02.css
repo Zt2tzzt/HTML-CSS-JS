@@ -9,6 +9,7 @@
   border-bottom: 2px #c10d0c solid;
   background: url(../../image/main_sprite.png) no-repeat -225px -156px;
 }
+
 .header_type_02::after {
   content: '';
   position: absolute;

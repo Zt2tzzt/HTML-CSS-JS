@@ -52,7 +52,7 @@ CSS transition 简写属性的用法。
 }
 ```
 
-transition 动画的弊端：
+transition 动画的ju'xi：
 
 - 弊端一：只能定义开始状态，结束状态，不能定义中间状态；
 - 弊端二：不能重复执行，除非一再触发动画；
@@ -72,6 +72,19 @@ CSS Animation 动画，可以有更多的状态，使用步骤分 2 步。
 
 animation 的有如下相关属性：
 
+- `animation-name`：指定执行哪一个关键帧动画。
+- `animation-duration`：指定动画的持续时间。
+- `animation-timing-function`：指定动画的变化曲线。
+- `animation-delay`：指定延迟执行的时间。
+- `animation-iteration-count`：指定动画执行的次数。
+  - `infinite` 表示无限动画。
+- `animation-direction`：指定方向。
+  - 常用值 `normal` 和 `reverse`。
+- `animation-fill-mode`：执行动画最后保留哪一个值。
+  - `none`：回到没有执行动画的位置。
+  - `forwards`：动画最后一帧的位置。
+  - `backwards`：动画第一帧的位置。
+- `animation-play-state`：指定动画运行（running）或者暂停（paused），常结合 JavaScript 使用，用于暂停动画。
 - `animation-name`：指定执行哪一个关键帧动画。
 - `animation-duration`：指定动画的持续时间。
 - `animation-timing-function`：指定动画的变化曲线。

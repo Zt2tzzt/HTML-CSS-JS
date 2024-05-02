@@ -4,7 +4,7 @@
 
 王者荣耀项目，当页面缩小出现滚动条，header 右侧部分没有背景色。怎么解决？
 
-页面中宽度最大的元素宽度，设置为 body 的最小宽度。
+将页面中宽度最大的元素宽度，设置为 body 的最小宽度。
 
 ```css
 body {
@@ -12,7 +12,7 @@ body {
 }
 ```
 
-王者荣耀项目，当页面缩小时，背景图片也跟着缩放，需要设置背景图片固定 size（120% auto;）。
+王者荣耀项目，当页面缩小时，背景图片也跟着缩放，需要设置背景图片固定 size，即 `120% auto;`。
 
 ```css
 .main {
@@ -29,51 +29,56 @@ body {
 
 HTML5 新增的语义化元素有哪些？
 
-- \<header\>：头部元素。
-- \<nav\>：导航元素。
-- \<section\>：定义文档某个区域的元素。
-- \<article\>：内容元素。
-- \<aside\>：侧边栏元素。
-- \<footer\>：尾部元素。
+- header 元素：表示头部元素。
+- nav 元素：表示导航元素。
+- section 元素：表示定义文档某个区域的元素。
+- article 元素：表示内容元素。
+- aside 元素：表示侧边栏元素。
+- footer 元素：表示尾部元素。
 
 它们都为块级元素，默认没有样式。
 
 ## 三、HTML5 多媒体类型支持
 
-在 HTML5 之前是通过 flash 或者其他插件实现的, 但是会有很多问题。比如：无法很好的支持 HTML/CSS 特性, 兼容性问题等等;
+HTML5 之前，通过 flash 或者其他插件，实现多媒体类型支持, 但是会有很多问题。
 
-HTML5 新增了 2 种多媒体类型的支持，音频：\<audio\>；视频：\<video\>。
+- 比如：无法很好的支持 HTML / CSS 特性, 兼容性问题等等;
 
-可直接通过 HTML 元素来使用 video 和 audio，也可通过 JavaScript 的 API 对其进行控制；
+HTML5 新增了 2 种多媒体类型的支持：
+
+- audio 元素，用于音频
+- video 元素，用于视频。
+
+除了使用上述两个元素，也可通过 JavaScript 的 API 对其进行控制；
 
 ### 1.video 元素
 
-video 元素用于在 HTML 或者 XHTML 文档中嵌入媒体播放器，用于支持文档内的视频播放。
+video 元素，用于在 HTML 或者 XHTML 文档中嵌入媒体播放器，以支持文档内的视频播放。
 
 ```html
 <video src="../video/fcrs.mp4" controls></video>
 <!-- 默认没有控制栏，需要加上 controls 属性。-->
 ```
 
-| 常见属性 | 值的类型               | 属性作用                                                                     |
-| -------- | ---------------------- | ---------------------------------------------------------------------------- |
-| src      | url 地址               | 视屏地址                                                                     |
-| width    | pixels（像素）         | 设置 video 宽度                                                              |
-| height   | pixels（像素）         | 设置 video 高度                                                              |
-| controls | Boolean 类型           | 是否显示控制栏（音量，暂停，恢复播放）                                       |
-| autoplay | Boolean 类型           | 是否自动播放（某些浏览器如 chrome，为了用户体验需要添加 muted 属性，才有效） |
-| muted    | Boolean 类型           | 是否静音播放                                                                 |
-| preload  | none / metadata / auto | 是否需要预加载，metadata 表示加载元数据，如视频时长。常用 auto               |
-| poster   | url 地址               | 一帧海报 url                                                                 |
+| 常见属性 | 值的类型               | 属性作用                                                     |
+| -------- | ---------------------- | ------------------------------------------------------------ |
+| src      | url 地址               | 视屏地址                                                     |
+| width    | pixels（像素）         | 设置 video 宽度                                              |
+| height   | pixels（像素）         | 设置 video 高度                                              |
+| controls | Boolean 类型           | 是否显示控制栏（音量，暂停，恢复播放）                       |
+| autoplay | Boolean 类型           | 是否自动播放（某些浏览器如 chrome，为了用户体验需要添加 `muted` 属性，才有效） |
+| muted    | Boolean 类型           | 是否静音播放                                                 |
+| preload  | none / metadata / auto | 是否需要预加载，metadata 表示加载元数据，如视频时长。常用 auto |
+| poster   | url 地址               | 一帧海报 url                                                 |
 
 video 支持的视屏格式有：
 
 ![video元素支持的视屏格式](NodeAssets/video元素支持的视屏格式.jpg)
 
-video 的兼容性写法 2 点（针对浏览器不支持此元素时候的降级处理）。
+针对浏览器不支持此元素时候的降级处理，video 有 2 中兼容性写法。
 
-- 通过 \<source\> 元素指定更多视频格式的源;
-- 通过 p / div 等元素指定在浏览器不支持 video 元素的情况, 显示的内容;
+- 通过 source 元素指定更多视频格式的源;。
+- 通过 p、div 等元素指定在浏览器不支持 video 元素的情况, 显示的内容;
 
 ```html
 <video src="./assets/fcrs.mp4" width="600" controls muted>
@@ -85,7 +90,7 @@ video 的兼容性写法 2 点（针对浏览器不支持此元素时候的降�
 
 ### 2.audio 元素
 
-audio 元素，用于在文档中嵌入音频内容, 和 video 的用法非常类似。
+audio 元素，用于在文档中嵌入音频内容, 和 video 元素的用法非常类似。
 
 ```html
 <audio src="./assets/yhbk.mp3" controls autoplay muted></audio>
@@ -101,7 +106,7 @@ audio 元素，用于在文档中嵌入音频内容, 和 video 的用法非常�
 
 audio 一般使用 MP3 的格式。
 
-audio 的兼容性写法类似 video。
+针对浏览器不支持此元素时候的降级处理，audio 的兼容性写法类似 video。
 
 ```html
 <audio src="./assets/fcrs.mp3" controls muted>
@@ -115,17 +120,21 @@ audio 的兼容性写法类似 video。
 input 元素在 HTML5 中扩展的属性
 
 - `placeholder`：输入框的占位文字。
-- `multiple`：多个值。
 - `autofocus`：自动聚焦。
 
 ```html
 <input type="text" placeholder="占位文本" autofocus />
-<select multiple size="2">
-  <option value="apple">苹果</option>
-  <option value="banana">香蕉</option>
-  <option value="orange">橘子</option>
-</select>
 ```
+
+> HTML5 select 元素扩展了 `multiple` 属性，用于多选：
+>
+> ```html
+> <select multiple size="2">
+>     <option value="apple">苹果</option>
+>     <option value="banana">香蕉</option>
+>     <option value="orange">橘子</option>
+> </select>
+> ```
 
 input 元素在 HTML5 中 `type` 属性值的扩展。
 
@@ -147,23 +156,25 @@ input 元素在 HTML5 中 `type` 属性值的扩展。
 
 ## 五、HTML5 data-* 属性
 
-HTML5 新增全局属性 data-\*，用于自定义数据属性。
+HTML5 新增全局属性 `data-*`，用于自定义数据属性。
 
-data 设置的属性可以在 JavaScript 的 DOM 操作中，通过 `dataset` 轻松获取到；通常用于 HTML 和 JavaScript 数据之间的传递；
+- 可以在 JavaScript 的 DOM 操作中，通过 `dataset` 轻松获取到；
+- 通常用于 HTML 和 JavaScript 数据之间的传递；
 
 ```html
 <div class="box" age="18" data-name="zzt" data-age="18" data-height="1.88"></div>
-<script>
-  const boxEl = document.querySelector('.box')
-  console.log(boxEl.dataset.age) // 18
-</script>
 ```
 
-在小程序中，经常使用 data-\* 来传递数据。
+```javascript
+const boxEl = document.querySelector('.box')
+console.log(boxEl.dataset.age) // 18
+```
+
+在小程序中，经常使用 `data-*` 来传递数据。
 
 ## 六、white-space 属性
 
-CSS 属性 white-space 属性，用于设置空白处理和换行规则。它的属性有：
+CSS 属性 `white-space` 属性，用于设置空白处理，和换行规则。它的属性有：
 
 - `normal`：合并所有连续的空白，允许单词超屏时自动换行。
 - `nowrap`：合并所有连续的空白，不允许单词超屏时自动换行。
@@ -173,7 +184,7 @@ CSS 属性 white-space 属性，用于设置空白处理和换行规则。它的
 
 ## 七、text-overflow 属性
 
-CSS 属性 text-overflow 属性，用于设置文本超出父容器的显示效果。
+CSS 属性 `text-overflow` 属性，用于设置文本超出父容器的显示效果。
 
 - `clip`：溢出的内容直接裁剪掉（字符可能会显示不完整）。
 - `ellipsis`：溢出那行的结尾处用省略号表示，
@@ -182,29 +193,34 @@ CSS 属性 text-overflow 属性，用于设置文本超出父容器的显示效�
 
 ## 八、CSS 中的函数
 
-CSS 中前面已使用过的函数有：url、rgb、rgba、translate、rotate、scale ...
+目前为止，已使用过的 CSS 函数有：url、rgb、rgba、translate、rotate、scale ...
 
-现在再补充的 4 个函数的用法：
+现在，再补充的 4 个函数的用法：
+
+### 1.var 函数
 
 `var:` 函数，用于使用 CSS 定义的变量。
 
-- 变量名需要以两个减号（--）开始。
+- 变量名需要以两个减号 `--` 开始。
 - 变量值则可以是任何有效的 CSS 值。
 
 ```css
-/* 相当于 html 元素选择器 */
+/* :root 结构为了，相当于 html 元素选择器 */
 :root {
-  /* 定义了一个变量(CSS属性) */
-  /* 只有后代元素可以使用 */
+  /* 定义了一个变量（CSS 属性），只有后代元素可以使用 */
   --main-color: #f00;
 }
+
 .box {
   color: var(--main-color);
 }
+
 .title {
   color: var(--main-color);
 }
 ```
+
+### 2.calc 函数
 
 `calc` 函数，用于计算 CSS 值, 通常用于计算元素的大小或位置。;
 
@@ -212,17 +228,19 @@ CSS 中前面已使用过的函数有：url、rgb、rgba、translate、rotate、
 
 ```css
 .item {
-  /* width的百分比相对于包含块(父元素) */
+  /* width 的百分比相对于包含块（父元素）*/
   width: calc(100% - 100px);
 }
 ```
+
+### 3.blur 函数
 
 `blur` 函数，用于实现毛玻璃（高斯模糊）效果。通常用于两个 CSS 属性中：
 
 - `filter: blur(radius);` ，将模糊或颜色偏移等图形效果应用于元素。
 - `backdrop-filter: blur(radius);` ，为元素后面的区域添加模糊或者其他效果，通常与 `background-color` 结合使用。
 
-`blur(radius)`，radius 模糊的半径, 用于定义高斯函数的偏差值, 偏差值越大, 图片越模糊;
+`blur(radius)`，radius 模糊的半径，用于定义高斯函数的偏差值，偏差值越大，图片越模糊。
 
 01-HTML+CSS/demo-project/14-blur函数.html
 
@@ -258,8 +276,9 @@ CSS 中前面已使用过的函数有：url、rgb、rgba、translate、rotate、
     </div>
   </body>
 </html>
-
 ```
+
+### 4.xxx-gradient 函数
 
 `xxx-gradient` 函数，用于设置颜色渐变：
 
@@ -303,7 +322,7 @@ gradient 常见的函数实现有下面几种
 
 `repeating-linear-gradient()`：创建一个由重复线性渐变组成的 image；
 
-`repeating-radial-gradient()`：创建一个重复的原点触发渐变组成的 image；
+`repeating-radial-gradient()`：创建一个重复的原点出发渐变组成的 image；
 
 ## 九、包含快的概念
 

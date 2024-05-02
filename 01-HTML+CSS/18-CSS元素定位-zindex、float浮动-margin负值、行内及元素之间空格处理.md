@@ -2,7 +2,7 @@
 
 ## 一、sticky 粘性定位
 
-粘性定位 `position: sticky;` 是较新的属性. 可能存在兼容性问题。可看做相对定位和固定（绝对）定位的结合体。被定位的元素，表现得像相对定位一样，直到它滚动到某个阈值点时，变成固定（绝对）定位。相对于最近的滚动祖先包含的滚动视口（the nearest ancestor scroll container’s scrollport）
+粘性定位 `position: sticky;` 是较新的属性. 可能存在兼容性问题。它可看做相对定位和固定（绝对）定位的结合体。被定位的元素，表现得像相对定位一样，直到它滚动到某个阈值点时，变成固定（绝对）定位。相对于最近的滚动祖先包含的滚动视口（the nearest ancestor scroll container’s scrollport）
 
 ```css
 .box > .topbar {
