@@ -12,9 +12,7 @@ meta 元素定义元数据的类型有以下几种：
 <meta charset="UTF-8" />
 ```
 
-类型二：设置 `http-equiv` 属性，设置编译指令。
-
-；设置 `content=IE=edge`，告知 IE 浏览器，去模仿 edge 浏览器的行为，并使用最高有效模式来模仿；
+类型二：设置 `http-equiv` 属性，设置编译指令。设置 `content="IE=edge"`，告知 IE 浏览器，去模仿 edge 浏览器的行为，并使用最高有效模式来模仿；
 
 ```html
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -67,21 +65,21 @@ meta 元素可以指定过 HTML 文件的编码。
 
 CSS 样式的字符编码，有如下方式指定，按优先级由高到低排序：
 
-① 文件开头的 Unicode byte-order（字节顺序标记）字符值，也就是文件本身的编码。[参考资料](https://en.wikipedia.org/wiki/Byte_order_mark)。
+1. 文件开头的 Unicode byte-order（字节顺序标记）字符值，也就是文件本身的编码。[参考资料](https://en.wikipedia.org/wiki/Byte_order_mark)。
 
-② 由请求头/响应头中 Content-Type：HTTP header 中的 charset 属性给出的值或用于提供样式表的协议中的等效值。
+2. 由请求头/响应头中 Content-Type：HTTP header 中的 charset 属性给出的值或用于提供样式表的协议中的等效值。
 
-③ CSS @规则 @charset。（推荐使用）
+3. CSS @规则 @charset。（推荐使用）
 
-```css
-/* CSS文件头部 */
-@charset "UTF-8";
-```
+   ```css
+   /* CSS 文件头部 */
+   @charset "UTF-8";
+   ```
 
-④ 使用参考文档定义的字符编码：link 元素的 charset 属性。该方法在 HTML5 标准中已废除，无法使用。
+4. 使用参考文档定义的字符编码：link 元素的 charset 属性。该方法在 HTML5 标准中已废除，无法使用。
 
-```html
-<link charset="UTF-8" rel="stylesheet" href="./css/common.css" />
-```
+5. 以上途径都没有指定字符编码，会假设文档是 UTF-8 编码。
 
-⑤ 以上途径都没有指定字符编码，会假设文档是 UTF-8 编码。
+   ```html
+   <link charset="UTF-8" rel="stylesheet" href="./css/common.css" />
+   ```
