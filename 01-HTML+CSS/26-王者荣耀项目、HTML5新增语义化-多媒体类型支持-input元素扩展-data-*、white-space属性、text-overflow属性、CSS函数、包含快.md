@@ -29,6 +29,7 @@ body {
 
 HTML5 新增的语义化元素有哪些？
 
+- main 元素，表示文档的主体内容。
 - header 元素：表示头部元素。
 - nav 元素：表示导航元素。
 - section 元素：表示定义文档某个区域的元素。
@@ -78,7 +79,7 @@ video 支持的视屏格式有：
 针对浏览器不支持此元素时候的降级处理，video 有 2 中兼容性写法。
 
 - 通过 source 元素指定更多视频格式的源;。
-- 通过 p、div 等元素指定在浏览器不支持 video 元素的情况, 显示的内容;
+- 通过 p、div 等元素指定在浏览器不支持 video 元素的情况，显示的内容;
 
 ```html
 <video src="./assets/fcrs.mp4" width="600" controls muted>
@@ -170,7 +171,7 @@ const boxEl = document.querySelector('.box')
 console.log(boxEl.dataset.age) // 18
 ```
 
-在小程序中，经常使用 `data-*` 来传递数据。
+> 在小程序中，经常使用 `data-*` 来传递数据。
 
 ## 六、white-space 属性
 
@@ -195,17 +196,17 @@ CSS 属性 `text-overflow` 属性，用于设置文本超出父容器的显示�
 
 目前为止，已使用过的 CSS 函数有：url、rgb、rgba、translate、rotate、scale ...
 
-现在，再补充的 4 个函数的用法：
+现在，再补充 4 个函数的用法：
 
 ### 1.var 函数
 
-`var:` 函数，用于使用 CSS 定义的变量。
+`var:` 函数，用于使用定义好的 CSS 变量。
 
-- 变量名需要以两个减号 `--` 开始。
+- 变量名需要以两个减号 `--` 开头。
 - 变量值则可以是任何有效的 CSS 值。
 
 ```css
-/* :root 结构为了，相当于 html 元素选择器 */
+/* :root 结构，相当于 html 元素选择器 */
 :root {
   /* 定义了一个变量（CSS 属性），只有后代元素可以使用 */
   --main-color: #f00;
@@ -224,7 +225,7 @@ CSS 属性 `text-overflow` 属性，用于设置文本超出父容器的显示�
 
 `calc` 函数，用于计算 CSS 值, 通常用于计算元素的大小或位置。;
 
-- 函数中支持 +、-、*、/ 的运算（+ 和 - 运算符的两边必须要有空白字符）。
+- 函数中支持 +、-、*、/ 的运算（+ 和 - 运算符的两边，必须要有空白字符）。
 
 ```css
 .item {
