@@ -8,7 +8,7 @@
 
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
-    
+
     <style>
       .header {
         width: 100%;
@@ -30,6 +30,10 @@
         text-decoration: underline;
       }
 
+      .header .left .list li a.active {
+        color: #f00;
+      }
+
       .header .left .list li:first-child {
         color: #999;
       }
@@ -44,10 +48,6 @@
 
       .header .right a:hover {
         text-decoration: underline;
-      }
-
-      .active {
-        color: #f00;
       }
 
       .content {
@@ -110,6 +110,7 @@
       <div class="header">
         <div class="left">
           <h2 class="title">运动户外</h2>
+
           <ul class="list">
             <li>热搜词</li>
             <li><a href="#" class="active">阿迪达斯</a></li>
@@ -118,18 +119,22 @@
             <li><a href="#" class="active">安德玛</a></li>
           </ul>
         </div>
+
         <div class="right">
-          <a href="#">更多好货 ></a>
+          <a href="#">更多好货 &gt;</a>
         </div>
       </div>
+
       <div class="content">
         <div class="left"></div>
+
         <div class="center">
           <div class="item">1</div>
           <div class="item">2</div>
           <div class="item">3</div>
           <div class="item">4</div>
         </div>
+
         <div class="right">
           <dl>
             <dt class="headline">最新热买</dt>
