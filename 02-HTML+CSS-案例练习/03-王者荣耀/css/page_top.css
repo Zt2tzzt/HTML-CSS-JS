@@ -4,6 +4,11 @@
   border: 1px #f5f5f5 solid;
 }
 
+.top_wrapper {
+  width: 980px;
+  margin: 0 auto;
+}
+
 .top .area {
   display: flex;
   justify-content: space-between;
