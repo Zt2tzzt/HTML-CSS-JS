@@ -18,12 +18,12 @@
 .header .left-area .logo a {
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
   display: block;
   width: 200px;
   height: 54px;
   text-indent: -9999px;
   background: url(../img/logo.png) no-repeat center;
+  transform: translateY(-50%);
 }
 
 .header .left-area .nav-list {
