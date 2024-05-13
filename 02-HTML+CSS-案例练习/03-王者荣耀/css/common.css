@@ -116,7 +116,7 @@ body {
   color: #999;
   text-align: center;
   cursor: pointer;
-  border-bottom: 3px transparent solid; /* hover状态设置border后文字上跳，给原状态设置透明border。
+  border-bottom: 3px transparent solid; /* hover 状态设置 border 后文字上跳，给原状态设置透明 border。
 	*/
 }
 
@@ -210,7 +210,7 @@ body {
   top: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.6);
-  /* transition: all 200ms linear; */
+  /* transition: opacity 200ms linear; */
 }
 
 .video_item:hover .album .cover {
