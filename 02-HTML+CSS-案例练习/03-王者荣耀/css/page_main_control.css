@@ -32,6 +32,7 @@
   /* background-color: orange; */
 }
 
+/* 右边 */
 .main .match-center .match-news .news-right {
   flex: 1;
   overflow: hidden;
