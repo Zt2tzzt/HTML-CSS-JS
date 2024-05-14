@@ -49,7 +49,7 @@ CSS 中的长度单位分为两类。
 
 常见的 3 种像素。
 
-- **设备像素**（也称之为物理像素）；表示显示器上的真实像素，每个像素的大小是屏幕固有的属性，屏幕出厂以后就不会改变了；
+- **设备像素**（也称之为**物理像素**）；表示显示器上的真实像素，每个像素的大小是屏幕固有的属性，屏幕出厂以后就不会改变了；
 - **设备独立像素**（也称之为**逻辑像素**）；表示在设备像素之上，操作系统为开发者进行抽象，如在操作系统上是以 1920 x 1080 设置的显示分辨率，那么无论显示器是 2k、4k，对于开发者来说，都是 1920 x 1080 的大小。
 - **CSS 像素**；默认情况下等同于设备独立像素（也就是逻辑像素）
 
@@ -91,11 +91,10 @@ CSS 预处理器，指的是一个能通过自己独有的语法，来生成 CSS
 
 常用的 CSS 预处理器有：
 
-Sass / Scss
+Sass
 
 - 2007 年诞生，是最早也是最成熟的 CSS 预处理器，拥有 ruby 社区的支持，是属于 Haml（一种模板系统）的一部分；
 - 语法不支持原生 CSS，比较灵活。
-- 目前受 Less 影响，已经进化到了全面兼容 CSS 的 SCSS。
 
 Less
 
@@ -103,22 +102,28 @@ Less
 - 比起 SASS，可编程功能不够多，但已经足够使用，优点是使用方式简单、便捷，兼容 CSS。
 - 著名的 Twitter Bootstrap 就是采用 Less 做底层语言的，也包括 React 的 UI 框架 AntDesign。
 
+Scss
+
+- 受 Less 影响，Sass 已经进化到了全面兼容 CSS 的 SCSS。
+
 Stylus
 
-- 2010 年产生，来自 Node.js 社区，主要用来给 Node 项目进行 CSS 预处理支持;
+- 2010 年出现，来自 Node.js 社区，主要用来给 Node 项目进行 CSS 预处理支持;
 - 语法偏向于 Python, 使用率相对于 Sass / Less 少很多。
 
 ### 1.Less 介绍
 
-Less（Leaner Style Sheets），是一门 CSS 扩展语言, 并且兼容 CSS。增加了很多相比于 CSS 更好用的特性; 比如：定义变量、混入、嵌套、计算等等；它最终需要被编译成 CSS 运行于浏览器中（包括部署到服务器中）；
+Less（Leaner Style Sheets），是一门 CSS 扩展语言, 并且兼容 CSS。增加了很多相比于 CSS 更好用的特性; 比如：定义变量、混入、嵌套、计算等等；它最终会被编译成 CSS 部署到服务器，并运行于浏览器中；
 
 Less 代码编译的几种方式：
 
-方式一：下载 Node 环境，通过 npm 包管理下载 Less 工具，使用 Less 工具对代码进行编译；webpack 可以自动完成 less 工具的编译操作；
+方式一：下载 Node 环境，通过 npm 包管理下载 Less 包，使用 Less 包对代码进行编译；
 
-方法二：通过 VSCode 插件（Easy Less）来编译成 CSS，保存时会自动生成 CSS。[在线尝试](https://lesscss.org/less-preview/)
+- 在 webpack 中进行配置，打包时自动完成对 less 的编译操作；
 
-方式三：引入 CDN 的 less 编译代码，对 less 进行实时的处理；
+方法二：通过 VSCode 插件（Easy Less）来编译成 CSS，保存文件时会自动生成 CSS。[在线尝试](https://lesscss.org/less-preview/)
+
+方式三：在 HTML 文件中，引入 CDN 的 less 编译代码，对 less 进行实时的处理；
 
 ```html
 <link rel="stylesheet/less" href="./less/01_less的基本使用.less" />

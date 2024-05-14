@@ -70,6 +70,8 @@
 
 基本使用，
 
+混入在没有参数的情况下，小括号可以省略，但是不建议这样使用；
+
 ```less
 // 抽取样式，任何选择器，都可以进行复用；
 .nowrap_ellipsis {
@@ -132,7 +134,7 @@
 
 和混入（mixins）作用类似，用于复用代码；
 
-和混入（mixins）相比，继承代码最终会转化成并集选择器；
+和混入（mixins）相比，继承代码最终会转化成**并集选择器**；
 
 ```less
 .box_border {
@@ -160,7 +162,7 @@
 
 ### 8.less 内置函数
 
-Less 内置了多种函数用于转换颜色、处理字符串、算术运算等。
+Less 内置了多种函数用于：转换颜色、处理字符串、算术运算等。
 
 [内置函数手册](https://less.bootcss.com/functions/)。
 
@@ -211,12 +213,12 @@ Less 内置了多种函数用于转换颜色、处理字符串、算术运算等
 
 Sass 的语法，使用的是类似于 Ruby 的语法，没有花括号，没有分号，具有严格的缩进。
 
-后来，官方推出了全新的语法 SCSS，意思是 Sassy CSS，他是完全兼容 CSS 的；
+## 三、Scss 语法
+
+Sass 官方推出了全新的语法 SCSS，意思是 Sassy CSS，他是完全兼容 CSS 的；
 
 - SCSS 的语法，也包括变量、嵌套、混入、函数、操作符、作用域等。
 - SCSS 有更为强大的控制语句、更灵活的函数、插值语法等。
-
-## 三、Scss 语法
 
 [参考文档](https://sass-lang.com/guide/)
 
@@ -226,7 +228,7 @@ Sass 的语法，使用的是类似于 Ruby 的语法，没有花括号，没有
 npm install sass -D
 ```
 
-使用 sass，编译 .scss 文件，并输出 .css 文件
+使用 sass 包，编译 .scss 文件，并输出 .css 文件，执行命令：
 
 ```shell
 sass input.scss output.css
@@ -388,12 +390,6 @@ aside[role="complementary"] {
 
 在其中可以写一些 css 代码。
 
-通常与 `@use` 结合使用，见下方。
-
-### 8.scss 模块化
-
-scss 支持模块化；
-
 使用 `@use` 在 scss 文件中，引入其它的 scss 文件，并指定一个命名空间。
 
 就可以使用其中的变量，混入，函数...
@@ -420,6 +416,32 @@ styles.scss
   color: white;
 }
 ```
+
+### 8.scss 模块化
+
+scss 支持模块化；模块化的一个常见实践是按功能或组件分割样式。例如，可以按组件分割样式文件：
+
+```shell
+scss/
+|-- components/
+|   |-- _button.scss
+|   |-- _card.scss
+|   |-- _navbar.scss
+|-- _variables.scss
+|-- main.scss
+```
+
+然后在 `main.scss` 文件中导入这些模块：
+
+```shell
+// main.scss
+@import 'variables';
+@import 'components/button';
+@import 'components/card';
+@import 'components/navbar';
+```
+
+这样做的好处是，每个组件的样式都被隔离在自己的文件中，便于管理和维护。
 
 ## 四、移动端适配
 
@@ -449,7 +471,7 @@ styles.scss
 - **理想视口（ideal viewport）**
   - 对布局视口进行宽度缩放设置，以满足正常在一个移动端窗口的布局。
 
-meta 元素设置 `name=viewport` 属性，表示理想视口设置。
+HTML 文件中，meta 元素设置 `name=viewport` 属性，表示理想视口设置。
 
 | 值            | 可能的附加值                           | 描述                                                                  |
 | ------------- | -------------------------------------- | --------------------------------------------------------------------- |
