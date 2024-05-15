@@ -96,6 +96,8 @@ window.addEventListener('resize', setRemUnit)
 
 #### 3.lib-flexible 库
 
+阿里早期开发的库。
+
 本质上也是通过 js 来做响应式缩放，考虑了更多边界情况。
 
 ### 2.rem 单位换算
@@ -127,7 +129,7 @@ window.addEventListener('resize', setRemUnit)
 
 #### 4.VSCode 插件 px to rem
 
-安装 px to rem 的插件，在编写时自动转化；
+安装 px to rem 的插件，在编写 rem 单位时自动转化；
 
 ## 三、vw 适配方案
 
@@ -140,7 +142,7 @@ rem 与 vw 两方案之间的的关系。
 - 1vw = 1% 的设计稿宽度。
 - 设计稿宽度为 375px，且 html 的 font-size 为 37.5px，那么 1rem = 10% 的设计稿宽度。
 
-由此可知，rem 事实上是作为一种过渡的方案，它利用的也是 vw 的思想。
+由此可知，rem 事实上是作为一种过渡的方案，它使用的也是 vw 的思想。
 
 vw 相较于 rem 的优势：
 

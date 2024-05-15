@@ -36,7 +36,7 @@
 缺点：
 
 - 不同的机器有不同的汇编语言语法和编译器，代码缺乏可移植性；
-- 即使是完成简单的功能也需要大量的汇编语言代码，很容易产生 BUG，难于调试；
+- 即使是完成简单的功能，也需要大量的汇编语言代码，很容易产生 BUG，难调试；
 
 应用场景：操作系统内核、驱动程序、单片机程序；
 
@@ -55,16 +55,41 @@
 
 ![编程语言1](NodeAssets/编程语言1.jpg)
 
-## 二、JavaScript
+## 二、JavaScript 是什么？
 
 JavaScript 是什么？维基百科定义 2 点。
 
-- JavaScript 是一种高级的、解释型的编程语言；
-- JavaScript 是一门基于原型、头等函数的语言，是一门多范式的语言，它支持面向对象程序设计，指令式编程，以及函数式编程；
+- JavaScript 是一种高级的、**解释型**的编程语言；
+- JavaScript 是一门基于**原型**、**头等函数**的语言，是一门**多范式**的语言，它支持面向对象程序设计，指令式编程，以及函数式编程；
+
+> 解释型编程语言（Interpreted Language）是指那些在运行时由解释器逐行解释并执行代码的编程语言。与编译型编程语言不同，解释型语言不需要在执行之前将整个程序编译成机器码。相反，它们在每次运行时都会逐行读取和执行源代码。这种方式使得开发和调试更加灵活和快速，但通常会带来一些性能上的开销。常见的解释型编程语言包括：
+>
+> - **Python**
+> - **JavaScript**
+> - **Ruby**
+> - **PHP**
+> - **Perl**
+>
+> 除此之外，还有编译型语言和混合型语言：
+>
+> **编译型语言（Compiled Languages）**在执行之前需要经过编译器将源代码编译成机器码（或字节码），然后由计算机的处理器直接执行。编译型语言通常具有更高的执行效率，因为编译过程已经将代码转换成优化过的机器指令。常见的编译型语言包括：
+>
+> - **C**
+> - **C++**
+> - **Go**
+> - **Rust**
+>
+> **混合型语言（Hybrid Languages）**结合了编译型和解释型语言的特点。例如，Java 在编译时将源代码编译成中间字节码，然后由Java 虚拟机（JVM）解释执行。类似的，还有 C#，它被编译成中间语言（IL），然后在 .NET 框架上运行。这样的设计兼顾了编译和解释的优势：
+>
+> - **Java**
+> - **C#**
+> - **JavaScript（在某些环境下，比如 V8 引擎中）**
+>
+> 每种语言和执行方式都有其优缺点，选择哪种语言取决于具体的应用场景和需求。
 
 ## 三、JavaScript 的历史
 
-1994年，网景公司（Netscape）发布了Navigator浏览器0.9版。
+1994年，网景公司（Netscape）发布了 Navigator 0.9 版浏览器。
 
 - 这是历史上第一个比较成熟的网络浏览器，轰动一时。
 - 但是，这个版本的浏览器只能用来浏览，不具备与访问者互动的能力。
@@ -74,20 +99,20 @@ JavaScript 是什么？维基百科定义 2 点。
 
 网景公司当时想要选择一种语言来嵌入到浏览器中：
 
-- 采用现有的语言，比如Perl、Python、Tcl、Scheme等等, 允许它们直接嵌入网页;
-- 1995年网景公司招募了程序员Brendan Eich，希望将Scheme语言作为网页脚本语言的可能性；
+- 采用现有的语言，比如 Perl、Python、Tcl、Scheme 等等, 允许它们直接嵌入网页;
+- 1995 年网景公司招募了程序员 Brendan Eich，希望将 Scheme 语言作为网页脚本语言的可能性；
 
-就在这时，发生了另外一件大事：1995年Sun公司将Oak语言改名为Java，正式向市场推出；
+就在这时，发生了另外一件大事：1995 年 Sun 公司将 Oak 语言改名为 Java，正式向市场推出；
 
-- Java推出之后立马在市场上引起了轰动，Java当初有一个口号：“write once run anywhere”；
-- 网景公司动了心，决定与Sun公司结成联盟，希望将Java嵌入到网页中来运行；
-- Brendan Eich本人非常热衷于Scheme，但是管理层那个时候有点倾向于Java，希望可以简化Java来适应网页脚本的需求；
+- Java 推出之后立马在市场上引起了轰动，Java 当初有一个口号：“write once run anywhere”；
+- 网景公司动了心，决定与 Sun 公司结成联盟，希望将 Java 嵌入到网页中来运行；
+- Brendan Eich 本人非常热衷于 Scheme，但是管理层那个时候有点倾向于 Java，希望可以简化 Java 来适应网页脚本的需求；
 
 ![Java](NodeAssets/Java.jpg)
 
-但是 Brendan Eich 对此并不感兴趣，他用10天时间设计出来了JavaScript；
+但是 Brendan Eich 对此并不感兴趣，他用10天时间设计出来了 JavaScript；
 
-- 最初这门语言的名字是Mocha（摩卡）；
+- 最初这门语言的名字是 Mocha（摩卡）；
 - 在 Navigator2.0 beta 版本更名为 LiveScript；
 - 在 Navigator2.0 beta 3 版本正式重命名为 JavaScript，当时是为了给这门语言搭上 Java 这个热词；
 
@@ -101,7 +126,7 @@ JavaScript 是什么？维基百科定义 2 点。
 Brendan Eich 曾经这样描述过 JavaScript：
 
 - 与其说我爱 Javascript，不如说我恨它，它是 C 语言和 Self 语言一夜情的产物；
-- 十八世纪英国文学家约翰逊博士说得好：'它的优秀之处并非原创，它的原创之处并不优秀（the part that is good is not original, and the part that is original is not good.）。
+- 正如十八世纪英国文学家约翰逊博士所说：'它的优秀之处并非原创，它的原创之处并不优秀（the part that is good is not original, and the part that is original is not good.）。
 
 微软公司于 1995 年首次推出 Internet Explorer，从而引发了与 Netscape 的浏览器大战。
 
@@ -113,7 +138,7 @@ Brendan Eich 曾经这样描述过 JavaScript：
 - 1997 年 6 月，ECMA 以 JavaScript 语言为基础制定了 ECMAScript 标准规范 ECMA-262;
 - ECMA-262 是一份标准，定义了 ECMAScript;
 - JavaScript 成为了 ECMAScript 最著名的实现之一;
-- 除此之外，ActionScript 和 JScript 也都是 ECMAScript 规范的实现语言；
+- 除此之外，ActionScript 和 JScript 也都是实现了 ECMAScript 规范的语言；
 
 所以说，ECMAScript 是一种规范，而 JavaScript 是这种规范的一种实现。
 
@@ -127,11 +152,11 @@ JavaScript 与 ECMAScript 的关系。
 
 ## 五、JavaScript 的组成部分
 
-ECMAScript 是 JavaScript 的标准，描述了该语言的语法层面的实现
+ECMAScript 是 JavaScript 的标准，描述了该语言的语法层面的实现。
 
-除了语言规范之外，JavaScript 还需要对页面和浏览器进行各种操作，所以还还包括 DOM 操作和 BOM操作
+JavaScript 除了语言规范之外，还需要对页面和浏览器进行各种操作，所以还还包括 DOM 操作和 BOM操作
 
-JavaScript 的组成分为 3 大部分。
+总的来说，JavaScript 的组成分为 3 大部分。
 
 1. ECMAScript 定义语言规范。
 2. DOM 操作文档 Api。
@@ -154,7 +179,7 @@ JavaScript 的组成分为 3 大部分。
 
 JavaScript 可以在浏览器中运行，不同的浏览器有不同的内核组成。
 
-**浏览器内核**的发展历史 4 个：
+浏览器内核发展的四个里程碑：
 
 - Gecko：早期被 Netscape 和 Mozilla Firefox 浏览器使用；
 
@@ -162,38 +187,38 @@ JavaScript 可以在浏览器中运行，不同的浏览器有不同的内核组
 
   > 现在的 Edge 浏览器已经转向 Blink。
 
-- Webkit：苹果基于 KHTML 开发、开源的，用于 Safari，Google Chrome 之前也在使用；
+- Webkit：苹果基于 KHTML 开发、开源的，被用于 Safari，早期的 Google Chrome。
 
-- Blink：是 Webkit 的一个分支，Google 开发，目前应用于 Google Chrome、Edge、Opera 等等知名主流浏览器；
+- Blink：Google 开发，是 Webkit 的一个分支，被用于 Google Chrome、Edge、Opera 等等知名主流浏览器；
 
-浏览器内核也被称为：**排版引擎（layout engine）**，**浏览器引擎（browser engine）**、**页面渲染引擎（rendering engine）**或**样版引擎**。
+浏览器内核也被称为：**排版引擎（layout engine）**，**浏览器引擎（browser engine）**、**页面渲染引擎（rendering engine）**、**样版引擎**。
 
 ### 2.JavaScript 引擎
 
 为什么需要 JavaScript 引擎 4 点？
 
 - 高级语言，都是需要转成最终的机器指令来执行的；
-- 编写的 JavaScript 代码，无论是交给浏览器或者 Node 执行，最后都是需要被 CPU 执行；
+- 编写的 JavaScript 代码，无论是交给浏览器还是 Node 执行，最后都是需要被 CPU 执行；
 - 但是 CPU 只认识自己的指令集，即机器语言；
-- 所以我们需要 JavaScript 引擎，帮助我们将 JavaScript 代码翻译成 CPU 指令来执行；
+- 所以需要 JavaScript 引擎，将 JavaScript 代码翻译成 CPU 指令来执行；
 
-JavaScript 引擎的发展历史 4 点。
+JavaScript 引擎发展的四个里程碑：
 
-- **SpiderMonkey**：第一款 JavaScript 引擎，由 Brendan Eich 开发（也就是 JavaScript 作者）；
+- **SpiderMonkey**：由 Brendan Eich（JavaScript 作者）开发，第一款 JavaScript 引擎；
 - **Chakra**：微软开发，用于 IE 浏览器；
-- **JavaScriptCore**：WebKit 中的 JavaScript 引擎，Apple 公司开发；
-- **V8**：Google 开发的强大 JavaScript 引擎，也帮助 Chrome 从众多浏览器中脱颖而出；
+- **JavaScriptCore**：Apple 公司开发，WebKit 浏览器内核中的 JavaScript 引擎，
+- **V8**：Google 开发，强大的 JavaScript 引擎，帮助 Chrome 从众多浏览器中脱颖而出；
 
 ### 3.浏览器内核、JavaScript 引擎的关系
 
-以 WebKit 为例，WebKit 事实上是由两部分组成的：
+以 WebKit 浏览器内核为例，它事实上是由两部分组成的：
 
 - **WebCore**：负责 HTML 解析、布局、渲染等等相关的工作；
 - **JavaScriptCore（JSCore）**：解析、执行 JavaScript 代码；
 
 ![浏览器内核与JS引擎的关系](NodeAssets/浏览器内核与JS引擎的关系.jpg)
 
-微信小程序，就是使用 JSCore 来运行逻辑层代码的：
+微信小程序，就是使用 JavaScriptSCore 来运行逻辑层代码的：
 
 ![微信中的JSCore](NodeAssets/微信中的JSCore.jpg)
 
@@ -226,9 +251,7 @@ Web 开发
 > - Any application that can be written in JavaScript, will eventually be written in JavaScript.
 > - 任何可以使用JavaScript来实现的应用都最终都会使用JavaScript实现。
 
-## 九、JavaScript 代码编写的 3 个位置
-
-再浏览器中运行 JavaScript 代码，可以在以下三个位置中编写：
+## 九、在 HTML 中编写 JavaScript 代码的 3 个位置
 
 Ⅰ、HTML 代码行内（不推荐）
 
@@ -256,7 +279,7 @@ Web 开发
 index.html
 
 ```html
-<!-- 3.编写位置三: 独立的js文件 -->
+<!-- 3.编写位置三: 独立的 js 文件 -->
 <a class="bing" href="#">bing一下</a>
 <script src="./js/bing.js"></script>
 ```
@@ -274,7 +297,7 @@ bingAEl.onclick = function () {
 
 ## 十、noscript 元素
 
-浏览器不支持 JaavScript 脚本或浏览器对 JavaScript 脚本的支持被关闭。使用 \<noscript\> 标签给用户更好的提示
+当浏览器不支持运行 JaavScript 脚本，或者浏览器对 JavaScript 脚本的运行功能被关闭。使用 noscript 标签给用户更好的提示
 
 ```html
 <body>
@@ -286,12 +309,13 @@ bingAEl.onclick = function () {
 
 ## 十一、HTML 中编写 JavaScript 需注意
 
-注意一: HTML 中的 script 元素，不能写成单标签；在使用外联方式引用 js 文件时，script 标签中不可以写 JavaScript 代码
+注意一: HTML 中的 script 元素，不能写成单标签；
+
+在使用外联方式引用 js 文件时，script 标签中不可以写 JavaScript 代码
 
 ```html
-<!-- 错误写法 -->
-<script src="./js/bing.js" />
-<script src="./js/bing.js">
+<script src="./js/bing.js" /> <!-- × -->
+<script src="./js/bing.js"> <!-- × -->
   alert('Hello bing')
 </script>
 ```
@@ -304,12 +328,12 @@ bingAEl.onclick = function () {
 注意三: 加载顺序
 
 - 作为 HTML 文档内容的一部分，JavaScript 默认遵循 HTML 文档的加载顺序，即自上而下的加载顺序；
-- 推荐将 JavaScript 代码和编写位置放在 body 子元素的最后一行；
+- 推荐将 JavaScript 代码和编写位置（script 元素）放在 body 子元素的最后一行；
 
 注意四: JavaScript 代码严格区分大小写
 
 ```javascript
-// 两个完全不一样的值
+// 两个完全不一样的变量
 var Name = 'zzt'
 var name = 'ttz'
 ```
@@ -353,27 +377,26 @@ alert('您刚才输入的内容是:' + result)
 1. 如果在代码中出现了错误，那么可以在 console 中显示错误；
 2. console 中有个 > 标志，它表示控制台的命令行
    - 在命令行中我们可以直接编写 JavaScript 代码，按下 enter 会执行代码；
-   - 如果希望编写多行代码，可以按下 shift+enter 来进行换行编写；
+   - 如果希望编写多行代码，可以按下 shift + enter 来进行换行编写；
 
 ## 十四、JavaScript 语句和分号
 
-JavaScript 语句（Statement），怎么处理分号。
+JavaScript 语句（Statement）中，当存在换行符（line break）时，在大多数情况下可以省略分号；
 
-1. 当存在换行符（line break）时，在大多数情况下可以省略分号；
-2. JavaScript 将换行符理解成“隐式”的分号；
-3. 这也被称之为自动插入分号（an automatic semicolon）；
+- JavaScript 将换行符理解成“隐式”的分号；
+- 这也被称之为自动插入分号（an automatic semicolon）；
 
-十五、JavaScript 的 3 种注释。
+## 十五、JavaScript 的 3 种注释
 
 - 单行注释 //
 - 多行注释 /\* \*/
 - 文档注释 /\*_自动提示_/
 
-## 十五、开发工具
+## 十六、开发工具
 
 推荐的开发工具：VSCode，其中推荐一个插件。
 
-- ES7+ React/Redux/React-Native snippets，在 react 开发中会使用到的，但是经常用到它里面的打印语句提示，如输入 `clg` 提示 `console.log`；
+- ES7+ React/Redux/React-Native snippets，在 react 开发中会使用到的，但是平常编写 JavaScript 时，会经常用到它里面的打印语句提示，如输入 `clg` 提示 `console.log`；
 
 VSCode 已经内置了括号高亮提示功能，在`setting.json`中设置
 
@@ -382,7 +405,7 @@ VSCode 已经内置了括号高亮提示功能，在`setting.json`中设置
 "editor.guides.bracketPairs":"active"
 ```
 
-## 十六、JavaScript 变量的声明
+## 十七、JavaScript 变量的声明
 
 声明一个变量
 
@@ -407,10 +430,10 @@ var name = 'zzt',
 
 变量名命的规则 4 点，
 
-1. 第一个字符必须是一个字母、下划线（ \_ ）或一个美元符号（ $ ）
-2. 其他字符可以是字母、下划线、美元符号或数字。
-3. 不能使用关键字和保留字命名。
-4. 变量严格区分大小写。
+- 第一个字符必须是一个字母、下划线（ \_ ）或一个美元符号（ $ ）
+- 其他字符可以是字母、下划线、美元符号或数字。
+- 不能使用关键字和保留字命名。
+- 变量严格区分大小写。
 
 变量练习，不借助第 3 个变量来完成变量交换。
 
@@ -435,20 +458,19 @@ console.log(inputInfo)
 
 - 变量声明未赋值，默认值是 `undefined`。
 
-- 没有使用 var 声明变量也可以，但是不推荐（事实上在浏览器中会被添加到 window 对象上）
+- 没有使用 var 声明变量，直接赋值也可以，但是不推荐（事实上在浏览器中会被添加到 window 对象上）
 
   ```javascript
   // admin 被添加到了 window 上
   admin = 'zzt'
   ```
 
-## 十七、JavaScript 变量的数据类型
+## 十八、JavaScript 变量的数据类型
 
 - 将值赋值给一个变量，那么这个变量就具备了特定的类型；
-- 一个变量可以在前一刻是个字符串，下一刻就存储一个数字；
-- 允许这种操作的编程语言，例如 JavaScript，被称为“动态类型”（dynamically typed）的编程语言。
+- 一个变量可以在前一刻是个字符串，下一刻就存储一个数字；允许这种操作的编程语言，例如 JavaScript，被称为“动态类型”（dynamically typed）的编程语言。
 
-## 十八、JavaScript 的八种数据类型
+## 十九、JavaScript 的八种数据类型
 
 - Number
 - String
@@ -459,7 +481,7 @@ console.log(inputInfo)
 - BigInt（后续了解）
 - Symbol（后续了解）
 
-## 十九、typeof 操作符
+## 二十、typeof 操作符
 
 typeof 操作符对应的 JS 数据类型返回的值。
 
@@ -476,4 +498,4 @@ typeof 操作符对应的 JS 数据类型返回的值。
 typeof 操作符的 2 种用法，两种用法效果相同。
 
 - `typeof xxx`
-- `typeof(xxx)` () 是将内容当成一个整体，并不是函数的意思。
+- `typeof(xxx)`：() 是将内容当成一个整体，并不是函数的意思。
