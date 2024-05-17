@@ -36,7 +36,8 @@
 缺点：
 
 - 不同的机器有不同的汇编语言语法和编译器，代码缺乏可移植性；
-- 即使是完成简单的功能，也需要大量的汇编语言代码，很容易产生 BUG，难调试；
+- 即使是完成简单的功能，也需要大量的汇编语言代码；
+- 很容易产生 BUG，难调试；
 
 应用场景：操作系统内核、驱动程序、单片机程序；
 
@@ -62,7 +63,7 @@ JavaScript 是什么？维基百科定义 2 点。
 - JavaScript 是一种高级的、**解释型**的编程语言；
 - JavaScript 是一门基于**原型**、**头等函数**的语言，是一门**多范式**的语言，它支持面向对象程序设计，指令式编程，以及函数式编程；
 
-> 解释型编程语言（Interpreted Language）是指那些在运行时由解释器逐行解释并执行代码的编程语言。与编译型编程语言不同，解释型语言不需要在执行之前将整个程序编译成机器码。相反，它们在每次运行时都会逐行读取和执行源代码。这种方式使得开发和调试更加灵活和快速，但通常会带来一些性能上的开销。常见的解释型编程语言包括：
+> **解释型编程语言（Interpreted Language）**是指那些在运行时由解释器逐行解释并执行代码的编程语言。与编译型编程语言不同，解释型语言不需要在执行之前将整个程序编译成机器码。相反，它们在每次运行时都会逐行读取和执行源代码。这种方式使得开发和调试更加灵活和快速，但通常会带来一些性能上的开销。常见的解释型编程语言包括：
 >
 > - **Python**
 > - **JavaScript**
@@ -154,7 +155,7 @@ JavaScript 与 ECMAScript 的关系。
 
 ECMAScript 是 JavaScript 的标准，描述了该语言的语法层面的实现。
 
-JavaScript 除了语言规范之外，还需要对页面和浏览器进行各种操作，所以还还包括 DOM 操作和 BOM操作
+JavaScript 除了语言规范之外，还需要对页面和浏览器进行各种操作，所以还还包括 DOM 操作和 BOM 操作
 
 总的来说，JavaScript 的组成分为 3 大部分。
 
@@ -195,7 +196,7 @@ JavaScript 可以在浏览器中运行，不同的浏览器有不同的内核组
 
 ### 2.JavaScript 引擎
 
-为什么需要 JavaScript 引擎 4 点？
+JavaScript 引擎有什么用？
 
 - 高级语言，都是需要转成最终的机器指令来执行的；
 - 编写的 JavaScript 代码，无论是交给浏览器还是 Node 执行，最后都是需要被 CPU 执行；
@@ -249,47 +250,47 @@ Web 开发
 > Stack Overflow 的创立者之一的 Jeff Atwood 在 2007 年提出了著名的 Atwood 定律：
 >
 > - Any application that can be written in JavaScript, will eventually be written in JavaScript.
-> - 任何可以使用JavaScript来实现的应用都最终都会使用JavaScript实现。
+> - 任何可以使用 JavaScript 来实现的应用都最终都会使用 JavaScript 实现。
 
 ## 九、在 HTML 中编写 JavaScript 代码的 3 个位置
 
-Ⅰ、HTML 代码行内（不推荐）
+编写位置一：编写在 html 内部(了解)（不推荐）
 
 ```html
-<!-- 1.编写位置一: 编写在 html 内部(了解) -->
 <a href="#" onclick="alert('百度一下')">百度一下</a>
+
 <a href="javascript: alert('百度一下')">百度一下</a>
 ```
 
-Ⅱ、\<script\> 标签中
+编写位置二：编写在 script 元素之内。
 
 ```html
-<!-- 2.编写位置二: 编写在 script 元素之内 -->
 <a class="google" href="#">Google一下</a>
+
 <script>
   var googleAEl = document.querySelector('.google')
+  
   googleAEl.onclick = function () {
     alert('Google一下')
   }
 </script>
 ```
 
-Ⅲ、外部 JS 文件
+编写位置三：独立的 js 文件
 
 index.html
 
 ```html
-<!-- 3.编写位置三: 独立的 js 文件 -->
 <a class="bing" href="#">bing一下</a>
+
 <script src="./js/bing.js"></script>
 ```
 
 bing.js
 
 ```javascript
-// 获取元素
 var bingAEl = document.querySelector('.bing')
-// 监听元素的点击
+
 bingAEl.onclick = function () {
   alert('bing一下')
 }
@@ -314,8 +315,11 @@ bingAEl.onclick = function () {
 在使用外联方式引用 js 文件时，script 标签中不可以写 JavaScript 代码
 
 ```html
-<script src="./js/bing.js" /> <!-- × -->
-<script src="./js/bing.js"> <!-- × -->
+<!-- × -->
+<script src="./js/bing.js" />
+
+<!-- × -->
+<script src="./js/bing.js">
   alert('Hello bing')
 </script>
 ```
@@ -445,7 +449,7 @@ num2 = num1 - num2
 num1 = num1 - num2
 ```
 
-变量练习，浏览器页面中输入一个值，JS 用变量接受。
+变量练习，浏览器页面中输入一个值，使用 Javascript 用变量接受。
 
 ```javascript
 var inputInfo = prompt('请输入一个值吧!')
@@ -458,17 +462,18 @@ console.log(inputInfo)
 
 - 变量声明未赋值，默认值是 `undefined`。
 
-- 没有使用 var 声明变量，直接赋值也可以，但是不推荐（事实上在浏览器中会被添加到 window 对象上）
+- 没有使用 var 关键字声明变量，直接赋值也可以，但是不推荐（在浏览器中，这种做法，变量被添加到 window 对象上）
 
   ```javascript
-  // admin 被添加到了 window 上
+  // 在浏览器运行以下代码，admin 被添加到了 window 对象上
   admin = 'zzt'
   ```
 
 ## 十八、JavaScript 变量的数据类型
 
-- 将值赋值给一个变量，那么这个变量就具备了特定的类型；
-- 一个变量可以在前一刻是个字符串，下一刻就存储一个数字；允许这种操作的编程语言，例如 JavaScript，被称为“动态类型”（dynamically typed）的编程语言。
+在 JavaScript 中，将一个值，赋值给一个变量，那么这个变量就具备了特定的类型；
+
+在 JavaScript 中，一个变量可以在前一刻是个字符串，下一刻就存储一个数字；允许这种操作的编程语言，被称为“动态类型”（dynamically typed）的编程语言。
 
 ## 十九、JavaScript 的八种数据类型
 
@@ -476,14 +481,14 @@ console.log(inputInfo)
 - String
 - Boolean
 - Undefined （值和类型相同）
-- Null （值和类型相同）,一般赋值给空对象
+- Null （值和类型相同）,一般赋值给空对象用于对象的初始化。
 - Object，复杂类型
 - BigInt（后续了解）
 - Symbol（后续了解）
 
 ## 二十、typeof 操作符
 
-typeof 操作符对应的 JS 数据类型返回的值。
+typeof 操作符作用于不同 Javascript 数据类型的返回值。
 
 - Number - “number”
 - String - "string"
@@ -493,9 +498,10 @@ typeof 操作符对应的 JS 数据类型返回的值。
 - Object - "object"
 - BigInt - "bigint"
 - Symbol - "symbol"
-- Fuction - "function"
+
+typeof 操作符作用于函数类型（Fuction ）的变量，返回 "function"
 
 typeof 操作符的 2 种用法，两种用法效果相同。
 
 - `typeof xxx`
-- `typeof(xxx)`：() 是将内容当成一个整体，并不是函数的意思。
+- `typeof(xxx)`：`()` 是将内容当成一个整体，并不是函数的意思。
