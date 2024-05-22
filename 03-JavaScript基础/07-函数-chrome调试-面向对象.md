@@ -344,4 +344,25 @@ var obj = {
 目前掌握两个 this 指向的判断方法：
 
 - 在全局环境下面，this 指向 window 对象；
+
+  ```javascript
+  function foo() {
+    console.log(this) // windows
+  }
+  
+  foo()
+  ```
+
 - 通过对象调用函数，函数中的 this 关键字，指向调用的对象；
+
+  ```javascript
+  var obj = {
+    bar: function() {
+      console.log('this') // obj
+    }
+  }
+  
+  obj.bar()
+  ```
+
+  

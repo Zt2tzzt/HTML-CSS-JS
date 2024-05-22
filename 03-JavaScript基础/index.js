@@ -1,12 +1,5 @@
-var obj = {
-  name: 'zzt',
-  running: function () {
-    console.log(obj.name + " running")
-  },
-  eating: function () {
-    console.log(obj.name + " eating")
-  },
-  studying: function () {
-    console.log(obj.name + " studying")
-  },
-}
+const months = ['Jan', 'March', 'April', 'June']
+
+const res =months.splice(1, 0, 'Feb')
+
+console.log(months)
