@@ -61,7 +61,7 @@
 JavaScript 是什么？维基百科定义 2 点。
 
 - JavaScript 是一种高级的、**解释型**的编程语言；
-- JavaScript 是一门基于**原型**、**头等函数**的语言，是一门**多范式**的语言，它支持面向对象程序设计，指令式编程，以及函数式编程；
+- JavaScript 是一门基于**原型**、**头等函数**的语言，是一门**多范式**的语言，它支持**面向对象**程序设计，**指令式编程**，以及**函数式编程**；
 
 > **解释型编程语言（Interpreted Language）**是指那些在运行时由解释器逐行解释并执行代码的编程语言。与编译型编程语言不同，解释型语言不需要在执行之前将整个程序编译成机器码。相反，它们在每次运行时都会逐行读取和执行源代码。这种方式使得开发和调试更加灵活和快速，但通常会带来一些性能上的开销。常见的解释型编程语言包括：
 >
@@ -80,7 +80,7 @@ JavaScript 是什么？维基百科定义 2 点。
 > - **Go**
 > - **Rust**
 >
-> **混合型语言（Hybrid Languages）**结合了编译型和解释型语言的特点。例如，Java 在编译时将源代码编译成中间字节码，然后由Java 虚拟机（JVM）解释执行。类似的，还有 C#，它被编译成中间语言（IL），然后在 .NET 框架上运行。这样的设计兼顾了编译和解释的优势：
+> **混合型语言（Hybrid Languages）**结合了编译型和解释型语言的特点。例如，Java 在编译时将源代码编译成中间字节码，然后由 Java 虚拟机（JVM）解释执行。类似的，还有 C#，它被编译成中间语言（IL），然后在 .NET 框架上运行。这样的设计兼顾了编译和解释的优势：
 >
 > - **Java**
 > - **C#**
@@ -101,7 +101,7 @@ JavaScript 是什么？维基百科定义 2 点。
 网景公司当时想要选择一种语言来嵌入到浏览器中：
 
 - 采用现有的语言，比如 Perl、Python、Tcl、Scheme 等等, 允许它们直接嵌入网页;
-- 1995 年网景公司招募了程序员 Brendan Eich，希望将 Scheme 语言作为网页脚本语言的可能性；
+- 1995 年网景公司招募了程序员 Brendan Eich，希望将 Scheme 语言作为网页脚本语言；
 
 就在这时，发生了另外一件大事：1995 年 Sun 公司将 Oak 语言改名为 Java，正式向市场推出；
 
@@ -111,13 +111,13 @@ JavaScript 是什么？维基百科定义 2 点。
 
 ![Java](NodeAssets/Java.jpg)
 
-但是 Brendan Eich 对此并不感兴趣，他用10天时间设计出来了 JavaScript；
+但是 Brendan Eich 对此并不感兴趣，他用 10 天时间设计出来了 JavaScript；
 
 - 最初这门语言的名字是 Mocha（摩卡）；
-- 在 Navigator2.0 beta 版本更名为 LiveScript；
-- 在 Navigator2.0 beta 3 版本正式重命名为 JavaScript，当时是为了给这门语言搭上 Java 这个热词；
+- 在 Navigator 2.0 beta 版本更名为 LiveScript；
+- 在 Navigator 2.0 beta 3 版本正式重命名为 JavaScript，当时是为了给这门语言搭上 Java 这个热词；
 
-当然10天设计出来语言足够说明 Brendan Eich 是天才，但是这门语言当时更像是一个多种语言的大杂烩;
+当然 10 天设计出来语言足够说明 Brendan Eich 是天才，但是这门语言当时更像是一个多种语言的大杂烩;
 
 - 借鉴 C 语言的基本语法；
 - 借鉴 Java 语言的数据类型和内存管理；
@@ -155,7 +155,7 @@ JavaScript 与 ECMAScript 的关系。
 
 ECMAScript 是 JavaScript 的标准，描述了该语言的语法层面的实现。
 
-JavaScript 除了语言规范之外，还需要对页面和浏览器进行各种操作，所以还还包括 DOM 操作和 BOM 操作
+JavaScript 除了语言规范之外，还需要对页面和浏览器进行各种操作，所以还包括 DOM 操作和 BOM 操作
 
 总的来说，JavaScript 的组成分为 3 大部分。
 
@@ -262,7 +262,7 @@ Web 开发
 <a href="javascript: alert('百度一下')">百度一下</a>
 ```
 
-编写位置二：编写在 script 元素之内。
+编写位置二：编写在 HTML 文件的 script 元素之内。
 
 ```html
 <a class="google" href="#">Google一下</a>
@@ -324,12 +324,12 @@ bingAEl.onclick = function () {
 </script>
 ```
 
-注意二: 注意一: HTML 中的 script 元素，可省略 type 属性
+注意二:： HTML 中的 script 元素，可省略 type 属性
 
 - 以前的写法，`<script type="text/javascript">` ；
 - 现在可省略 `type` 属性，因为 JavaScript 是所有现代浏览器以及 HTML5 中的默认脚本语言；
 
-注意三: 加载顺序
+注意三：加载顺序
 
 - 作为 HTML 文档内容的一部分，JavaScript 默认遵循 HTML 文档的加载顺序，即自上而下的加载顺序；
 - 推荐将 JavaScript 代码和编写位置（script 元素）放在 body 子元素的最后一行；
@@ -371,6 +371,7 @@ document.write('Hello Kobe')
 
 ```javascript
 var result = prompt('请输入你的名字: ')
+
 alert('您刚才输入的内容是:' + result)
 ```
 
@@ -401,13 +402,6 @@ JavaScript 语句（Statement）中，当存在换行符（line break）时，�
 推荐的开发工具：VSCode，其中推荐一个插件。
 
 - ES7+ React/Redux/React-Native snippets，在 react 开发中会使用到的，但是平常编写 JavaScript 时，会经常用到它里面的打印语句提示，如输入 `clg` 提示 `console.log`；
-
-VSCode 已经内置了括号高亮提示功能，在`setting.json`中设置
-
-```json
-"editor.bracketPairColorization.enabled": true,
-"editor.guides.bracketPairs":"active"
-```
 
 ## 十七、JavaScript 变量的声明
 
@@ -453,6 +447,7 @@ num1 = num1 - num2
 
 ```javascript
 var inputInfo = prompt('请输入一个值吧!')
+
 console.log(inputInfo)
 ```
 
@@ -499,7 +494,7 @@ typeof 操作符作用于不同 Javascript 数据类型的返回值。
 - BigInt - "bigint"
 - Symbol - "symbol"
 
-typeof 操作符作用于函数类型（Fuction ）的变量，返回 "function"
+> typeof 操作符作用于函数类型（Fuction ）的变量，返回 "function"
 
 typeof 操作符的 2 种用法，两种用法效果相同。
 
