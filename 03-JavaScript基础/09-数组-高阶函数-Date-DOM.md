@@ -68,7 +68,7 @@ console.log(arr2) // ['cba']
 `concat` 方法和 `push` 方法有何区别？
 
 - `push` 方法会修改原数组；`conca` 方法（纯函数）不会修改数组。
-- `push` 方法会将参数中的数组，作为一个元素，加入到调用的数组对象末尾。
+- `push` 方法会将参数中的数组，作为一个元素，加入到调用方法的数组对象末尾。
 
 ```javascript
 var arr1 = ['abc']
@@ -159,7 +159,7 @@ var students = [
 ]
 
 // 按照年龄，升序排列。
-students.sort((item1, item2) => item1.age - item2.age)
+students.sort((a, b) => a.age - b.age)
 ```
 
 [Array.prototype.reverse()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) `arr.reverse()` 将数组中元素的位置颠倒，并返回该数组。
@@ -390,14 +390,14 @@ function testPerformance(fn) {
 
 ## 三、DOM
 
-前面我们花了很多时间学习 JavaScript 的基本语法，但是这些基本语法，好像和做网页没有什么关系，和前面学习的 HTML、CSS 也没有什么关系呢？
+前面我们花了很多时间学习 JavaScript 的基本语法，但是这些基本语法，好像和做网页没有什么关系，和前面学习的 HTML、CSS 也没有什么关系？
 
 - 这是因为我们前面学习的部分属于 ECMAScript，也就是 JavaScript 本身的语法部分；
 - 除了语法部分之外，我们还需要学习浏览器提供给我们开发者的 DOM、BOM 相关的 API，才能对页面、浏览器进行操作；
 
 ### 1.window 对象
 
-前面我们学习了一个 window 的全局对象，事实上，它就包含了这些内容：
+前面我们学习了一个 window 全局对象，事实上，它就包含了这些内容：
 
 - 我们已经学习了 JavaScript 语法部分的 Object、Array、Date 等等；
 - 另外还有 DOM、BOM 部分；
