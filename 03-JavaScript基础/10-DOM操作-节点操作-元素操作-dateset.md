@@ -1,43 +1,17 @@
-# DOM 一 - 基本使用
+# DOM 基本使用（一）
 
-DOM 意味着 HTML 文件中所有内容都会被抽象成对象，包括文本和注释。
-
----
-
-Document 类和 document 对象有什么区别？
-
-- Document 类的实例，是全局的 document 对象。
-- Document 类不是 Element 的父类。它们都继承自 Node 类
-
----
-
-document 对象有什么用？
-
-- 对 DOM 的所有操作都是从 document 对象开始的；它是 DOM 的 入口，可以从 document 开始去访问任何节点元素；
-
-```javascript
-document.doctype // 获取文档申明
-document.documentElement // 获取 html 元素
-document.head // 获取 head 元素
-document.body // 获取 body 元素
-```
-
----
-
-区分 document 中的节点（Node）和元素（Element），
+document 对象中，有两个概念：**节点（Node）**和**元素（Element）**，
 
 - 节点（Node）中包含了**元素，文本，注释等**内容。
-- 元素（Element）指的是 HTML 中的元素。
+- 元素（Element）指的是 **HTML 中的元素**。
 
----
+## 一、节点操作一
 
-# 节点操作一 - 节点导航
+### 1.节点导航
 
-什么是节点（Node）之间的导航（navigator）？
+节点（Node）之间的导航（navigator），指的是：获取到一个节点（Node）对象后，根据这个节点对象，去获取其他的节点对象。
 
-- 获取到一个节点（Node）对象后，根据这个节点对象去获取其他的节点对象。
-
-有哪些相关 api？
+节点之间存在如下的关系（api）：
 
 - 父节点：`parentNode`
 - 前兄弟节点：`previousSibling`
@@ -46,8 +20,11 @@ document.body // 获取 body 元素
 - 第一个子节点：`firstChild`
 - 最后一个子节点：`lastChild`
 
+它们之间是对象的关系。
+
 ```javascript
 var bodyEl = document.body
+
 var bodyElFirstChild = bodyEl.firstChild // 获取 body 下第一个节点（Node）对象
 ```
 
@@ -55,15 +32,13 @@ var bodyElFirstChild = bodyEl.firstChild // 获取 body 下第一个节点（Nod
 
 ![节点（Node）之间的导航（navigator）](NodeAssets/节点（Node）之间的导航（navigator）.jpg)
 
----
+## 二、元素操作一
 
-# 元素操作一 - 元素导航
+### 1. 元素导航
 
-什么是元素（Element）之间的导航（navigator）？
+元素（Element）之间的导航（navigator），指的是：获取到一个元素（Element）对象后，根据这个元素获取其他的元素对象。
 
-- 获取到一个元素（Element）对象后，根据这个元素获取其他的元素对象。
-
-有哪些相关 api？
+元素之间存在如下关系（api）：
 
 - 父元素：`parentElement`
 - 前兄弟节点：`previousElementSibling`
@@ -74,6 +49,7 @@ var bodyElFirstChild = bodyEl.firstChild // 获取 body 下第一个节点（Nod
 
 ```javascript
 var bodyEl = document.body
+
 var childElements = bodyEl.children // 获取 body 元素所有子元素(element)对象。
 ```
 
@@ -81,57 +57,56 @@ var childElements = bodyEl.children // 获取 body 元素所有子元素(element
 
 ![元素（Element）之间的导航（navigator）](NodeAssets/元素（Element）之间的导航（navigator）.jpg)
 
----
+> vue，react 框架，底层也要操作 DOM，因为 DOM 操作有回流机制，所以在框架中只需操作一次 DOM 性能更高，
 
-vue，react 框架，底层也要操作 DOM，因为 DOM 操作有回流机制，所以在框架中只需操作一次 DOM 性能更高，
+### 2.表格元素导航
 
----
+HTML 中的表格（table）元素的导航（navigator）关系如下：
 
-了解什么是表格（table）元素的导航（navigator）。
+table 元素支持以下属性：
 
-- table 元素支持以下属性：
+- `table.rows`，表示\<tr\> 元素的集合；
+- `table.caption/tHead/tFoot`，表示引用元素 \<caption\>，\<thead\>，\<tfoot\>；
+- `table.tBodies`，表示\<tbody\> 元素的集合，table 中可能有多个 tbody；
 
-  - `table.rows` — \<tr\> 元素的集合；
-  - `table.caption/tHead/tFoot` — 引用元素 \<caption\>，\<thead\>，\<tfoot\>；
-  - `table.tBodies` — \<tbody\> 元素的集合，table 中可能有多个 tbody；
+\<thead\>，\<tfoot\>，\<tbody\> 元素提供了 rows 属性
 
-- \<thead\>，\<tfoot\>，\<tbody\> 元素提供了 rows 属性
+- 比如：`tbody.rows`，表示表格内部 \<tr\> 元素的集合；
 
-  - `tbody.rows` — 表格内部 \<tr\> 元素的集合；
+\<tr\>
 
-- \<tr\>
+- `tr.cells`，表示在给定 \<tr\> 中的 \<td\> 和 \<th\> 单元格的集合；
+- `tr.sectionRowIndex`，表示给定的 \<tr\> 在封闭的 \<thead\>/\<tbody\>/\<tfoot\> 中的位置（索引）；
+- `tr.rowIndex`，表示在整个表格中 \<tr\> 的编号（包括表格的所有行）；
 
-  - `tr.cells` — 在给定 \<tr\> 中的 \<td\> 和 \<th\> 单元格的集合；
-  - `tr.sectionRowIndex` — 给定的 \<tr\> 在封闭的 \<thead\>/\<tbody\>/\<tfoot\> 中的位置（索引）；
-  - `tr.rowIndex` — 在整个表格中 \<tr\> 的编号（包括表格的所有行）；
+\<td\> 和 \<th\>：
 
-- \<td\> 和 \<th\>：
-  - `td.cellIndex` — 在封闭的 \<tr\> 中单元格的编号。
+- `td.cellIndex`，表示在封闭的 \<tr\> 中单元格的编号。
 
 完成案例练习。
 
 ```javascript
-var tableEl = document.body.firstElementChild
+var tableEl = document.body.firstElementChild // body 元素的第一个子元素，是一个表格
+
 for (var i = 0; i < tableEl.rows.length; i++) {
   var rowEl = tableEl.rows[i]
   var cellEl = rowEl.cells[i]
+
   cellEl.style.backgroundColor = 'red'
   cellEl.style.color = 'white'
 }
 ```
 
----
+> 在 VSCode 编辑工具中，利用 TypeScript 断言语法，增强提示功能的（运行 JavaScript 代码时，要将它删除）。
+>
+> ```javascript
+> var tableEl = document.body.firstElementChild as HTMLTableElement
+> tableEl.rows // 有提示
+> ```
 
-了解增强 VSCode 提示功能的方法，用断言语法，但运行代码时会报错，运行代码时要将它删除。
+### 3.表单元素导航
 
-```javascript
-var tableEl = document.body.firstElementChild as HTMLTableElement
-tableEl.rows // 有提示
-```
-
----
-
-了解什么是表单（form）元素的导航（navigator）
+表单（form）元素的导航（navigator）关系如下：
 
 ```html
 <form action="">
@@ -139,74 +114,85 @@ tableEl.rows // 有提示
 </form>
 ```
 
-- form 元素可以直接通过 document 来获取：`document.forms`
+form 元素可以直接通过 `document` 对象的 `forms` 属性，来获取
 
-  ```javascript
-  var formEl = document.forms[0]
-  ```
+- 比如：`document.forms`
 
-- form 元素中的内容可以通过 elements 来获取：`form.elements`
+```javascript
+var formEl = document.forms[0]
+```
 
-  ```javascript
-  var elements = formEl.elements
-  ```
+form 元素中的子元素对象集合，可以通过 form 元数对象的 `elements` 属性，来获取。
 
-- form 子元素通过 name 来获取：`elements.[name]`
+- 比如：`form.elements`
 
-  ```javascript
-  var inputEl = elements.account
-  ```
+```javascript
+var elements = formEl.elements
+```
 
----
+form 子元素中的子元素对象，可以通过子元素的 name 属性来获取。
 
-# DOM 二 - 节点搜索
+- 比如：`elements.[name]`
 
-DOM 中获取任意元素的 2 种方式。
+```javascript
+var inputEl = elements.account
+```
 
-- 通过 DOM 导航属性（navigation property）
+## 二、节点操作二
 
-- document 对象上，获取元素的方法。5 种：
+### 1.节点搜索
+
+当元素彼此靠近或者相邻时，DOM 导航属性（navigation property）非常有用。
+
+然而，在实际开发中，我们希望可以任意的获取到某一个元素对象，应该如何操作呢？
+
+DOM  （document 对象）中，M为我们提供了获取元素的方法：
 
 | 方法名                         | 搜索方式     | 在元素上调用（查找该元素后代） | 返回的对象是实时的 |
 | ------------------------------ | ------------ | ------------------------------ | ------------------ |
 | querySelector                  | CSS-selector | ✔                              | ❌                 |
 | querySelectorAll               | CSS-selector | ✔                              | ❌                 |
-| getElementById                 | id           | ❌                             | ❌                 |
+| getElementById（偶尔用）       | id           | ❌                             | ❌                 |
 | getElementsByName（不常用）    | name         | ❌                             | ✔                  |
 | getElementsByTagName（偶尔用） | tag or \*    | ✔                              | ✔                  |
 | getElementsByClassName         | class        | ✔                              | ✔                  |
 
-- querySelectorAll（返回 NodeList 对象，不是数组，但可用 `forEach` 方法）
+`querySelectorAll` 方法，返回 NodeList 对象，它不是一个数组，而是一个 array-like 对象，可用 `forEach` 方法进行遍历。
 
-开发中如何选择？
+`getElementById` 方法，偶尔会使用或，通常用于适配一些低版本浏览器时；
 
-- 当元素彼此靠近或相邻时，或需要拿一组数据时，选择导航的方式。
-- 当需要任意的精确的获取某一个元素，选择使用 document 对象上，搜索元素的 5 种方法。
+在实际开发中：
 
----
+- 当元素彼此靠近或相邻时，并需要拿一组元素对象集合时，选择导航的方式。
+- 当需要任意的精确的获取某一个元素对象，通常使用 `document` 对象上，搜索元素的 5 种方法。
 
-# 节点操作二 - 节点属性
+### 2.节点属性
 
-节点（Node）的属性 `nodeType` 有什么用？
+现在，我们已经可以获取到节点对象了，接下来看一下节点中有哪些常见的属性：
 
-- 获取节点类型的属性；它有一个数值型值（numeric value）；
+- 当然，不同的节点类型，有不同的属性；
+- 这里我们主要讨论节点共有的属性；
 
-| 常量                    | 值  | 描述                                                                      |
-| ----------------------- | --- | ------------------------------------------------------------------------- |
-| Node.ELEMENT_NODE       | 1   | 一个元素节点，例如 \<p\> 和 \<div\>                                       |
-| Node.TEXT_NODE          | 3   | Element 或者 Attr 中实际的 文字                                           |
-| Node.COMMENT_NODE       | 8   | 一个 Comment 节点.                                                        |
-| Node.DOCUMENT_NODE      | 9   | 一个 Document 节点。                                                      |
-| Node.DOCUMENT_TYPE_NODE | 10  | 描述文档类型的 DocumentType 节点。例如 <!DOCTYPEhtml> 就是用于 HTML5 的。 |
+#### 1.nodeType
 
----
+节点（Node）的 `nodeType` 属性，用于获取节点的类型；它有一个数值型值（numeric value）；
 
-节点（Node）的属性 `nodeName ` 和 `tagName ` 有什么不同？
+| 常量                    | 值   | 描述                                                         |
+| ----------------------- | ---- | ------------------------------------------------------------ |
+| Node.ELEMENT_NODE       | 1    | 一个元素节点，例如 \<p\> 和 \<div\>                          |
+| Node.TEXT_NODE          | 3    | Element 或者 Attr 中实际的 文字                              |
+| Node.COMMENT_NODE       | 8    | 一个 Comment 节点.                                           |
+| Node.DOCUMENT_NODE      | 9    | 一个 Document 节点。                                         |
+| Node.DOCUMENT_TYPE_NODE | 10   | 描述文档类型的 DocumentType 节点。例如 `<!DOCTYPEhtml>` 就是用于 HTML5 的文档声明。 |
 
-- tagName，属性仅适用于 Element 节点，获取元素的标签名。
-- nodeName，是为任意 Node 节点定义的，获取节点的名称。
-  - 对于元素，它的意义与 tagName 相同，所以使用哪一个都是可以的；
-  - 对于其他节点类型（text，comment 等），它拥有一个对应节点类型的字符串；
+#### 2.nodeName、tagName
+
+节点（Node）有属性 `nodeName ` 和 `tagName `
+
+- `tagName`，用于获取元素的标签名，该属性仅适用于元素（Element）节点，获取元素的标签名。
+- `nodeName`，用于获取节点的名字，是为任意 Node 节点定义的。
+  - 对于元素，该属性的意义与 `tagName` 属性相同，所以使用哪一个都是可以的；
+  - 对于其他节点类型（比如：文本，注释...），它拥有一个对应节点类型的字符串；
 
 ---
 

@@ -464,6 +464,10 @@ Document 节点表示的整个载入的网页，它的实例是全局的 documen
 
 使用 `document` 对象获取  html 元素，body 元素，head 元素。
 
+document 对象有什么用？
+
+- 对 DOM 的所有操作都是从 document 对象开始的；它是 DOM 的 入口，可以从 document 开始去访问任何节点元素；
+
 ```javascript
 document.documentElement // html 元素
 
@@ -474,7 +478,14 @@ document.head
 document.doctype // 文档声明 <!DOCTYPE html>
 ```
 
+DOM 意味着 HTML 文件中，所有内容都会被抽象成对象，包括文本和注释。
+
 #### 4.DOM 继承关系
+
+Document 类和 document 对象有什么区别？
+
+- Document 类的实例，是全局的 document 对象。
+- Document 类不是 Element 的父类。它们都继承自 Node 类。
 
 ![DOM的继承关系图](NodeAssets/DOM的继承关系图.jpg)
 
