@@ -187,62 +187,111 @@ DOM  （document 对象）中，M为我们提供了获取元素的方法：
 
 #### 2.nodeName、tagName
 
-节点（Node）有属性 `nodeName ` 和 `tagName `
+节点（Node）有属性 `nodeName` 和 `tagName`
 
 - `tagName`，用于获取元素的标签名，该属性仅适用于元素（Element）节点，获取元素的标签名。
 - `nodeName`，用于获取节点的名字，是为任意 Node 节点定义的。
   - 对于元素，该属性的意义与 `tagName` 属性相同，所以使用哪一个都是可以的；
   - 对于其他节点类型（比如：文本，注释...），它拥有一个对应节点类型的字符串；
 
----
+#### 3.innerHTML
 
-节点（Node）的属性 `data`（`nodeValue`），`innerHTML`，`outerHTML`，`textContent `有什么用，
+节点（Node）有属性 `innerHTML`，它用于：
 
-- data（nodeValue）
-  - 针对非元素的节点，获取数据。与 nodeValue 效果相同。
-- innerHTML 属性
-  - 将元素中的 HTML 获取为字符串形式；
-  - 也可设置元素中的内容；
-- outerHTML 属性
-  - 包含了元素的完整 HTML
-  - innerHTML 加上元素本身一样；
-- textContent 属性
+- 将元素中的 HTML 获取为字符串形式；
+- 也可设置元素中的内容；
 
-  - 仅仅获取元素中的文本内容；
+#### 4.outerHTML
 
-innerHTML 和 textContent 有什么区别？
+节点（Node）有属性 `outerHTML`，它用于：
 
-- 使用 innerHTML 设值时，将值“作为 HTML 代码”插入，带有所有 HTML 标签。
-- 使用 textContent 设值时，将值“作为文本”插入，所有符号（symbol）均按字面意义处理。
+- 包含了元素的完整 HTML 字符串。
+- 相当于 `innerHTML` 属性值，再加上元素本身；
+
+#### 5.textContent
+
+节点（Node）有属性 `textContent`，它用于：
+
+- 获取元素中的文本内容；
+
+`innerHTML` 属性和 `textContent` 属性有何区别：
+
+- 使用 innerHTML 设值时，将值“作为 HTML 代码”插入到节点中，可以解析 HTML 标签。
+- 使用 textContent 设值时，将值“作为文本”插入到节点中，所有符号（symbol）均按字面意义处理。
 
 ```javascript
 divNode.innerHTML = '<h2>呵呵呵呵</h2>'
+
 divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 ```
 
----
+#### 6.nodevalue、data
+
+节点（Node）的属性 `data` 属性，与 `nodeValue` 属性效果一样，
+
+用于获取非元素（Element）节点的数据。
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <!-- 我是注释~ -->
+
+    <script>
+      var textNode = document.body.firstChild
+      console.log('textNode value:', textNode.nodeValue) // ""
+
+      var commentNode = textNode.nextSibling
+      console.log('commentNode value:', commentNode.nodeValue) // 我是注释~
+    </script>
+  </body>
+</html>
+```
+
+#### 7.hidden
 
 节点（Node）的属性 `hidden`，同时也是 HTML 元素的全局属性（布尔类型）。
 
 ```html
-<body>
-  <div id="box">哈哈哈哈哈</div>
-  <button class="btn">切换</button>
-  <script>
-    // 1.获取元素
-    var boxEl = document.querySelector('#box')
-    var btnEl = document.querySelector('.btn')
-    // 2.监听btn的点击
-    btnEl.onclick = function () {
-      boxEl.hidden = !boxEl.hidden
-    }
-  </script>
-</body>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="box">哈哈哈哈哈</div>
+    <button class="btn">切换</button>
+
+    <script>
+      // 1.获取元素
+      var boxEl = document.querySelector('#box')
+      var btnEl = document.querySelector('.btn')
+
+      // 2.监听btn的点击
+      btnEl.onclick = function () {
+        boxEl.hidden = !boxEl.hidden
+      }
+    </script>
+  </body>
+</html>
 ```
 
----
+## 三、元素操作二
 
-# 元素操作二 - 元素属性
+### 1.元素属性
+
+#### 1.value
+
+元素（Element）的 value 属性，
+
+用于获取 input、select、textarea （HTMLInputElement，HTMLSelectElement……）的 value。<!--EndFragment--> </body> </html></div>
 
 节点元素（Element）还有哪些属性，例举 3 个。
 
