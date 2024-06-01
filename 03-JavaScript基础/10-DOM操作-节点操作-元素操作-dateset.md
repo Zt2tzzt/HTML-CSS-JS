@@ -287,153 +287,255 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 
 ### 1.元素属性
 
-#### 1.value
+前面我们已经学习了如何获取节点，以及节点通常所包含的属性，接下来我们来仔细研究元素（Element）。
 
-元素（Element）的 value 属性，
+我们知道，一个元素除了有开始标签、结束标签、内容之外，还有很多的属性（attribute）。
 
-用于获取 input、select、textarea （HTMLInputElement，HTMLSelectElement……）的 value。<!--EndFragment--> </body> </html></div>
+![元素Element](NodeAssets/HTML元素.png)
 
-节点元素（Element）还有哪些属性，例举 3 个。
+常见的元素属性有：
 
-- value，href，id
+- value
+  - 元素（Element）的 value 属性，
+  - 用于获取 input、select、textarea （HTMLInputElement，HTMLSelectElement……）的 value。
+- href 属性
+  - 用于设置 a 元素（HTMLAnchorElement）的 href 属性。
+- id 属性
+  - 用于获取/设值 html 所有元素（HTMLElement）的 “id”  属性（attribute）的值。
+- 元素属性分类
+  - HTML 元素上的属性（attribute）可分为 2 类。
 
----
+浏览器在解析 HTML 元素时，会将对应的 attribute 也创建出来，放到对应的元素（Element）对象上。
 
-## Attribute
+- 比如 `id`、`class` 就是 HTML 元素的全局的属性（attribute），那么元素（Element）对象上，也会有对应的 `id`、`class` 属性；
+- 比如 `href` 属性是针对 a 元素对象的，`type`、`value` 属性，是针对 input 元素的；
 
-HTML 元素上的属性（attribute）可分为 2 类。
-
-- 标准的 attribute：某些 attribute 属性是标准的，比如 id、class、title、href、type、value 等；
-- 非标准的 attribute：某些 attribute 属性是自定义的，比如 abc、age、height 等；
+- **标准的 attribute**：某些 attribute 属性是标准的，比如 id、class、title、href、type、value 等；
+- **非标准的 attribute**：某些 attribute 属性是自定义的，比如 abc、age、height 等；
 
 ```html
-<div id="abc" class="box" title="box" age="18" height="1.88"></div>
+<div id="abc" class="box" title="box" age="18" height="1.88">哈哈哈</div>
 ```
 
----
+- 上面代码中，div 元素上的 id、class、title 是标准属性，age、name 是非标准属性。
 
-元素（Element）对象针对所有的 attribute （标准/非标准）都有的操作：
+#### 1.元素属性（attribute）操作
 
-- `elem.hasAttribute(name)` — 检查属性是否存在。
-- `elem.getAttribute(name)` — 获取这个属性值。
-- `elem.setAttribute(name, value)` — 设置这个属性值。
-- `elem.removeAttribute(name) `— 移除这个属性。
-- `elem.attributes`：- attr 对象的集合，每个对象具有 `name`、`value` 属性；
+元素（Element）对象所有的属性（attribute）（标准和非标准） 都有的操作：
 
-具备 2 点特性。
+- `ele.hasAttribute(name)` — 检查属性是否存在。
+- `ele.getAttribute(name)` — 获取这个属性值。
+- `ele.setAttribute(name, value)` — 设置这个属性值。
+- `ele.removeAttribute(name)`— 移除这个属性。
+- `ele.attributes`：- attr 对象的集合，每个对象具有 `name`、`value` 属性；
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="abc" class="box" title="box" age="18" height="1.88">
+      我是box
+    </div>
+    <input type="checkbox" checked />
+
+    <script>
+      var boxEl = document.querySelector('.box')
+      // 1.所有的attribute都支持的操作
+      console.log(boxEl.hasAttribute('AGE')) // true
+      console.log(boxEl.hasAttribute('abc')) // false
+      console.log(boxEl.getAttribute('AGE')) // 18
+      console.log(boxEl.getAttribute('abc')) // null
+      console.log(boxEl.setAttribute('id', 'cba')) // undefined
+      console.log(boxEl.removeAttribute('id')) // undefined
+
+      console.log('------------------------------------------')
+
+      var boxAttributes = boxEl.attributes
+      for (var attr of boxAttributes) {
+        console.log(attr.name, attr.value)
+        // 输出结果：
+        // class box
+        // title box
+        // age 18
+        // height 1.88
+      }
+
+      console.log('------------------------------------------')
+
+      // 2.getAttribute() 返回的是字符串类型
+      var inputEl = document.querySelector('input')
+      console.log(inputEl.getAttribute('checked')) // “”
+    </script>
+  </body>
+</html>
+```
+
+#### 2.元素属性（attribute）特性
+
+元素）Element）的属性（attribute）具备 2 点特性。
 
 - 它们的名字是大小写不敏感的（id 与 ID 相同）。
-- 它们的值总是字符串类型的（对于布尔类型的 attribute 如 `checked`，拿到的是空字符串，除非给布尔类型属性赋值）。
+- 它们的值总是字符串类型的。
+
+> 对于布尔类型的属性（attribute），比如 `checked`，取到的是空字符串，
+>
+> 如果要拿到显示的不二值，要给元素（Element）对象的布尔类型属性（Attribute）显示的赋值。
+
+### 2.元素对象上的属性（property）
+
+JavaScript 中对象上的属性称为“property”
+
+所以 HTML 元素上的属性（attribute）在 DOM 对象上会抽象出同名的属性（property）。
+
+- **标准的 attribute**，会在 DOM 对象上，创建与其对应的 property 属性
+- **非标准的 attribute**，则不会在 DOM 对象上，创建与其对应的 property 属性。
 
 ```html
-<body>
-  <div id="abc" class="box" title="box" age="18" height="1.88">我是box</div>
-  <input type="checkbox" checked />
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="abc" class="box" title="box" age="18" height="1.88">
+      我是box
+    </div>
+    <input type="checkbox" checked />
 
-  <script>
-    var boxEl = document.querySelector('.box')
-    // 1.所有的attribute都支持的操作
-    boxEl.hasAttribute('AGE')
-    boxEl.hasAttribute('abc')
-    boxEl.getAttribute('AGE')
-    boxEl.getAttribute('abc')
-    boxEl.setAttribute('id', 'cba')
-    boxEl.removeAttribute('id')
+    <script>
+      var boxEl = document.querySelector('.box')
+      console.log('boxEl.id:', boxEl.id) // abc
+      console.log('boxEl.title:', boxEl.title) // box
 
-    var boxAttributes = boxEl.attributes
-    for (var attr of boxAttributes) {
-      console.log(attr.name, attr.value)
-    }
-
-    // 2.getAttribute() 返回的是字符串类型
-    var inputEl = document.querySelector('input')
-    console.log(inputEl.getAttribute('checked')) // 空字符串
-  </script>
-</body>
+      console.log('boxEl.age:', boxEl.age) // undefined
+      console.log('boxEl.height:', boxEl.height) // undefined
+    </script>
+  </body>
+</html>
 ```
 
----
+#### 1.元素属性（attribute）和元素对象上的属性（property）
 
-## property
+对于元素标准的属性（attribute），DOM对象上会创建与其对应的 property 属性：
 
-JavaScript 中对象上的属性称为 property。它与 attribute 的关系。
+在大多数情况下，它们是相互作用的
 
-- **标准的 **attribute，会在 DOM 对象上创建与其对应的 property 属性
-- **非标准的** attribute，则不会。
+- 在 DOM 对象上改变属性（property）的值，那么通过元素属性（attribute）操作，获取的元素属性值，也会随着改变；
+- 通过元素属性（attribute）操作修改元素属性值，那么在 DOM 对象上使用属性（property）获取的值，也会随着改变；
+
+> input 元素的 value 属性，只能通过元素属性（attribute）操作修改；
+
+除非特别情况，大多数情况下，设置、获取元素的属性（attribute）值，推荐使用元素 DOM 对象上的属性（property）的方式：这是因为它默认情况下是有类型的；
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="abc" class="box" title="box" age="18" height="1.88">
+      我是box
+    </div>
+    <input class="ck" type="checkbox" disabled="true" />
+    <button class="toggle-btn">切换input选中</button>
+
+    <script>
+      const inputEl = document.querySelector('.ck')
+
+      const toggleBtn = document.querySelector('.toggle-btn')
+      toggleBtn.onclick = function () {
+        inputEl.disabled  = !inputEl.disabled
+      }
+    </script>
+  </body>
+</html>
+```
+
+#### 6.className、classList
+
+DOM 中，元素对象上的属性 `className` 和 `classList`，用于表示 HTML 元素上的标准属性（attribute）`class`。
+
+使用 DOM 动态修改元素样式，有两种方法：
+
+方法一：使用 DOM 元素对象上的属性（property）`className`、`classList`，动态修改元素的样式有两。
+
+首先，在 CSS 中编写好对应的样式。
+
+```css
+.active {
+  color: red;
+  font-size: 24px;
+  background-color: green;
+}
+```
+
+然后，动态的添加 class；
 
 ```javascript
 var boxEl = document.querySelector('.box')
-// id 、title 等标准的 attribute，在 DOM 对象上都有对应的 property
-console.log(boxEl.id, boxEl.title)
+
+boxEl.className = 'active' // 这样做不好，会覆盖掉原有的 class 名，推荐使用 classList
+
+boxEl.classList.add('active')
 ```
 
----
+方法二：使用 DOM 元素对象上的属性 `style`，直接动态的修改 HTML 元素上的标准属性（attribute）`style` ；
 
-JavaScript 中，通过 class 的 property，动态修改样式的 2 个方法。
+```javascript
+var boxEl = document.querySelector('.box')
+var counter = 1
 
-- 在 CSS 中编写好对应的样式，动态的添加 class；
-
-  ```css
-  .active {
-    color: red;
-    font-size: 24px;
-    background-color: green;
-  }
-  ```
-
-  ```javascript
-  var boxEl = document.querySelector('.box')
-  boxEl.className = 'active' // 这样做不好，会覆盖掉原有的 class 名，推荐使用 classList
-  boxEl.classList.add('active')
-  ```
-
-- 动态的修改 style 属性；
-
-  ```javascript
-  var boxEl = document.querySelector('.box')
-  var counter = 1
-  boxEl.onclick = function () {
-    boxEl.style.width = 100 * counter++ + 'px'
-  }
-  ```
+boxEl.onclick = function () {
+  boxEl.style.width = 100 * counter++ + 'px'
+}
+```
 
 开发中如何选择？
 
 - 大多数情况下，优先使用动态修改 class。
-- 对于特殊情况，如精准修改某个 css 属性的值时，那么就修改 style 属性；
+- 对于特殊情况，比如要精准修改某个 css 属性的值时，那么就直接修改 style 属性值；
 
----
+> DOM 元素（Element）对象上的属性（property）`className`，为什么不叫“class”？
+>
+> - JavaScript 早期是不允许使用 class 这种保留字（现为关键字）来作为对象的属性，所以 DOM 规范使用了"className"；
+> - 虽然现在 JavaScript 已经没有这样的限制，但依然在使用"className"这个名称；
 
-元素（Element）对象的 property `className`，为什么不叫 class？
+DOM 元素（Element）对象的属性（property）`className` 和 `classList` 有何区别：
 
-- JavaScript 早期是不允许使用 class 这种保留字（现为关键字）来作为对象的属性，所以 DOM 规范使用了 className；
-- 虽然现在 JavaScript 已经没有这样的限制，但是并不推荐这么做，并且依然在使用 className 这个名称；
+- 对 `className` 属性进行赋值，那么会整个替换 HTML 元素属性（attribute）class 中的字符串。
+- 使用 `classList` 属性，可以添加或者移  HTML 元素属性（attribute）class 中单个的 class 值。
 
----
+classList 属性（property）的用法。
 
-元素（Element）对象的 property `className` 和 `classList` 有什么区别，
-
-- 对 className 进行赋值，它会替换整个 class 中的字符串。
-- 使用 classList 属性，可以添加或者移除单个的 class。
-
-classList 的用法。
-
-- `elem.classList.add(class)` ：添加一个类
-- `elem.classList.remove(class)`：添加/移除类。
-- `elem.classList.toggle(class)` ：如果类不存在就添加类，存在就移除它。
-- `elem.classList.contains(class)`：检查给定类，返回 true / false。
+- `ele.classList.add(class)` ：添加一个类。
+- `ele.classList.remove(class)`：移除一个类。
+- `ele.classList.toggle(class)` ：如果类不存在就添加类，存在就移除它。
+- `ele.classList.contains(class)`：检查给定类，返回 true / false。
 
 ```javascript
 var boxEl = document.querySelector('.box')
 var btnEl = document.querySelector('.btn')
+
 btnEl.onclick = function () {
   boxEl.classList.toggle('active')
 }
 ```
 
----
+classList属性，是可迭代对象，可以通过 for of 进行遍历。
 
-元素（Element）对象的 property `style` 使用时需要注意的 3 点。
+#### 2.style
+
+元素（Element）对象的属性（property）`style`，用于单独的修改某一个 CSS 属性。
 
 - 对于多词（multi-word）属性，使用驼峰式 camelCase
 
@@ -447,31 +549,37 @@ btnEl.onclick = function () {
   boxEl.style.fontSize = '' // 使用默认 fontSize
   ```
 
-- 多个样式的写法，使用 cssText 属性，不推荐，它会替换原来的行内样式。
+- 多个样式的写法，使用 cssText 属性，不推荐这种写法，因为它会替换元素原来的行内样式。
 
   ```javascript
   boxEl.style.cssText = 'font-size: 30px; color: red;'
   ```
 
----
+##### 1.getComputedStyle 方法读取元素 style
 
 全局函数 `getComputedStyle` 用于读取元素样式计算值（可获取行内样式以外的样式值）。
 
 ```javascript
 var boxEl = document.querySelector('.box')
+
 boxEl.style.backgroundColor // 获取行内样式中设值的 background-color
+
 getComputedStyle(boxEl).fontSize // 获取所有样式中 font-size 的计算值。
 ```
 
----
+### 3.dataset
+
+HTML5 中有 data-* 自定义属性，它可以在 DOM 元素对象属性（property）`dataset` 中获取到。
 
 HTML5 中的 data-\* 如何使用？
 
 ```html
 <body>
   <div id="abc" class="box" data-age="18" data-height="1.88"></div>
+  
   <script>
     var boxEl = document.querySelector('.box')
+    
     // 小程序开发中常使用
     console.log(boxEl.dataset.age)
     console.log(boxEl.dataset.height)

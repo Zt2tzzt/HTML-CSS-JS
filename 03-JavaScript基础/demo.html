@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="abc" class="box" title="box" age="18" height="1.88">
+      我是box
+    </div>
+    <input class="ck" type="checkbox" disabled="true" />
+    <button class="toggle-btn">切换input选中</button>
+
+    <script>
+      const inputEl = document.querySelector('.ck')
+
+      const toggleBtn = document.querySelector('.toggle-btn')
+      toggleBtn.onclick = function () {
+        inputEl.disabled  = !inputEl.disabled
+      }
+    </script>
+  </body>
+</html>
