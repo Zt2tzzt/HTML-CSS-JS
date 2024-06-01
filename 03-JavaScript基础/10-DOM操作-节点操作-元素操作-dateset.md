@@ -57,9 +57,9 @@ var childElements = bodyEl.children // 获取 body 元素所有子元素(element
 
 ![元素（Element）之间的导航（navigator）](NodeAssets/元素（Element）之间的导航（navigator）.jpg)
 
-> vue，react 框架，底层也要操作 DOM，因为 DOM 操作有回流机制，所以在框架中只需操作一次 DOM 性能更高，
+> vue，react 框架，底层也要操作 DOM，因为在这两个框架中通过虚拟 DOM（Virtual DOM）来优化这个过程，从而减少直接的 DOM 操作和回流（reflow）。通过虚拟 DOM，Vue 和 React 将多个 DOM 操作合并为一次批量更新，从而减少回流的次数。
 
-### 2.表格元素导航
+### 2.table 元素导航
 
 HTML 中的表格（table）元素的导航（navigator）关系如下：
 
@@ -104,7 +104,7 @@ for (var i = 0; i < tableEl.rows.length; i++) {
 > tableEl.rows // 有提示
 > ```
 
-### 3.表单元素导航
+### 3.form 元素导航
 
 表单（form）元素的导航（navigator）关系如下：
 
@@ -130,7 +130,7 @@ form 元素中的子元素对象集合，可以通过 form 元数对象的 `elem
 var elements = formEl.elements
 ```
 
-form 子元素中的子元素对象，可以通过子元素的 name 属性来获取。
+form 子元素对象集合中的子元素对象，可以通过子元素的 name 属性来获取。
 
 - 比如：`elements.[name]`
 
@@ -146,7 +146,7 @@ var inputEl = elements.account
 
 然而，在实际开发中，我们希望可以任意的获取到某一个元素对象，应该如何操作呢？
 
-DOM  （document 对象）中，M为我们提供了获取元素的方法：
+DOM  （document 对象）中，为我们提供了获取元素的方法：
 
 | 方法名                         | 搜索方式     | 在元素上调用（查找该元素后代） | 返回的对象是实时的 |
 | ------------------------------ | ------------ | ------------------------------ | ------------------ |
@@ -159,9 +159,9 @@ DOM  （document 对象）中，M为我们提供了获取元素的方法：
 
 `querySelectorAll` 方法，返回 NodeList 对象，它不是一个数组，而是一个 array-like 对象，可用 `forEach` 方法进行遍历。
 
-`getElementById` 方法，偶尔会使用或，通常用于适配一些低版本浏览器时；
+`getElementById` 方法，偶尔会使用，通常用于适配一些低版本浏览器时；
 
-在实际开发中：
+节点导航和节点搜索，在实际开发中应如何选择？
 
 - 当元素彼此靠近或相邻时，并需要拿一组元素对象集合时，选择导航的方式。
 - 当需要任意的精确的获取某一个元素对象，通常使用 `document` 对象上，搜索元素的 5 种方法。
@@ -170,8 +170,9 @@ DOM  （document 对象）中，M为我们提供了获取元素的方法：
 
 现在，我们已经可以获取到节点对象了，接下来看一下节点中有哪些常见的属性：
 
-- 当然，不同的节点类型，有不同的属性；
-- 这里我们主要讨论节点共有的属性；
+当然，不同的节点类型，有不同的属性；
+
+这里我们主要讨论节点共有的属性；
 
 #### 1.nodeType
 
@@ -180,7 +181,7 @@ DOM  （document 对象）中，M为我们提供了获取元素的方法：
 | 常量                    | 值   | 描述                                                         |
 | ----------------------- | ---- | ------------------------------------------------------------ |
 | Node.ELEMENT_NODE       | 1    | 一个元素节点，例如 \<p\> 和 \<div\>                          |
-| Node.TEXT_NODE          | 3    | Element 或者 Attr 中实际的 文字                              |
+| Node.TEXT_NODE          | 3    | Element 或者 Attr 中实际的文字                               |
 | Node.COMMENT_NODE       | 8    | 一个 Comment 节点.                                           |
 | Node.DOCUMENT_NODE      | 9    | 一个 Document 节点。                                         |
 | Node.DOCUMENT_TYPE_NODE | 10   | 描述文档类型的 DocumentType 节点。例如 `<!DOCTYPEhtml>` 就是用于 HTML5 的文档声明。 |
@@ -255,7 +256,7 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 
 #### 7.hidden
 
-节点（Node）的属性 `hidden`，同时也是 HTML 元素的全局属性（布尔类型）。
+节点（Node）有属性 `hidden`，同时也是 HTML 元素的全局属性（attribute）（布尔类型）。
 
 ```html
 <!DOCTYPE html>
@@ -295,13 +296,38 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 
 常见的元素属性有：
 
-- value
-  - 元素（Element）的 value 属性，
-  - 用于获取 input、select、textarea （HTMLInputElement，HTMLSelectElement……）的 value。
+- value 属性
+  - 一些表单元素有 value 属性，比如：input、select、textarea （HTMLInputElement，HTMLSelectElement……），value 属性用于获取这些表单元素的值。
+
 - href 属性
-  - 用于设置 a 元素（HTMLAnchorElement）的 href 属性。
+  - 用于获取、设置 a 元素（HTMLAnchorElement）的 href 属性。
+
+  ```html
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>demo</title>
+    </head>
+    <body>
+      <a href="https://www.baidu.com">百度一下</a>
+  
+      <script>
+        var aEl = document.querySelector('a')
+  
+        aEl.href = 'https://www.google.com'
+  
+        console.log('aEl.href:', aEl.href) // https://www.google.com/
+      </script>
+    </body>
+  </html>
+  
+  ```
+
 - id 属性
-  - 用于获取/设值 html 所有元素（HTMLElement）的 “id”  属性（attribute）的值。
+  - 用于获取、设值 html 所有元素（HTMLElement）的 “id”  属性（attribute）的值。
+
 - 元素属性分类
   - HTML 元素上的属性（attribute）可分为 2 类。
 
@@ -317,17 +343,17 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 <div id="abc" class="box" title="box" age="18" height="1.88">哈哈哈</div>
 ```
 
-- 上面代码中，div 元素上的 id、class、title 是标准属性，age、name 是非标准属性。
+- 上面代码中，div 元素上的 id、class、title 属性（attribute）是标准属性，age、name 属性（attribute）是非标准属性。
 
 #### 1.元素属性（attribute）操作
 
 元素（Element）对象所有的属性（attribute）（标准和非标准） 都有的操作：
 
-- `ele.hasAttribute(name)` — 检查属性是否存在。
-- `ele.getAttribute(name)` — 获取这个属性值。
-- `ele.setAttribute(name, value)` — 设置这个属性值。
-- `ele.removeAttribute(name)`— 移除这个属性。
-- `ele.attributes`：- attr 对象的集合，每个对象具有 `name`、`value` 属性；
+- `ele.hasAttribute(name)` 方法，检查属性是否存在。
+- `ele.getAttribute(name)` 方法，获取这个属性值。
+- `ele.setAttribute(name, value)` 方法，设置这个属性值。
+- `ele.removeAttribute(name)` 方法，移除这个属性。
+- `ele.attributes` 属性，attr 对象的集合，每个对象具有 `name`、`value` 属性；
 
 ```html
 <!DOCTYPE html>
@@ -348,10 +374,12 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
       // 1.所有的attribute都支持的操作
       console.log(boxEl.hasAttribute('AGE')) // true
       console.log(boxEl.hasAttribute('abc')) // false
+
       console.log(boxEl.getAttribute('AGE')) // 18
       console.log(boxEl.getAttribute('abc')) // null
-      console.log(boxEl.setAttribute('id', 'cba')) // undefined
-      console.log(boxEl.removeAttribute('id')) // undefined
+
+      boxEl.setAttribute('id', 'cba')) // undefined
+      boxEl.removeAttribute('id') // undefined
 
       console.log('------------------------------------------')
 
@@ -377,23 +405,23 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 
 #### 2.元素属性（attribute）特性
 
-元素）Element）的属性（attribute）具备 2 点特性。
+元素（Element）的属性（attribute）具备 2 点特性。
 
-- 它们的名字是大小写不敏感的（id 与 ID 相同）。
+- 它们的名字是大小写不敏感的（”id“与”ID“相同）。
 - 它们的值总是字符串类型的。
 
-> 对于布尔类型的属性（attribute），比如 `checked`，取到的是空字符串，
+> 对于布尔类型的属性（attribute），比如 `checked`、`disabled`，取到的是空字符串，
 >
-> 如果要拿到显示的不二值，要给元素（Element）对象的布尔类型属性（Attribute）显示的赋值。
+> 如果要拿到显示的布尔值，要给元素（Element）对象的布尔类型属性（Attribute）显示的赋值。
 
 ### 2.元素对象上的属性（property）
 
-JavaScript 中对象上的属性称为“property”
+JavaScript 中，对象上的属性称为“property”
 
 所以 HTML 元素上的属性（attribute）在 DOM 对象上会抽象出同名的属性（property）。
 
-- **标准的 attribute**，会在 DOM 对象上，创建与其对应的 property 属性
-- **非标准的 attribute**，则不会在 DOM 对象上，创建与其对应的 property 属性。
+- **标准的 attribute**，会在元素的 DOM 对象上，创建与其对应的 property 属性
+- **非标准的 attribute**，则不会在元素的 DOM 对象上，创建与其对应的 property 属性。
 
 ```html
 <!DOCTYPE html>
@@ -423,7 +451,7 @@ JavaScript 中对象上的属性称为“property”
 
 #### 1.元素属性（attribute）和元素对象上的属性（property）
 
-对于元素标准的属性（attribute），DOM对象上会创建与其对应的 property 属性：
+对于元素标准的属性（attribute），DOM 对象上会创建与其对应的 property 属性：
 
 在大多数情况下，它们是相互作用的
 
@@ -461,7 +489,7 @@ JavaScript 中对象上的属性称为“property”
 </html>
 ```
 
-#### 6.className、classList
+#### 6.元素对象属性 className、classList
 
 DOM 中，元素对象上的属性 `className` 和 `classList`，用于表示 HTML 元素上的标准属性（attribute）`class`。
 
@@ -500,7 +528,7 @@ boxEl.onclick = function () {
 }
 ```
 
-开发中如何选择？
+这两种方法，在开发中如何选择？
 
 - 大多数情况下，优先使用动态修改 class。
 - 对于特殊情况，比如要精准修改某个 css 属性的值时，那么就直接修改 style 属性值；
@@ -531,9 +559,9 @@ btnEl.onclick = function () {
 }
 ```
 
-classList属性，是可迭代对象，可以通过 for of 进行遍历。
+classList 属性的值，是可迭代对象，可以通过 for...of 进行遍历。
 
-#### 2.style
+#### 2.元素对象属性 style
 
 元素（Element）对象的属性（property）`style`，用于单独的修改某一个 CSS 属性。
 
@@ -549,7 +577,7 @@ classList属性，是可迭代对象，可以通过 for of 进行遍历。
   boxEl.style.fontSize = '' // 使用默认 fontSize
   ```
 
-- 多个样式的写法，使用 cssText 属性，不推荐这种写法，因为它会替换元素原来的行内样式。
+- 多个样式的写法，使用 `cssText` 属性（不推荐这种写法，因为它会替换元素原来的行内样式）。
 
   ```javascript
   boxEl.style.cssText = 'font-size: 30px; color: red;'
@@ -569,20 +597,20 @@ getComputedStyle(boxEl).fontSize // 获取所有样式中 font-size 的计算值
 
 ### 3.dataset
 
-HTML5 中有 data-* 自定义属性，它可以在 DOM 元素对象属性（property）`dataset` 中获取到。
-
-HTML5 中的 data-\* 如何使用？
+HTML5 中有 `data-*` 自定义属性（attribute），它可以在 DOM 元素对象属性（property）`dataset` 中获取到。
 
 ```html
 <body>
   <div id="abc" class="box" data-age="18" data-height="1.88"></div>
-  
+
   <script>
     var boxEl = document.querySelector('.box')
-    
+
     // 小程序开发中常使用
     console.log(boxEl.dataset.age)
     console.log(boxEl.dataset.height)
   </script>
 </body>
 ```
+
+`dataset` 元素对象属性在小程序开发中，使用的非常多。

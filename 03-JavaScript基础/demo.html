@@ -6,19 +6,14 @@
     <title>demo</title>
   </head>
   <body>
-    <div id="abc" class="box" title="box" age="18" height="1.88">
-      我是box
-    </div>
-    <input class="ck" type="checkbox" disabled="true" />
-    <button class="toggle-btn">切换input选中</button>
+    <a href="https://www.baidu.com">百度一下</a>
 
     <script>
-      const inputEl = document.querySelector('.ck')
+      var aEl = document.querySelector('a')
 
-      const toggleBtn = document.querySelector('.toggle-btn')
-      toggleBtn.onclick = function () {
-        inputEl.disabled  = !inputEl.disabled
-      }
+      aEl.href = 'https://www.google.com'
+
+      console.log('aEl.href:', aEl.href) // https://www.google.com/
     </script>
   </body>
 </html>
