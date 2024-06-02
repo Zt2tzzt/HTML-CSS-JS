@@ -2,7 +2,7 @@
 
 document 对象中，有两个概念：**节点（Node）**和**元素（Element）**，
 
-- 节点（Node）中包含了**元素，文本，注释等**内容。
+- 节点（Node）中包含了**元素，文本，注释**等内容。
 - 元素（Element）指的是 **HTML 中的元素**。
 
 ## 一、节点操作一
@@ -57,54 +57,94 @@ var childElements = bodyEl.children // 获取 body 元素所有子元素(element
 
 ![元素（Element）之间的导航（navigator）](NodeAssets/元素（Element）之间的导航（navigator）.jpg)
 
-> vue，react 框架，底层也要操作 DOM，因为在这两个框架中通过虚拟 DOM（Virtual DOM）来优化这个过程，从而减少直接的 DOM 操作和回流（reflow）。通过虚拟 DOM，Vue 和 React 将多个 DOM 操作合并为一次批量更新，从而减少回流的次数。
+> vue，react 前端框架，底层也要操作 DOM，因为在这两个框架中通过虚拟 DOM（Virtual DOM）来优化这个过程，从而减少直接的 DOM 操作和回流（reflow）。通过虚拟 DOM，Vue 和 React 将多个 DOM 操作合并为一次批量更新，从而减少回流的次数。
 
-### 2.table 元素导航
+#### 1.table 元素导航
 
 HTML 中的表格（table）元素的导航（navigator）关系如下：
 
 table 元素支持以下属性：
 
-- `table.rows`，表示\<tr\> 元素的集合；
-- `table.caption/tHead/tFoot`，表示引用元素 \<caption\>，\<thead\>，\<tfoot\>；
-- `table.tBodies`，表示\<tbody\> 元素的集合，table 中可能有多个 tbody；
+- `table.rows`，表示 tr 元素的集合；
+- `table.caption/tHead/tFoot`，表示引用元素 caption，thead，tfoot；
+- `table.tBodies`，表示 tbody 元素的集合，table 中可能有多个 tbody；
 
-\<thead\>，\<tfoot\>，\<tbody\> 元素提供了 rows 属性
+thead，tfoot，tbody 元素提供了 `rows` 属性
 
-- 比如：`tbody.rows`，表示表格内部 \<tr\> 元素的集合；
+- 比如：`tbody.rows`，表示表格内部 tr 元素的集合；
 
-\<tr\>
+tr
 
-- `tr.cells`，表示在给定 \<tr\> 中的 \<td\> 和 \<th\> 单元格的集合；
-- `tr.sectionRowIndex`，表示给定的 \<tr\> 在封闭的 \<thead\>/\<tbody\>/\<tfoot\> 中的位置（索引）；
-- `tr.rowIndex`，表示在整个表格中 \<tr\> 的编号（包括表格的所有行）；
+- `tr.cells`，表示在给定 tr 中的 td 和 th 单元格的集合；
+- `tr.sectionRowIndex`，表示给定的 tr 在封闭的 thead/tbody/tfoot 中的位置（索引）；
+- `tr.rowIndex`，表示在整个表格中 tr 的编号（包括表格的所有行）；
 
-\<td\> 和 \<th\>：
+td 和 th：
 
-- `td.cellIndex`，表示在封闭的 \<tr\> 中单元格的编号。
+- `td.cellIndex`，表示在封闭的 tr 中单元格的编号。
 
 完成案例练习。
 
-```javascript
-var tableEl = document.body.firstElementChild // body 元素的第一个子元素，是一个表格
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>九九乘法表</title>
+    <style>
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        border: 1px #000 solid;
+        padding: 8px 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <td>哈哈</td>
+        <td>哈哈</td>
+        <td>哈哈</td>
+      </tr>
+      <tr>
+        <td>哈哈</td>
+        <td>哈哈</td>
+        <td>哈哈</td>
+      </tr>
+      <tr>
+        <td>哈哈</td>
+        <td>哈哈</td>
+        <td>哈哈</td>
+      </tr>
+    </table>
 
-for (var i = 0; i < tableEl.rows.length; i++) {
-  var rowEl = tableEl.rows[i]
-  var cellEl = rowEl.cells[i]
+    <script>
+      var tableEl = document.body.firstElementChild // body 元素的第一个子元素，是一个表格
 
-  cellEl.style.backgroundColor = 'red'
-  cellEl.style.color = 'white'
-}
+      for (var i = 0; i < tableEl.rows.length; i++) {
+        var rowEl = tableEl.rows[i]
+        var cellEl = rowEl.cells[i]
+
+        cellEl.style.backgroundColor = 'red'
+        cellEl.style.color = 'white'
+      }
+    </script>
+  </body>
+</html>
 ```
 
-> 在 VSCode 编辑工具中，利用 TypeScript 断言语法，增强提示功能的（运行 JavaScript 代码时，要将它删除）。
+> 在 VSCode 编辑工具中，利用 TypeScript 断言语法，增强提示功能（运行 JavaScript 代码时，要将它删除）。
 >
 > ```javascript
 > var tableEl = document.body.firstElementChild as HTMLTableElement
+>
 > tableEl.rows // 有提示
 > ```
 
-### 3.form 元素导航
+#### 2.form 元素导航
 
 表单（form）元素的导航（navigator）关系如下：
 
@@ -157,9 +197,30 @@ DOM  （document 对象）中，为我们提供了获取元素的方法：
 | getElementsByTagName（偶尔用） | tag or \*    | ✔                              | ✔                  |
 | getElementsByClassName         | class        | ✔                              | ✔                  |
 
-`querySelectorAll` 方法，返回 NodeList 对象，它不是一个数组，而是一个 array-like 对象，可用 `forEach` 方法进行遍历。
+`querySelectorAll` 方法，返回的是 NodeList 对象，它不是一个数组，而是一个 array-like 对象，可用 `forEach` 方法进行遍历。
 
 `getElementById` 方法，偶尔会使用，通常用于适配一些低版本浏览器时；
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>demo</title>
+</head>
+<body>
+  <div id="haha">哈哈</div>
+
+  <script>
+    var hahaEl1 = document.getElementById('haha')
+    var hahaEl2 = document.querySelector('#haha')
+
+    console.log(hahaEl1 === hahaEl2) // true
+  </script>
+</body>
+</html>
+```
 
 节点导航和节点搜索，在实际开发中应如何选择？
 
@@ -296,10 +357,11 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 
 常见的元素属性有：
 
-- value 属性
-  - 一些表单元素有 value 属性，比如：input、select、textarea （HTMLInputElement，HTMLSelectElement……），value 属性用于获取这些表单元素的值。
+- value 属性：
+  - 一些表单元素有 value 属性，比如：input、select、textarea （HTMLInputElement，HTMLSelectElement……）
+  - 用于获取这些表单元素的 value 值。
 
-- href 属性
+- href 属性：
   - 用于获取、设置 a 元素（HTMLAnchorElement）的 href 属性。
 
   ```html
@@ -312,29 +374,30 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
     </head>
     <body>
       <a href="https://www.baidu.com">百度一下</a>
-  
+
       <script>
         var aEl = document.querySelector('a')
-  
+
         aEl.href = 'https://www.google.com'
-  
+
         console.log('aEl.href:', aEl.href) // https://www.google.com/
       </script>
     </body>
   </html>
-  
+
   ```
 
 - id 属性
   - 用于获取、设值 html 所有元素（HTMLElement）的 “id”  属性（attribute）的值。
 
-- 元素属性分类
-  - HTML 元素上的属性（attribute）可分为 2 类。
+#### 1.元素属性（attribute）分类
 
-浏览器在解析 HTML 元素时，会将对应的 attribute 也创建出来，放到对应的元素（Element）对象上。
+浏览器在解析 HTML 元素时，会将元素的属性（attribute）也创建出来，放到对应的元素（Element）对象上。
 
 - 比如 `id`、`class` 就是 HTML 元素的全局的属性（attribute），那么元素（Element）对象上，也会有对应的 `id`、`class` 属性；
 - 比如 `href` 属性是针对 a 元素对象的，`type`、`value` 属性，是针对 input 元素的；
+
+HTML 元素上的属性（attribute）可分为 2 类。
 
 - **标准的 attribute**：某些 attribute 属性是标准的，比如 id、class、title、href、type、value 等；
 - **非标准的 attribute**：某些 attribute 属性是自定义的，比如 abc、age、height 等；
@@ -343,9 +406,12 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 <div id="abc" class="box" title="box" age="18" height="1.88">哈哈哈</div>
 ```
 
-- 上面代码中，div 元素上的 id、class、title 属性（attribute）是标准属性，age、name 属性（attribute）是非标准属性。
+上面代码中，div 元素上的
 
-#### 1.元素属性（attribute）操作
+- id、class、title 属性（attribute）是标准属性；
+- age、name 属性（attribute）是非标准属性。
+
+#### 2.元素属性（attribute）操作
 
 元素（Element）对象所有的属性（attribute）（标准和非标准） 都有的操作：
 
@@ -403,7 +469,7 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 </html>
 ```
 
-#### 2.元素属性（attribute）特性
+#### 3.元素属性（attribute）特性
 
 元素（Element）的属性（attribute）具备 2 点特性。
 
@@ -414,7 +480,7 @@ divNode.textContent = '<h2>嘿嘿嘿嘿</h2>'
 >
 > 如果要拿到显示的布尔值，要给元素（Element）对象的布尔类型属性（Attribute）显示的赋值。
 
-### 2.元素对象上的属性（property）
+### 2.元素对象属性（property）
 
 JavaScript 中，对象上的属性称为“property”
 
@@ -449,9 +515,9 @@ JavaScript 中，对象上的属性称为“property”
 </html>
 ```
 
-#### 1.元素属性（attribute）和元素对象上的属性（property）
+#### 1.元素属性（attribute）和元素对象属性（property）
 
-对于元素标准的属性（attribute），DOM 对象上会创建与其对应的 property 属性：
+对于元素上标准的属性（attribute），DOM 对象上会创建与其对应的 property 属性：
 
 在大多数情况下，它们是相互作用的
 
@@ -489,13 +555,13 @@ JavaScript 中，对象上的属性称为“property”
 </html>
 ```
 
-#### 6.元素对象属性 className、classList
+#### 2.元素对象属性 className、classList
 
 DOM 中，元素对象上的属性 `className` 和 `classList`，用于表示 HTML 元素上的标准属性（attribute）`class`。
 
 使用 DOM 动态修改元素样式，有两种方法：
 
-方法一：使用 DOM 元素对象上的属性（property）`className`、`classList`，动态修改元素的样式有两。
+方法一：使用 DOM 元素对象上的属性（property）`className`、`classList`，动态修改元素的样式。
 
 首先，在 CSS 中编写好对应的样式。
 
@@ -512,7 +578,7 @@ DOM 中，元素对象上的属性 `className` 和 `classList`，用于表示 HT
 ```javascript
 var boxEl = document.querySelector('.box')
 
-boxEl.className = 'active' // 这样做不好，会覆盖掉原有的 class 名，推荐使用 classList
+boxEl.className = 'active' // 不推荐的做法，会覆盖掉原有的 class 名。
 
 boxEl.classList.add('active')
 ```
@@ -541,7 +607,7 @@ boxEl.onclick = function () {
 DOM 元素（Element）对象的属性（property）`className` 和 `classList` 有何区别：
 
 - 对 `className` 属性进行赋值，那么会整个替换 HTML 元素属性（attribute）class 中的字符串。
-- 使用 `classList` 属性，可以添加或者移  HTML 元素属性（attribute）class 中单个的 class 值。
+- 使用 `classList` 属性，可以添加或者移除  HTML 元素属性（attribute）class 中单个的 class 值。
 
 classList 属性（property）的用法。
 
@@ -561,7 +627,7 @@ btnEl.onclick = function () {
 
 classList 属性的值，是可迭代对象，可以通过 for...of 进行遍历。
 
-#### 2.元素对象属性 style
+#### 3.元素对象属性 style
 
 元素（Element）对象的属性（property）`style`，用于单独的修改某一个 CSS 属性。
 
@@ -595,7 +661,7 @@ boxEl.style.backgroundColor // 获取行内样式中设值的 background-color
 getComputedStyle(boxEl).fontSize // 获取所有样式中 font-size 的计算值。
 ```
 
-### 3.dataset
+#### 4.元素对象属性 dataset
 
 HTML5 中有 `data-*` 自定义属性（attribute），它可以在 DOM 元素对象属性（property）`dataset` 中获取到。
 
@@ -613,4 +679,4 @@ HTML5 中有 `data-*` 自定义属性（attribute），它可以在 DOM 元素�
 </body>
 ```
 
-`dataset` 元素对象属性在小程序开发中，使用的非常多。
+`dataset` 元素对象属性，在小程序开发中，使用的非常多。

@@ -9,7 +9,7 @@
 `length` 属性是可写的。
 
 - 如果我们手动增加一个大于默认 length 的数值，那么会增加数组的长度。
-- 但是如果我们减少它，数组就会被截断
+- 但是如果我们减少它，数组就会被截断。
 
 ```javascript
 var arr = ['abc', 'cba', 'nba']
@@ -34,6 +34,8 @@ for (var i = 0; i < arr.length; i++) {
 ```
 
 for..in 遍历，获取到索引值：
+
+- 遍历的元素是数组元素的索引。
 
 ```javaScript
 for (var i in arr) {
@@ -72,13 +74,10 @@ console.log(arr2) // ['cba']
 
 ```javascript
 var arr1 = ['abc']
-
 var arr2 = arr1.concat(['123', '321'])
-
 console.log(arr2) // [ 'abc', '123', '321' ]
 
 arr2.push(['456', '654'])
-
 console.log(arr2) //[ 'abc', '123', '321', [ '456', '654' ] ]
 ```
 
@@ -97,7 +96,7 @@ console.log(elements.join()); // "Fire,Air,Water"
 [Array.prototype.indexOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf) `arr.indexOf(searchElement[, fromIndex])` 查找某个元素的索引（**多用于查找原始类型，查找引用类型有局限性**）。
 
 - 从 `fromIndex` 开始查找，如果找到返回对应的索引，没有找到返回 -1；
-- 也有对应的从最后位置开始查找的 `lastIndexOf` 方法。
+- 也有对应的从最后位置开始查找的 [Array.prototype.lastIndexOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/lastIndexOf) 方法。
 
 ```javascript
 const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
@@ -105,7 +104,7 @@ const beasts = ['ant', 'bison', 'camel', 'duck', 'bison'];
 console.log(beasts.indexOf('bison')); // 1
 ```
 
-[Array.prototype.includes()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) `arr.includes(valueToFind[, fromIndex])` 判断数组是否包含某个元素（**多用于查找原始类型，查找引用类型有局限性**）。
+[Array.prototype.includes()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) `arr.includes(valueToFind[, fromIndex])` 判断数组是否包含某个元素（**多用于查找原始类型，查找引用类型有局限性**）（ES7）。
 
 - 从索引 `fromIndex` 开始搜索 item，如果找到则返回 true（如果没找到，则返回 false）。
 
@@ -290,7 +289,7 @@ GMT 东时区和西时区的表示方式：
 
 - **RFC2822**，表现形式为  `Sat Jun 04 2022 21:12:33 GMT+0800`；
 
-- **ISO8601**，Date 对象实力使用  `toISOString()`，可转为 ISO 格式，表现形式为  `2022-06-04T13:12:03.999Z`；格式常表示为：YYYY-MM-DDTHH:mm:ss.sssZ
+- **ISO8601**，Date 对象实例使用  `toISOString()`，可转为 ISO 格式，表现形式为  `2022-06-04T13:12:03.999Z`；格式常表示为：YYYY-MM-DDTHH:mm:ss.sssZ
   - `YYYY`：年份，0000 ~ 9999
   - `MM`：月份，01 ~ 12
   - `DD`：日，01 ~ 31
@@ -349,8 +348,8 @@ Date 类（构造函数）的一些实例方法，用于获设置 date 信息。
 
 利用 Date 的实例方法，获取**当前时间**的时间戳的方式 3 种。
 
-- [Date.prototype.getTime()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)，获取**当前时间**的 Unix 时间戳的。
-- [Date.prototype.valueOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf)，获取**当前时间**的 Unix 时间戳的。
+- [Date.prototype.getTime()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/getTime)，获取**当前时间**的 Unix 时间戳。
+- [Date.prototype.valueOf()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date/valueOf)，获取**当前时间**的 Unix 时间戳。
 
 ```javascript
 new Date().getTime()
@@ -360,8 +359,10 @@ new Date().valueOf()
 
 > 还有一种获取当前时间 Unix 时间戳的方式：
 >
+> 将 Date 对象实例，拼接 + 号组成表达式。返回时间戳
+>
 > ```javascript
-> + new Date() // 将 Date 对象拼接 + 号组成表达式。返回时间戳
+> + new Date()
 > ```
 
 #### 2.Date 静态方法
