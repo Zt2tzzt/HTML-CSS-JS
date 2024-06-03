@@ -1,4 +1,4 @@
-# DOM 基本使用（ 二）、事件
+# DOM 基本使用（二）、事件
 
 ## 一、元素操作
 
@@ -22,8 +22,8 @@ boxEl.innerHTML = `<h2 class="title">我是标题</h2>`
 
 那么目前我们想要通过 DOM 创建（插入）一个元素，通常会按照如下步骤：
 
-1. 使用 Document 类的静态方法 [Document.createElement()](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElement) 创建一个元素；
-2. 将元素插入到 DOM 的某一个位置；
+1. 使用 Document 类的静态方法 [Document.createElement()](https://developer.mozilla.org/zh-CN/docs/Web/API/Document/createElement) 创建一个元素对象；
+2. 将元素对象插入到 DOM 的某一个位置；
 
 ```html
 <!DOCTYPE html>
@@ -51,6 +51,7 @@ boxEl.innerHTML = `<h2 class="title">我是标题</h2>`
     h2El.innerHTML = '我是标题！'
     h2El.classList.add('title')
 
+    // 插入元素对象
     boxEl.append(h2El)
   </script>
 </body>
