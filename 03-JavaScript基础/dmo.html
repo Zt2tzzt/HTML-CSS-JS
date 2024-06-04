@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+
+  <body>
+    <div class="tip-bar">
+      <img src="https://bfs.biyao.com/group1/M01/A2/67/rBACVGA_iOuAYaTxAAAPbted3yE165.png" alt="" />
+      <span>183***138对这件商品感兴趣</span>
+    </div>
+
+    <script>
+      // 模拟从服务器拿到的数据
+      const tipList = [
+        {
+          icon: 'https://bfs.biyao.com/group1/M01/A2/67/rBACVGA_iOuAYaTxAAAPbted3yE165.png',
+          title: '183***138对这件商品感兴趣'
+        },
+        {
+          icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVkiEyT2bAVs8iFnW9rzPR4WREtgiE8Trz0A&s',
+          title: '166***188对这件商品感兴趣'
+        }
+      ]
+
+      const tipBar = document.querySelector('.tip-bar')
+      const imgEl = tipBar.querySelector('img')
+      const spanEl = tipBar.querySelector('span')
+
+      let currentIndex = 0
+
+      setInterval(() => {
+        // 1.根据索引获取 item
+        const tipItem = tipList[currentIndex++]
+
+        // 2.给 DOM 设置内容
+        imgEl.src = tipItem.icon
+        spanEl.textContent = tipItem.title
+
+        // 3.重新计算索引
+        if (currentIndex === tipList.length) currentIndex = 0
+      }, 1000)
+    </script>
+  </body>
+</html>
