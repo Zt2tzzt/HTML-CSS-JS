@@ -1,200 +1,306 @@
-# 案例
+# 综合案例、BOM、JSON
 
-京东侧边栏展示案例，采用禁止事件的方案 `pointer-events: none;`。
+## 一、事件处理
 
-- 利用 CSS 属性，禁止 item 中的 icon 和 name 的事件。
+### 1.CSS 属性 pointer-events
 
-- 如果 item 中的 name 采用绝对定位，那么鼠标移动到 name 上时，没有弹出效果，因为绝对定位不向父元素汇报宽高。
+CSS 属性 `pointer-events: none;` 的主要作用是使元素不可被点击或响应任何指针事件。具体来说：
+
+- **禁用点击事件**：元素不再响应鼠标点击、悬停等指针事件。
+- **鼠标穿透**：鼠标事件会传递给其下层的元素，就像这个元素不存在一样。
+
+这个属性在以下场景中非常有用：
+
+- **不可点击的覆盖层**：你可以创建一个覆盖层，防止用户与其下的内容交互，同时允许鼠标事件通过这个层传递到下面的元素。
+- **禁用特定元素**：当你想暂时禁用某个元素的交互而不改变其外观时，可以使用这个属性。
+- **SVG 中的应用**：在复杂的 SVG 图形中，可以使用该属性来控制哪些部分可以响应鼠标事件。
+
+例如，下面的代码演示了一个覆盖层的应用：
 
 ```html
-<head>
-  <style>
-    .icon {
-      pointer-events: none;
-    }
-    .name {
-      pointer-events: none;
-    }
-  </style>
-</head>
-<body>
-  <div class="tool-bar">
-    <div class="item">
-      <i class="icon icon01"></i>
-      <div class="name">购物车</div>
-    </div>
-    <div class="item">
-      <i class="icon icon02"></i>
-      <div class="name">收藏</div>
-    </div>
-    <div class="item">
-      <i class="icon icon03"></i>
-      <div class="name">限时活动</div>
-    </div>
-    <div class="item">
-      <i class="icon icon04"></i>
-      <div class="name">大礼包</div>
-    </div>
-  </div>
-  <script>
-    // 1.动态给 icon 设置 backgroundPosition
-    var iconEls = document.querySelectorAll('.icon')
-    for (var i = 0; i < iconEls.length; i++) {
-      iconEls[i].style.backgroundPosition = `-48px -${50 * i}px`
-    }
-    // 2.实现鼠标进入动画
-    var toolbarEl = document.querySelector('.tool-bar')
-    toolbarEl.onmouseover = function (event) {
-      var nameEl = event.target.children[1]
-      nameEl.style.width = '62px'
-      event.target.style.width = `${62 + 35}px`
-    }
-    toolbarEl.onmouseout = function (event) {
-      var nameEl = event.target.children[1]
-      nameEl.style.width = '0'
-      event.target.style.width = `${35}px`
-    }
-  </script>
-</body>
+<div class="overlay"></div>
+<button>Click Me</button>
 ```
 
----
+```css
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  pointer-events: none; /* 禁用指针事件 */
+}
+```
 
-王者荣耀轮播图案例，
+在这个例子中，`.overlay` 覆盖层将不会响应鼠标点击事件，点击事件会传递到覆盖层下的按钮上。
 
-- 鼠标离开图片或下方标题，自动轮播，鼠标悬浮图片或下方标题，停止轮播。
-- 图片层叠抽取，而不是挨个位移。调整图片样式，做成王者默认轮播效果。
-- 绝对定位 left，百分数相对于自身宽度。
+### 2.王者荣耀轮播图增强
+
+在前面的王者荣耀轮播图案例基础上，实现以下增强功能：
+
+1. 添加定时器，实现轮播图的自动轮播。
+2. 代码重构，封装一个切换轮播图的函数。
+3. 当鼠标寻停在轮播图上，或者轮播图 title 上时，取消定时器，停止轮播。鼠标离开后，开始轮播。
+4. 实现王者荣耀首页轮播图的默认效果，淡入、淡出效果（图片层叠抽取，而不是挨个位移。调整图片样式，做成王者默认轮播效果。）。
+
+> CSS 中，绝对定位元素的 `left` 属性，百分数相对于定位父元素宽度。
 
 ```html
-<body>
-  <div class="main main_wrapper">
-    <div class="news-section">
-      <div class="banner">
-        <ul class="image-list">
-          <li class="item">
-            <a href="">
-              <img src="./img/banner_01.jpeg" alt="" />
-            </a>
-          </li>
-          <li class="item">
-            <a href="">
-              <img src="./img/banner_02.jpeg" alt="" />
-            </a>
-          </li>
-          <li class="item">
-            <a href="">
-              <img src="./img/banner_03.jpeg" alt="" />
-            </a>
-          </li>
-          <li class="item">
-            <a href="">
-              <img src="./img/banner_04.jpeg" alt="" />
-            </a>
-          </li>
-          <li class="item">
-            <a href="">
-              <img src="./img/banner_05.jpeg" alt="" />
-            </a>
-          </li>
-        </ul>
-        <ul class="title-list">
-          <li class="item active">
-            <a href="#">桑启的旅途故事</a>
-          </li>
-          <li class="item">
-            <a href="#">启示之音抢先听</a>
-          </li>
-          <li class="item">
-            <a href="#">谁成为版本之子</a>
-          </li>
-          <li class="item">
-            <a href="#">观赛体验升级</a>
-          </li>
-          <li class="item">
-            <a href="#">季后赛开战</a>
-          </li>
-        </ul>
-      </div>
-      <div class="news"></div>
-      <div class="download">
-        <a class="download-btn" href="#"></a>
-        <a class="guard-btn" href="#"></a>
-        <a class="experience-btn" href="#"></a>
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>王者荣耀-main-news</title>
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/common.css" />
+
+    <style>
+      .main {
+        height: 100px;
+      }
+
+      .news-section {
+        display: flex;
+        height: 342px;
+      }
+
+      .news-section .banner {
+        width: 605px;
+        background-color: #000;
+        overflow: hidden;
+      }
+
+      .news-section .banner .image-list {
+        position: relative;
+        display: flex;
+        width: 604px;
+        height: 298px;
+      }
+
+      .news-section .banner .image-list .item {
+        position: absolute;
+        left: 100%;
+        flex-shrink: 0;
+        width: 100%;
+      }
+
+      .news-section .banner .image-list .item:first-child {
+        left: 0;
+        transition: left 300ms ease;
+      }
+
+      .news-section .banner .image-list .item a {
+        display: block;
+      }
+
+      .news-section .banner .image-list .item a img {
+        width: 100%;
+      }
+
+      .news-section .banner .title-list {
+        display: flex;
+        height: 44px;
+        line-height: 44px;
+      }
+
+      .news-section .banner .title-list .item {
+        flex: 1;
+        text-align: center;
+      }
+
+      .news-section .banner .title-list .item a {
+        display: block;
+        font-size: 14px;
+        color: #b1b2be;
+      }
+      .news-section .banner .title-list .item.active a,
+      .news-section .banner .title-list .item a:hover {
+        color: #f3c258;
+        background-color: rgba(255, 255, 255, 0.15);
+      }
+
+      .news-section .news {
+        flex: 1;
+        background-color: purple;
+      }
+
+      .news-section .download {
+        width: 236px;
+        background-color: skyblue;
+      }
+
+      .news-section .download a {
+        display: block;
+        background: url(./img/main_sprite.png) no-repeat;
+      }
+
+      .news-section .download a.download-btn {
+        height: 128px;
+        background-position: 0 -219px;
+      }
+
+      .news-section .download a.guard-btn {
+        height: 106px;
+        background-position: 0 -350px;
+      }
+
+      .news-section .download a.experience-btn {
+        height: 108px;
+        background-position: 0 -461px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main main_wrapper">
+      <div class="news-section">
+        <div class="banner">
+          <ul class="image-list">
+            <li class="item">
+              <a href="">
+                <img src="./img/banner_01.jpeg" alt="" />
+              </a>
+            </li>
+            <li class="item">
+              <a href="">
+                <img src="./img/banner_02.jpeg" alt="" />
+              </a>
+            </li>
+            <li class="item">
+              <a href="">
+                <img src="./img/banner_03.jpeg" alt="" />
+              </a>
+            </li>
+            <li class="item">
+              <a href="">
+                <img src="./img/banner_04.jpeg" alt="" />
+              </a>
+            </li>
+            <li class="item">
+              <a href="">
+                <img src="./img/banner_05.jpeg" alt="" />
+              </a>
+            </li>
+          </ul>
+          <ul class="title-list">
+            <li class="item active">
+              <a href="#">桑启的旅途故事</a>
+            </li>
+            <li class="item">
+              <a href="#">启示之音抢先听</a>
+            </li>
+            <li class="item">
+              <a href="#">谁成为版本之子</a>
+            </li>
+            <li class="item">
+              <a href="#">观赛体验升级</a>
+            </li>
+            <li class="item">
+              <a href="#">季后赛开战</a>
+            </li>
+          </ul>
+        </div>
+        <div class="news"></div>
+        <div class="download">
+          <a class="download-btn" href="#"></a>
+          <a class="guard-btn" href="#"></a>
+          <a class="experience-btn" href="#"></a>
+        </div>
       </div>
     </div>
-  </div>
-  <script>
-    // 1.获取元素
-    var titleListEl = document.querySelector('.title-list')
-    var imageListEl = document.querySelector('.image-list')
-    var bannerEl = document.querySelector('.banner')
-    // 定义变量保存一些的状态
-    var activeTitleEl = titleListEl.querySelector('.active')
-    var currentIndex = 0 // 记录当前轮播图 index
-    var previousIndex = 0 // 记录上一张轮播图 index
-    var timerID = null // 自动轮播定时器
-    // 2.底部 titles 的切换, 同时进行轮播
-    titleListEl.onmouseover = function (event) {
-      // 1.1.确定发生鼠标进入的元素
-      var itemEl = event.target.parentElement
-      if (!itemEl.classList.contains('item')) return
-      // 1.2.获取对应的索引index
-      var index = Array.from(titleListEl.children).findIndex(item => item === itemEl)
-      previousIndex = currentIndex
-      currentIndex = index
-      // 1.3.调用切换的函数
-      switchBanner()
-    }
-    // 3.定时器: 定时轮播
-    startTimer()
-    // 监听banner的事件
-    bannerEl.onmouseenter = function () {
-      clearInterval(timerID)
-    }
-    bannerEl.onmouseleave = function () {
-      startTimer()
-    }
-    // 封装一个添加定时器的函数
-    function startTimer() {
-      timerID = setInterval(function () {
-        previousIndex = currentIndex++
-        if (currentIndex === titleListEl.children.length) currentIndex = 0
-        // 调用切换的函数
+
+    <script></script>
+
+    <script>
+      // 获取元素
+      var titleListEl = document.querySelector('.title-list')
+      var imageListEl = document.querySelector('.image-list')
+      var bannerEl = document.querySelector('.banner')
+
+      var activeTitleEl = titleListEl.querySelector('.active')
+      var currentIndex = 0 // 记录当前轮播图
+      var previousIndex = 0
+      var timerId = null
+
+      // 底部 titles 的切换, 同时进行轮播
+      titleListEl.onmouseover = function (event) {
+        // 确定发生鼠标进入的元素
+        var itemEl = event.target.parentElement
+        if (!itemEl.classList.contains('item')) return
+
+        var index = Array.from(titleListEl.children).findIndex(function (item) {
+          return item === itemEl
+        })
+
+        previousIndex = currentIndex
+        currentIndex = index
+
         switchBanner()
-      }, 3000)
-    }
-    // 封装一个切换轮播的函数
-    function switchBanner() {
-      // 第一件事情: 让 imageListEl 滚动
-      // 1.1.让imageListEl 修改位置，其他内容需要调整
-      for (var i = 0; i < imageListEl.children.length; i++) {
-        var itemEl = imageListEl.children[i]
-        if (i === currentIndex) {
-          // 当前要展示的 imageItem
-          itemEl.style.transition = 'left 300ms ease'
-          itemEl.style.left = '0'
-        } else if (i < currentIndex) {
-          // 需要放到左侧的 imageItem
-          if (i !== previousIndex) itemEl.style.transition = 'none'
-          itemEl.style.left = '-100%'
-        } else {
-          // 需要放到右侧的 imageItem
-          if (i !== previousIndex) itemEl.style.transition = 'none'
-          itemEl.style.left = '100%'
-        }
       }
-      // 第二件事情: 改变 title 选中
-      // 1.2.移除之前的 active
-      activeTitleEl.classList.remove('active')
-      // 1.3.将 active 添加到鼠标进入的元素
-      var currentItemEl = titleListEl.children[currentIndex]
-      currentItemEl.classList.add('active')
-      // 1.4.让activeItemEl指向最新的元素
-      activeTitleEl = currentItemEl
-    }
-  </script>
-</body>
+
+      startTimer()
+
+      // 经停 banner 的事件
+      bannerEl.onmouseenter = function () {
+        clearInterval(timerId)
+      }
+      bannerEl.onmouseleave = function () {
+        startTimer()
+      }
+
+      // 代码重构，封装一个切换轮播图的函数。
+      function switchBanner() {
+        for (var i = 0; i < imageListEl.children.length; i++) {
+          var itemEl = imageListEl.children[i]
+
+          if (i === currentIndex) {
+            // 当前要展示的轮播图
+            itemEl.style.transition = 'left 300ms ease'
+
+            itemEl.style.left = '0'
+          } else if (i < currentIndex) {
+            // 需要放在左侧的轮播图
+            if (i !== previousIndex) {
+              itemEl.style.transition = 'none'
+            }
+
+            itemEl.style.left = '-100%'
+          } else {
+            // 需要放在右侧的轮播图
+            if (i !== previousIndex) {
+              itemEl.style.transition = 'none'
+            }
+
+            itemEl.style.left = '100%'
+          }
+        }
+
+        // 排他思想
+        activeTitleEl.classList.remove('active')
+
+        var currentItemEl = titleListEl.children[currentIndex]
+        currentItemEl.classList.add('active')
+
+        activeTitleEl = currentItemEl
+      }
+
+      // 1.添加定时器，实现轮播图的自动轮播。
+      function startTimer() {
+        timerId = setInterval(function () {
+          previousIndex = currentIndex
+          currentIndex++
+
+          if (currentIndex === titleListEl.children.length) currentIndex = 0
+
+          switchBanner()
+        }, 1000)
+      }
+    </script>
+  </body>
+</html>
 ```
 
 ---
