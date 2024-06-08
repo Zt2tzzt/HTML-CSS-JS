@@ -42,8 +42,8 @@ CSS 属性 `pointer-events: none;` 的主要作用是使元素不可被点击或
 
 1. 添加定时器，实现轮播图的自动轮播。
 2. 代码重构，封装一个切换轮播图的函数。
-3. 当鼠标寻停在轮播图上，或者轮播图 title 上时，取消定时器，停止轮播。鼠标离开后，开始轮播。
-4. 实现王者荣耀首页轮播图的默认效果，淡入、淡出效果（图片层叠抽取，而不是挨个位移。调整图片样式，做成王者默认轮播效果。）。
+3. 当鼠标悬停在轮播图上，或者轮播图 title 上时，取消定时器，停止轮播。鼠标离开后，开始轮播。
+4. 实现王者荣耀首页轮播图的默认效果，淡入、淡出效果（图片层叠抽取，而不是挨个位移。调整图片样式，做成王者默认轮播效果）。
 
 > CSS 中，绝对定位元素的 `left` 属性，百分数相对于定位父元素宽度。
 
@@ -303,95 +303,164 @@ CSS 属性 `pointer-events: none;` 的主要作用是使元素不可被点击或
 </html>
 ```
 
----
+### 3.书籍购物车案例
 
-书籍购物车案例实现。
+知识点总结：
+
+- [HTMLTableRowElement.](https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLTableRowElement/rowIndex)，用于获取 table row 元素对象上的属性。
 
 ```html
-<body>
-  <table>
-    <thead>
-      <tr>
-        <th>编号</th>
-        <th>书籍名称</th>
-        <th>出版日期</th>
-        <th>价格</th>
-        <th>购买数量</th>
-        <th>操作</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
-  <h2 class="price">总价格: ¥<span class="price-count">0</span></h2>
-  <script>
-    // 1.从服务器获取数据 ajax/fetch
-    var books = [
-      { id: 1, name: '《算法导论》', date: '2006-09', price: 85.0, count: 3 },
-      { id: 2, name: '《UNIX编程艺术》', date: '2006-02', price: 59.0, count: 2 },
-      { id: 3, name: '《编程珠玑》', date: '2008-10', price: 39.0, count: 5 },
-      { id: 4, name: '《代码大全》', date: '2006-03', price: 128.0, count: 8 }
-    ]
-    // 2.对数据展示
-    // 到底通过 html 直接编写, 还是通过 JavaScriptDOM 操作创建元素
-    // 1> 对于固定的, 直接通过 html 编写(能通过 html 编写, 尽量通过 html 直接编写)
-    // 2> 对于那些大量的数据, 有规律的数据, 可以通过 JavaScript 编写
-    var tbodyEl = document.querySelector('tbody')
-    // 2.2. 动态添加 tr 以及内部数据
-    for (var i = 0; i < books.length; i++) {
-      var trowEl = document.createElement('tr')
-      // 2.3. 放具体数据
-      var book = books[i]
-      var bookKeys = Object.keys(book)
-      for (var j = 0; j < bookKeys.length; j++) {
-        var key = bookKeys[j]
-        var value = book[key]
-        var tdEl = document.createElement('td')
-        tdEl.textContent = key === 'price' ? '¥' + value : value
-        trowEl.append(tdEl)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>书籍购物车</title>
+    <style>
+      table {
+        border-collapse: collapse;
       }
-      // 2.4. 添加删除按钮
-      var deleteTdEl = document.createElement('td')
-      var deleteBtnEl = document.createElement('button')
-      deleteBtnEl.textContent = '删除'
-      deleteTdEl.append(deleteBtnEl)
-      trowEl.append(deleteTdEl)
-      // 2.5.监听删除按钮的点击
-      deleteBtnEl.onclick = function () {
-        // 1.删除对应的 row
-        var deleteTRowEl = this.parentElement.parentElement
-        var deleteTrIndex = deleteTRowEl.sectionRowIndex // 先拿到删除行的索引，再进行删除
-        deleteTRowEl.remove()
-        // 2.删除对应books中的数据
-        books.splice(deleteTrIndex, 1)
-        // 3.重新计算一次价格
-        calcTotalPrice()
+
+      thead {
+        background-color: #f5f5f5;
       }
-      tbodyEl.append(trowEl)
-    }
-    // 3.计算总价格
-    var priceCountEl = document.querySelector('.price-count')
-    calcTotalPrice()
-    // 封装计算价格的函数
-    function calcTotalPrice() {
-      var totalPrice = books.reduce((accumulate, item) => accumulate + item.count * item.price, 0)
-      priceCountEl.textContent = totalPrice
-    }
-  </script>
-</body>
+
+      th,
+      td {
+        border: 1px solid #aaa;
+        padding: 8px 12px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table>
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>书籍名称</th>
+          <th>出版日期</th>
+          <th>价格</th>
+          <th>购买数量</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <h2 class="price">总价格: ¥<span class="price-count">0</span></h2>
+
+    <script>
+      // 模拟从服务器获取数据 ajax/fetch
+      var books = [
+        {
+          id: 1,
+          name: '《算法导论》',
+          date: '2006-09',
+          price: 85.0,
+          count: 3
+        },
+        {
+          id: 2,
+          name: '《UNIX编程艺术》',
+          date: '2006-02',
+          price: 59.0,
+          count: 2
+        },
+        {
+          id: 3,
+          name: '《编程珠玑》',
+          date: '2008-10',
+          price: 39.0,
+          count: 5
+        },
+        {
+          id: 4,
+          name: '《代码大全》',
+          date: '2006-03',
+          price: 128.0,
+          count: 8
+        }
+      ]
+
+      // 对数据展示
+      // 到底通过html直接编写, 还是通过JavaScriptDOM操作创建元素
+      // 1> 对于固定的, 直接通过html编写(能通过html编写, 尽量通过html直接编写)
+      // 2> 对于哪些大量的数据, 有规律的数据, 可以通过JavaScript编写
+      var tbodyEl = document.querySelector('tbody')
+
+      // 动态添加tr以及内部数据
+      for (var i = 0; i < books.length; i++) {
+        var trowEl = document.createElement('tr')
+
+        // 放具体数据
+        var book = books[i]
+        var bookKeys = Object.keys(book)
+        for (var m = 0; m < bookKeys.length; m++) {
+          var key = bookKeys[m]
+          var value = book[key]
+          var tdEl = document.createElement('td')
+          if (key === 'price') {
+            value = '¥' + value
+          }
+          tdEl.textContent = value
+          trowEl.append(tdEl)
+        }
+
+        // 添加删除按钮
+        var deleteTdEl = document.createElement('td')
+        var deleteBtnEl = document.createElement('button')
+        deleteBtnEl.textContent = '删除'
+        deleteTdEl.append(deleteBtnEl)
+        trowEl.append(deleteTdEl)
+
+        // 监听删除按钮的点击
+        deleteBtnEl.onclick = function () {
+          // 删除对应的 trow
+          var deleteTRowEl = this.parentElement.parentElement
+          var deleteTrIndex = deleteTRowEl.sectionRowIndex
+          deleteTRowEl.remove()
+
+          // 删除对应 books 中的数据
+          books.splice(deleteTrIndex, 1)
+
+          // 重新计算一次价格
+          calcTotalPrice()
+        }
+
+        tbodyEl.append(trowEl)
+      }
+
+      // 3.计算总价格
+      var priceCountEl = document.querySelector('.price-count')
+
+      calcTotalPrice()
+
+      // 封装计算价格的函数
+      function calcTotalPrice() {
+        var totalPrice = books.reduce(function (preValue, item) {
+          return preValue + item.count * item.price
+        }, 0)
+        priceCountEl.textContent = totalPrice
+      }
+    </script>
+  </body>
+</html>
 ```
 
----
+## 二、BOM
 
-# BOM
-
-BOM 全称：浏览器对象模型（Browser Object Model）
-
-它是什么？
+BOM（Browser Object Model）表示浏览器对象模型
 
 - 由浏览器提供的用于处理文档（document）之外的所有内容的其他对象；
-- 连接 JavaScript 脚本与浏览器窗口的桥梁。
+- 比如 navigator、location、history 等对象；
 
----
+JavaScript 有一个非常重要的运行环境，就是浏览器：
+
+- 浏览器本身又作为一个应用程序，需要对其进行操作；
+- 所以通常浏览器会有对应的对象模型，即 BOM（Browser Object Model）；
+- 我们可以将 BOM，看成是连接 JavaScript 脚本与浏览器窗口的桥梁；
 
 BOM 主要包括哪些对象模型？
 
@@ -401,48 +470,68 @@ BOM 主要包括哪些对象模型？
 - `navigator`：用户代理（浏览器）的状态和标识（很少用到）；
 - `screen`：屏幕窗口信息（很少用到）；
 
----
+### 1.window 对象
 
-## window
+window 对象在浏览器中，可以从两个视角来看待：
 
-看待 window 对象的两个角度。
+- 视角一：全局对象。我们知道 ECMAScript 其实是有一个全局对象的：这个全局对象：
+  - 在 NodeJs 环境中是 `global`；
+  - 在浏览器环境中，就是 `window` 对象；
 
-1. 全局对象（在 Node 中是 `global`，浏览器和 Node 中都可以用 `globalThis` 表示）。
-2. 浏览器窗口对象，提供了浏览器操作相关的 API。
+- 视角二：浏览器窗口对象。
+  - 作为浏览器窗口时，提供了对浏览器操作的相关的 API；
 
----
+> 事实上，对于浏览器环境和 NodeJs 环境中，全局对象名称不一样的情况，目前已经指定了对应的标准，称之为 "globalThis"，并且大多数现代浏览器都支持它；
+>
+> 在现代 JavaScript 中，浏览器环境和 Node 环境中都可以用 `globalThis` 表示这个全局对象。
 
-window 对象包含哪 4 方面内容？
+当然，这两个视角存在大量重叠的地方，所以不需要刻意去区分它们：
 
-1. 包含大量的属性，localStorage、console、location、history、screenX、scrollY 等等（大概 60+个属性）；
-2. 包含大量的方法，alert、scrollTo，close、open 等等（大概 40+个方法）；
-3. 包含大量的事件，focus、blur、load、hashchange 等等（大概 30+个事件）；
-4. 包含从 EventTarget 继承过来的方法，addEventListener、removeEventListener、dispatchEvent 方法；
+- 放在 `window` 对象上的所有属性，在全局作用域都可以被访问；
+- 使用 var 关键字定义的变量，会被添加到 `window` 对象中；
+- `window` 对象，默认给我们提供了全局的函数和类，比如：`setTimeout`（函数）、`Math`（对象）、`Date`（类）、`Object`（类）等。
 
----
+事实上 `window` 对象上，肩负的重担是非常大的：
 
-MDN 文档中 API 前面的 3 种符号。
+- 第一：包含大量的属性。比如：
+  - `localStorage`、`console`、`location`、`history`、`screenX`、`scrollX` 等等（大概 60+ 个属性）；
+
+- 第二：包含大量的方法，比如：
+  - `alert`、`close`、`scrollTo`、`open` 等等（大概 40+ 个方法）；
+
+- 第三：包含大量的事件，比如：
+  - `focus`、`blur`、`load`、`hashchange` 等等（大概 30+ 个事件）；
+
+- 第四：包含从 EventTarget 接口上实现的方法，比如：
+  - `addEventListener`、`removeEventListener`、`dispatchEvent` 方法；
+
+这些大量的属性、方法、事件在，在 [MDN 文档](https://developer.mozilla.org/zh-CN/docs/Web/API/Window) 查看。在 API 文档中，我们可能会发现有很多不同的符号，它们分别代表的意思如下：
 
 - 删除符号：表示这个 API 已经废弃，不推荐继续使用了；
-- 点踩符号(感叹号)：表示这个 API 不属于 W3C 规范，某些浏览器有实现（有兼容性的问题）；
-- 实验符号：该 API 是实验性特性，以后可能会修改，并且存在兼容性问题；
+- 感叹（点踩）符号：表示这个 API 不属于 W3C 规范，某些浏览器有实现（所以存在兼容性的问题）；
+- 实验符号：表示该 API 是实验性特性，以后可能会修改，并且存在兼容性问题；
 
----
+#### 1.open、close 方法
 
 window 对象中的 open 和 close 方法 。
+
+- [Window：open()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open)，用指定的名称将指定的资源加载到新的或已存在的浏览上下文（标签、窗口或 [iframe](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/iframe)）中。
+- [Window.close()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/close)，该方法只能由 [Window.open()](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/open) 方法打开的窗口的 `window` 对象来调用，用于闭当前窗口或某个指定的窗口。
 
 ```javascript
 var openBtnEl = document.querySelector('button')
 var closeBtnEl = document.querySelector('.close')
+
 openBtnEl.onclick = function () {
   window.open('./page/new.html', '_blank')
 }
+
 closeBtnEl.onclick = function () {
   window.close() // 只能关闭由 open 方法打开的页面
 }
 ```
 
----
+#### 2.focus、blur、hashchange 事件
 
 window 上的事件 focus，blur，hashchange
 
@@ -450,67 +539,83 @@ window 上的事件 focus，blur，hashchange
 window.onfocus = function () {
   console.log('窗口获取到焦点')
 }
+
 window.onblur = function () {
   console.log('窗口失去了焦点')
 }
+
 window.onhashchange = function () {
   console.log('hash值发生改变')
 }
 ```
 
----
+### 2.location 对象
 
-## location
-
-location 对象有什么用，
-
-- 用于表示 window 上当前链接到的 URL 信息。
+location 对象，用于表示 window 上当前链接到的 URL 信息。
 
 它有哪些属性？
 
 - `href`: 当前 window 对应的超链接 URL, 整个 URL；
 - `protocol`: 当前的协议；
 - `host`: 主机地址；
-- `hostname`: 主机地址(不带端口)；
+- `hostname`: 主机地址（不带端口）；
 - `port`: 端口；
 - `pathname`: 路径；
 - `search`: 查询字符串；
 - `hash`: 哈希值；
-- username：URL 中的 username（很多浏览器已经禁用）；
-- password：URL 中的 password（很多浏览器已经禁用）
+- `username`：URL 中的 username（很多浏览器已经禁用）；
+- `password`：URL 中的 password（很多浏览器已经禁用）。
 
-理解 location 是 URL 抽象图解。
+location 对象，是浏览器上 URL 抽象，如下图所示：
 
 ![location是URL的抽象理解](NodeAssets/location是URL的抽象理解.jpg)
 
----
-
-location 的 3 个方法，有什么用，代码演示。
+location 有如下 3 个常见方法：
 
 - `assign`：赋值一个新的 URL，并且跳转到该 URL 中；
 - `replace`：打开一个新的 URL，并且跳转到该 URL 中（不同的是不会在浏览记录中留下之前的记录）；
 - `reload`：重新加载页面，可以传入一个 Boolean 类型；
 
-```javascript
-var btns = document.querySelectorAll('button')
-btns[0].onclick = function () {
-  location.assign('http://www.baidu.com')
-}
-btns[1].onclick = function () {
-  location.replace('http://www.baidu.com')
-}
-btns[2].onclick = function () {
-  location.reload()
-}
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <button>百度</button>
+    <button>百度</button>
+    <button>刷新</button>
+
+    <script>
+      var btns = document.querySelectorAll('button')
+
+      btns[0].onclick = function () {
+        location.assign('http://www.baidu.com')
+      }
+
+      btns[1].onclick = function () {
+        location.replace('http://www.baidu.com')
+      }
+
+      btns[2].onclick = function () {
+        location.reload()
+      }
+    </script>
+  </body>
+</html>
 ```
 
----
+#### 1.URLSearchParams 接口
 
-`URLSearchParams` 构造函数（类）有什么用，
+[URLSearchParams](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams) 接口实现的 URLSearchParams 构造函数（类），定义了一些实用的方法来处理 URL 的查询字符串。
 
-- 定义了一些实用的方法来处理 URL 的查询字符串
+- 可以将一个字符串，转化成 URLSearchParams 类型；
+- 也可以将一个  URLSearchParams 类型，转成字符串；
 
-它有哪些方法？
+URLSearchParams 的实例对象，常见的方法有如下几个：
 
 - `get`：获取搜索参数的值；
 - `set`：设置一个搜索参数和值；
@@ -520,45 +625,40 @@ btns[2].onclick = function () {
 
 ```javascript
 var searchParams = new URLSearchParams('?name=zzt&age=18&height=1.88')
+
 searchParams.get('name')
 searchParams.append('address', '广州市')
 searchParams.toString()
 ```
 
----
-
-URL 中如果有中文，会使用 `encodeURIComponent` 和 `decodeURIComponent` 进行编码和解码。
+浏览器的 URL 中，如果有中文，会使用 `encodeURIComponent` 和 `decodeURIComponent` 进行编码和解码。
 
 ```javascript
 encodeURIComponent('深圳市') // '%E6%B7%B1%E5%9C%B3%E5%B8%82'
+
 decodeURIComponent('%E6%B7%B1%E5%9C%B3%E5%B8%82') // 深圳市
 ```
 
----
+### 3.history 对象
 
-## history
+history 对象，是 HTML5 的新特性，允许我们访问浏览器曾经的会话历史记录。
 
-前端路由的核心概念：修改了 URL（history / hash），但页面不刷新。
-
----
-
-history 对象（HTML5 新特性）
-
-2 个属性
+history 对象的两个属性：
 
 - `length`：会话中的记录条数；
 - `state`：当前保留的状态值；
 
-5 个方法。案例实现。
+history 对象的五个方法：
 
-- `back()`：返回上一页，等价于 history.go(-1)；
-- `forward()`：前进下一页，等价于 history.go(1)；
+- `back()`：返回上一页，等价于 `history.go(-1)`；
+- `forward()`：前进下一页，等价于 `history.go(1)`；
 - `go()`：加载历史中的某一页；
 - `pushState()`：打开一个指定的地址；页面不刷新。
-- `replaceState()`：打开一个新的地址，并且使用 replace；不能后退，页面不刷新。
+- `replaceState()`：打开一个新的地址，并且使用 replace；不能回退，页面不刷新。
 
 ```javascript
 var btnEl = document.querySelector('button')
+
 btnEl.onclick = function () {
   /**
    * arg1：状态对象
@@ -570,19 +670,16 @@ btnEl.onclick = function () {
 }
 ```
 
----
+> 在现代的前端矿建（vue、react、...）中，前端路由的核心概念：就是修改了浏览器 URL，但页面不刷新。主要用到 history 对象和 location 对象的 hash。
 
-## navigator & screen
+### 4.navigator、screen 对象
 
-了解 navigator 和 screen 对象有什么用。
+navigator 对象表示用户代理的状态和标识等信息。
 
-- navigator 对象表示用户代理的状态和标识等信息。
-- screen 主要记录的是浏览器窗口外面的客户端显示器的信息
-  - 如屏幕的逻辑像素 `screen.width`、`screen.height`；
+screen 主要记录的是浏览器窗口外面的客户端显示器的信息
+- 如屏幕的逻辑像素 `screen.width`、`screen.height`；
 
----
-
-# JSON
+## 三、JSON
 
 什么是 JSON（JavaScript Object Notation）
 

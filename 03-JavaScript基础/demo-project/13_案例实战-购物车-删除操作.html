@@ -40,7 +40,7 @@
   <h2 class="price">
     总价格: ¥<span class="price-count">0</span>
   </h2>
-  
+
   <script>
     // 1.从服务器获取数据 ajax/fetch
     var books = [
@@ -77,10 +77,10 @@
 
     // 2.对数据展示
     // 到底通过html直接编写, 还是通过JavaScriptDOM操作创建元素
-    // 1> 对于固定的, 直接通过html编写(能通过html编写, 尽量通过html直接编写)
-    // 2> 对于哪些大量的数据, 有规律的数据, 可以通过JavaScript编写
+      // 1> 对于固定的, 直接通过html编写(能通过html编写, 尽量通过html直接编写)
+      // 2> 对于哪些大量的数据, 有规律的数据, 可以通过JavaScript编写
     var tbodyEl = document.querySelector("tbody")
-    
+
     // 2.2. 动态添加tr以及内部数据
     for (var i = 0; i < books.length; i++) {
       var trowEl = document.createElement("tr")
@@ -123,7 +123,7 @@
       tbodyEl.append(trowEl)
     }
 
-    
+
     // 3.计算总价格
     var priceCountEl = document.querySelector(".price-count")
     calcTotalPrice()

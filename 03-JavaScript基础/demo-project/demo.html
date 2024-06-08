@@ -2,60 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Demo</title>
-
-    <style>
-      .top-bar {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        height: 45px;
-        width: 375px;
-
-        color: #fff;
-        background-color: black;
-
-        /* 关键 */
-        overflow: hidden;
-        transition: all 0.5s ease-out;
-      }
-    </style>
   </head>
   <body>
-    <div class="top-bar">
-      <div class="delete">
-        <img
-          src="https://m.360buyimg.com/mobilecms/jfs/t19480/10/1439571805/820/787bec2c/5ac9d730N04e6d766.png"
-          alt=""
-        />
-      </div>
-
-      <img
-        class="logo"
-        src="https://img13.360buyimg.com/img/jfs/t1/185008/26/33606/2587/641973cbFd5acd3e9/ad0294917f47e6b8.png"
-        alt=""
-      />
-
-      <span>打开京东App,购物更轻松</span>
-
-      <div class="btn">立即打开</div>
-    </div>
+    <button>百度</button>
+    <button>百度</button>
+    <button>刷新</button>
 
     <script>
-      // 1.获取元素
-      var topBar = document.querySelector('.top-bar')
-      var deleteEl = topBar.querySelector('.delete')
+      var btns = document.querySelectorAll('button')
 
-      // 2.监听 delete 的点击
-      deleteEl.onclick = function () {
-        topBar.style.height = 0
+      btns[0].onclick = function () {
+        location.assign('http://www.baidu.com')
       }
 
-      // 3.监听过渡动画结束
-      topBar.ontransitionend = function () {
-        topBar.remove()
+      btns[1].onclick = function () {
+        location.replace('http://www.baidu.com')
+      }
+
+      btns[2].onclick = function () {
+        location.reload()
       }
     </script>
   </body>
