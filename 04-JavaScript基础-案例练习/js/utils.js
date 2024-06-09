@@ -8,9 +8,11 @@
 function addProductsEmptyItem(parentEl, colum) {
   for (let i = 0; i < colum; i++) {
     var itemEl = document.createElement('li')
+
     itemEl.classList.add('item', 'empty')
     // itemEl.classList.add('item')
     // itemEl.classList.add('empty')
+
     parentEl.append(itemEl)
   }
 }

@@ -18,6 +18,7 @@
         <span>&gt;</span>
         <span class="item">笔记本</span>
       </div>
+
       <!-- 操作导航 -->
       <div class="operation">
         <ul class="category row">
@@ -40,6 +41,7 @@
           <li class="item" data-key="price">价格</li>
         </ul>
       </div>
+
       <!-- 商品展示 -->
       <ul class="products">
         <!-- 用 dom 操作生成 -->
@@ -67,27 +69,34 @@
     <script>
       // 资源服务器地址
       var SERVER_URL = 'https://res.vmallres.com/pimages'
+
       // 1.动态展示商品列表
       var productsEl = document.querySelector('.products')
+
       // 2.服务优惠的筛选
       var operationEl = document.querySelector('.operation')
       var discountEl = operationEl.querySelector('.discount')
 
       // 定义变量，记录选中的服务
       var discountFilters = []
+
       for (let i = 1; i < discountEl.children.length; i++) {
         // 获取对应的 discountItemEl
         var discountItemEl = discountEl.children[i]
+
         // 监听 discountItemEl
         discountItemEl.onclick = function () {
           // 在 active 和非 active 之间切换
           this.classList.toggle('active')
+
           if (this.classList.contains('active')) {
             discountFilters.push(this.textContent.trim())
           } else {
             var index = discountFilters.findIndex(item => item === this.textContent.trim())
+
             discountFilters.splice(index, 1)
           }
+
           // 过滤 resultList
           filterResultListAction()
         }
@@ -96,16 +105,22 @@
       // 3.监听排序功能 ==============================
       const sortEl = document.querySelector('.sort')
       let activeItemEl = sortEl.querySelector('.active')
+
       for (let i = 0; i < sortEl.children.length; i++) {
         const sortItemEl = sortEl.children[i]
+
         sortItemEl.index = i
+
         sortItemEl.onclick = function () {
           // 1.取消之前的，添加新的active
           activeItemEl.classList.remove('active')
+
           this.classList.add('active')
           activeItemEl = this
+
           // 2.获取信息
           const sortKey = this.dataset.key
+
           // 3.根据key，对数据进行排序
           sortResultListAction(sortKey)
         }
@@ -113,44 +128,52 @@
 
       // 过滤后的数据列表
       var showResultList = [...resultList]
+
       function filterResultListAction() {
         console.log('---resultList---', resultList)
+
         // 过滤掉出包含 documentFilter 的 item
         showResultList = resultList.filter(item =>
           discountFilters.every(filter => item.services.includes(filter))
         )
+
         console.log('---showResultList---', showResultList)
         // 重新展示数据
         showResultListAction()
       }
 
       showResultListAction()
+
       function showResultListAction() {
         productsEl.innerHTML = ''
+
         showResultList.forEach((resultItem, index) => {
           // 最外层 li
           var liEl = document.createElement('li')
           liEl.classList.add('item')
+
           // service 里面的内容
           var serviceStr = ''
+
           resultItem.promoLabels.forEach(label => {
             serviceStr += `<span class="tip">${label}</span>`
           })
+
           liEl.innerHTML = `
-				<a href="#">
-					<img class="album" src="${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}" alt="">
-					<div class="name">${resultItem.name}</div>
-					<div class="discount">${resultItem.promotionInfo}</div>
-					<div class="price">¥${resultItem.price}</div>
-					<div class="service">
-						${serviceStr}
-					</div>
-					<div class="comment">
-						<span>${resultItem.rateCount}人评论</span>
-						<span>${resultItem.goodRate}% 好评</span>
-					</div>
-				</a>
-			`
+            <a href="#">
+              <img class="album" src="${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}" alt="">
+              <div class="name">${resultItem.name}</div>
+              <div class="discount">${resultItem.promotionInfo}</div>
+              <div class="price">¥${resultItem.price}</div>
+              <div class="service">
+                ${serviceStr}
+              </div>
+              <div class="comment">
+                <span>${resultItem.rateCount}人评论</span>
+                <span>${resultItem.goodRate}% 好评</span>
+              </div>
+            </a>
+        `
           productsEl.append(liEl)
         })
         // 添加空 item，使得 flex 布局最后一行对齐
@@ -167,6 +190,7 @@
             showResultList.sort((item1, item2) => item2[key] - item1[key])
             break
         }
+        
         showResultListAction()
       }
     </script>

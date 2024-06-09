@@ -475,6 +475,7 @@ BOM 主要包括哪些对象模型？
 window 对象在浏览器中，可以从两个视角来看待：
 
 - 视角一：全局对象。我们知道 ECMAScript 其实是有一个全局对象的：这个全局对象：
+
   - 在 NodeJs 环境中是 `global`；
   - 在浏览器环境中，就是 `window` 对象；
 
@@ -494,12 +495,15 @@ window 对象在浏览器中，可以从两个视角来看待：
 事实上 `window` 对象上，肩负的重担是非常大的：
 
 - 第一：包含大量的属性。比如：
+
   - `localStorage`、`console`、`location`、`history`、`screenX`、`scrollX` 等等（大概 60+ 个属性）；
 
 - 第二：包含大量的方法，比如：
+
   - `alert`、`close`、`scrollTo`、`open` 等等（大概 40+ 个方法）；
 
 - 第三：包含大量的事件，比如：
+
   - `focus`、`blur`、`load`、`hashchange` 等等（大概 30+ 个事件）；
 
 - 第四：包含从 EventTarget 接口上实现的方法，比如：
@@ -613,7 +617,7 @@ location 有如下 3 个常见方法：
 [URLSearchParams](https://developer.mozilla.org/zh-CN/docs/Web/API/URLSearchParams) 接口实现的 URLSearchParams 构造函数（类），定义了一些实用的方法来处理 URL 的查询字符串。
 
 - 可以将一个字符串，转化成 URLSearchParams 类型；
-- 也可以将一个  URLSearchParams 类型，转成字符串；
+- 也可以将一个 URLSearchParams 类型，转成字符串；
 
 URLSearchParams 的实例对象，常见的方法有如下几个：
 
@@ -676,54 +680,197 @@ btnEl.onclick = function () {
 
 navigator 对象表示用户代理的状态和标识等信息。
 
+![navigator](NodeAssets/navigator.jpg)
+
 screen 主要记录的是浏览器窗口外面的客户端显示器的信息
+
 - 如屏幕的逻辑像素 `screen.width`、`screen.height`；
+
+![screen](NodeAssets/screen.jpg)
 
 ## 三、JSON
 
-什么是 JSON（JavaScript Object Notation）
+JSON（全称 JavaScript Object Notation），表示 JavaScript 对象符号，是一种非常重要的数据格式，它并不是编程语言，而是一种可以在服务器和客户端之间传输的数据格式。
 
-- 一种数据格式，不是编程语言，算是 JavaScript 的一个子集。
+- JSON 是由 Douglas Crockford 构想和设计的一种轻量级资料交换格式，算是 JavaScript 的一个子集；
+- JSON 被提出来的时候是主要应用于 JavaScript 中，但是目前已经独立于编程语言，可以在各个编程语言中使用；
+- 很多编程语言都实现了将 JSON 转成对应模型的方法；
 
-除了 JSON 还有什么传输格式？
+> 除了 JSON 以外，还有哪些数据传输格式：
+>
+> - XML 格式
+>   - 在早期的网络传输中主要是使用 XML 来进行数据交换的。
+>   - 这种格式在解析、传输等各方面都弱于 JSON，所以目前已经很少在被使用了；
+> - Protobuf 格式：
+>   - 另外一个在网络传输中，已经越来越多使用的传输格式是。
+>   - 直到 2021 年的 3.x 版本，才支持 JavaScript，所以目前在前端使用的较少；
 
-- XML：在早期的网络传输进行数据交换，在解析、传输等各方面都弱于 JSON，目前已很少被使用；（多见于后端框架配置文件）
-- Protobuf：在网络传输中目前已经越来越多使用的传输格式，直到 2021 年的 3.x 版本才支持 JavaScript，目前在前端使用的较少；
+JSON 被使用的场景有很多：
 
-JSON 的使用场景。
-
-- 网络数据的传输；
+- 网络数据的传输 JSON 格式的数据；
 - 项目的某些配置文件；
 - 非关系型数据库（NoSQL）将 json 作为存储格式；
 
----
+### 1.JSON 基本语法
 
 JSON 的顶层支持 3 种类型的值。
 
-- 简单值：数字（Number）、字符串（String，不支持单引号）、布尔类型（Boolean）、null 类型；**没有 undefined**
-- 对象值：由 key、value 组成，key 是字符串类型，必须加双引号，值可以是简单值、对象值、数组值；
-- 数组值：数组的值可以是简单值、对象值、数组值；
+- 简单值。
 
----
+  - 即数字（Number）、字符串（String，仅支持双引号的表示方式）、布尔类型（Boolean）、null 类型（没有 undefined）
 
-什么是 JSON 的序列化和反序列化？
+  ```json
+  123
+  ```
 
-- 对象类型转化成 JSON 格式的字符串，将 JSON 格式字符串转成对象类型。
+- 对象值：
 
-对应的方法。（JSON 是 ES5 中的全局对象）
+  - 即由 key、value 组成键值对，key 是字符串类型，必须加双引号，值可以是简单值、对象值、数组值；
 
-- JSON.stringify()：将 JavaScript 类型转成对应的 JSON 字符串；
-- JSON.parse()：解析 JSON 字符串，转回对应的 JavaScript 对象类型；
+  ```json
+  {
+    "name": "zetian",
+    "age": 18,
+    "friend": {
+      "name": "kobe"
+    }
+  }
+  ```
 
----
+- 数组值：
 
-JSON.stringify() 的 replace 参数，space 参数，
+  - 数组中的元素的值可以是简单值、对象值、数组值；
 
-- `JSON.stringify(obj[, replace[, space]])`
-- replace，可传函数或数组，用于序列化时做处理。
-- space，可传字符或数字。用于格式化生成的字符串，
+  ```json
+  [
+    123,
+    "abc",
+    {
+      "name": "zetian"
+    }
+  ]
+  ```
 
-JSON 对象的 `toJSON` 方法。
+### 2.JSON 序列化
+
+某些情况下，我们希望将 JavaScript 中的复杂类型（对象类型、引用类型）转化成 JSON 格式的字符串，这样方便对其进行处理：
+
+- 比如：我们希望将一个对象保存到浏览器的 localStorage 中；
+
+如果我们直接存放一个对象，这个对象会被转化成 `[object Object]` 格式的字符串，并不是我们想要的结果。
+
+在 **ES5** 中内置了 **JSON 全局对象**，该对象有两个常用的方法：
+
+- [JSON.stringify()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) 方法：用于将 JavaScript 类型，转成对应的 JSON 字符串；
+- [JSON.parse()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) 方法：解析 JSON 字符串，转成对应的 JavaScript 类型；
+
+那么上面的代码，我们可以通过如下的方法来使用：
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo</title>
+  </head>
+  <body>
+    <h1>哈哈</h1>
+
+    <script>
+      var info = {
+        name: 'zzt',
+        age: 18
+      }
+
+      var infoStr = JSON.stringify(info)
+      localStorage.setItem('info', infoStr)
+
+      var infoStr2 = localStorage.getItem('info')
+      var infoObj = JSON.parse(infoStr2)
+      console.log('infoObj:', infoObj)
+    </script>
+  </body>
+</html>
+```
+
+#### 1.stringfy 方法的 replace 参数
+
+JSON.stringify() 方法的语法是：`JSON.stringify(obj[, replace[, space]])`，其中有 replace 参数，space 参数，
+
+`replace`，可传函数或数组，用于序列化时做处理。
+
+- 如果指定了一个 replacer 函数，则可以选择性地替换值；
+- 如果指定的 replacer 是数组，则可选择性地仅包含数组指定的属性；
+
+```javascript
+var obj = {
+  name: 'zzt',
+  age: 18,
+  friend: {
+    name: 'kobe'
+  },
+  hobbies: ['唱', '跳', 'rap', '篮球']
+}
+
+var objStr1 = JSON.stringify(obj)
+console.log('objStr1:', objStr1) // {"name":"zzt","age":18,"friend":{"name":"kobe"},"hobbies":["唱","跳","rap","篮球"]}
+
+// replace 参数，是一个数组
+var objStr2 = JSON.stringify(obj, ['name', 'age'])
+console.log('objStr2:', objStr2) // {"name":"zzt","age":18}
+
+var objStr3 = JSON.stringify(obj, (key, value) => {
+  console.log('key', key, 'value', value)
+  /**
+   * key  value {name: 'zzt', age: 18, friend: {…}, hobbies: Array(4)}
+     key name value zzt
+     key age value 18
+     key friend value {name: 'kobe'}
+     key name value kobe
+     key hobbies value (4) ['唱', '跳', 'rap', '篮球']
+     key 0 value 唱
+     key 1 value 跳
+     key 2 value rap
+     key 3 value 篮球
+    */
+
+  return key === 'name' ? 'zetian' : value
+})
+console.log('objStr3:', objStr3) // {"name":"zetian","age":18,"friend":{"name":"zetian"},"hobbies":["唱","跳","rap","篮球"]}
+```
+
+#### 2.stringfy 方法的 space 参数
+
+`space` 参数，可传字符或数字。用于格式化生成的字符串，
+
+```javascript
+var obj = {
+  name: 'zzt',
+  age: 18,
+  friend: {
+    name: 'CR7'
+  }
+}
+
+// 1.replacer参数
+var objStr1 = JSON.stringify(obj, (key, value) => (key === 'name' ? 'zt2tzzt' : value), 2)
+
+console.log('objStr1:', objStr1)
+/**
+ * objStr1: {
+ *   "name": "zt2tzzt",
+ *   "age": 18,
+ *   "friend": {
+ *     "name": "CR7"
+ *   }
+ * }
+ */
+```
+
+#### 3.JavaScript 对象中的 toJSON 方法
+
+如果 JavaScript 对象本身包含 `toJSON` 方法，那么，`JSON.stringfy()` 方法，会直接使用 `toJSON` 方法的结果：
 
 ```javascript
 var obj = {
@@ -736,17 +883,26 @@ var obj = {
     return '123'
   }
 }
+
 // 1.replacer参数
-var objJSONString = JSON.stringify(obj, (key, value) => (key === 'name' ? 'zt2tzzt' : value), 2) // 123
+var objStr1 = JSON.stringify(obj, (key, value) => (key === 'name' ? 'zt2tzzt' : value), 2)
+console.log('objstr1', objStr1) // "123"
 ```
 
----
+### 2.JSON 反序列化
 
-JSON.parse() 的 reviver 参数。
+JSON 反序列化，是将 JSON 字符串转换回 JavaScript 对象或值的过程。使用 `JSON.parse()` 方法可以实现这一操作。
 
-- `JSON.parse(text[, reviver])`
-- reviver，只能传入函数，用于反序列化时做处理
+JSON.parse() 语法：`JSON.parse(text[, reviver])`
+
+#### 1.parse 方法的 reviver 参数
+
+`reviver` 参数，只能传入函数，用于反序列化时做处理。
 
 ```javascript
-var newObj = JSON.parse(str, (key, value) => (key === 'age' ? value * 2 : value))
+var newObj = JSON.parse(str, (key, value) => {
+  return key === 'age' ? value * 2 : value
+}
 ```
+
+> 利用 JSON 全局对象的方法，可以实现对象的深拷贝，后续介绍。

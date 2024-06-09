@@ -2,37 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Demo</title>
   </head>
-
   <body>
-    <input type="text" />
-    <button>取消</button>
-
-    <!-- <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.4/underscore-umd-min.js"></script> -->
     <script>
-      /* const names = ['abc', 'cba', 'nba']
-	names.forEach(item => {
-		if (item === 'cba') {
-			return
-		}
-		console.log('---item---', item)
-	}) */
-
-      const obj = {
-        _name: 'zzt',
-        set: function name(value) {
-          console.log('---name设置为---', value)
-          this._name = value
-        },
-        get: function name() {
-          return this._name
-        }
+      function foo() {
+        console.log(this) // window
       }
-      console.log('---name---', obj.name)
-      obj.name = 'zt2tzzt'
+
+      var obj1 = {
+        name: 'obj1',
+        foo
+      }
+
+      var bar = obj1.foo
+      bar()
     </script>
   </body>
 </html>

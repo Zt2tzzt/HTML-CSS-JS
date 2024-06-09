@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/reset.css" />
     <link rel="stylesheet" href="./css/common.css" />
+
     <style>
       .banner {
         position: relative;
@@ -57,6 +58,7 @@
       }
     </style>
   </head>
+
   <body>
     <div class="banner">
       <ul class="images"></ul>
@@ -75,50 +77,66 @@
     <script src="./json/banner_data.js"></script>
     <script>
       const BANNER_SERVER_URL = 'https://res.vmallres.com/'
+
       const ANIMATION_DURATION = 500
+
       const bannersCount = banners.length
 
       // 1.动态添加轮播图图片数据
       const imagesEl = document.querySelector('.images')
+
       let activeItemEl = null
+
       for (let i = 0; i < banners.length; i++) {
         // 获取数据
         const banner = banners[i]
+
         // 创建 li 元素
         const itemEl = document.createElement('li')
+
         itemEl.classList.add('item')
+
         if (i === 0) {
           itemEl.classList.add('active')
           activeItemEl = itemEl
         }
+
         imagesEl.append(itemEl)
+
         // 设置 itemEl 的样式
         itemEl.style.left = `${i * 100}%`
+
         // 创建 img 元素
         const imgEl = document.createElement('img')
         imgEl.src = `${BANNER_SERVER_URL}${banner.imgUrl}`
         itemEl.append(imgEl)
       }
 
-      // 1.3. 无限轮播，最后和最前分别添加一个元素 =======================
+      // 1.3. 无限轮播，最后和最前分别添加一个元素
       const firstitem = imagesEl.children[0].cloneNode(true)
       const lastItem = imagesEl.children[bannersCount - 1].cloneNode(true)
+
       imagesEl.append(firstitem) // 将一个第一个元素，添加到最后，实现无限轮播
       imagesEl.prepend(lastItem) // 将一个最后一个元素，添加到最前面，实现无限轮播
+
       // 调整位置
       lastItem.style.left = '-100%'
       firstitem.style.left = `${bannersCount * 100}%`
 
       // 1.3. 动态添加指示器内容
       const indicatorEl = document.querySelector('.indicator')
+
       for (let i = 0; i < bannersCount; i++) {
         const itemEl = document.createElement('div')
         itemEl.classList.add('item')
+
         if (i === 0) itemEl.classList.add('active')
+
         indicatorEl.append(itemEl)
 
-        // 监听指示器 item 的点击
         itemEl.index = i
+
+        // 监听指示器 item 的点击
         itemEl.onclick = function () {
           previousIndex = currentIndex
           currentIndex = this.index
@@ -129,9 +147,11 @@
       // 2.监听按钮的点击
       let previousIndex = 0
       let currentIndex = 0
+
       const controlEl = document.querySelector('.control')
       const prevBtnEl = controlEl.querySelector('.prev')
       const nexBtnEl = controlEl.querySelector('.next')
+
       prevBtnEl.onclick = function () {
         previousSwitch()
       }
@@ -141,10 +161,13 @@
 
       // 自动播放计时器
       let timer = null
+
       // 开启定时器
       startTimer()
+
       // 鼠标指针进入/离开图片，停止/开始轮播。
       const bannerEl = document.querySelector('.banner')
+
       bannerEl.onmouseenter = function () {
         stopTimer()
       }
@@ -158,17 +181,20 @@
         previousIndex = currentIndex--
         switcbBannerItem()
       }
+
       // 播放下一个
       function nextSwitch() {
         // 找到下一个
         previousIndex = currentIndex++
         switcbBannerItem()
       }
+
       // 切换轮播图
       function switcbBannerItem() {
-        // 1.切换 imagesEl 的 transform ===============================
+        // 1.切换 imagesEl 的 transform
         imagesEl.style.transition = `all ${ANIMATION_DURATION}ms ease`
         imagesEl.style.transform = `translateX(${-currentIndex * 100}%)`
+
         switch (currentIndex) {
           case bannersCount:
             currentIndex = 0
@@ -178,9 +204,11 @@
             currentIndex = bannersCount - 1
             fixBannerPosition()
         }
+
         // 2.切换指示器的item
         var currentInItemEl = indicatorEl.children[currentIndex]
         var previousInItemEl = indicatorEl.children[previousIndex]
+
         previousInItemEl.classList.remove('active')
         currentInItemEl.classList.add('active')
       }
@@ -191,6 +219,7 @@
           nextSwitch()
         }, 3000)
       }
+
       // 停止自动播放
       function stopTimer() {
         if (!timer) return
@@ -198,7 +227,7 @@
         timer = null
       }
 
-      // 修正位移的位置 ============================
+      // 修正位移的位置
       function fixBannerPosition() {
         setTimeout(() => {
           imagesEl.style.transition = 'none'
@@ -206,7 +235,7 @@
         }, ANIMATION_DURATION)
       }
 
-      // 通过 window 的焦点，修复一次性回滚多张的bug =======================
+      // 通过 window 窗口的焦点事件，修复最小化窗口一段时间，再打开后，一次性回滚多张的bug
       document.onvisibilitychange = function () {
         switch (document.visibilityState) {
           case 'visible':

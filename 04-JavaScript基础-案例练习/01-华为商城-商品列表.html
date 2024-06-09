@@ -66,40 +66,49 @@
     <script>
       // 资源服务器地址
       var SERVER_URL = 'https://res.vmallres.com/pimages'
+
       // 1.动态展示商品列表
       var productsEl = document.querySelector('.products')
+
       resultList.forEach(resultItem => {
         // 最外层 li
         var liEl = document.createElement('li')
         liEl.classList.add('item')
         productsEl.append(liEl)
+
         // li 中的 a 元素
         var aEl = document.createElement('a')
         aEl.href = '#'
         liEl.append(aEl)
+
         // a 中的 img
         var alibumEl = document.createElement('img')
         alibumEl.classList.add('album')
         alibumEl.src = `${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}`
         aEl.append(alibumEl)
+
         // a 中的 name
         var nameEl = document.createElement('div')
         nameEl.classList.add('name')
         nameEl.textContent = resultItem.name
         aEl.append(nameEl)
+
         // a 中的 discount
         var discountEl = document.createElement('div')
         discountEl.classList.add('discount')
         discountEl.textContent = resultItem.promotionInfo
         aEl.append(discountEl)
+
         // a 中的 price
         var priceEl = document.createElement('div')
         priceEl.classList.add('price')
         priceEl.textContent = '￥' + resultItem.price
         aEl.append(priceEl)
+
         // a 中的 service
         var serviceEl = document.createElement('div')
         serviceEl.classList.add('service')
+
         // service 中的 tip
         for (const label of resultItem.promoLabels) {
           var tipEl = document.createElement('span')
@@ -108,19 +117,23 @@
           serviceEl.append(tipEl)
         }
         aEl.append(serviceEl)
+
         // a 中的 comment
         var commentEl = document.createElement('div')
         commentEl.classList.add('comment')
+
         // comment 中的 span
         var countEl = document.createElement('span')
         countEl.textContent = `${resultItem.rrateCount}人评论`
         commentEl.append(countEl)
+
         // comment 中的 span
         var goodEl = document.createElement('span')
         goodEl.textContent = `${resultItem.goodRate}% 好评`
         commentEl.append(goodEl)
         aEl.append(commentEl)
       })
+      
       // flex 布局最后一行对齐
       addProductsEmptyItem(productsEl, 2)
     </script>

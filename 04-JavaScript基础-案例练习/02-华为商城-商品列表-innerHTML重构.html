@@ -67,27 +67,33 @@
     <script>
       // 资源服务器地址
       const SERVER_URL = 'https://res.vmallres.com/pimages'
+
       // 1.动态展示商品列表
       const productsEl = document.querySelector('.products')
+
       // 2.服务优惠的筛选
       const operationEl = document.querySelector('.operation')
       const discountEl = operationEl.querySelector('.discount')
 
       // 定义变量，记录选中的服务
       const discountFilters = []
+
       for (let i = 1; i < discountEl.children.length; i++) {
         // 获取对应的 discountItemEl
         const discountItemEl = discountEl.children[i]
+
         // 监听 discountItemEl
         discountItemEl.onclick = function () {
           // 在 active 和非 active 之间切换
           this.classList.toggle('active')
+
           if (this.classList.contains('active')) {
             discountFilters.push(this.textContent.trim())
           } else {
             const index = discountFilters.findIndex(item => item === this.textContent.trim())
             discountFilters.splice(index, 1)
           }
+
           // 过滤 resultList
           filterResultListAction()
         }
@@ -95,44 +101,52 @@
 
       // 过滤后的数据列表
       let showResultList = resultList
+
       function filterResultListAction() {
         console.log('---resultList---', resultList)
+
         // 过滤掉出包含 documentFilter 的 item
         showResultList = resultList.filter(item =>
           discountFilters.every(filter => item.services.includes(filter))
         )
+
         console.log('---showResultList---', showResultList)
         // 重新展示数据
         showResultListAction()
       }
 
       showResultListAction()
+      
       function showResultListAction() {
         productsEl.innerHTML = ''
+
         showResultList.forEach((resultItem, index) => {
           // 最外层 li
           const liEl = document.createElement('li')
           liEl.classList.add('item')
+
           // service 里面的内容
           let serviceStr = ''
+
           resultItem.promoLabels.forEach(label => {
             serviceStr += `<span class="tip">${label}</span>`
           })
+
           liEl.innerHTML = `
-				<a href="#">
-					<img class="album" src="${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}" alt="">
-					<div class="name">${resultItem.name}</div>
-					<div class="discount">${resultItem.promotionInfo}</div>
-					<div class="price">¥${resultItem.price}</div>
-					<div class="service">
-						${serviceStr}
-					</div>
-					<div class="comment">
-						<span>${resultItem.rateCount}人评论</span>
-						<span>${resultItem.goodRate}% 好评</span>
-					</div>
-				</a>
-			`
+            <a href="#">
+              <img class="album" src="${SERVER_URL}${resultItem.photoPath}428_428_${resultItem.photoName}" alt="">
+              <div class="name">${resultItem.name}</div>
+              <div class="discount">${resultItem.promotionInfo}</div>
+              <div class="price">¥${resultItem.price}</div>
+              <div class="service">
+                ${serviceStr}
+              </div>
+              <div class="comment">
+                <span>${resultItem.rateCount}人评论</span>
+                <span>${resultItem.goodRate}% 好评</span>
+              </div>
+            </a>
+			    `
           productsEl.append(liEl)
         })
         // 添加空 item，使得 flex 布局最后一行对齐
