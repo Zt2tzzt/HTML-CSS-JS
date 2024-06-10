@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>demo</title>
-</head>
-<body>
-  <h1>哈哈</h1>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <h1>哈哈</h1>
 
-  <script async src="./haha.js"></script>
-  <script async src="./heihei.js"></script>
-</body>
+    <script>
+      var n = 100
+
+      function foo1() {
+        console.log(n) // 100
+      }
+
+      function foo2() {
+        var n = 200
+        console.log(n) // 200
+        foo1()
+      }
+
+      foo2()
+      console.log(n) // 100
+    </script>
+  </body>
 </html>
