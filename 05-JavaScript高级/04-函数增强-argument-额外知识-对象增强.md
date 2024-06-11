@@ -1,34 +1,45 @@
-# 函数的属性
+# 深入 JS 函数、with 语句、eval 函数、严格模式、深入 JS 对象
 
-函数作为对象的 2 个属性有什么用？
+## 一、深入 JavaScript 函数
 
-- `name` - 用来访问函数的名称。
-- `length` - 用来返回函数参数的形参个数。
-  - rest 参数不计入。
-  - 有默认值的参数不计入。
+### 1.Javascript 函数的属性
+
+我们知道 JavaScript 中，函数也是一个对象，那么对象里面，就可以有属性和方法。函数对象有以下两个常用属性：
+
+- `name` 属性：一个函数的名称。
+- `length` 属性：用于返回函数参数的个数。
+  - 第一个具有默认值的参数，之前的参数个数；
+  - rest 参数不计入 `length` 的个数的；
+
+可以给没有形参的函数传实参，传入的实参，会存放在函数内的 `arguments` 对象中。
 
 ```javascript
 function test() {
   console.log(arguments)
 }
+
 test(111, 222, 333) // 可以给没有形参的函数传实参，传入的实参会存放在 arguments 对象中。
 ```
 
 ---
 
-# arguments
+### 2.JavaScript 函数内的 arguments 对象
+
+arguments 对象，是一个对应于传递给函数的参数的 **类数组(array-like)** 对象。
+
+- array-like 意味着它不是一个数组类型，而是一个对象类型：
+- 它拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
+- 它没有数组的一些方法，比如 `filter`、 `map` 等；
 
 ## 认识 arguments
 
 arguments 是什么？
 
-- arguments 是一个 对应于传递给函数的参数的 **类数组(array-like)** 对象。
-
 意味着什么？
 
 - 不是一个数组类型，而是一个对象类型：
-- 但是它却拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
-- 但是它却没有数组的一些方法，比如 `filter`、 `map` 等；
+- 它拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
+- 它没有数组的一些方法，比如 `filter`、 `map` 等；
 
 ## arguments 转数组
 

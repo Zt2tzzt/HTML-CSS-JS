@@ -443,8 +443,73 @@ var adder8 = createAdder(8)
 
 ### 5.闭包的内存泄漏实验
 
-内存泄漏实验，3 点注意事项。
+编写如下代码，进行内存泄漏实验，
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>demo</title>
+  </head>
+  <body>
+    <h1>哈哈</h1>
+    <button class="create">创建</button>
+    <button class="destroy">销毁</button>
+
+    <script>
+      function testArray() {
+        var arr = new Array(1024 * 1024).fill(1);
+
+        return function () {
+          console.log(arr)
+        }
+      }
+
+      var arr = []
+
+      var createBtnEl = document.querySelector('.create')
+      var destroyBtnEl = document.querySelector('.destroy')
+
+      createBtnEl.onclick = function () {
+        for (var i=0; i < 100; i++) {
+          arr.push(testArray())
+        }
+      }
+
+      destroyBtnEl.onclick = function () {
+        arr = []
+      }
+    </script>
+  </body>
+</html>
+```
 
 - 浏览器调试工具中 Memory 可以生成内存占用快照。
-- V8 引擎的实现中，一个整数占据 4 个字节（原来是 8 个）
-- ECMA 规范中闭包依赖的整个词法环境都不会被消除，而 V8 引擎中删除了没有依赖的变量。
+- V8 引擎的实现中，一个整数占据 4 个字节（原来是 8 个）。
+
+### 6.V8 引擎的闭包优化
+
+我们来研究一个问题：当闭包产生，堆内存中函数的 AO 对象，不被销毁时，是否里面的所有属性，都不会被释放？
+
+- 下面这段代码中 `name` 是闭包的父作用域里面的变量；
+- 我们知道形成闭包之后，AO 对象上的 `count` 属性一定不会被销毁掉，那么 `name` 属性是否会被销毁掉呢？
+- 这里我打上了断点，我们可以在浏览器上看看结果；
+
+```javascript
+function makeadder(count) {
+  let name = 'zzt'
+
+  return function (num) {
+    debugger
+    return count + num
+  }
+}
+
+const add10 = makeAdder(10)
+console.log(add10(5))
+console.log(add10(8))
+```
+
+结论：ECMA 规范中，闭包依赖的整个词法环境，都不会被消除；而在 V8 引擎中，删除了没有依赖的变量。
