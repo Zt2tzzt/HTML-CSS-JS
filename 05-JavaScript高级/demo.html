@@ -7,22 +7,32 @@
   </head>
   <body>
     <h1>哈哈</h1>
+    <button class="create">创建</button>
+    <button class="destroy">销毁</button>
 
     <script>
-      var n = 100
+      function testArray() {
+        var arr = new Array(1024 * 1024).fill(1);
 
-      function foo1() {
-        console.log(n) // 100
+        return function () {
+          console.log(arr)
+        }
       }
 
-      function foo2() {
-        var n = 200
-        console.log(n) // 200
-        foo1()
+      var arr = []
+
+      var createBtnEl = document.querySelector('.create')
+      var destroyBtnEl = document.querySelector('.destroy')
+
+      createBtnEl.onclick = function () {
+        for (var i=0; i < 100; i++) {
+          arr.push(testArray())
+        }
       }
 
-      foo2()
-      console.log(n) // 100
+      destroyBtnEl.onclick = function () {
+        arr = []
+      }
     </script>
   </body>
 </html>
