@@ -9,19 +9,21 @@
     <h1>哈哈</h1>
 
     <script>
-      function makeAdder(count) {
-        let name = 'zzt'
+      function makeAdder(num) {
 
-        return function (num) {
-          debugger
-          return count + num
+        return function (count) {
+          return num + count
         }
       }
 
-      const add10 = makeAdder(10)
+      var add5 = makeAdder(5)
+      console.log(add5(10))
+      console.log(add5(100))
 
-      console.log(add10(5))
-      console.log(add10(8))
+      var add10 = makeAdder(10)
+      console.log(add10(10))
+      console.log(add10(100))
+
     </script>
   </body>
 </html>

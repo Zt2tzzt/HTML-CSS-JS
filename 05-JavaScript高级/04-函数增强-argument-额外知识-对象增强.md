@@ -8,7 +8,7 @@
 
 - `name` 属性：一个函数的名称。
 - `length` 属性：用于返回函数参数的个数。
-  - 第一个具有默认值的参数，之前的参数个数；
+  - 它仅返回函数第一个具有默认值的参数，之前的形参个数；
   - rest 参数不计入 `length` 的个数的；
 
 可以给没有形参的函数传实参，传入的实参，会存放在函数内的 `arguments` 对象中。
@@ -21,37 +21,27 @@ function test() {
 test(111, 222, 333) // 可以给没有形参的函数传实参，传入的实参会存放在 arguments 对象中。
 ```
 
----
-
 ### 2.JavaScript 函数内的 arguments 对象
 
 arguments 对象，是一个对应于传递给函数的参数的 **类数组(array-like)** 对象。
 
-- array-like 意味着它不是一个数组类型，而是一个对象类型：
+- 类数组（array-like）意味着它不是一个数组类型，而是一个对象类型：
 - 它拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
 - 它没有数组的一些方法，比如 `filter`、 `map` 等；
 
-## 认识 arguments
+#### 1.arguments 对象转数组
 
-arguments 是什么？
-
-意味着什么？
-
-- 不是一个数组类型，而是一个对象类型：
-- 它拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
-- 它没有数组的一些方法，比如 `filter`、 `map` 等；
-
-## arguments 转数组
+在开发中，我们经常需要将 arguments 对象转成数组，以便使用数组的一些特性。
 
 arguments 转数组的 3 种方式（slice 方法回顾）
 
-- 转化方式一：遍历 arguments，添加到一个新数组中；
+- 转化方式一：利用 arguments 是可迭代对象特性，遍历 arguments 对象，添加到一个新数组中；
 
   ```javascript
   function foo() {
     var newArguments = []
+
     for (var arg of arguments) {
-      // 利用 arguments 可迭代对象特性
       newArguments.push(arg)
     }
   }
@@ -62,53 +52,99 @@ arguments 转数组的 3 种方式（slice 方法回顾）
   ```javascript
   function foo() {
     var newArgs = [].slice.call(arguments) // 利用 arguments 可迭代对象特性
+
     var newArgs = Array.prototype.slice.apply(arguments) // 利用 arguments 可迭代对象特性
   }
   ```
 
-- 转化方式三：ES6 中的两个方法
+- 转化方式三：同样利用 arguments 是可迭代对象的特性，使用 ES6 中的两个新特性
 
-  - Array.from
-  - […arguments]
+  - [Array.from()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/from) 方法；
+  - 可迭代对象的解构，比如 `[…arguments]`。
 
   ```javascript
   function foo() {
-    // 利用 arguments 可迭代对象特性
     var newArgs1 = Array.from(arguments)
+
     var newArgs2 = [...arguments]
   }
   ```
 
-> 箭头函数不绑定 arguments，如果要使用会去**上层作用域**查找。
+#### 2.arguments 对象和箭头函数
 
----
+箭头函数不绑定 `arguments` 对象，如果要使用，会去**上层作用域**查找。
 
-## 函数剩余参数与 arguments 的区别
+```javascript
+console.log(arguments) // arguments is not defined
+
+var foo = (x, y, z) => {
+  console.log(arguments) // arguments is not defined
+}
+
+foo(10, 20, 30)
+
+function bar(m, n) {
+  return (x, y, z) => {
+    console.log(arguments) // Arguments(2) [20, 30, callee: ƒ, Symbol(Symbol.iterator): ƒ]
+  }
+}
+
+var fn = bar(20, 30)
+
+fn(10, 20, 30)
+```
+
+#### 3.arguments 对象与函数剩余参数
+
+ES6 中，引用了新特性剩余参数（rest parameter），可以将不定数量的参数，放入到一个数组中：
+
+如果最后一个参数是 `...` 为前缀的，那么它会将剩余的参数，作为一个数组放到该参数中。
 
 函数剩余（rest）参数的用法，
 
 ```javascript
-function foo(num1, num2, ...otherNums) {}
+function foo(num1, num2, ...otherNums) {
+  console.log(num1, num2)
+	console.log(otherNums)
+}
+
 foo(20, 30, 111, 222, 333)
 ```
 
-它和 arguments 的区别。
+剩余参数（rest parameter）和 arguments 的区别。
 
-- 剩余参数只包含那些没有对应形参的实参，而 `arguments` 对象包含了传给函数的所有实参；
-- `arguments` 对象不是一个真正的数组，而 rest 参数是一个真正的数组，可以进行数组的所有操作；
-- `arguments` 是早期的 ECMAScript 中为了方便去获取所有的参数提供的一个数据结构，而 rest 参数是 ES6 中提供并且希望以此
-  来替代 arguments 的；
+- 剩余参数里，只包含那些没有对应形参的实参；而 `arguments` 对象包含了传给函数的所有实参；
+- 剩余参数（rest parameter）是一个真正的数组，可以进行数组的所有操作；`arguments` 对象不是一个真正的数组，而是一个类数组（array-like）对象；
+- 剩余参数（rest parameter）是 ES6 中提供的新特性，希望以此来替代 `arguments` 对象的；`arguments` 对象是早期的 ECMAScript 中为了方便去获取函数中所有的参数，而提供的一个数据结构。
 
----
+剩余参数（rest parameter），必须放到函数形参的最后一个位置，否则会报错。
 
-# 纯函数
+### 3.JavaScript 纯函数
 
-## 认识纯函数
+函数式编程中，有一个非常重要的概念叫纯函数；
 
-函数式编程的一个重要概念是纯函数。什么样的函数是纯函数？
+JavaScript 编程语言，符合函数式编程的范式，所以也有纯函数的概念；
+
+> 在 react 开发中，纯函数是被多次提及的；
+>
+> - 比如：react 中组件就被要求像是一个纯函数（为什么是像，因为还有类（class）组件）；
+> - 比如：redux 中有一个 reducer 的概念，也是要求必须是一个纯函数；
+
+掌握纯函数，对于理解很多框架的设计，是非常有帮助的；
+
+纯函数的维基百科定义：在程序设计中，若一个函数符合以下条件，那么这个函数被称为纯函数：
+
+- 此函数在相同的输入值时，需产生相同的输出。
+- 函数的返回值，与输出和输入值以外的其他隐藏信息或状态无关，也和由 I/O 设备产生的外部输出无关。
+- 该函数不能有语义上可观察的函数副作用，
+  - 诸如“触发事件”，使输出设备输出，或更改输出值以外物件的内容等。
+
+当然，上面的定义，会过于的晦涩，所以我简单总结一下：
 
 - 确定的输入，一定会产生确定的输出；
 - 函数在执行过程中，不能产生副作用；
+
+下面的函数，就是一个纯函数：
 
 ```javascript
 function sum(num1, num2) {
@@ -116,50 +152,118 @@ function sum(num1, num2) {
 }
 ```
 
-> 纯函数多使用于第三方框架，以及工具函数中。
+> 纯函数，多使用于第三方框架，以及工具函数中。
 
----
+#### 1.JavaScript 函数的副作用
 
-## 认识副作用
+副作用（side effect）本身是医学的一个概念。
 
-什么是计算机科学中的副作用？副作用往往是产生 bug 的温床。
+- 比如：我们经常说吃药本意是为了治病，可能会产生一些其他的副作用；
 
-- 表示在执行一个函数时，除了返回函数值之外，还对调用函数产生了附加的影响。
-- 比如修改了全局变量，修改参数或者改变外部的存储；
+在计算机科学中，也引用了副作用的概念，表示在执行一个函数时，除了返回函数值之外，还对调用函数以外的事务产生了附加的影响。
 
-数组的 2 个方法举例。
+- 比如：修改了全局变量；
+- 比如：修改参数或者改变外部的存储；
 
-- `slice` ：slice 截取数组时不会对原数组进行任何操作,而是生成一个新的数组；
-- `splice` ：splice 截取数组, 会返回一个新的数组, 也会对原数组进行修改；
+计算机科学中的副作用，往往是产生 bug 的温床。
+
+纯函数要求在执行的过程中，不能产生这样的副作用：
+
+#### 2.JavaScript 纯函数的案例
+
+数组的 [Array.prototype.slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) 方法，就是一个纯函数。该方法截取数组时，不会对原数组进行任何操作，而是生成一个新的数组；
 
 ```javascript
 var names = ['abc', 'cba', 'nba', 'mba']
-// 1.slice: 纯函数
+
 var newNames = names.slice(1, 3)
-// 2.splice: 操作数组的利器(不是纯函数)
+```
+
+数组的 [Array.prototype.splice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) 方法，不是一个纯函数，它截取数组，会返回一个包含了删除的元素的数组，同时也会对原数组进行修改；
+
+```javascript
+var names = ['abc', 'cba', 'nba', 'mba']
+
 names.splice(2, 2)
 ```
 
-## 纯函数的优势。
+下面的函数是否是纯函数？
 
-- 可以安心的编写和安心的使用；
-- 保证函数的纯度，只是单纯实现自己的业务逻辑即可，不需要关心传入的内容是如何获得的，或者依赖其他的外部变量是否已经发生了修改；
-- 使用时，确定输入内容不会被任意篡改，并且确定的输入，一定会有确定的输出；
+函数一：是纯函数
 
-> React 中就要求我们无论是函数还是 class 声明一个组件，这个组件都必须像纯函数一样，保护它们的 props 不被修改：
+```javascript
+function sum(num1, num2) {
+  return num1 + num2
+}
+```
 
----
+函数二：是纯函数
 
-# 柯里化
+```javascript
+let foo = 5
 
-## 认识柯里化
+function add(num) {
+  return foo + num
+}
 
-函数式编程的一个重要概念是柯里化，什么是柯里化？
+console.log(add(5))
 
-- 只传递给函数一部分参数来调用它，让它返回一个函数去处理剩余的参数；
-- 这个过程就称之为柯里化；
+foo = 10
 
-写一个柯里化函数的案例，并使用箭头函数优化。
+console.log(add(5))
+```
+
+函数三：不是纯函数。
+
+```javascript
+function printInfo(info) {
+  console.log(info.name, info.age)
+  info.name = '哈哈哈'
+}
+```
+
+#### 4.JavaScript 纯函数的优势
+
+那么纯函数在函数式编程中非常重要，它有如下优势：
+
+- 可以安心的编写和安心的使用，不用担心函数的调用，对外部环境产生影响；
+- 开发者只需要专注于自己的业务逻辑即可，不需要关心传入函数的内容是如何获得的，或者依赖其他的外部变量是否已经发生了修改；
+- 纯函数的可靠性很高，使用时确定输入参数不会被任意篡改，并且确定的输入，一定会有确定的输出；
+
+> React 开发中，就要求开发者无论是使用函数还是类（class）来声明的组件，这个组件都必须像纯函数一样，保护它们的 props 不被修改。
+
+### 4.JavaScript 函数柯里化
+
+柯里化，也是属于函数式编程里面，一个非常重要的概念。
+
+- 这是一种关于函数的高阶技术；
+- 它不仅被用于 JavaScript，还被用于其他编程语言；
+
+维基百科对柯里化的解释：
+
+- 在计算机科学中，**柯里化（Currying）**，又译为**卡瑞化**或**加里化**；
+- 是把接收多个参数的函数，变成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数，而且返回
+结果是新函数的技术。
+
+柯里化声称 “如果你固定某些参数，你将得到接受余下参数的一个函数”；
+
+维基百科的概念非常的抽象，这里做一个总结：
+
+- 只传递给函数一部分参数来调用它，让它返回一个函数去处理剩余的参数；这个过程就称之为**柯里化**；
+
+**柯里化**是一种函数的转换，将一个函数，从可调用的 `f(a, b, c)` 转换为可调用的 `f(a)(b)(c)`。
+
+**柯里化**不会调用函数。它只是对函数进行转换。
+
+现有一个函数
+
+```javascript
+function add1(x, y, z) {
+  return x + y + z
+}
+```
+
+将上面的函数，进行柯里化，
 
 ```javascript
 function sum1(x) {
@@ -169,44 +273,91 @@ function sum1(x) {
     }
   }
 }
+```
+
+使用箭头函数，优化上面的代码。
+
+```javascript
 const sum2 = x => y => z => x + y + z
 ```
 
----
+#### 1.JavaScript 函数柯里化的优势
 
-## 柯里化的优势
+##### 1.使函数职责单一
 
-- 使函数职责单一。
+在函数式编程中，我们其实往往希望一个函数，处理的问题尽可能的单一，而不是将一大堆的处理逻辑，交给一个函数来完成；
 
-  ```javascript
-  function handle(x) {
-    x += 2
-    return function (y) {
-      y *= 2
-      return function (z) {
-        z **= 2
-        return x + y + z
-      }
+柯里化能做的，就是将每次传入的参数，在单一的函数中进行处理，处理完后，在下一个函数中使用处理后的结果；
+
+上面的案例，我们进行一个修改：传入的函数，需要分别被进行如下处理
+
+- 第一个参数 + 2
+- 第二个参数 * 2
+- 第三个参数 ** 2
+
+```javascript
+function handle(x) {
+  x += 2
+
+  return function (y) {
+    y *= 2
+
+    return function (z) {
+      z **= 2
+
+      return x + y + z
     }
   }
-  ```
+}
+```
 
-- 函数参数复用。
+##### 2.使函数参数复用
+
+另外一个使用柯里化的场景，是可以帮助我们复用函数的参数逻辑：比如下方案例：
+
+- `makeAdder` 函数，要求我们传入一个 `num` 参数，并且如果我们需要的话，可以在这里对 `num` 参数进行一些修改；
+- 在之后使用返回的函数时，我们不需要再继续传入`num` 参数了；
+
+```javascript
+function makeAdder(num) {
+
+  return function (count) {
+    return num + count
+  }
+}
+
+var add5 = makeAdder(5)
+console.log(add5(10))
+console.log(add5(100))
+
+var add10 = makeAdder(10)
+console.log(add10(10))
+console.log(add10(100))
+
+```
+
+再比如下方的日志打印函数案例，也是一个道理。
+
 
   ```javascript
   const log = date => type => message =>
     console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]: [${message}]`)
+
   const nowLog = log(new Date())
+
   nowLog('DEBUG')('查找到轮播图的bug')
   nowLog('FEATURE')('新增了添加用户的权限')
   ```
 
-## 封装一个自动柯里化的函数。
+#### 2.自动柯里化的函数封装
+
+封装一个自动柯里化的函数，将传入的参数进行柯里化。
 
 ```javascript
 function sum3(x, y, z) {
   return x + y + z
 }
+
 function ztCurring(fn) {
   function curried(...args1) {
     if (args1.length >= fn.length) {
@@ -219,6 +370,7 @@ function ztCurring(fn) {
   }
   return curried
 }
+
 const currySum = ztCurring(sum3)
 console.log(currySum(10)(20)(30))
 ```
