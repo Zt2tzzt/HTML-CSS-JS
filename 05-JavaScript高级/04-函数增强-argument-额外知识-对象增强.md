@@ -11,7 +11,7 @@
   - 它仅返回函数第一个具有默认值的参数，之前的形参个数；
   - rest 参数不计入 `length` 的个数的；
 
-可以给没有形参的函数传实参，传入的实参，会存放在函数内的 `arguments` 对象中。
+可以给没有形参的函数，传实参，传入的实参，会存放在函数内的 `arguments` 对象中。
 
 ```javascript
 function test() {
@@ -23,7 +23,7 @@ test(111, 222, 333) // 可以给没有形参的函数传实参，传入的实参
 
 ### 2.JavaScript 函数内的 arguments 对象
 
-arguments 对象，是一个对应于传递给函数的参数的 **类数组(array-like)** 对象。
+arguments 对象，是一个对应于传递给函数的参数的**类数组（array-like）**对象。
 
 - 类数组（array-like）意味着它不是一个数组类型，而是一个对象类型：
 - 它拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
@@ -35,7 +35,7 @@ arguments 对象，是一个对应于传递给函数的参数的 **类数组(arr
 
 arguments 转数组的 3 种方式（slice 方法回顾）
 
-- 转化方式一：利用 arguments 是可迭代对象特性，遍历 arguments 对象，添加到一个新数组中；
+- 转化方式一：利用 arguments 是可迭代对象特性，遍历 arguments 对象，将遍历的元素，添加到一个新数组中；
 
   ```javascript
   function foo() {
@@ -47,7 +47,7 @@ arguments 转数组的 3 种方式（slice 方法回顾）
   }
   ```
 
-- 转化方式二：调用数组 `slice` 函数的 `call / apply` 方法；
+- 转化方式二：利用 arguments 是可迭代对象的特性，调用数组 `slice` 函数的 `call / apply` 方法；
 
   ```javascript
   function foo() {
@@ -65,7 +65,7 @@ arguments 转数组的 3 种方式（slice 方法回顾）
   ```javascript
   function foo() {
     var newArgs1 = Array.from(arguments)
-
+  
     var newArgs2 = [...arguments]
   }
   ```
@@ -78,7 +78,7 @@ arguments 转数组的 3 种方式（slice 方法回顾）
 console.log(arguments) // arguments is not defined
 
 var foo = (x, y, z) => {
-  console.log(arguments) // arguments is not defined
+  console.log(arguments)
 }
 
 foo(10, 20, 30)
@@ -113,15 +113,15 @@ foo(20, 30, 111, 222, 333)
 
 剩余参数（rest parameter）和 arguments 的区别。
 
-- 剩余参数里，只包含那些没有对应形参的实参；而 `arguments` 对象包含了传给函数的所有实参；
+- 剩余参数里，只包含那些没有对应形参的实参；而 `arguments` 对象，包含了传给函数的所有实参；
 - 剩余参数（rest parameter）是一个真正的数组，可以进行数组的所有操作；`arguments` 对象不是一个真正的数组，而是一个类数组（array-like）对象；
-- 剩余参数（rest parameter）是 ES6 中提供的新特性，希望以此来替代 `arguments` 对象的；`arguments` 对象是早期的 ECMAScript 中为了方便去获取函数中所有的参数，而提供的一个数据结构。
+- 剩余参数（rest parameter）是 ES6 中提供的新特性，希望以此来替代 `arguments` 对象；`arguments` 对象是早期的 ECMAScript 中为了方便去获取函数中所有的参数，而提供的一个数据结构。
 
 剩余参数（rest parameter），必须放到函数形参的最后一个位置，否则会报错。
 
 ### 3.JavaScript 纯函数
 
-函数式编程中，有一个非常重要的概念叫纯函数；
+函数式编程中，有一个非常重要的概念叫**纯函数**；
 
 JavaScript 编程语言，符合函数式编程的范式，所以也有纯函数的概念；
 
@@ -132,12 +132,12 @@ JavaScript 编程语言，符合函数式编程的范式，所以也有纯函数
 
 掌握纯函数，对于理解很多框架的设计，是非常有帮助的；
 
-纯函数的维基百科定义：在程序设计中，若一个函数符合以下条件，那么这个函数被称为纯函数：
+纯函数的维基百科定义：在程序设计中，若一个函数，符合以下条件，那么这个函数被称为纯函数：
 
 - 此函数在相同的输入值时，需产生相同的输出。
 - 函数的返回值，与输出和输入值以外的其他隐藏信息或状态无关，也和由 I/O 设备产生的外部输出无关。
 - 该函数不能有语义上可观察的函数副作用，
-  - 诸如“触发事件”，使输出设备输出，或更改输出值以外物件的内容等。
+  - 比如：“触发事件”，使输出设备输出，或更改输出值以外物件的内容等。
 
 当然，上面的定义，会过于的晦涩，所以我简单总结一下：
 
@@ -171,7 +171,9 @@ function sum(num1, num2) {
 
 #### 2.JavaScript 纯函数的案例
 
-数组的 [Array.prototype.slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) 方法，就是一个纯函数。该方法截取数组时，不会对原数组进行任何操作，而是生成一个新的数组；
+数组的 [Array.prototype.slice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) 方法，就是一个纯函数。
+
+- 该方法截取数组时，不会对原数组进行任何操作，而是生成一个新的数组；
 
 ```javascript
 var names = ['abc', 'cba', 'nba', 'mba']
@@ -179,7 +181,9 @@ var names = ['abc', 'cba', 'nba', 'mba']
 var newNames = names.slice(1, 3)
 ```
 
-数组的 [Array.prototype.splice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) 方法，不是一个纯函数，它截取数组，会返回一个包含了删除的元素的数组，同时也会对原数组进行修改；
+数组的 [Array.prototype.splice()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) 方法，不是一个纯函数，
+
+- 它截取数组，会返回一个包含了删除的元素的数组，同时也会对原数组进行修改；
 
 ```javascript
 var names = ['abc', 'cba', 'nba', 'mba']
@@ -197,7 +201,9 @@ function sum(num1, num2) {
 }
 ```
 
-函数二：是纯函数
+函数二：不是纯函数，
+
+- 确定的输入，不能产生确定的输出
 
 ```javascript
 let foo = 5
@@ -214,6 +220,8 @@ console.log(add(5))
 ```
 
 函数三：不是纯函数。
+
+- 函数有副作用。
 
 ```javascript
 function printInfo(info) {
@@ -289,7 +297,7 @@ const sum2 = x => y => z => x + y + z
 
 柯里化能做的，就是将每次传入的参数，在单一的函数中进行处理，处理完后，在下一个函数中使用处理后的结果；
 
-上面的案例，我们进行一个修改：传入的函数，需要分别被进行如下处理
+上面的案例，我们进行一个修改：传入的函数，需要分别被进行如下处理：
 
 - 第一个参数 + 2
 - 第二个参数 * 2
@@ -372,218 +380,233 @@ function ztCurring(fn) {
 }
 
 const currySum = ztCurring(sum3)
+
 console.log(currySum(10)(20)(30))
 ```
 
----
+### 5.JavaScript 组合函数
 
-# 组合函数
+JavaScript 组合（Compose）函数，是一种对函数的使用技巧、模式。
 
-## 认识组合函数
+- 我们现在需要对某一个数据，进行函数的调用，执行两个函数 `fn1` 和 `fn2`，这两个函数是依次执行的；
+- 那么，如果每次我们都需要进行两个函数的调用，操作上就会显得重复；
+- 将这两个函数组合起来，自动依次调用呢？
+- 这个过程就是对函数的组合，我们称之为**组合函数（Compose Function）**；
 
-组合函数是 JS 开发过程中一种对函数的使用技巧，什么是组合函数？
+#### 1.自动组合函数封装
 
-- 将函数组合起来，自动依次调用
-
-## 基本使用
-
-组合函数的使用。
-
-```javascript
-function double(num) {
-  return num * 2
-}
-function square(num) {
-  return num ** 2
-}
-function composeFn(fn1, fn2) {
-  return function (count) {
-    return fn2(fn1(count))
-  }
-}
-const newFn = composeFn(double, square)
-console.log(newFn(10))
-```
-
-## 封装一个自动组合的函数
+封装一个自动组合函数的函数 `myCompose`，在其中传入函数参数，将它们自动组合。
 
 ```javascript
 function myCompose(...fns) {
   const length = fns.length
-  if (fns.some(fn => typeof fn !== 'function')) {
-    throw new TypeError('Expected arguments are functions')
+
+  // 遍历函数所有的参数，如果不是函数，那么直接报错
+  for (var i = 0; i < length; i++) {
+    var fn = fns[i]
+
+    if (typeof fn !== 'function') {
+      throw new TypeError('Expected a function')
+    }
   }
 
+  // 取出所有的函数，依次进行调用。
   return function (...args) {
-    let i = 0
-    let result = length ? fns[i].apply(this, args) : args
-    while (i < length) {
-      result = fns[i++].call(this, result)
+    var index = 0
+
+    var result = length ? fns[index].apply(this, args) : args
+
+    while (++index < length) {
+      result = fns[index].call(this, result)
     }
+
     return result
   }
 }
+
 const newFn2 = myCompose(double, square)
 console.log(newFn2(10))
 ```
 
----
+## 二、with 语句
 
-# with 语句
+with 语句，用于扩展一个语句的作用域链。
 
-with 语句有什么用？
-
-- 用于扩展一个语句的作用域链。
-
-不建议使用，为什么？
-
-- 因为它可能是混淆错误和兼容性问题的根源。
+现在的 JavaScript 开发中，已不建议使用它，因为它可能是混淆代码错误和兼容性问题的根源。
 
 ```javascript
 const obj = { name: 'zzt', age: 18 }
+
 with (obj) {
   console.log(name)
   console.log(age)
 }
 ```
 
----
+## 三、eval 函数
 
-# eval 函数
-
-eval 是内建（内置）函数，它有什么用？
-
-- 可以将传入的字符串当做 JavaScript 代码来运行；
-- 会将最后一句执行语句的结果，作为返回值；
+eval 是内建（内置）函数，它用于将传入的字符串，当做 JavaScript 代码来运行；并会将最后一句执行语句的结果，作为函数返回值；
 
 ```javascript
 var codeString = `var name = "zzt"; console.log(name); console.log(message); "abc";`
+
 var result = eval(codeString) // abc
 ```
 
-不建议使用，为什么？
+现代 JavaScript 开发中，eval 内建函数，同样不建议使用，因为：
 
-1. eval 代码的可读性非常差
-2. eval 传入的是一个字符串，那么可能在执行的过程中被篡改，可能造成被攻击的风险
-3. eval 的执行必须经过 JS 解释器，不能被 JS 引擎优化
+- eval 函数代码的可读性非常差。
+- eval 函数传入的是一个字符串，那么可能在执行的过程中被篡改，可能造成被攻击的风险。
+- eval 函数的执行，必须经过 JS 解释器，不能被 JS 引擎优化
 
----
+## 四、严格模式
 
-# 严格模式
+理解严格模式，要先理解 JavaScript 历史的局限性：
 
-## 认识严格模式
+- 长久以来，JavaScript 不断向前发展且，并未带来任何兼容性问题；
+- 新的特性被加入，旧的功能也没有改变，这么做有利于兼容旧代码；
+- 但缺点是 JavaScript 创造者的任何错误，或不完善的决定，也将永远被保留在 JavaScript 语言中；
 
-- 一种具有限制性的 JavaScript 模式，从而使代码隐式的脱离了懒散（sloppy）模式
-- 前端工程化项目中，打包后的代码，一般都会开启严格模式。
+在 ECMAScript5 标准中，JavaScript 提出了**严格模式（Strict Mode）**的概念：
 
-## 严格模式的优势
+- 严格模式很好理解，是一种具有限制性的 JavaScript 模式，从而使代码隐式的脱离了”**懒散模式（sloppy Model）**“；
+- 支持严格模式的浏览器，在检测到代码中有严格模式时，会以更加严格的方式，对代码进行检测和执行；
 
-1. 严格模式通过抛出错误，来消除一些静默（slient）的错误
-2. 严格模式让 JS 引擎在执行代码时可以进行更多的优化（不需要对一些特殊的语法进行处理）
-3. 严格模式禁用了在 ECMAScript 未来版本中可能会定义的一些语法（超前的一些新特性，babel 甚至都还不能做转化）。
+前端工程化项目中，打包后的代码，一般都会开启严格模式。
 
----
+### 1.严格模式的优势
 
-## 如何开启
+严格模式，能对正常的 JavaScript 语义，进行了一些限制：
 
-严格模式支持粒度化的迁移，如何开启严格模式。
+- 严格模式，通过抛出错误，来消除一些静默（slient）的错误。
+- 严格模式，让 JS 引擎在执行代码时，可以进行更多的优化（不需要对一些特殊的语法进行处理）。
+- 严格模式，禁用了在 ECMAScript 未来版本中，可能会定义的一些语法（超前的一些新特性，babel 甚至都还不能做转化）。
 
-1. 可以支持在 js 文件中开启严格模式；
-2. 也支持对某一个函数开启严格模式；
+### 2.严格模式的开启
 
-```javascript
-'use strict';
+严格模式，支持粒度化的迁移，如何开启严格模式。
 
-function foo {
+- 可以支持在 js 文件中，开启严格模式，只要在文件开头，写上 `'use strict';` 语句；
+
+  ```javascript
   'use strict';
-  // ...
-}
-```
+  ```
 
-> - 没有类似于 "no use strict" 这样的指令可以使程序返回默认模式。
+- 也支持对某一个函数开启严格模式，在函数内第一行代码写上 `'use strict';` 语句。
+
+  ```javascript
+  function foo {
+    'use strict';
+    // ...
+  }
+  ```
+
+> - JavaScript 中，没有类似于 "no use strict" 这样的指令，可以使程序返回默认模式。
 > - 现代 JavaScript 支持“class” 和“module” ，它们会自动启用 use strict；
 
----
+### 3.严格模式对语法的限制
 
-严格模式语法限制的 8 种场景。
+① 在严格模式中，意外的创建全局变量，会抛出异常。
 
-1. 意外的创建全局变量会报错。
+```javascript
+msg = 'Hello'
+```
 
-   ```javascript
-   msg = 'Hello'
-   ```
+② 在严格模式中，引起静默失败的赋值操作，会抛出异常,
 
-2. 引起静默失败的赋值操作会抛出异常,
+```javascript
+true.name = 'abc' // 报错
 
-   ```javascript
-   true.name = 'abc' // 报错
-   var obj = { name: 'zzt' }
-   Object.defineProperty(obj, 'name', {
-     writable: false
-   })
-   obj.name = 'kobe' // 报错
-   ```
+var obj = { name: 'zzt' }
 
-3. 试图删除不可删除的属性会报错。
+Object.defineProperty(obj, 'name', {
+  writable: false
+})
 
-   ```javascript
-   var obj = {
-     name: "why"
-   }
-   Object.defineProperty(obj, "name", {
-     configurable: false
-   })
-   delete obj.name = "kobe" // 报错
-   ```
+obj.name = 'kobe' // 报错
+```
 
-4. 不允许函数参数有相同名称。
+③ 在严格模式中，试图删除不可删除的属性，会抛出报错。
 
-   ```javascript
-   function foo(num, num) {}
-   ```
+```javascript
+var obj = {
+  name: "why"
+}
 
-5. 不允许 0 的八进制语法，如 0100。
+Object.defineProperty(obj, "name", {
+  configurable: false
+})
 
-   ```javascript
-   var foo = 0100
-   ```
+delete obj.name = "kobe" // 报错
+```
 
-6. 不允许使用 with 语句。
+④ 在严格模式中，不允许函数参数有相同名称。
 
-7. eval 不再为上层引用变量
+```javascript
+function foo(num, num) {}
+```
 
-   ```javascript
-   eval(`var message = "Hello World"`)
-   console.log(message) // 无法访问 message
-   ```
+⑤ 在严格模式中，不允许 0 的八进制语法，如 0100。
 
-8. this 显示绑定不会默认转成对象：显示绑定值类型，不会转成对象，`foo.apply('123')`
+```javascript
+var foo = 0100
+```
 
-   - this 绑定规则之外，通过显示绑定 `foo.apply/call(null/undefined)`，那么 this 就是 null / undefined。
+⑥ 在严格模式中，不允许使用 with 语句。
 
-9. this 默认绑定，指向 undefined。
+⑦ 在严格模式中，eval 函数，不再为上层引用变量
 
----
+```javascript
+eval(`var message = "Hello World"`)
 
-# 属性描述符
+console.log(message) // 无法访问 message
+```
 
-## 认识属性描述符
+⑧ 在严格模式中，this 显示绑定，不会默认转成对象：显示绑定值类型，不会转成对象，`foo.apply('123')`
 
-什么是属性描述符？
+- 这会影响 this 绑定规则之外的一条规律，即通过显示绑定 `foo.apply/call(null/undefined)`，那么 this 原本应为全局对象，现在就是 `null` / `undefined`。
 
-- 对一个属性进行比较精准的操作控制，通过属性描述符可以精准的添加或修改对象的属性；
+⑨ this 默认绑定（独立函数的调用），指向 `undefined`。
 
-## 如何使用
+## 五、深入 JS 对象
 
-`Object.defineProperty(obj, prop, descriptor)` 会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+在前面的介绍中，对象的属性，都是直接定义在对象内部，或者直接添加到对象内部的：
 
-- obj 要定义属性的对象；
-- prop 要定义或修改的属性的名称或 Symbol；
-- descriptor 要定义或修改的属性描述符；
+这样来做的时候，我们就不能对这个属性，进行一些限制：
 
----
+- 比如：这个属性，是否是可以通过 `delete` 操作符删除。
+- 比如：这个属性，是否可以在 for...in 遍历的时候，被遍历出来。
 
-## 属性描述符分为 2 类
+如果我们想要对一个对象中的属性，进行比较精准的操作控制，那么我们就可以使用属性描述符。
+
+- 通过属性描述符，可以精准的添加或修改对象的属性；
+- 属性描述符，需要使用 [Object.defineProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty) 方法，来对属性进行添加或者修改；
+
+### 1.Object.defineProperty()
+
+`Object.defineProperty()` 方法，语法：`Object.defineProperty(obj, prop, descriptor)`
+
+它会直接在一个对象上，定义一个新属性，或者修改一个对象的现有属性，并返回此对象。
+
+它可接收三个参数：
+
+- 第一个参数，`obj` 要定义属性的对象；
+- 第二个参数，`prop` 要定义或修改的属性的名称（可以是 Symbol 类型的值）；
+- 第三个参数，`descriptor` 要定义或修改的**属性描述符**；
+
+返回值：就是传递给函数的对象。
+
+### 2.属性描述符
+
+属性描述符，用于对一个对象中的属性，进行比较精准的操作控制；
+
+通过属性描述符，可以精准的添加或修改对象的属性；
+
+属性描述符的类型有两种：
+
+- 数据属性描述符（Data Properties Descriptor）；
+- 存取属性（Accessor 访问器 Properties）描述符（Descriptor）；
+
 
 各配置项的意义和默认值。如何使用？
 
@@ -592,62 +615,63 @@ function foo {
 | 数据属性描述符 | ✔            | ✔          | ✔     | ✔        | ❌  | ❌  |
 | 存取属性描述符 | ✔            | ✔          | ❌    | ❌       | ✔   | ✔   |
 
-- `configurable`: 表示属性是否能通过 delete 运算符删除，能否通过属性描述符做配置。
-  - 默认值：直接定义，`true`,
-  - 默认值，通过属性描述符定义：`false`
-- `enumerable`: 表示属性能否通过 `for...in` / `Object.keys()` 返回该属性
-  - 默认值：直接定义，`true`,
-  - 默认值，通过属性描述符定义：`false`
+- `configurable`: 表示属性是否能通过 `delete` 操作符删除，是否可以修改它的特性，或者是否可以将它修改为存取属性描述符（通过属性描述符做配置）。
+  - 当可以直接在一个对象上定义某个属性时。默认值是  `true`：
+  - 当我们通过属性描述符定义一个属性时，默认值是 `false`。
+- `enumerable`: 表示属性能否通过 `for...in` / `Object.keys()` 返回该属性。
+  - 当我们直接在一个对象上定义某个属性时，默认值时 `true`,
+  - 当我们通过属性描述符定义一个属性时，默认值是`false`
 - `writable`: 表示属性值是否可被修改
-  - 默认值：直接定义，`true`,
-  - 默认值，通过属性描述符定义：`false`
-- `value`: 表示属性的值
-  - 默认值：`undefined`
-- `get`: 获取属性时会执行的函数，
+  - 当直接在一个对象上定义某个属性时，默认值是 `true`；
+  - 当通过属性描述符，来定义一个属性时，默认值是 `false`。
+- `value`: 表示属性的值，读取属性时会返回该值，修改属性时会对其进行修改；
+  - 默认情况下值：`undefined`
+- `get`: 获取属性时，会执行的函数，
   - 默认为 `undefined`
-- `set`: 设置属性时会执行的函数，
+- `set`: 设置属性时，会执行的函数，
   - 默认为 `undefined`
 
-## 数据属性描述符
+#### 1.数据属性描述符
 
 ```javascript
 var obj = {
   name: 'cr7', // configurable: true
   age: 18
 }
+
 Object.defineProperty(obj, 'name', {
-  configurable: false, // 告诉js引擎, obj对象的name属性不可以被删除
-  enumerable: false, // 告诉js引擎, obj对象的name属性不可枚举(for in/Object.keys)
-  writable: false, // 告诉js引擎, obj对象的name属性不写入(只读属性 readonly)
-  value: 'zzt' // 告诉js引擎, 返回这个value
+  configurable: false, // 告诉 js 引擎, obj 对象的 name 属性不可以被删除
+  enumerable: false, // 告诉 js 引擎, obj 对象的 name 属性不可枚举（for..in / Object.keys 的方式都无法遍历）
+  writable: false, // 告诉 js 引擎, obj 对象的 name 属性不可写入（只读属性 readonly）
+  value: 'zzt' // 告诉 js 引擎, 返回这个 value
 })
 ```
 
-## 存取属性描述符
+#### 2.存取属性描述符
 
 ```javascript
 var obj = {
   _name: 'zzt'
 }
-// 对 obj 对象中的 name 添加描述符(存取属性描述符)
+
+// 对 obj 对象中的 name 添加描述符（存取属性描述符）
 Object.defineProperty(obj, 'name', {
   configurable: true,
   enumerable: false,
   set: function (value) {
-    console.log('set方法被调用了', value)
+    console.log('set 方法被调用了', value)
     this._name = value
   },
   get: function () {
-    console.log('get方法被调用了')
+    console.log('get 方法被调用了')
     return this._name
   }
 })
+
 obj.name = 'cr7'
 ```
 
----
-
-给多个属性同时添加属性描述符。
+### 3.给多个属性同时添加属性描述符
 
 ```javascript
 var obj = {
@@ -655,6 +679,7 @@ var obj = {
   age: 18,
   height: 1.88
 }
+
 // 新增的方法
 Object.defineProperties(obj, {
   name: {
@@ -671,19 +696,33 @@ Object.defineProperties(obj, {
 })
 ```
 
----
+## 六、JavaScript 中常用的对象方法
 
-# 对象方法的补充 7 个。
+### 1.获取对象的属性描述符：
 
-- 获取对象的属性描述符：
-  - `Object.getOwnPropertyDescriptor(obj, prop) `
-  - `Object.getOwnPropertyDescriptors(obj)`
-- 禁止对象扩展新属性：`Object.preventExtensions(obj)`
-  - 给一个对象添加新的属性会失败（在严格模式下会报错）；
-- 密封对象，不允许配置和删除属性：`Object.seal(obj)`
-  - 实际是调用 preventExtensions
-  - 并且将现有属性的 configurable:false
-- 冻结对象，不允许修改现有属性： `Object.freeze(obj)`
-  - 实际上是调用 seal
-  - 并且将现有属性的 writable: false
-- `Object.prototype.hasOwnProperty(prop)` 对象中是否存在某个属性。
+[Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) 方法，语法：`Object.getOwnPropertyDescriptor(obj, prop) `
+
+[Object.getOwnPropertyDescriptors()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors) 方法，语法：`Object.getOwnPropertyDescriptors(obj)`
+
+### 2.禁止对象扩展新属性
+
+[Object.preventExtensions()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions) 方法，语法：`Object.preventExtensions(obj)`。不允许给一个对象添加新的属性会失败（在严格模式下会报错）；
+
+### 3.密封对象
+
+[Object.seal()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/seal) 方法，语法：`Object.seal(obj)`，不允许配置和删除属性：
+
+- 实际是调用 `preventExtensions` 方法。
+- 并且将所有属性的属性描述符设置为 `configurable:false`。
+
+### 4.冻结对象
+
+[Object.freeze()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze) 方法，语法：`Object.freeze(obj)`，不允许修改现有属性：
+
+- 实际上是调用 `seal` 方法。
+- 并且将所有属性的属性描述符设置为 `writable: false`。
+
+### 5.对象是否存在某个属性
+
+[Object.prototype.hasOwnProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) 语法：`Object.prototype.hasOwnProperty(prop)` 对象中是否存在某个属性。
+

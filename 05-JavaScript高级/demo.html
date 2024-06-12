@@ -9,21 +9,23 @@
     <h1>哈哈</h1>
 
     <script>
-      function makeAdder(num) {
+      // console.log(arguments) // arguments is not defined
 
-        return function (count) {
-          return num + count
+      var foo = (x, y, z) => {
+        console.log(arguments) // arguments is not defined
+      }
+
+      foo(10, 20, 30)
+
+      function bar(m, n) {
+        return (x, y, z) => {
+          console.log(arguments) // Arguments(2) [20, 30, callee: ƒ, Symbol(Symbol.iterator): ƒ]
         }
       }
 
-      var add5 = makeAdder(5)
-      console.log(add5(10))
-      console.log(add5(100))
+      var fn = bar(20, 30)
 
-      var add10 = makeAdder(10)
-      console.log(add10(10))
-      console.log(add10(100))
-
+      fn(10, 20, 30)
     </script>
   </body>
 </html>

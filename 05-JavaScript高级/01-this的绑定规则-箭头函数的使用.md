@@ -373,9 +373,7 @@ console.log(p) // Person { name: 'zzt' }
 
 #### 1.忽略显示绑定
 
-使用 `apply`、`call`、`bind` 方法，传入 `null`，`undefined` 作为 thisArg 进行显示绑定。
-
-那么将会使用默认绑定的规则，即当成独立函数调用。
+使用 `apply`、`call`、`bind` 方法，传入 `null`，`undefined` 作为 thisArg 进行显示绑定。那么将会使用默认绑定的规则，即当成独立函数调用。
 
 ```javascript
 function foo() {
