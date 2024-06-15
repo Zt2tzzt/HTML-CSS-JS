@@ -4,12 +4,14 @@
 
 ### 1.Javascript 函数的属性
 
-我们知道 JavaScript 中，函数也是一个对象，那么对象里面，就可以有属性和方法。函数对象有以下两个常用属性：
+我们知道 JavaScript 中，函数也是一个对象；
+
+对象里面，就有属性。函数对象有以下两个常用属性：
 
 - `name` 属性：一个函数的名称。
 - `length` 属性：用于返回函数参数的个数。
   - 它仅返回函数第一个具有默认值的参数，之前的形参个数；
-  - rest 参数不计入 `length` 的个数的；
+  - rest 参数不计入 `length` 的个数；
 
 可以给没有形参的函数，传实参，传入的实参，会存放在函数内的 `arguments` 对象中。
 
@@ -26,8 +28,12 @@ test(111, 222, 333) // 可以给没有形参的函数传实参，传入的实参
 arguments 对象，是一个对应于传递给函数的参数的**类数组（array-like）**对象。
 
 - 类数组（array-like）意味着它不是一个数组类型，而是一个对象类型：
-- 它拥有数组的一些特性，比如说 `length` 属性，比如可以通过 `index` 索引来访问；
-- 它没有数组的一些方法，比如 `filter`、 `map` 等；
+- 它拥有数组的一些特性，
+  - 比如：`length` 属性；
+  - 比如：可以通过 `index` 索引来访问；
+
+- 它没有数组的一些方法：
+  - 比如 `filter`、 `map` 高阶方法等；
 
 #### 1.arguments 对象转数组
 
@@ -35,7 +41,7 @@ arguments 对象，是一个对应于传递给函数的参数的**类数组（ar
 
 arguments 转数组的 3 种方式（slice 方法回顾）
 
-- 转化方式一：利用 arguments 是可迭代对象特性，遍历 arguments 对象，将遍历的元素，添加到一个新数组中；
+- 转化方式一：利用 arguments 对象，是可迭代对象的特性，遍历 arguments 对象，将遍历的元素，添加到一个新数组中；
 
   ```javascript
   function foo() {
@@ -47,7 +53,7 @@ arguments 转数组的 3 种方式（slice 方法回顾）
   }
   ```
 
-- 转化方式二：利用 arguments 是可迭代对象的特性，调用数组 `slice` 函数的 `call / apply` 方法；
+- 转化方式二：利用 arguments 对象，是可迭代对象的特性，调用数组 `slice` 方法的显示绑定（`call / apply`）方法，传入 arguments，作为绑定的 this 参数；
 
   ```javascript
   function foo() {
@@ -65,20 +71,20 @@ arguments 转数组的 3 种方式（slice 方法回顾）
   ```javascript
   function foo() {
     var newArgs1 = Array.from(arguments)
-  
+
     var newArgs2 = [...arguments]
   }
   ```
 
 #### 2.arguments 对象和箭头函数
 
-箭头函数不绑定 `arguments` 对象，如果要使用，会去**上层作用域**查找。
+箭头函数不绑定 `arguments` 对象，如果要在其中使用 this，它帮绑定的是**上层作用域**中的 this。
 
 ```javascript
-console.log(arguments) // arguments is not defined
+console.log(arguments) // 报错：arguments is not defined
 
 var foo = (x, y, z) => {
-  console.log(arguments)
+  console.log(arguments) // // 报错：arguments is not defined
 }
 
 foo(10, 20, 30)
@@ -98,14 +104,14 @@ fn(10, 20, 30)
 
 ES6 中，引用了新特性剩余参数（rest parameter），可以将不定数量的参数，放入到一个数组中：
 
-如果最后一个参数是 `...` 为前缀的，那么它会将剩余的参数，作为一个数组放到该参数中。
+如果最后一个参数是 `...` 为前缀的，那么它会将函数剩余的实参，作为一个数组放到该参数中。
 
 函数剩余（rest）参数的用法，
 
 ```javascript
 function foo(num1, num2, ...otherNums) {
   console.log(num1, num2)
-	console.log(otherNums)
+  console.log(otherNums)
 }
 
 foo(20, 30, 111, 222, 333)
@@ -113,7 +119,7 @@ foo(20, 30, 111, 222, 333)
 
 剩余参数（rest parameter）和 arguments 的区别。
 
-- 剩余参数里，只包含那些没有对应形参的实参；而 `arguments` 对象，包含了传给函数的所有实参；
+- 剩余参数（rest parameter）里，只包含那些没有对应形参的实参；`arguments` 对象，包含了传给函数的所有实参；
 - 剩余参数（rest parameter）是一个真正的数组，可以进行数组的所有操作；`arguments` 对象不是一个真正的数组，而是一个类数组（array-like）对象；
 - 剩余参数（rest parameter）是 ES6 中提供的新特性，希望以此来替代 `arguments` 对象；`arguments` 对象是早期的 ECMAScript 中为了方便去获取函数中所有的参数，而提供的一个数据结构。
 
@@ -127,19 +133,18 @@ JavaScript 编程语言，符合函数式编程的范式，所以也有纯函数
 
 > 在 react 开发中，纯函数是被多次提及的；
 >
-> - 比如：react 中组件就被要求像是一个纯函数（为什么是像，因为还有类（class）组件）；
-> - 比如：redux 中有一个 reducer 的概念，也是要求必须是一个纯函数；
+> - 比如：react 中，组件就被要求像是一个纯函数（为什么是像，因为还有类（class）组件）；
+> - 比如：redux 中，有一个 reducer 的概念，也是要求必须是一个纯函数；
 
 掌握纯函数，对于理解很多框架的设计，是非常有帮助的；
 
 纯函数的维基百科定义：在程序设计中，若一个函数，符合以下条件，那么这个函数被称为纯函数：
 
-- 此函数在相同的输入值时，需产生相同的输出。
-- 函数的返回值，与输出和输入值以外的其他隐藏信息或状态无关，也和由 I/O 设备产生的外部输出无关。
+- 函数在有相同的输入值时，产生相同的输出，即函数的返回值，与输出和输入值以外的其他隐藏信息或状态都无关，也和由 I/O 设备产生的外部输出无关。
 - 该函数不能有语义上可观察的函数副作用，
   - 比如：“触发事件”，使输出设备输出，或更改输出值以外物件的内容等。
 
-当然，上面的定义，会过于的晦涩，所以我简单总结一下：
+当然，上面的定义，会过于的晦涩，简单总结一下：
 
 - 确定的输入，一定会产生确定的输出；
 - 函数在执行过程中，不能产生副作用；
@@ -158,7 +163,7 @@ function sum(num1, num2) {
 
 副作用（side effect）本身是医学的一个概念。
 
-- 比如：我们经常说吃药本意是为了治病，可能会产生一些其他的副作用；
+- 比如：我们经常说吃药本意是为了治病，但可能会产生一些其他的副作用；
 
 在计算机科学中，也引用了副作用的概念，表示在执行一个函数时，除了返回函数值之外，还对调用函数以外的事务产生了附加的影响。
 
@@ -193,7 +198,7 @@ names.splice(2, 2)
 
 下面的函数是否是纯函数？
 
-函数一：是纯函数
+函数一：是纯函数。
 
 ```javascript
 function sum(num1, num2) {
@@ -203,7 +208,7 @@ function sum(num1, num2) {
 
 函数二：不是纯函数，
 
-- 确定的输入，不能产生确定的输出
+- 确定的输入，不能产生确定的输出。
 
 ```javascript
 let foo = 5
@@ -255,7 +260,7 @@ function printInfo(info) {
 
 柯里化声称 “如果你固定某些参数，你将得到接受余下参数的一个函数”；
 
-维基百科的概念非常的抽象，这里做一个总结：
+上面的概念非常的抽象，这里做一个总结：
 
 - 只传递给函数一部分参数来调用它，让它返回一个函数去处理剩余的参数；这个过程就称之为**柯里化**；
 
@@ -346,7 +351,6 @@ console.log(add10(100))
 
 再比如下方的日志打印函数案例，也是一个道理。
 
-
   ```javascript
   const log = date => type => message =>
     console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]: [${message}]`)
@@ -376,6 +380,7 @@ function ztCurring(fn) {
       }
     }
   }
+
   return curried
 }
 
@@ -425,6 +430,7 @@ function myCompose(...fns) {
 }
 
 const newFn2 = myCompose(double, square)
+
 console.log(newFn2(10))
 ```
 
@@ -457,17 +463,17 @@ var result = eval(codeString) // abc
 
 - eval 函数代码的可读性非常差。
 - eval 函数传入的是一个字符串，那么可能在执行的过程中被篡改，可能造成被攻击的风险。
-- eval 函数的执行，必须经过 JS 解释器，不能被 JS 引擎优化
+- eval 函数的执行，必须经过 JS 解释器，不能被 JS 引擎优化。
 
 ## 四、严格模式
 
 理解严格模式，要先理解 JavaScript 历史的局限性：
 
-- 长久以来，JavaScript 不断向前发展且，并未带来任何兼容性问题；
+- 长久以来，JavaScript 不断向前发展，并未带来任何兼容性问题；
 - 新的特性被加入，旧的功能也没有改变，这么做有利于兼容旧代码；
-- 但缺点是 JavaScript 创造者的任何错误，或不完善的决定，也将永远被保留在 JavaScript 语言中；
+- 但缺点是 JavaScript 早期存在的错误，或不完善的规范，也将永远被保留在 JavaScript 语言中；
 
-在 ECMAScript5 标准中，JavaScript 提出了**严格模式（Strict Mode）**的概念：
+在 ECMAScript5 标准的约束下中，JavaScript 提出了**严格模式（Strict Mode）**的概念：
 
 - 严格模式很好理解，是一种具有限制性的 JavaScript 模式，从而使代码隐式的脱离了”**懒散模式（sloppy Model）**“；
 - 支持严格模式的浏览器，在检测到代码中有严格模式时，会以更加严格的方式，对代码进行检测和执行；
@@ -486,13 +492,13 @@ var result = eval(codeString) // abc
 
 严格模式，支持粒度化的迁移，如何开启严格模式。
 
-- 可以支持在 js 文件中，开启严格模式，只要在文件开头，写上 `'use strict';` 语句；
+- 在 js 文件中，开启严格模式，只要在文件开头，写上 `'use strict';` 语句；
 
   ```javascript
   'use strict';
   ```
 
-- 也支持对某一个函数开启严格模式，在函数内第一行代码写上 `'use strict';` 语句。
+- 对某一个函数开启严格模式，在函数内第一行代码写上 `'use strict';` 语句。
 
   ```javascript
   function foo {
@@ -502,7 +508,7 @@ var result = eval(codeString) // abc
   ```
 
 > - JavaScript 中，没有类似于 "no use strict" 这样的指令，可以使程序返回默认模式。
-> - 现代 JavaScript 支持“class” 和“module” ，它们会自动启用 use strict；
+> - 现代 JavaScript 支持 “class” 和 “module”，它们会自动启用 use strict；
 
 ### 3.严格模式对语法的限制
 
@@ -526,7 +532,7 @@ Object.defineProperty(obj, 'name', {
 obj.name = 'kobe' // 报错
 ```
 
-③ 在严格模式中，试图删除不可删除的属性，会抛出报错。
+③ 在严格模式中，试图删除不可删除的属性，会抛出异常。
 
 ```javascript
 var obj = {
@@ -562,9 +568,10 @@ eval(`var message = "Hello World"`)
 console.log(message) // 无法访问 message
 ```
 
-⑧ 在严格模式中，this 显示绑定，不会默认转成对象：显示绑定值类型，不会转成对象，`foo.apply('123')`
+⑧ 在严格模式中，this 显示绑定，不会默认转成对象：
 
-- 这会影响 this 绑定规则之外的一条规律，即通过显示绑定 `foo.apply/call(null/undefined)`，那么 this 原本应为全局对象，现在就是 `null` / `undefined`。
+- 比如：显示绑定值类型，不会转成对象，`foo.apply('123')`
+- 这会影响 this 绑定规则之外的一条规律，即通过显示绑定 `foo.apply/call(null/undefined)`，那么 this 原本应指向全局对象，现在就是 `null` / `undefined`。
 
 ⑨ this 默认绑定（独立函数的调用），指向 `undefined`。
 
@@ -604,11 +611,8 @@ console.log(message) // 无法访问 message
 
 属性描述符的类型有两种：
 
-- 数据属性描述符（Data Properties Descriptor）；
-- 存取属性（Accessor 访问器 Properties）描述符（Descriptor）；
-
-
-各配置项的意义和默认值。如何使用？
+- **数据属性描述符（Data Properties Descriptor）**；
+- **存取属性描述符**（Accessor 访问器 Properties）；
 
 |                | configurable | enumerable | value | writable | get | set |
 | -------------- | ------------ | ---------- | ----- | -------- | --- | --- |
@@ -616,19 +620,19 @@ console.log(message) // 无法访问 message
 | 存取属性描述符 | ✔            | ✔          | ❌    | ❌       | ✔   | ✔   |
 
 - `configurable`: 表示属性是否能通过 `delete` 操作符删除，是否可以修改它的特性，或者是否可以将它修改为存取属性描述符（通过属性描述符做配置）。
-  - 当可以直接在一个对象上定义某个属性时。默认值是  `true`：
-  - 当我们通过属性描述符定义一个属性时，默认值是 `false`。
+  - 当可以直接在一个对象上定义这个属性时。默认值是  `true`：
+  - 当我们通过属性描述符定义这个属性时，默认值是 `false`。
 - `enumerable`: 表示属性能否通过 `for...in` / `Object.keys()` 返回该属性。
-  - 当我们直接在一个对象上定义某个属性时，默认值时 `true`,
-  - 当我们通过属性描述符定义一个属性时，默认值是`false`
+  - 当我们直接在一个对象上定义这个属性时，默认值时 `true`,
+  - 当我们通过属性描述符定义这个属性时，默认值是`false`
 - `writable`: 表示属性值是否可被修改
-  - 当直接在一个对象上定义某个属性时，默认值是 `true`；
-  - 当通过属性描述符，来定义一个属性时，默认值是 `false`。
+  - 当直接在一个对象上定义这个属性时，默认值是 `true`；
+  - 当通过属性描述符，来定义这个属性时，默认值是 `false`。
 - `value`: 表示属性的值，读取属性时会返回该值，修改属性时会对其进行修改；
   - 默认情况下值：`undefined`
-- `get`: 获取属性时，会执行的函数，
+- `get`: 表示获取属性时，会执行的函数，
   - 默认为 `undefined`
-- `set`: 设置属性时，会执行的函数，
+- `set`: 表示设置属性时，会执行的函数，
   - 默认为 `undefined`
 
 #### 1.数据属性描述符
@@ -641,7 +645,7 @@ var obj = {
 
 Object.defineProperty(obj, 'name', {
   configurable: false, // 告诉 js 引擎, obj 对象的 name 属性不可以被删除
-  enumerable: false, // 告诉 js 引擎, obj 对象的 name 属性不可枚举（for..in / Object.keys 的方式都无法遍历）
+  enumerable: false, // 告诉 js 引擎, obj 对象的 name 属性不可枚举（for..in、Object.keys 等方式都无法遍历）
   writable: false, // 告诉 js 引擎, obj 对象的 name 属性不可写入（只读属性 readonly）
   value: 'zzt' // 告诉 js 引擎, 返回这个 value
 })
@@ -698,15 +702,15 @@ Object.defineProperties(obj, {
 
 ## 六、JavaScript 中常用的对象方法
 
-### 1.获取对象的属性描述符：
+### 1.获取对象的属性描述符
 
-[Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) 方法，语法：`Object.getOwnPropertyDescriptor(obj, prop) `
+[Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) 方法，语法：`Object.getOwnPropertyDescriptor(obj, prop)`
 
 [Object.getOwnPropertyDescriptors()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors) 方法，语法：`Object.getOwnPropertyDescriptors(obj)`
 
 ### 2.禁止对象扩展新属性
 
-[Object.preventExtensions()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions) 方法，语法：`Object.preventExtensions(obj)`。不允许给一个对象添加新的属性会失败（在严格模式下会报错）；
+[Object.preventExtensions()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions) 方法，语法：`Object.preventExtensions(obj)`。不允许给一个对象添加新的属性（在严格模式下会报错）；
 
 ### 3.密封对象
 
@@ -725,4 +729,3 @@ Object.defineProperties(obj, {
 ### 5.对象是否存在某个属性
 
 [Object.prototype.hasOwnProperty()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) 语法：`Object.prototype.hasOwnProperty(prop)` 对象中是否存在某个属性。
-
