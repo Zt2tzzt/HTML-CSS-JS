@@ -71,7 +71,7 @@ arguments 转数组的 3 种方式（slice 方法回顾）
   ```javascript
   function foo() {
     var newArgs1 = Array.from(arguments)
-
+  
     var newArgs2 = [...arguments]
   }
   ```
@@ -704,9 +704,11 @@ Object.defineProperties(obj, {
 
 ### 1.获取对象的属性描述符
 
+[Object.getOwnPropertyNames()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames) 方法，返回一个数组，其包含给定对象中所有自有属性（包括不可枚举属性，但不包括使用 symbol 值作为名称的属性）
+
 [Object.getOwnPropertyDescriptor()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) 方法，语法：`Object.getOwnPropertyDescriptor(obj, prop)`
 
-[Object.getOwnPropertyDescriptors()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors) 方法，语法：`Object.getOwnPropertyDescriptors(obj)`
+[Object.getOwnPropertyDescriptors()](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors) 方法，语法：`Object.getOwnPropertyDescriptors(obj)`，返回一个对象，该对象包含目标对象自身所有属性的描述符（包括不可枚举属性和符号属性）
 
 ### 2.禁止对象扩展新属性
 

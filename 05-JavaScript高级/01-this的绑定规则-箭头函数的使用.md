@@ -101,7 +101,7 @@ var obj = {
 foo(obj.bar)
 ```
 
-this 在全局作用域下的指向，在浏览器环境中是：`window`。NodeJs 环境中是：`{}`
+this 在全局作用域下的指向，在浏览器环境中是：`window`；NodeJs 环境中是：`{}`
 
 > 在 JS 严格模式（strict）下，独立函数调用（默认绑定）时 this 指向 `undefined`，所以在默认绑定的情况下，this 要慎用。
 
@@ -148,7 +148,7 @@ var obj2 = {
 obj2.obj1.foo() // obj1
 ```
 
-案例三，与以上两个案例区分，这是一个函数独立调用，应用的是默认绑定规则：
+案例三，与以上两个案例区分，以下是一个函数独立调用，应用的是默认绑定规则：
 
 ```javascript
 function foo() {
@@ -161,6 +161,7 @@ var obj1 = {
 }
 
 var bar = obj1.foo
+
 bar()
 ```
 
@@ -225,7 +226,7 @@ foo.call('call', 'james', 25, 2.05)
 bind 方法，它返回一个新的绑定函数（bound function，BF）；
 
 - 这个绑定函数，是一个 exotic function object（怪异函数对象，ECMAScript 2015 中的术语）
-- 在 `bind` 方法被调用时，这个返回的新函数中的 `this` 被指定为 `bind` 方法的第一个参数，而其余参数，将作为新函数的参数，供调用时使用。
+- 在 `bind` 方法被调用时，这个返回的新函数中的 `this`，被指定为 `bind` 方法的第一个参数，而其余参数，将作为新函数的参数，供调用时使用。
 
 ```javascript
 function foo(name, age, height, address) {
@@ -238,7 +239,7 @@ const bar = foo.bind(obj, 'kobe', 18, 1.88)
 bar('LA') // 传入的是第4个参数，打印结果：kobe, 18, 1.88，LA
 ```
 
-> apply，call，bind 都称为**方法**，因为它们都在 Function.prototype 中。
+> apply，call，bind 都称为**方法**，因为它们都在 Function.prototype 原型链对象里。
 
 ##### 3.内置函数的绑定思考
 
@@ -252,7 +253,7 @@ bar('LA') // 传入的是第4个参数，打印结果：kobe, 18, 1.88，LA
 
 ```javascript
 setTimeout(function () {
-  console.log('----', this) // 浏览器：window | Node：setTimeout?
+  console.log('----', this) // 浏览器：window；Node：setTimeout?
 }, 0)
 ```
 
@@ -260,7 +261,7 @@ setTimeout(function () {
 
 ```javascript
 ;[1].forEach(function (ele) {
-  console.log(ele, '^^^', this) // 浏览器：window | Node：global
+  console.log(ele, '^^^', this) // 浏览器：window；Node：global
 }, thisArg) // 可指定 this
 ```
 
@@ -293,6 +294,7 @@ function Person(name) {
 }
 
 var p = new Person('zzt')
+
 console.log(p) // Person { name: 'zzt' }
 ```
 
@@ -377,7 +379,7 @@ console.log(p) // Person { name: 'zzt' }
 
 ```javascript
 function foo() {
-  console.log(this)
+  console.log(this) // window
 }
 
 foo.apply(null)
@@ -387,10 +389,10 @@ foo.apply(null)
 
 创建一个函数的间接引用，这种情况，使用默认绑定规则。
 
-- 赋值 (obj2.foo = obj1.foo) 的结果是foo函数；
+- 赋值 (obj2.foo = obj1.foo) 的结果是 foo 函数；
 - foo 函数被直接调用，那么应用的是默认绑定的规则。
 
-这时《你不知道的 JavaScript》书中提出的概念，
+这是《你不知道的 JavaScript》书中提出的概念，
 
 ```javascript
 function foo() {
@@ -426,7 +428,7 @@ obj1.foo() // {name: 'obj1', foo: ƒ}
 箭头函数是 ES6 之后增加的一种编写函数的方法，并且它比函数表达式要更加简洁，它有如下特性：
 
 - 箭头函数不会绑定 `this`、没有 `arguments` 属性；
-- 箭头函数不能作为构造函数来使用（不能和 `new` 操作符一起来使用，会抛出异常）；
+- 箭头函数不能作为构造函数来使用（不能和 `new` 操作符一起使用，会抛出异常）；
 
 箭头函数如何编写呢？
 
@@ -449,7 +451,7 @@ var nums = ['abc', 'cba', 'nba']
 nums.forEach(item => ())
 ```
 
-优化二：如果函数执行体中，只有一行代码，那么可以省略大括号。并且这行代码的返回值会作为整个函数的返回值
+优化二：如果函数执行体中，只有一行代码，那么可以省略大括号。并且这行代码的返回值，会作为整个函数的返回值。
 
 ```javascript
 var nums = [123, 456, 789]
@@ -459,7 +461,7 @@ nums.forEach(item => console.log(item))
 nums.filter(item => true)
 ```
 
-优化三：如果函数执行体只有返回一个对象，并采用省略大括号的写法，那么需要给这个对象加上 `()`
+优化三：如果函数执行体只返回一个对象，并采用省略大括号的写法，那么需要给这个对象加上 `()`
 
 ```javascript
 var foo = () => {
@@ -482,8 +484,8 @@ var bar = () => ({name: 'zzt'})
 - 这里使用 `request` 方法，来模拟网络请求，请求到数据后，存放到 `obj.names` 中。
 - 我们需要拿到 `obj` 对象，设置 `names`；
 - 但是，根据 `request` 函数中，传入的 `callbackFn` 函数的调用位置，直接拿到的 `this`·是 `window` 对象，
-- 我们需要在外层定义：`var that = this`
-- 在 `request` 的回调函数中，使用 `that` 就代表了 ·`obj`· 对象
+- 我们需要在外层定义：`var that = this`，利用闭包，将外层作用域中的 `this` 传递到回调函数中进行执行。
+- 在 `request` 的回调函数中，使用 `that` 就代表了 ·`obj`· 对象。
 
 ```javascript
 // 网络请求的工具函数

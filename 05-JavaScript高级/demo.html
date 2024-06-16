@@ -9,23 +9,27 @@
     <h1>哈哈</h1>
 
     <script>
-      // console.log(arguments) // arguments is not defined
-
-      var foo = (x, y, z) => {
-        console.log(arguments) // arguments is not defined
+      // Person 类
+      function Person() {
+        this.name = 'zzt'
       }
 
-      foo(10, 20, 30)
-
-      function bar(m, n) {
-        return (x, y, z) => {
-          console.log(arguments) // Arguments(2) [20, 30, callee: ƒ, Symbol(Symbol.iterator): ƒ]
-        }
+      Person.prototype.running = function () {
+        console.log(this.name, 'running')
       }
 
-      var fn = bar(20, 30)
+      // Students 类
+      function Student() {
+        this.sno = 111
+      }
 
-      fn(10, 20, 30)
+      // 创建父类对象，并且作为子类的原型对象。
+      var p = new Person()
+      Student.prototype = p
+
+      Student.prototype.studying = function () {
+        console.log(this.sno, 'studying')
+      }
     </script>
   </body>
 </html>

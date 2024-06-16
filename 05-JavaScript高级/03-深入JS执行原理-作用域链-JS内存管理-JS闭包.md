@@ -25,7 +25,7 @@ foo()
 
 JavaScript 引擎，在执行代码之前，会在堆内存中，创建一个全局对象：**Global Object（GO）**
 
-- GO 可以被所有的作用域（scope）访问；（GO 是作用域链最顶层）
+- GO 可以被所有的作用域（scope）访问（GO 是作用域链最顶层）；
 - GO 里面包含 Date、Array、String、Number、setTimeout、setInterval 等等全局属性；（它们也都在全局执行上下文的 VO 中，也就是 GO 中）
 - GO 里面还有一个 `window` 属性，指向自己；（全局作用域中的 this 也指向 `window`）
 

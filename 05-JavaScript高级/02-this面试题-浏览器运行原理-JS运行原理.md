@@ -2,6 +2,8 @@
 
 ## 一、this 面试题
 
+JavaScript 中的函数 this 绑定，有如下四道经典的面试题：
+
 ### 1.面试题一
 
 ```javascript
@@ -147,7 +149,7 @@ person1.obj.foo2().call(person2) // obj
 
 ## 二、网页解析过程图解
 
-一个网页 URL，从输入到浏览器中，到显示经历了下载 html 文件并解析的过程。如下图所示：
+一个网页 URL，从输入浏览器中到显示，经历了下载 html 文件并解析的过程。如下图所示：
 
 ![网页被解析过程](NodeAssets/网页被解析过程.jpg)
 
@@ -208,7 +210,7 @@ person1.obj.foo2().call(person2) // obj
 
 在解析 HTML 的过程中，如果遇到 link 元素链接了 CSS 的外部样式表，那么会由浏览器负责下载对应的 CSS 文件：
 
-- 注意：下载 CSS 文件是不会影响DOM的解析的；
+- 注意：下载 CSS 文件是不会影响 DOM 的解析的；
 
 浏览器下载完 CSS 文件后，就会对 CSS 文件进行解析，解析出对应的规则树：我们可以称之为 CSSOM（CSS Object Model，CSS 对象模型）；
 
@@ -241,7 +243,7 @@ person1.obj.foo2().call(person2) // obj
 
 在绘制阶段，浏览器将布局阶段计算的每个 frame 转为屏幕上实际的像素点；
 
-包括将元素的可见部分，进行绘制，比如文本、颜色、边框、阴影、替换元素（比如img）
+包括将元素的可见部分，进行绘制，比如文本、颜色、边框、阴影、替换元素（比如 img）
 
 ![布局和绘制](NodeAssets/布局和绘制.jpg)
 
@@ -251,7 +253,7 @@ person1.obj.foo2().call(person2) // obj
 2. 解析 HTML 时遇到 link 元素链接到 CSS 的外部样式表，就会由浏览器异步的下载对应的 CSS 文件（不会影响 DOM 的解析），下载完 CSS 文件后，解析 CSS，生成对应的规则树，可称为 CSSOM（CSS 对象模型）。
 3. 当有了 DOM Tree 和 CSSOM Tree 后，就可以将它们两个组合，构建 Render Tree 了。
 4. 在 Render Tree 上运行布局（Layout）以计算每个节点的几何体（尺寸，位置信息）。
-5. 将每个节点绘制（Paint）到屏幕上，浏览器将布局阶段计算的每个 frame 转为屏幕上实际的像素点，包括将元素的可见部分进行绘制，比如文本、颜色、边框、阴影、替换元素（比如 img）。
+5. 将每个节点绘制（Paint）到屏幕上，浏览器将布局阶段计算的每个 frame 转为屏幕上实际的像素点，包括将元素的可见部分进行绘制，比如：文本、颜色、边框、阴影、替换元素（比如 img）。
 
 > link 元素链接的 CSS 外部样式表，不会阻塞 DOM Tree 的构建过程，但是会阻塞 Render Tree 的构建过程。
 >
@@ -263,7 +265,7 @@ person1.obj.foo2().call(person2) // obj
 
 ### 1.回流
 
-**回流（reflow）**，也成为重排。
+**回流（reflow）**，也称为重排。
 
 - 第一次确定节点的大小和位置，称之为**布局（layout）**。
 - 之后对节点的大小、位置进行修改，重新计算，称之为**回流（reflow）**。
@@ -284,12 +286,12 @@ person1.obj.foo2().call(person2) // obj
 
 引起重绘的情况：
 
-- 修改背景色、文字颜色、边框颜色、等样式；
 - 回流一定会引起重绘。
+- 修改背景色、文字颜色、边框颜色、等样式；
 
-> 所以，回流（reflow）是一件很消耗性能的事情。
+所以，回流（reflow）是一件很消耗性能的事情。
 
-### 3.如何避免
+### 3.避免回流、重绘
 
 开发时，应尽量避免回流，重绘。
 
@@ -340,7 +342,7 @@ composite 合成，是浏览器的特殊解析方式，也是一种优化手段�
   }
   ```
 
-- CSS 属性：position: fixed;
+- CSS 属性：`position: fixed;`
 
 - CSS 属性 will-change：这是一个实验性的属性，用于提前告诉浏览器元素可能发生哪些变化；
 
@@ -375,7 +377,7 @@ composite 合成，是浏览器的特殊解析方式，也是一种优化手段�
 1. 在现代前端框架的开发模式中（比如 Vue、React），脚本往往比 HTML 页面更“重”，处理时间需要更长；
 2. 所以会造成页面的解析阻塞，在脚本下载、执行完成之前，用户在界面上什么都看不到；
 
-为了解决这个问题，script 元素，提供了两个属性（attribute）：`defer` 和 `async`。
+为了解决这个问题，HTML 中的 script 元素，提供了两个属性（attribute）：`defer` 和 `async`。
 
 ### 1.script 元素上的 defer 属性
 
@@ -390,7 +392,7 @@ composite 合成，是浏览器的特殊解析方式，也是一种优化手段�
 ./haha.js
 
 ```javascript
-console.log('哈哈')
+console.log('哈哈') // 先打印
 ```
 
 ./demo.html
@@ -446,7 +448,7 @@ console.log('嘿嘿')
 </html>
 ```
 
-从某种角度来说，有 `defer` 属性的 script 元素，可以提高页面的性能，并且推荐将他放到 head 元素中；
+从某种角度来说，有 `defer` 属性的 script 元素，可以提高页面的性能，并且推荐将它放到 head 元素中；
 
  通常用于需要在文档解析后，进行 DOM 操作的 JavaScript 代码，并且若有多个带 `defer` 属性的 script 文件，那么会有顺序要求的；
 
@@ -507,7 +509,7 @@ V8 引擎本身的源码非常复杂，大概有超过 100 万行 C++ 代码，�
 
 理解 V8 引擎的架构。
 
-- `Parse` 模块会将 Javascript 代码转成 AST（抽象语法树），再交由 ignition（解释器），这是因为 ignition（解释器）并不直接识别 Javascript 代码。
+- `Parse` 模块，会将 JavaScript 代码转成 AST（抽象语法树），再交由 ignition（解释器），这是因为 ignition（解释器）并不直接识别 JavaScript 代码。
   - 如果 JavaScript 代码中的一个函数，没有被调用，那么这个函数是不会转成 AST（抽象语法树）的。
 - `Ignition` 是一个解释器，将 AST（抽象语法树）编译成字节码（ByteCode）
   - 同时会收集 TurboFan 优化所需要信息（比如：函数的参数类型信息，有了类型，才能进行真实的运算。
@@ -540,7 +542,7 @@ V8 引擎解析 JavaScript 代码的流程，如下图所示：
 3. 经过 Parser 和 PreParser，tokens 会转换成 AST 树结构。
     1. Parser 就是直接将 tokens 转成 AST 树结构。
     2. PreParser 称之为预解析，为什么需要预解析。
-        1. 因为并非所有 JS 代码，在一开始就会执行，对所有 JS 代码解析，必然会影响网页的运行速度。
+        1. 对所有 JS 代码解析，必然会影响网页的运行速度。所以并非所有 JS 代码，在一开始就会执行。
         2. V8 引擎实现了 Lazy Parsing（延迟解析）的方案，它的作用是将不必要的函数进行预解析，而对函数的全量解析是在函数被调用时才会进行的。
 4. 生成的 AST 树，会被 ignition 转成字节码（bytecode），之后的过程就是代码的执行过程
 
