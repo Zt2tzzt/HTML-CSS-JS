@@ -346,19 +346,18 @@ console.log(add5(100))
 var add10 = makeAdder(10)
 console.log(add10(10))
 console.log(add10(100))
-
 ```
 
 再比如下方的日志打印函数案例，也是一个道理。
 
   ```javascript
-  const log = date => type => message =>
-    console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]: [${message}]`)
+const log = date => type => message =>
+  console.log(`[${date.getHours()}:${date.getMinutes()}][${type}]: [${message}]`)
 
-  const nowLog = log(new Date())
+const nowLog = log(new Date())
 
-  nowLog('DEBUG')('查找到轮播图的bug')
-  nowLog('FEATURE')('新增了添加用户的权限')
+nowLog('DEBUG')('查找到轮播图的bug')
+nowLog('FEATURE')('新增了添加用户的权限')
   ```
 
 #### 2.自动柯里化的函数封装
