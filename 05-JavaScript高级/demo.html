@@ -9,27 +9,18 @@
     <h1>哈哈</h1>
 
     <script>
-      // Person 类
-      function Person() {
-        this.name = 'zzt'
+      class Person {
+        constructor(age) {
+          this.age = age;
+        }
+
+        static create() {
+          return new Person(Math.floor(Math.random() * 100))
+        }
       }
 
-      Person.prototype.running = function () {
-        console.log(this.name, 'running')
-      }
-
-      // Students 类
-      function Student() {
-        this.sno = 111
-      }
-
-      // 创建父类对象，并且作为子类的原型对象。
-      var p = new Person()
-      Student.prototype = p
-
-      Student.prototype.studying = function () {
-        console.log(this.sno, 'studying')
-      }
+      var p1 = Person.create()
+      console.log(p1); // Person {age: 61}
     </script>
   </body>
 </html>
