@@ -7,20 +7,13 @@
   </head>
   <body>
     <h1>哈哈</h1>
+    <button>按钮1</button><button>按钮2</button><button>按钮3</button><button>按钮4</button
+    ><button>按钮5</button>
 
     <script>
-      class Person {
-        constructor(age) {
-          this.age = age;
-        }
+      console.log(foo) // Cannot access 'foo' before initialization
 
-        static create() {
-          return new Person(Math.floor(Math.random() * 100))
-        }
-      }
-
-      var p1 = Person.create()
-      console.log(p1); // Person {age: 61}
+      let foo = 'foo'
     </script>
   </body>
 </html>

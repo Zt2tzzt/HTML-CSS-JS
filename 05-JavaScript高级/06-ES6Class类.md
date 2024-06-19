@@ -9,7 +9,7 @@
 - 但是类本质上，依然是前面所讲的构造函数、与原型链结合的语法糖而已；
 - 所以理解了前面的构造函数、原型链，更有利于我们理解类的概念和继承关系；
 
-那么，如何使用 `class` 关键字来定义一个类呢？可以使用两种方式来声明类：类声明和类表达式；
+那么，如何使用 `class` 关键字来定义一个类呢？可以使用两种方式来声明类：**类声明**和**类表达式**；
 
 ### 1.类声明
 
@@ -31,7 +31,7 @@ var Student = class {
 }
 ```
 
-> 定义类的大括号中，代表的不是对象，而是一种特殊的语法。
+> 定义类的大括号 `{}` 中，代表的不是对象，而是一种特殊的语法。
 >
 > 类中的内容，不能使用逗号分割。
 >
@@ -39,7 +39,7 @@ var Student = class {
 
 ## 二、class 类和 function 构造函数
 
-我们来研究一下类的一些特性：你会发现它和我们的构造函数的特性其实是一致的；
+我们来研究一下类的一些特性：你会发现，它和我们的构造函数的特性，其实是一致的；
 
 ```javascript
 class Person {}
@@ -56,9 +56,8 @@ console.log(p.__proto__ === Person.prototype) // true
 console.log(typeof Person) // function
 ```
 
-class 类与 function 构造函数的异同：
+本质上，class 类，是构造函数和原型链的语法糖。
 
-- 本质上，类是构造函数和原型链的语法糖。
 - 它们最明显的区别是，class 类必须用 `new` 操作符调用，而构造函数可以独立调用。
 
 ```javascript
@@ -74,7 +73,6 @@ Student()
 如果我们希望在创建对象的时候，给类传递一些参数，这个时候应该如何做呢？
 
 - 每个类都可以有一个自己的构造函数（方法），这个方法的名称是固定的，即 `constructor`，如果没有明确指定，使用默认的 `constructor`；
-- 当我们通过 `new` 操作符，操作一个类的时候，会调用这个类的构造函数 `constructor`；
 - 每个类只能有一个 `constructor` 构造函数，如果包含多个构造函数，那么会抛出异常；
 
 当我们通过 `new` 关键字，操作类的时候，会调用这个 `constructor` 函数，并且执行如下操作：
@@ -122,10 +120,10 @@ function Person(name, age) {
   this.age = age
 }
 
-// 实例方法，定义在类的显示原型上。
+// 构造函数的实例方法，定义在构造函数的显示原型上。
 Person.prototype.running = function () {}
 
-// 静态方法，定义在类对象上。
+// 构造函数的静态方法，定义在构造函数对象上。
 Person.randomPerson = function () {}
 ```
 
@@ -167,15 +165,19 @@ class Rectangle {
     this.width = width
     this.height = height
   }
+  
   get position() {
     // 将多个属性作为一个整体暴露出去。
     return { x: this.x, y: this.y }
   }
+  
   get size() {
     return { width: this.width, height: this.height }
   }
 }
+
 var rect1 = new Rectangle(10, 20, 100, 200)
+
 rect1.position
 rect1.size
 ```
@@ -248,7 +250,7 @@ console.log(p1); // Person {age: 61}
 
 编写 class 类，定义类（静态）方法，里面的 this 指向谁？
 
-其中的 `this` 代表类本身，因为静态方法通常直接被类调用，应用的是隐式绑定的规则。
+其中的 `this` 代表 class 类本身，因为静态方法通常直接被 class 类调用，应用的是隐式绑定的规则。
 
 ```javascript
 var names = ['abc', 'cba', 'nba', 'mba']
@@ -262,6 +264,7 @@ class Person {
   // 类方法（静态方法）
   static randomPerson() {
     var randomName = names[Math.floor(Math.random() * names.length)]
+    
     return new this(randomName, Math.floor(Math.random() * 100)) // 静态方法中 this 代表类，因为静态方法通常被类调用。
   }
 }
