@@ -11,9 +11,14 @@
     ><button>按钮5</button>
 
     <script>
-      console.log(foo) // Cannot access 'foo' before initialization
+      const foo = () => {
+        console.log('foo');
+      }
 
-      let foo = 'foo'
+      console.log(foo.prototype); // undefined
+
+      const f = new foo() // TypeError: foo is not a constructor
+
     </script>
   </body>
 </html>
