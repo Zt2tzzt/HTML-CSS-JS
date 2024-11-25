@@ -163,8 +163,8 @@
 
 如何使用？
 
-- 隐藏元素可以给某个元素添加 .d-none 类或 .d-{sm,md,lg,xl,xxl}-none 类中的任何一个。
-- 显示元素可以给某个元素添加 .d-block 类或 .d-{sm,md,lg,xl,xxl}-block 类中的任何一个。
+- 隐藏元素可以给某个元素添加 `.d-none` 类或 .`d-{sm,md,lg,xl,xxl}-none` 类中的任何一个。
+- 显示元素可以给某个元素添加 `.d-block` 类或 `.d-{sm,md,lg,xl,xxl}-block` 类中的任何一个。
 
 ---
 
